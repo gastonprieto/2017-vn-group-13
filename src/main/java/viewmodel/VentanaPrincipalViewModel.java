@@ -1,4 +1,4 @@
-package ventanas.vm;
+package viewmodel;
 
 import org.uqbar.commons.utils.Observable;
 

@@ -1,4 +1,4 @@
-package ventanas.ui;
+package window;
 
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -7,7 +7,7 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import ventanas.vm.VentanaPrincipalViewModel;
+import viewmodel.VentanaPrincipalViewModel;
 
 
 public class VentanaPrincipal extends SimpleWindow<VentanaPrincipalViewModel> {
