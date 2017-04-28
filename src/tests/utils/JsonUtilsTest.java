@@ -1,4 +1,4 @@
-package utils;
+package 2017;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,9 +19,15 @@ public class JsonUtilsTest {
 			System.out.println("Empresa: " + empresa.getName());
 			for(Cuenta cuenta : empresa.getCuentas()) {
 				System.out.println("Cuenta: " + cuenta.getName() + ". Valor: " + cuenta.getValue() + ". Semestre: "
-									+ cuenta.getSemester() + ". Año: " + cuenta.getYear());
+									+ cuenta.getSemester() + ". Aï¿½o: " + cuenta.getYear());
 			}
 		}
 		assertEquals(5, empresas.size());
 	}
+	
+	@Test(expected = IOException.class)
+	public void readCuentasFileNotFoundTest() throws IOException {
+		List<Empresa> empresas = JsonUtils.readCuentasFromFile(System.getProperty("user.dir") + "/tests/assets/CuentasOtro.txt");		
+	}
+	
 }
