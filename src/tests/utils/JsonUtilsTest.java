@@ -14,12 +14,12 @@ public class JsonUtilsTest {
 
 	@Test
 	public void readCuentasTest() throws IOException {
-		List<Empresa> empresas = JsonUtils.readCuentasFromFile(System.getProperty("user.dir") + "/src/tests/assets/Cuentas.txt");
+		List<Empresa> empresas = JsonUtils.readCuentasFromFile(System.getProperty("user.dir") + "/assets/Cuentas.txt");
 		for(Empresa empresa : empresas) {
 			System.out.println("Empresa: " + empresa.getName());
 			for(Cuenta cuenta : empresa.getCuentas()) {
 				System.out.println("Cuenta: " + cuenta.getName() + ". Valor: " + cuenta.getValue() + ". Semestre: "
-									+ cuenta.getSemester() + ". A�o: " + cuenta.getYear());
+									+ cuenta.getSemester() + ". Anio: " + cuenta.getYear());
 			}
 		}
 		assertEquals(5, empresas.size());
@@ -27,6 +27,6 @@ public class JsonUtilsTest {
 	
 	@Test(expected = IOException.class)
 	public void readCuentasFileNotFoundTest() throws IOException {
-		List<Empresa> empresas = JsonUtils.readCuentasFromFile(System.getProperty("user.dir") + "/tests/assets/CuentasOtro.txt");		
+		JsonUtils.readCuentasFromFile(System.getProperty("user.dir") + "/tests/assets/CuentasOtro.txt");		
 	}
 }
