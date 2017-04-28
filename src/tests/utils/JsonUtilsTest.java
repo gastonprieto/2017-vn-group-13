@@ -24,4 +24,9 @@ public class JsonUtilsTest {
 		}
 		assertEquals(5, empresas.size());
 	}
+	
+	@Test(expected = IOException.class)
+	public void readCuentasFileNotFoundTest() throws IOException {
+		List<Empresa> empresas = JsonUtils.readCuentasFromFile(System.getProperty("user.dir") + "/tests/assets/CuentasOtro.txt");		
+	}
 }
