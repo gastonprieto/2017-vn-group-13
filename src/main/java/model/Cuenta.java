@@ -1,7 +1,6 @@
 package model;
 
 public class Cuenta {
-	
 	private String name;
 	private Double value;
 	private Integer year;

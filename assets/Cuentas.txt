@@ -1,5 +1,0 @@
-{"name":"Empresa 1","cuentas":[{"name":"Cuenta 1","value":"1","year":"2016","semester":"2"},{"name":"Cuenta 2","value":"5","year":"2016","semester":"2"}]}
-{"name":"Empresa 2","cuentas":[{"name":"Cuenta 1","value":"2","year":"2016","semester":"2"},{"name":"Cuenta 2","value":"4","year":"2016","semester":"2"}]}
-{"name":"Empresa 3","cuentas":[{"name":"Cuenta 1","value":"3","year":"2016","semester":"2"},{"name":"Cuenta 2","value":"3","year":"2016","semester":"2"}]}
-{"name":"Empresa 4","cuentas":[{"name":"Cuenta 1","value":"4","year":"2016","semester":"2"},{"name":"Cuenta 2","value":"2","year":"2016","semester":"2"}]}
-{"name":"Empresa 5","cuentas":[{"name":"Cuenta 1","value":"5","year":"2016","semester":"2"},{"name":"Cuenta 2","value":"1","year":"2016","semester":"2"}]}

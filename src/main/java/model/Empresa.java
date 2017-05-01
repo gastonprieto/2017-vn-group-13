@@ -3,7 +3,6 @@ package model;
 import java.util.List;
 
 public class Empresa {
-	
 	private String name;
 	private List<Cuenta> cuentas;
 	

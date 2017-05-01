@@ -1,4 +1,4 @@
-package model;
+package application;
 
 import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
@@ -6,10 +6,10 @@ import org.uqbar.arena.windows.Window;
 import window.VentanaPrincipal;
 
 
-public class ProgramaDeHector extends Application {
+public class AsistenteDeInversiones extends Application {
 
 	public static void main(String[] args) {		
-		new ProgramaDeHector().start();
+		new AsistenteDeInversiones().start();
 	}
 	
 	@Override

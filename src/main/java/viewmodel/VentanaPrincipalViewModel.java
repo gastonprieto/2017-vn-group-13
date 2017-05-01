@@ -7,7 +7,7 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 
 import model.Empresa;
-import utils.JsonUtils;
+import utils.LectorDeArchivos;
 
 @Observable
 public class VentanaPrincipalViewModel {
@@ -15,7 +15,7 @@ public class VentanaPrincipalViewModel {
 	private List<Empresa> empresasuax;
 	
 	public void recibirEmpresasConCuentas() throws IOException {
-		empresasuax = JsonUtils.readCuentasFromFile(System.getProperty("user.dir") + "/tests/assets/Cuentas.txt");
+		//empresasuax = LectorDeArchivos.readCuentasFromFile(System.getProperty("user.dir") + "/tests/assets/Cuentas.txt");
 	}
 	
 	public List<Empresa> getAsignaciones() {
