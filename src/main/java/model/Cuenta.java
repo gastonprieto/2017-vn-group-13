@@ -4,8 +4,7 @@ public class Cuenta {
 	
 	private String name;
 	private Double value;
-	private Integer year;
-	private Integer semester;
+	private Periodo periodo;
 	
 	public String getName() {
 		return name;
@@ -23,19 +22,11 @@ public class Cuenta {
 		this.value = value;
 	}
 
-	public Integer getYear() {
-		return year;
+	public Periodo getPeriodo() {
+		return periodo;
 	}
 
-	public void setYear(Integer year) {
-		this.year = year;
-	}
-
-	public Integer getSemester() {
-		return semester;
-	}
-
-	public void setSemester(Integer semester) {
-		this.semester = semester;
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
 	}
 }
