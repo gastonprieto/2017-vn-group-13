@@ -25,7 +25,19 @@ public class Cuenta {
 		return periodo;
 	}
 
-	public void setPeriodo(Periodo periodo) {
-		this.periodo = periodo;
+	public Integer getYear() {
+		return periodo.getYear();
+	}
+
+	public void setYear(Integer year) {
+		periodo.setYear(year);
+	}
+
+	public Integer getSemester() {
+		return periodo.getSemester();
+	}
+
+	public void setSemester(Integer semester) {
+		periodo.setSemester(semester);
 	}
 }
