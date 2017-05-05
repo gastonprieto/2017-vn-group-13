@@ -4,12 +4,13 @@ import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import viewmodel.VentanaPrincipalViewModel;
-
+import model.Empresa;
 
 public class VentanaPrincipal extends SimpleWindow<VentanaPrincipalViewModel> {
 
@@ -43,8 +44,13 @@ public class VentanaPrincipal extends SimpleWindow<VentanaPrincipalViewModel> {
 		new Label(izqPanel).setText("Empresas").setWidth(150);
 		new Label(derPanel).setText("Cuentas disponibles");
 		mainPanel.setLayout(new HorizontalLayout());
-		Panel verticalPanel = new Panel(mainPanel);
+		Panel verticalPanel = new Panel(izqPanel);
 		verticalPanel.setLayout(new VerticalLayout());
+		
+		Selector<Empresa> selector = new Selector<Empresa>(mainPanel);
+		selector.allowNull(false);
+		selector.bindValueToProperty("empresaSeleccionada");
+		selector.bindItemsToProperty("empresas");
 		
 		/*Table<Asignacion> assignmentsTable = new Table<>(verticalPanel, Asignacion.class);
 		assignmentsTable.bindItemsToProperty("asignaciones");
@@ -65,3 +71,8 @@ public class VentanaPrincipal extends SimpleWindow<VentanaPrincipalViewModel> {
 		return ventanaVM;
 	}
 }
+
+
+
+
+

@@ -6,25 +6,28 @@ import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
+import model.CarteraDeEmpresas;
 import model.Empresa;
-import utils.LectorDeArchivos;
+
 
 @Observable
 public class VentanaPrincipalViewModel {
 
-	private List<Empresa> empresasuax;
+	private Empresa empresaSeleccionada;
 	
-	public void recibirEmpresasConCuentas() throws IOException {
-		//empresasuax = LectorDeArchivos.readCuentasFromFile(System.getProperty("user.dir") + "/tests/assets/Cuentas.txt");
+	public List<Empresa> getEmpresas(){
+		
+		return CarteraDeEmpresas.getCartera().getEmpresas();
+		
 	}
 	
-	public List<Empresa> getAsignaciones() {
-		List<Empresa> empresas = new ArrayList<>();
-		for(Empresa empresa : empresasuax) {
-			empresas.add(empresa);
-		}
-		return empresas;
+	public Empresa getEmpresaSeleccionada() {
+		return empresaSeleccionada;
 	}
-	
-	
+
+
+	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
+		this.empresaSeleccionada = empresaSeleccionada;
+	}
+
 }
