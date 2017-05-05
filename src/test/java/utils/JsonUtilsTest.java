@@ -1,12 +1,16 @@
 package utils;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
 import model.CarteraDeEmpresas;
+import model.Cuenta;
+import model.Empresa;
 
 public class JsonUtilsTest {
 
@@ -25,4 +29,45 @@ public class JsonUtilsTest {
 	public void readCuentasFileNotFoundTest() throws IOException {
 		//LectorDeArchivos.readCuentasFromFile(System.getProperty("user.dir") + "/tests/assets/CuentasOtro.txt");		
 	}
+	
+	@Test
+	public void leerEmpresaTest() throws IOException {				
+		Cuenta cuenta1 = new Cuenta();
+		cuenta1.setName("Cuenta 1");
+		cuenta1.setValue((double) 1);			
+		
+		Cuenta cuenta2 = new Cuenta();
+		cuenta2.setName("Cuenta 2");
+		cuenta2.setValue((double) 5);		
+		
+		ArrayList<Cuenta> listaCuentasEmpresa1 = new ArrayList<Cuenta>();
+		listaCuentasEmpresa1.add(cuenta1);
+		listaCuentasEmpresa1.add(cuenta2);
+		
+		Empresa retornoEsperadoEmpresa = new Empresa();
+		retornoEsperadoEmpresa.setName("Empresa 1");
+		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa1);					
+						
+		ImportadorDeDatos importador = new ImportadorDeDatos();
+		importador.importarCarteraDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
+		
+		Empresa empresaBuscada = new Empresa();
+		empresaBuscada = (Empresa)(CarteraDeEmpresas.getCartera().getEmpresas()).get(0);		
+		assertTrue(retornoEsperadoEmpresa.equals(empresaBuscada));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
