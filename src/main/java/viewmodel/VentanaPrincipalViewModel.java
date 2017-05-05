@@ -7,6 +7,7 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 
 import model.CarteraDeEmpresas;
+import model.Cuenta;
 import model.Empresa;
 import utils.ImportadorDeDatos;
 
@@ -15,7 +16,7 @@ import utils.ImportadorDeDatos;
 public class VentanaPrincipalViewModel {
 
 	private Empresa empresaSeleccionada;
-	
+	private List<Cuenta> cuentasSeleccionadas;
 	public VentanaPrincipalViewModel() { 		
 		
 		ImportadorDeDatos importador = new ImportadorDeDatos();
@@ -53,7 +54,15 @@ public class VentanaPrincipalViewModel {
 	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
 		
 		this.empresaSeleccionada = empresaSeleccionada;
+		System.out.println(empresaSeleccionada.getName()); 
 		
 	}
-
+	
+	
+	public List<Cuenta> getCuentasSeleccionadas(){
+		
+		return this.empresaSeleccionada.getCuentas(); 
+	}
+	
+	
 }

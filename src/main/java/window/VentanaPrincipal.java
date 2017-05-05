@@ -17,6 +17,7 @@ import org.uqbar.lacar.ui.model.ListBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 
 import viewmodel.VentanaPrincipalViewModel;
+import model.Cuenta;
 import model.Empresa;
 
 public class VentanaPrincipal extends SimpleWindow<VentanaPrincipalViewModel> {
@@ -53,6 +54,7 @@ public class VentanaPrincipal extends SimpleWindow<VentanaPrincipalViewModel> {
 		mainPanel.setLayout(new HorizontalLayout());
 		Panel verticalPanel = new Panel(izqPanel);
 		verticalPanel.setLayout(new VerticalLayout());
+		Table<Cuenta> cuentasTable = new Table<>(derPanel, Cuenta.class);
 		
 		Selector<Empresa> selector = new Selector<Empresa>(izqPanel);
 		selector.allowNull(false);
@@ -61,17 +63,24 @@ public class VentanaPrincipal extends SimpleWindow<VentanaPrincipalViewModel> {
 		//new TextBox(izqPanel).bindValueToProperty("nombreEmpresa");
 		//selector.onSelection(() -> );
 	
-		/*Table<Asignacion> assignmentsTable = new Table<>(verticalPanel, Asignacion.class);
-		assignmentsTable.bindItemsToProperty("asignaciones");
 		
-		Column<Asignacion> idsColumn = new Column<Asignacion>(assignmentsTable);
-		idsColumn.setTitle("Titulo").setFixedSize(100).bindContentsToProperty("title");
+		
+		//Table<Cuenta> cuentasTable = new Table<>(verticalPanel, Cuenta.class);
+		cuentasTable.bindItemsToProperty("cuentasSeleccionadas");
+		
+		Column<Cuenta> namesColumn = new Column<Cuenta>(cuentasTable);
+		namesColumn.setTitle("Nombre").setFixedSize(100).bindContentsToProperty("name");
 	
-		Column<Asignacion> descriptionsColumn = new Column<Asignacion>(assignmentsTable);
-		descriptionsColumn.setTitle("Descripcion").setFixedSize(200).bindContentsToProperty("description");
+		Column<Cuenta> valuesColumn = new Column<Cuenta>(cuentasTable);
+		valuesColumn.setTitle("Valor").setFixedSize(200).bindContentsToProperty("value");
 		
-		Column<Asignacion> gradesColumn = new Column<Asignacion>(assignmentsTable);
-		gradesColumn.setTitle("Nota").setFixedSize(100).bindContentsToProperty("lastGrade");*/
+		Column<Cuenta> yearsColumn = new Column<Cuenta>(cuentasTable);
+		yearsColumn.setTitle("Año").setFixedSize(100).bindContentsToProperty("lastGrade");
+		
+		
+		Column<Cuenta> semestersColumn = new Column<Cuenta>(cuentasTable);
+		semestersColumn.setTitle("Semestre").setFixedSize(100).bindContentsToProperty("lastGrade");
+		
 		new Label(derPanel).setText("Resultado de aplicar indicadores en un periodo");
 		new Label(derPanel).setText("Graficar de periodo de la empresa seleccionada");
 	}
