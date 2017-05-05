@@ -13,8 +13,6 @@ public class AsistenteDeInversiones extends Application {
 
 	public static void main(String[] args) throws IOException {		
 		new AsistenteDeInversiones().start();
-		ImportadorDeDatos importador = new ImportadorDeDatos();
-		importador.importarCarteraDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
 	}
 	
 	@Override

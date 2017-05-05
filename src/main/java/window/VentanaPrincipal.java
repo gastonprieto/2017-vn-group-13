@@ -1,14 +1,21 @@
 package window;
 
+import org.uqbar.arena.bindings.ObservableProperty;
+import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.lacar.ui.model.Action;
+import org.uqbar.lacar.ui.model.ListBuilder;
+import org.uqbar.lacar.ui.model.bindings.Binding;
+
 import viewmodel.VentanaPrincipalViewModel;
 import model.Empresa;
 
@@ -47,11 +54,13 @@ public class VentanaPrincipal extends SimpleWindow<VentanaPrincipalViewModel> {
 		Panel verticalPanel = new Panel(izqPanel);
 		verticalPanel.setLayout(new VerticalLayout());
 		
-		Selector<Empresa> selector = new Selector<Empresa>(mainPanel);
+		Selector<Empresa> selector = new Selector<Empresa>(izqPanel);
 		selector.allowNull(false);
 		selector.bindValueToProperty("empresaSeleccionada");
-		selector.bindItemsToProperty("empresas");
-		
+		selector.bindItemsToProperty("empresas").setAdapter(new PropertyAdapter(Empresa.class, "name"));
+		//new TextBox(izqPanel).bindValueToProperty("nombreEmpresa");
+		//selector.onSelection(() -> );
+	
 		/*Table<Asignacion> assignmentsTable = new Table<>(verticalPanel, Asignacion.class);
 		assignmentsTable.bindItemsToProperty("asignaciones");
 		
