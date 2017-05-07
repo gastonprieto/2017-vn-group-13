@@ -1,24 +1,27 @@
 package model;
 
-import java.util.List;
+import java.util.Collection;
 
 public class CarteraDeEmpresas {
-	private static CarteraDeEmpresas cartera;
-	private List<Empresa> empresas;
+	private static CarteraDeEmpresas instance = null;
+	private Collection<Empresa> empresas;
 	
-	public static CarteraDeEmpresas getCartera() {
-		return CarteraDeEmpresas.cartera;
+	private CarteraDeEmpresas() {
+		
 	}
 	
-	public static void setCartera(CarteraDeEmpresas cartera) {
-		CarteraDeEmpresas.cartera = cartera;
-	}
-	
-	public List<Empresa> getEmpresas() {
-		return empresas;
+	public static CarteraDeEmpresas getInstance() {
+		if(instance == null) {
+			instance = new CarteraDeEmpresas();
+		}
+		return instance;
 	}
 
-	public  void setEmpresas(List<Empresa> empresas) {
+	public Collection<Empresa> getEmpresas() {
+		return empresas;
+	}
+	
+	public void setEmpresas(Collection<Empresa> empresas) {
 		this.empresas = empresas;
 	}
 }

@@ -22,7 +22,7 @@ public class JsonUtilsTest {
 		
 		ImportadorDeDatos importador = new ImportadorDeDatos();
 		importador.importarCarteraDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
-		assertEquals(5, CarteraDeEmpresas.getCartera().getEmpresas().size());
+		assertEquals(5, CarteraDeEmpresas.getInstance().getEmpresas().size());
 	}
 	
 	@Test(expected = IOException.class)
@@ -51,9 +51,7 @@ public class JsonUtilsTest {
 		ImportadorDeDatos importador = new ImportadorDeDatos();
 		importador.importarCarteraDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
 		
-		Empresa empresaBuscada = new Empresa();
-		empresaBuscada = (Empresa)(CarteraDeEmpresas.getCartera().getEmpresas()).get(0);		
-		assertTrue(retornoEsperadoEmpresa.equals(empresaBuscada));
+		assertTrue(CarteraDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
 	}
 	
 	

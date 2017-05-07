@@ -1,7 +1,5 @@
 package utils;
 
-import java.io.IOException;
-
 import com.google.gson.Gson;
 
 import model.CarteraDeEmpresas;
@@ -13,9 +11,9 @@ public class ImportadorDeDatos {
 		this.lectorDeArchivos = new LectorDeArchivos();
 	}
 	
-	public void importarCarteraDeEmpresas(String filePath) throws IOException {
+	public void importarCarteraDeEmpresas(String filePath) {
 		String datosLeidos = this.lectorDeArchivos.leerArchivo(filePath);
 		Gson gson = new Gson();
-		CarteraDeEmpresas.setCartera(gson.fromJson(datosLeidos, CarteraDeEmpresas.class));
+		CarteraDeEmpresas.getInstance().setEmpresas(gson.fromJson(datosLeidos, CarteraDeEmpresas.class).getEmpresas());
 	}
 }
