@@ -22,6 +22,8 @@ public class JsonUtilsTest {
 	
 	Empresa retornoEsperadoEmpresa;
 	
+	ArrayList<Cuenta> listaCuentasEmpresa;
+	
 	private Cuenta cuenta1;
 	private Cuenta cuenta2;
 	private Cuenta cuenta3;
@@ -38,11 +40,13 @@ public class JsonUtilsTest {
 		
 		retornoEsperadoEmpresa = new Empresa();
 		
+		listaCuentasEmpresa = new ArrayList<Cuenta>();
+		
 		cuenta1 = new Cuenta();
 		cuenta1.setName("Cuenta 1");
 		cuenta1.setValue((double) 1);
 		
-		Periodo periodo1 = new Periodo();
+		periodo1 = new Periodo();
 		periodo1.setSemester(2);
 		periodo1.setYear(2016);
 		cuenta1.setPeriodo(periodo1);
@@ -72,34 +76,30 @@ public class JsonUtilsTest {
 	}		
 	
 	@Test
-	public void leerEmpresaTest() throws ParserException {								
-		ArrayList<Cuenta> listaCuentasEmpresa1 = new ArrayList<Cuenta>();
-		listaCuentasEmpresa1.add(cuenta1);
-		listaCuentasEmpresa1.add(cuenta2);
+	public void leerEmpresaTest() throws ParserException {										
+		listaCuentasEmpresa.add(cuenta1);
+		listaCuentasEmpresa.add(cuenta2);
 				
 		retornoEsperadoEmpresa.setName("Empresa 1");
-		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa1);													
+		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa);													
 		
 		assertTrue(CarteraDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
 	}
 	
 	@Test
-	public void leerEmpresaSinCuentasTest() throws ParserException {
-		ArrayList<Cuenta> listaCuentasEmpresa6 = new ArrayList<Cuenta>();		
-				
+	public void leerEmpresaSinCuentasTest() throws ParserException {							
 		retornoEsperadoEmpresa.setName("Empresa 6");			
-		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa6);
+		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa);
 		
 		assertTrue(CarteraDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
 	}
 	
 	@Test
-	public void leerEmpresaConUnaCuentaSinPeriodoTest() throws ParserException {
-		ArrayList<Cuenta> listaCuentasEmpresa7 = new ArrayList<Cuenta>();
-		listaCuentasEmpresa7.add(cuenta3);
+	public void leerEmpresaConUnaCuentaSinPeriodoTest() throws ParserException {		
+		listaCuentasEmpresa.add(cuenta3);
 				
 		retornoEsperadoEmpresa.setName("Empresa 7");					
-		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa7);
+		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa);
 		
 		assertTrue(CarteraDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
 	}
