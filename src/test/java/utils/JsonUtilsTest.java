@@ -1,6 +1,7 @@
 package utils;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import model.CarteraDeEmpresas;
 import model.Cuenta;
 import model.Empresa;
+import model.Periodo;
 
 public class JsonUtilsTest {
 
@@ -34,11 +36,19 @@ public class JsonUtilsTest {
 	public void leerEmpresaTest() throws IOException {				
 		Cuenta cuenta1 = new Cuenta();
 		cuenta1.setName("Cuenta 1");
-		cuenta1.setValue((double) 1);			
+		cuenta1.setValue((double) 1);
+		Periodo periodo1 = new Periodo();
+		periodo1.setSemester(2);
+		periodo1.setYear(2016);
+		cuenta1.setPeriodo(periodo1);
 		
 		Cuenta cuenta2 = new Cuenta();
 		cuenta2.setName("Cuenta 2");
-		cuenta2.setValue((double) 5);		
+		cuenta2.setValue((double) 5);
+		Periodo periodo2 = new Periodo();
+		periodo2.setSemester(2);
+		periodo2.setYear(2016);
+		cuenta2.setPeriodo(periodo2);
 		
 		ArrayList<Cuenta> listaCuentasEmpresa1 = new ArrayList<Cuenta>();
 		listaCuentasEmpresa1.add(cuenta1);
