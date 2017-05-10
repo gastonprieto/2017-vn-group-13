@@ -26,9 +26,9 @@ public class Periodo {
 			return false;
 		}
 
-		/*if (!Periodo.class.isAssignableFrom(obj.getClass())) {
+		if (!Periodo.class.isAssignableFrom(obj.getClass())) {
 			return false;
-		}*/
+		}
 
 		final Periodo periodoAComparar = (Periodo) obj;
 

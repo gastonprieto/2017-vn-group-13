@@ -35,9 +35,9 @@ public class Cuenta {
 			return false;
 		}
 
-		/*if (!Cuenta.class.isAssignableFrom(obj.getClass())) {
+		if (!Cuenta.class.isAssignableFrom(obj.getClass())) {
 			return false;
-		}*/
+		}
 
 		final Cuenta cuentaAComparar = (Cuenta) obj;
 

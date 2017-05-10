@@ -31,9 +31,9 @@ public class Empresa {
 			return false;
 		}
 
-		/*if (!Empresa.class.isAssignableFrom(obj.getClass())) {
+		if (!Empresa.class.isAssignableFrom(obj.getClass())) {
 			return false;
-		}*/
+		}
 
 		final Empresa empresaAComparar = (Empresa) obj;
 
