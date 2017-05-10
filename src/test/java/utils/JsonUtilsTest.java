@@ -17,9 +17,10 @@ import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
 
-public class JsonUtilsTest {
-	
+public class JsonUtilsTest {	
 	ImportadorDeDatos importador;
+	
+	Empresa retornoEsperadoEmpresa;
 	
 	private Cuenta cuenta1;
 	private Cuenta cuenta2;
@@ -34,6 +35,8 @@ public class JsonUtilsTest {
 		
 		importador = new ImportadorDeDatos();
 		importador.importarCarteraDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
+		
+		retornoEsperadoEmpresa = new Empresa();
 		
 		cuenta1 = new Cuenta();
 		cuenta1.setName("Cuenta 1");
@@ -73,8 +76,7 @@ public class JsonUtilsTest {
 		ArrayList<Cuenta> listaCuentasEmpresa1 = new ArrayList<Cuenta>();
 		listaCuentasEmpresa1.add(cuenta1);
 		listaCuentasEmpresa1.add(cuenta2);
-		
-		Empresa retornoEsperadoEmpresa = new Empresa();
+				
 		retornoEsperadoEmpresa.setName("Empresa 1");
 		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa1);													
 		
@@ -84,8 +86,7 @@ public class JsonUtilsTest {
 	@Test
 	public void leerEmpresaSinCuentasTest() throws ParserException {
 		ArrayList<Cuenta> listaCuentasEmpresa6 = new ArrayList<Cuenta>();		
-		
-		Empresa retornoEsperadoEmpresa = new Empresa();
+				
 		retornoEsperadoEmpresa.setName("Empresa 6");			
 		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa6);
 		
@@ -96,8 +97,7 @@ public class JsonUtilsTest {
 	public void leerEmpresaConUnaCuentaSinPeriodoTest() throws ParserException {
 		ArrayList<Cuenta> listaCuentasEmpresa7 = new ArrayList<Cuenta>();
 		listaCuentasEmpresa7.add(cuenta3);
-		
-		Empresa retornoEsperadoEmpresa = new Empresa();
+				
 		retornoEsperadoEmpresa.setName("Empresa 7");					
 		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa7);
 		
