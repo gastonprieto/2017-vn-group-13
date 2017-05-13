@@ -17,7 +17,7 @@ import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
 
-public class JsonUtilsTest {	
+public class ImportadorDeDatosTest {	
 	ImportadorDeDatos importador;
 	
 	Empresa retornoEsperadoEmpresa;
