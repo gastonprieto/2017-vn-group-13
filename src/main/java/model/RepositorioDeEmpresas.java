@@ -2,17 +2,17 @@ package model;
 
 import java.util.Collection;
 
-public class CarteraDeEmpresas {
-	private static CarteraDeEmpresas instance = null;
+public class RepositorioDeEmpresas {
+	private static RepositorioDeEmpresas instance = null;
 	private Collection<Empresa> empresas;
 	
-	private CarteraDeEmpresas() {
+	private RepositorioDeEmpresas() {
 		
 	}
 	
-	public static CarteraDeEmpresas getInstance() {
+	public static RepositorioDeEmpresas getInstance() {
 		if(instance == null) {
-			instance = new CarteraDeEmpresas();
+			instance = new RepositorioDeEmpresas();
 		}
 		return instance;
 	}
@@ -25,3 +25,4 @@ public class CarteraDeEmpresas {
 		this.empresas = empresas;
 	}
 }
+

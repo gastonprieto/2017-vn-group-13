@@ -1,10 +1,10 @@
 package utils;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -12,10 +12,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exception.ParserException;
-import model.CarteraDeEmpresas;
 import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
+import model.RepositorioDeEmpresas;
 
 public class ImportadorDeDatosTest {	
 	ImportadorDeDatos importador;
@@ -36,7 +36,7 @@ public class ImportadorDeDatosTest {
 	public void setUp() {
 		
 		importador = new ImportadorDeDatos();
-		importador.importarCarteraDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
+		importador.importarRepositorioDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
 		
 		retornoEsperadoEmpresa = new Empresa();
 		
@@ -72,7 +72,7 @@ public class ImportadorDeDatosTest {
 	
 	@After
     public void tearDown() {
-		CarteraDeEmpresas.getInstance().getEmpresas().clear();
+		RepositorioDeEmpresas.getInstance().getEmpresas().clear();
 	}		
 	
 	@Test
@@ -83,7 +83,7 @@ public class ImportadorDeDatosTest {
 		retornoEsperadoEmpresa.setName("Empresa 1");
 		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa);													
 		
-		assertTrue(CarteraDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
+		assertTrue(RepositorioDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
 	}
 	
 	@Test
@@ -91,7 +91,7 @@ public class ImportadorDeDatosTest {
 		retornoEsperadoEmpresa.setName("Empresa 6");			
 		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa);
 		
-		assertTrue(CarteraDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
+		assertTrue(RepositorioDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
 	}
 	
 	@Test
@@ -101,7 +101,7 @@ public class ImportadorDeDatosTest {
 		retornoEsperadoEmpresa.setName("Empresa 7");					
 		retornoEsperadoEmpresa.setCuentas(listaCuentasEmpresa);
 		
-		assertTrue(CarteraDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
+		assertTrue(RepositorioDeEmpresas.getInstance().getEmpresas().contains(retornoEsperadoEmpresa));
 	}
 	
 	

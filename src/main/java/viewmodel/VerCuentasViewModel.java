@@ -4,8 +4,8 @@ import java.util.Collection;
 
 import org.uqbar.commons.utils.Observable;
 
-import model.CarteraDeEmpresas;
 import model.Empresa;
+import model.RepositorioDeEmpresas;
 import utils.ImportadorDeDatos;
 
 @Observable
@@ -14,11 +14,11 @@ public class VerCuentasViewModel {
 	
 	public VerCuentasViewModel() { 		
 		ImportadorDeDatos importador = new ImportadorDeDatos();
-		importador.importarCarteraDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt"); 		
+		importador.importarRepositorioDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt"); 		
 	}
 	
 	public Collection<Empresa> getEmpresas(){
-		return CarteraDeEmpresas.getInstance().getEmpresas();
+		return RepositorioDeEmpresas.getInstance().getEmpresas();
 	}
 	
 	public Empresa getEmpresaSeleccionada() {

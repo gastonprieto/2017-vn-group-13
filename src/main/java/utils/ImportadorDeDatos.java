@@ -2,7 +2,7 @@ package utils;
 
 import com.google.gson.Gson;
 
-import model.CarteraDeEmpresas;
+import model.RepositorioDeEmpresas;
 
 public class ImportadorDeDatos {
 	private LectorDeArchivos lectorDeArchivos;
@@ -11,9 +11,9 @@ public class ImportadorDeDatos {
 		this.lectorDeArchivos = new LectorDeArchivos();
 	}
 	
-	public void importarCarteraDeEmpresas(String filePath) {
+	public void importarRepositorioDeEmpresas(String filePath) {
 		String datosLeidos = this.lectorDeArchivos.leerArchivo(filePath);
 		Gson gson = new Gson();
-		CarteraDeEmpresas.getInstance().setEmpresas(gson.fromJson(datosLeidos, CarteraDeEmpresas.class).getEmpresas());
+		RepositorioDeEmpresas.getInstance().setEmpresas(gson.fromJson(datosLeidos, RepositorioDeEmpresas.class).getEmpresas());
 	}
 }
