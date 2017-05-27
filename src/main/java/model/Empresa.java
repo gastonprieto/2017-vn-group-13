@@ -8,6 +8,15 @@ import org.uqbar.commons.utils.Observable;
 public class Empresa {
 	private String name;
 	private Collection<Cuenta> cuentas;
+	
+	public Double buscarValorDeCuentaParaPeriodo(String nombre, Periodo periodoTarget) {
+		for(Cuenta cuenta : cuentas) {
+			if(cuenta.getName().equalsIgnoreCase(nombre) && cuenta.getPeriodo().equals(periodoTarget)) {
+				return cuenta.getValue();
+			}
+		}
+		return null;
+	}
 
 	public String getName() {
 		return name;

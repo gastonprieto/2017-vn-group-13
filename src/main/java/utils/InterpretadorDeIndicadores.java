@@ -4,31 +4,36 @@ import org.apache.commons.lang.StringUtils;
 
 import model.Constante;
 import model.Division;
+import model.Indicador;
 import model.Multiplicacion;
 import model.Operacion;
 import model.Operador;
 import model.Operando;
 import model.Resta;
 import model.Suma;
+import model.Variable;
 
 public class InterpretadorDeIndicadores {
 	
-	public Operando interpretar(String indicador) {
-		Operador operador = this.getSiguienteOperador(indicador);
+	public Operando interpretar(Indicador indicador, String calculo) {
+		Operador operador = this.getSiguienteOperador(calculo);
 		if(operador != null) {
-			return generarOperacion(indicador, operador);
+			return generarOperacion(indicador, calculo, operador);
 		}
-		return new Constante(indicador);
+		if(StringUtils.isNumeric(calculo)) {
+			return new Constante(calculo);			
+		}
+		return new Variable(calculo, indicador);
 	}
 
-	private Operacion generarOperacion(String indicador, Operador operador) {
+	private Operacion generarOperacion(Indicador indicador, String calculo, Operador operador) {
 		Operando operandoIzq = null;
-		String[] operandos = StringUtils.split(indicador, operador.getSimbolo());
+		String[] operandos = StringUtils.split(calculo, operador.getSimbolo());
 		for(String sOperando : operandos) {
 			if(operandoIzq == null) {
-				operandoIzq = this.interpretar(sOperando);
+				operandoIzq = this.interpretar(indicador, sOperando);
 			} else {
-				operandoIzq = new Operacion(operandoIzq, operador, this.interpretar(sOperando));
+				operandoIzq = new Operacion(operandoIzq, operador, this.interpretar(indicador, sOperando));
 			}
 		}
 		return (Operacion) operandoIzq;

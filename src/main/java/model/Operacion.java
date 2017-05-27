@@ -14,6 +14,6 @@ public class Operacion implements Operando {
 	
 	@Override
 	public Double resultado() {
-		return this.operador.operar(operandoIzquierdo, operandoDerecho);
+		return this.operador.operar(operandoIzquierdo.resultado(), operandoDerecho.resultado());
 	}
 }

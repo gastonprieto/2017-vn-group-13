@@ -4,6 +4,15 @@ public class Periodo {
 	private Integer year;
 	private Integer semester;
 	
+	public Periodo() {
+		
+	}
+	
+	public Periodo(Integer year, Integer semester) {
+		this.year = year;
+		this.semester = semester;
+	}
+	
 	public Integer getYear() {
 		return year;
 	}

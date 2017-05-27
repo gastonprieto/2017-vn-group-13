@@ -1,16 +1,14 @@
 package model;
 
 public class Suma implements Operador {
-
-	private final String simbolo = "+";
 	
 	@Override
-	public Double operar(Operando operandoIzquierdo, Operando operandoDerecho) {
-		return operandoIzquierdo.resultado() + operandoDerecho.resultado();
+	public Double operar(Double valorIzquierdo, Double valorDerecho) {
+		return valorIzquierdo + valorDerecho;
 	}
 
 	@Override
 	public String getSimbolo() {
-		return simbolo;
+		return "+";
 	}
 }
