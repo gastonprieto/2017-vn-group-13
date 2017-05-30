@@ -1,7 +1,9 @@
 package utils;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 
+import exception.IndicadorException;
 import model.Constante;
 import model.Division;
 import model.Indicador;
@@ -15,12 +17,21 @@ import model.Variable;
 
 public class InterpretadorDeIndicadores {
 	
-	public Operando interpretar(Indicador indicador, String calculo) {
+	public Indicador interpretar(String nombre, String calculo) {
+		if(!calculo.matches("((\\w+)[-+*/])*(\\w+)") || calculo.contains(nombre)) {
+			throw new IndicadorException("La expresion ingresada para el indicador no es valida");
+		}
+		Indicador indicador = new Indicador(nombre);
+		indicador.setOperacion(this.generarOperando(indicador, calculo));
+		return indicador;
+	}
+	
+	private Operando generarOperando(Indicador indicador, String calculo) {
 		Operador operador = this.getSiguienteOperador(calculo);
 		if(operador != null) {
 			return generarOperacion(indicador, calculo, operador);
 		}
-		if(StringUtils.isNumeric(calculo)) {
+		if(NumberUtils.isNumber(calculo)) {
 			return new Constante(calculo);			
 		}
 		return new Variable(calculo, indicador);
@@ -31,9 +42,9 @@ public class InterpretadorDeIndicadores {
 		String[] operandos = StringUtils.split(calculo, operador.getSimbolo());
 		for(String sOperando : operandos) {
 			if(operandoIzq == null) {
-				operandoIzq = this.interpretar(indicador, sOperando);
+				operandoIzq = this.generarOperando(indicador, sOperando);
 			} else {
-				operandoIzq = new Operacion(operandoIzq, operador, this.interpretar(indicador, sOperando));
+				operandoIzq = new Operacion(operandoIzq, operador, this.generarOperando(indicador, sOperando));
 			}
 		}
 		return (Operacion) operandoIzq;

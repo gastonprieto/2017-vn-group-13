@@ -32,6 +32,11 @@ public class Indicador {
 		if(valor != null) {
 			return valor;
 		}
-		throw new IndicadorException("La cuenta especificada en el indicador no existe");
+		valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(empresaTarget, periodoTarget);
+		if(valor != null) {
+			return valor;
+		}
+		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
+				+ ", en el periodo: " + "Año = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
 	}
 }
