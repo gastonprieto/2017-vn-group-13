@@ -51,7 +51,7 @@ public class InterpretadorDeIndicadoresTest {
 	@Test
 	public void interpretarOperacionesCombinadas() {
 		InterpretadorDeIndicadores interpretador = new InterpretadorDeIndicadores();
-		Indicador indicador = interpretador.interpretar("Indicador", "10*2/5+8*2-6/2");
+		Indicador indicador = interpretador.interpretar("Indicador", "10*0.4+8*2-6/2");
 		Assert.assertTrue(17 == indicador.aplicar(null, null));
 	}
 	

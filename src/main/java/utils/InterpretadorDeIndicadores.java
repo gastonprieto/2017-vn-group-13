@@ -18,7 +18,7 @@ import model.Variable;
 public class InterpretadorDeIndicadores {
 	
 	public Indicador interpretar(String nombre, String calculo) {
-		if(!calculo.matches("((\\w+)[-+*/])*(\\w+)") || calculo.contains(nombre)) {
+		if(!calculo.matches("((\\w+)(.\\w+)?[-+*/])*(\\w+)(.\\w+)?") || calculo.contains(nombre)) {
 			throw new IndicadorException("La expresion ingresada para el indicador no es valida");
 		}
 		Indicador indicador = new Indicador(nombre);
