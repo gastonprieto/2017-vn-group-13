@@ -16,7 +16,7 @@ public class ImportadorDeIndicadores {
 	private static final char DEFAULT_SEPARATOR = ',';
 	private static final String ARCHIVO_INDICADORES = System.getProperty("user.dir") + "/src/test/assets/Indicadores.csv";
 	
-	private void guardarIndicador(String nombreIndicador, String calculo) {		
+	public void guardarIndicador(String nombreIndicador, String calculo) {		
 		try {					       		    
 		    File file = new File(ARCHIVO_INDICADORES);
 
@@ -36,7 +36,7 @@ public class ImportadorDeIndicadores {
 		}				
 	}	
 	
-	private String leerIndicadores() {
+	public String leerIndicadores() {
 		String line = ""; 
 		StringBuilder builder = new StringBuilder();
 

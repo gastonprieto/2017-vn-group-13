@@ -62,7 +62,7 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	}
 	
 	public void abrirMenu() {
-		MenuView menuView = new MenuView(this.parent);
+		MenuView menuView = new MenuView(this.parent, false);
 		this.close();
 		menuView.open();
 	}

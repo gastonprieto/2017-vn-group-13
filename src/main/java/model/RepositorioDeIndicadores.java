@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import exception.IndicadorException;
+
 public class RepositorioDeIndicadores {
 	private static RepositorioDeIndicadores instance = null;
 	private Collection<Indicador> indicadores = new ArrayList<>();
@@ -19,6 +21,9 @@ public class RepositorioDeIndicadores {
 	}
 
 	public void registrarIndicador(Indicador indicador) {
+		if(this.buscarIndicador(indicador.getNombre()) != null) {
+			throw new IndicadorException("El indicador ya existe");
+		}
 		indicadores.add(indicador);
 	}
 	
