@@ -3,6 +3,7 @@ package window;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
+import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
@@ -11,20 +12,21 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+
 import viewmodel.VerCuentasViewModel;
 import model.Cuenta;
 import model.Empresa;
 
 public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
+	
 	private static final long serialVersionUID = 1L;
+	private Button menu;
+	WindowOwner parent;
+	
 	
 	public VerCuentasView(WindowOwner parent) {
 		super(parent, new VerCuentasViewModel());
-	}
-
-	@Override
-	protected void addActions(Panel actionsPanel) {
-		
+		this.parent = parent;
 	}
 
 	@Override
@@ -47,9 +49,25 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 
 		new Column<Cuenta>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
 		new Column<Cuenta>(table).setTitle("Valor").setFixedSize(75).bindContentsToProperty("value");
-		new Column<Cuenta>(table).setTitle("Año").setFixedSize(75).bindContentsToProperty("periodo.year");
+		new Column<Cuenta>(table).setTitle("Aï¿½o").setFixedSize(75).bindContentsToProperty("periodo.year");
 		new Column<Cuenta>(table).setTitle("Semestre").setFixedSize(75).bindContentsToProperty("periodo.semester");
+		menu = new Button(verticalPanel).setCaption("Volver al menu");
+		
+		
 	}
+	
+	@Override
+	protected void addActions(Panel actionsPanel) {
+		menu.onClick(this::abrirMenu);
+	}
+	
+	public void abrirMenu() {
+		MenuView menuView = new MenuView(this.parent);
+		this.close();
+		menuView.open();
+	}
+
+	
 }
 
 

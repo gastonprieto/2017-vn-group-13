@@ -28,4 +28,5 @@ public class VerCuentasViewModel {
 	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
 		this.empresaSeleccionada = empresaSeleccionada;
 	}
+	
 }

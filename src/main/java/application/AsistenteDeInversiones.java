@@ -3,7 +3,8 @@ package application;
 import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
 
-import window.VerCuentasView;
+import window.MenuView;
+
 
 public class AsistenteDeInversiones extends Application {
 
@@ -13,6 +14,6 @@ public class AsistenteDeInversiones extends Application {
 	
 	@Override
 	protected Window<?> createMainWindow() {
-		return new VerCuentasView(this);
+		return new MenuView(this);
 	}
 }
