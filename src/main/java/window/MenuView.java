@@ -14,11 +14,6 @@ public class MenuView extends SimpleWindow<MenuViewModel> {
 	private static final long serialVersionUID = 1L;
 	
 	WindowOwner parent;
-
-	public MenuView(WindowOwner parent) {
-		super(parent, new MenuViewModel(true));
-		this.parent = parent;
-	}
 	
 	public MenuView(WindowOwner parent, boolean noCargarDatos) {
 		super(parent, new MenuViewModel(noCargarDatos));

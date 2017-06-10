@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import exception.ParserException;
@@ -25,7 +26,11 @@ public class ManejadorDeArchivos {
 
 	public Collection<String> leerArchivoCSV(String filePath) {
 		try {
-			return Files.readAllLines(Paths.get(filePath));
+			File file = new File(filePath);
+			if(file.exists()) {
+				return Files.readAllLines(file.toPath());
+			}
+			return new ArrayList<>();
 		} catch (IOException e) {
 			throw new ParserException("Error leyendo el archivo: " + filePath);
 		}

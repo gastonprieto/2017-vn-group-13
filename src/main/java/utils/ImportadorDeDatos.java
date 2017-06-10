@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.Collection;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.google.gson.Gson;
@@ -22,9 +24,14 @@ public class ImportadorDeDatos {
 	
 	public void importarIndicadores(String filePath) {
 		InterpretadorDeIndicadores interpretador = new InterpretadorDeIndicadores();
-		for(String line : this.lectorDeArchivos.leerArchivoCSV(filePath)) {
-			String[] indicador = StringUtils.splitByWholeSeparator(line, ",");
-			RepositorioDeIndicadores.getInstance().registrarIndicador(interpretador.interpretar(indicador[0], indicador[1]));
+		Collection<String> lineasLeidas = this.lectorDeArchivos.leerArchivoCSV(filePath);
+		if(!lineasLeidas.isEmpty()) {
+			for(String line : lineasLeidas) {
+				if(line.contains(",")) {
+					String[] indicador = StringUtils.splitByWholeSeparator(line, ",");
+					RepositorioDeIndicadores.getInstance().registrarIndicador(interpretador.interpretar(indicador[0], indicador[1]));
+				}
+			}
 		}
 	}
 }
