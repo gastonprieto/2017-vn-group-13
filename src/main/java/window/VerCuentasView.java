@@ -33,27 +33,44 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	protected void createFormPanel(Panel mainPanel) {
 		
 		this.setTitle("Ver Cuentas");
-		mainPanel.setLayout(new HorizontalLayout());
-		
-		Panel verticalPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
-		
-		new Label(verticalPanel).setText("Seleccione una empresa: ");
-		
-		Selector<Empresa> selector = new Selector<Empresa>(verticalPanel);
+		mainPanel.setLayout(new VerticalLayout());
+
+		Panel OpcionesPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
+
+		Panel CuentasPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
+
+		Panel IndicadoresPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
+
+		/* Contenido OpcionesPanel*/
+		new Label(CuentasPanel).setText("Seleccione una empresa: ");
+
+		Selector<Empresa> selector = new Selector<Empresa>(OpcionesPanel);
 		selector.allowNull(false);
 		selector.bindValueToProperty("empresaSeleccionada");
 		selector.bindItemsToProperty("empresas").setAdapter(new PropertyAdapter(Empresa.class, "name"));
-		
-		Table<Cuenta> table = new Table<Cuenta>(mainPanel, Cuenta.class);
+
+		menu = new Button(OpcionesPanel).setCaption("Volver al menu");
+		new Button(OpcionesPanel).setCaption("Agregar Indicador");
+
+		/* Contenido CuentasPanel*/
+
+		Table<Cuenta> table = new Table<Cuenta>(CuentasPanel, Cuenta.class);
 		table.bindItemsToProperty("empresaSeleccionada.cuentas");
 
 		new Column<Cuenta>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
 		new Column<Cuenta>(table).setTitle("Valor").setFixedSize(75).bindContentsToProperty("value");
 		new Column<Cuenta>(table).setTitle("A�o").setFixedSize(75).bindContentsToProperty("periodo.year");
 		new Column<Cuenta>(table).setTitle("Semestre").setFixedSize(75).bindContentsToProperty("periodo.semester");
-		menu = new Button(verticalPanel).setCaption("Volver al menu");
-		
-		
+
+		/* Contenido IndicadoresPanel*/
+
+		Table<Cuenta> table2 = new Table<Cuenta>(IndicadoresPanel, Cuenta.class);
+		table.bindItemsToProperty("empresaSeleccionada.cuentas");
+
+		new Column<Cuenta>(table2).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
+		new Column<Cuenta>(table2).setTitle("Valor").setFixedSize(75).bindContentsToProperty("value");
+		new Column<Cuenta>(table2).setTitle("A�o").setFixedSize(75).bindContentsToProperty("periodo.year");
+		new Column<Cuenta>(table2).setTitle("Semestre").setFixedSize(75).bindContentsToProperty("periodo.semester");
 	}
 	
 	@Override
