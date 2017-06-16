@@ -40,6 +40,8 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 		Panel CuentasPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
 
 		Panel IndicadoresPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
+		
+		new Label(CuentasPanel).setText("Cuentas");
 
 		/* Contenido OpcionesPanel*/
 		new Label(CuentasPanel).setText("Seleccione una empresa: ");
@@ -68,9 +70,8 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 		table.bindItemsToProperty("empresaSeleccionada.cuentas");
 
 		new Column<Cuenta>(table2).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
-		new Column<Cuenta>(table2).setTitle("Valor").setFixedSize(75).bindContentsToProperty("value");
-		new Column<Cuenta>(table2).setTitle("A�o").setFixedSize(75).bindContentsToProperty("periodo.year");
-		new Column<Cuenta>(table2).setTitle("Semestre").setFixedSize(75).bindContentsToProperty("periodo.semester");
+		new Column<Cuenta>(table2).setTitle("Calculo").setFixedSize(75).bindContentsToProperty("value");
+		new Column<Cuenta>(table2).setTitle("Resultado").setFixedSize(75).bindContentsToProperty("periodo.year");
 	}
 	
 	@Override
