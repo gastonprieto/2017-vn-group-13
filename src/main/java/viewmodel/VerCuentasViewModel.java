@@ -2,14 +2,13 @@ package viewmodel;
 
 import java.util.Collection;
 
+import model.*;
 import org.uqbar.commons.utils.Observable;
-
-import model.Empresa;
-import model.RepositorioDeEmpresas;
 
 @Observable
 public class VerCuentasViewModel {
 	private Empresa empresaSeleccionada;
+	private Periodo peridosDisponibles;
 	
 	public Collection<Empresa> getEmpresas(){
 		return RepositorioDeEmpresas.getInstance().getEmpresas();
@@ -19,7 +18,12 @@ public class VerCuentasViewModel {
 		return empresaSeleccionada;
 	}
 
-	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
-		this.empresaSeleccionada = empresaSeleccionada;
-	}
+	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {this.empresaSeleccionada = empresaSeleccionada;}
+
+	public Collection<Indicador> getIndicadores(){ return RepositorioDeIndicadores.getInstance().getIndicadores();}
+
+	//public Indicador getIndicadorSeleccionada() {return indicadorSeleccionado;	}
+
+	//public void setIndicadorSeleccionada(Indicador indicadorSeleccionado) {this.indicadorSeleccionado = indicadorSeleccionado;}
+
 }

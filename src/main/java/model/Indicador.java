@@ -37,6 +37,6 @@ public class Indicador {
 			return valor;
 		}
 		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
-				+ ", en el periodo: " + "Año = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
+				+ ", en el periodo: " + "Aï¿½o = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
 	}
 }

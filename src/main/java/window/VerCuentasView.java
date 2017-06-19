@@ -1,5 +1,7 @@
 package window;
 
+import model.Indicador;
+import model.Periodo;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -13,9 +15,15 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 
+import scala.Array;
+import scala.collection.immutable.*;
 import viewmodel.VerCuentasViewModel;
 import model.Cuenta;
 import model.Empresa;
+
+import java.awt.*;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	
@@ -33,6 +41,7 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	protected void createFormPanel(Panel mainPanel) {
 		
 		this.setTitle("Ver Cuentas");
+
 		mainPanel.setLayout(new VerticalLayout());
 
 		Panel OpcionesPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
@@ -40,21 +49,24 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 		Panel CuentasPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
 
 		Panel IndicadoresPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
-		
-		new Label(CuentasPanel).setText("Cuentas");
+
 
 		/* Contenido OpcionesPanel*/
-		new Label(CuentasPanel).setText("Seleccione una empresa: ");
+		new Label(OpcionesPanel).setText("Seleccione una empresa: ");
 
-		Selector<Empresa> selector = new Selector<Empresa>(OpcionesPanel);
-		selector.allowNull(false);
-		selector.bindValueToProperty("empresaSeleccionada");
-		selector.bindItemsToProperty("empresas").setAdapter(new PropertyAdapter(Empresa.class, "name"));
+		Selector<Empresa> selectorEmpresas = new Selector<Empresa>(OpcionesPanel);
+		selectorEmpresas.allowNull(false);
+		selectorEmpresas.bindValueToProperty("empresaSeleccionada");
+		selectorEmpresas.bindItemsToProperty("empresas").setAdapter(new PropertyAdapter(Empresa.class, "name"));
 
 		menu = new Button(OpcionesPanel).setCaption("Volver al menu");
 		new Button(OpcionesPanel).setCaption("Agregar Indicador");
 
 		/* Contenido CuentasPanel*/
+
+		Label TituloCuentas = new Label(CuentasPanel).setText("CUENTAS");
+		TituloCuentas.setBackground(Color.WHITE);
+
 
 		Table<Cuenta> table = new Table<Cuenta>(CuentasPanel, Cuenta.class);
 		table.bindItemsToProperty("empresaSeleccionada.cuentas");
@@ -66,12 +78,28 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 
 		/* Contenido IndicadoresPanel*/
 
-		Table<Cuenta> table2 = new Table<Cuenta>(IndicadoresPanel, Cuenta.class);
-		table.bindItemsToProperty("empresaSeleccionada.cuentas");
+		Label TituloIndicadores = new Label(IndicadoresPanel).setText("INDICADORES");
+		TituloIndicadores.setBackground(Color.WHITE);
 
-		new Column<Cuenta>(table2).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
-		new Column<Cuenta>(table2).setTitle("Calculo").setFixedSize(75).bindContentsToProperty("value");
-		new Column<Cuenta>(table2).setTitle("Resultado").setFixedSize(75).bindContentsToProperty("periodo.year");
+			/* Contenido IndicadoresOpcionesPanel*/
+
+			Panel IndicadoresOpcionesPanel = new Panel(IndicadoresPanel).setLayout(new HorizontalLayout());
+
+			new Label(IndicadoresOpcionesPanel).setText("Seleccione un perido");
+
+			Selector<Periodo> selectorIndicadoresPerido = new Selector<Periodo>(IndicadoresOpcionesPanel);
+		//	selectorIndicadoresPerido.bindItemsToProperty("peridosDisponibles");
+
+			Selector<?> selectorIndicadoresSemestre = new Selector<>(IndicadoresOpcionesPanel);
+
+
+
+		Table<Indicador> table2 = new Table<Indicador>(IndicadoresPanel, Indicador.class);
+		table2.bindItemsToProperty("indicadores");
+
+
+		new Column<Indicador>(table2).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("nombre");
+		new Column<Indicador>(table2).setTitle("Operacion").setFixedSize(75).bindContentsToProperty("operacion");
 	}
 	
 	@Override
