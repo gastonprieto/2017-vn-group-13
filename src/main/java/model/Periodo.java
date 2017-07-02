@@ -1,5 +1,15 @@
 package model;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DateTime;
+
+//import java.sql.Date;
+import javax.rmi.CORBA.Tie;
+import java.util.Date;
+
+import java.time.format.DateTimeFormatter;
+
 public class Periodo {
 	private Integer year;
 	private Integer semester;
@@ -55,5 +65,25 @@ public class Periodo {
 		int hash = 3;
 		hash = 53 * hash + (this.year != null ? this.year.hashCode() : 0);		
 		return hash;
+	}
+
+	public boolean SiguienteSemestre(){
+		if(this.semester == 1){
+			this.semester = 2;
+		}else {
+			this.semester = 1;
+			this.year =+ 1;
+		}
+		return EsYearActual();
+	}
+
+	public boolean EsYearActual(){
+		Date TiempoActual = new Date();
+		return this.year == TiempoActual.getYear();
+	}
+
+	public void YearActual(){
+		Date TiempoActual = new Date();
+		this.year = TiempoActual.getYear();
 	}
 }
