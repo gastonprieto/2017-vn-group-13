@@ -33,26 +33,37 @@ public class Condicion {
     }
 
     public boolean MayorQueUnValor(Empresa empresa, double valor, Periodo perido){
-        if(this.indicador1.aplicar(empresa, perido)> valor){
-            return false;
-        }
-        return  true;
+        return this.indicador1.aplicar(empresa, perido)> valor;
+    }
+
+    public boolean MenorQueValor(Empresa empresa, double valor, Periodo perido){
+        return this.indicador1.aplicar(empresa, perido)< valor;
     }
 
     public boolean MayorQueEntreIndicadores(Empresa empresa, Periodo perido){
-        if(this.indicador1.aplicar(empresa, perido)> this.indicador2.aplicar(empresa, perido)){
-            return false;
-        }
-        return  true;
+        return this.indicador1.aplicar(empresa, perido)> this.indicador2.aplicar(empresa, perido);
     }
 
+    public boolean MayorQueUnValorEnUnLapsoDeTiempo(Empresa empresa, int LosUltimosNanios, double valor){
 
+        Periodo perido = new Periodo( 2017 - LosUltimosNanios , 1);
 
-    public boolean MenorQueValor(){
+        Double valorConsultado = 0.0;
+
+        valorConsultado = indicador1.aplicar(empresa, perido);
+
+        while(perido.SiguienteSemestre()) { //Aca estyo suponiendo que un indicador no tiene valor hasta haber terminado el perido
+            if (valorConsultado >valor) {
+                valorConsultado = indicador1.aplicar(empresa, perido);
+            }else {
+                return false;
+            }
+        }
         return true;
     }
 
-    public boolean CrecienteEnUnLapzoDeTiempo(Empresa empresa, int LosUltimosNanios){
+
+    public boolean CrecienteEnUnLapsoDeTiempo(Empresa empresa, int LosUltimosNanios){
 
         Periodo perido = new Periodo( 2017 - LosUltimosNanios , 1);
         Double valorMayor = 0.0;
