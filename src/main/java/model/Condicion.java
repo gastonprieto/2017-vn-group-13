@@ -16,6 +16,22 @@ public class Condicion {
         this.indicador2 = _indicador2;
     }
 
+    public Indicador getIndicador1() {
+        return indicador1;
+    }
+
+    public void setIndicador1(Indicador indicador1) {
+        this.indicador1 = indicador1;
+    }
+
+    public Indicador getIndicador2() {
+        return indicador2;
+    }
+
+    public void setIndicador2(Indicador indicador2) {
+        this.indicador2 = indicador2;
+    }
+
     public boolean MayorQueUnValor(Empresa empresa, double valor, Periodo perido){
         if(this.indicador1.aplicar(empresa, perido)> valor){
             return false;
