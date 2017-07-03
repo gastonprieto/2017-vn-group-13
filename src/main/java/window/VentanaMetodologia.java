@@ -20,7 +20,7 @@ public class VentanaMetodologia extends SimpleWindow<VentanaMetodologiaViewModel
 
     WindowOwner parent;
 
-    public VentanaMetodologia(WindowOwner parent, boolean noCargarDatos) {
+    public VentanaMetodologia(WindowOwner parent) {
         super(parent, new VentanaMetodologiaViewModel());
         this.parent = parent;
     }
@@ -29,20 +29,23 @@ public class VentanaMetodologia extends SimpleWindow<VentanaMetodologiaViewModel
     protected void createFormPanel(Panel mainPanel) {
         this.setTitle("Menu");
         mainPanel.setLayout(new HorizontalLayout());
+
+        Panel panelIndicadores = new Panel(mainPanel);
+        panelIndicadores.setLayout(new VerticalLayout());
+        new Label(panelIndicadores).setText("Seleccione una empresa: ");
+
+        Selector<Empresa> selectorEmpresas = new Selector<Empresa>(panelIndicadores);
+        selectorEmpresas.allowNull(false);
+        selectorEmpresas.bindValueToProperty("empresaSeleccionada");
+        selectorEmpresas.bindItemsToProperty("empresas").setAdapter(new PropertyAdapter(Empresa.class, "name"));
+
+
     }
 
     @Override
     protected void addActions(Panel actionsPanel) {
         actionsPanel.setLayout(new HorizontalLayout());
 
-        Panel panelIndicadores = new Panel(actionsPanel);
-        panelIndicadores.setLayout(new VerticalLayout());
-        new Label(panelIndicadores).setText("Seleccione una empresa: ");
-
-        Selector<Empresa> selectorEmpresas = new Selector<Empresa>(panelIndicadores);
-        selectorEmpresas.allowNull(false);
-       // selectorEmpresas.bindValueToProperty("empresaSeleccionada");
-       // selectorEmpresas.bindItemsToProperty("empresas").setAdapter(new PropertyAdapter(Empresa.class, "name"));
 
 
 
