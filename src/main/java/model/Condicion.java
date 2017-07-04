@@ -81,4 +81,8 @@ public class Condicion {
         }
         return true;
     }
+
+
+    public void Funcionlocaomogit(){};
+    //Es una prueba de que git no se volvio loco
 }
