@@ -1,10 +1,15 @@
 package model;
 
+import java.util.concurrent.locks.Condition;
+
 /**
  * Created by rapap on 05/07/2017.
  */
 public class CondicionCompuesta extends Condicion{
 
+    public Indicador indicador2;
+
+//Falta modificar las funciones
 
     @Override
     public boolean MayorQue(Empresa empresa, double valor, Periodo perido) {

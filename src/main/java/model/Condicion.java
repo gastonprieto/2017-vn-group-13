@@ -8,14 +8,13 @@ import scala.xml.dtd.PEReference;
 public class Condicion {
 
     public Indicador indicador1;
-    public Indicador indicador2;
+
 
     public Condicion(){}
 
 
-    public Condicion(Indicador _indicador1, Indicador _indicador2){
+    public Condicion(Indicador _indicador1){
         this.indicador1 = _indicador1;
-        this.indicador2 = _indicador2;
     }
 
     public Indicador getIndicador1() {
@@ -24,14 +23,6 @@ public class Condicion {
 
     public void setIndicador1(Indicador indicador1) {
         this.indicador1 = indicador1;
-    }
-
-    public Indicador getIndicador2() {
-        return indicador2;
-    }
-
-    public void setIndicador2(Indicador indicador2) {
-        this.indicador2 = indicador2;
     }
 
     public boolean MayorQue(Empresa empresa, double valor, Periodo perido){
@@ -45,7 +36,7 @@ public class Condicion {
 
     public boolean MayorQueEnUnLapsoDeTiempo(Empresa empresa, int year, double valor){
 
-        Periodo perido = new Periodo( 2017 - year , 1);
+        Periodo perido = new Periodo( 2017 - year , 1); // Muy eo el 2017
 
         Double valorConsultado = 0.0;
 
