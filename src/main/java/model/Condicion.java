@@ -10,6 +10,8 @@ public class Condicion {
     public Indicador indicador1;
     public Indicador indicador2;
 
+    public Condicion(){}
+
 
     public Condicion(Indicador _indicador1, Indicador _indicador2){
         this.indicador1 = _indicador1;
