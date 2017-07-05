@@ -34,21 +34,18 @@ public class Condicion {
         this.indicador2 = indicador2;
     }
 
-    public boolean MayorQueUnValor(Empresa empresa, double valor, Periodo perido){
+    public boolean MayorQue(Empresa empresa, double valor, Periodo perido){
         return this.indicador1.aplicar(empresa, perido)> valor;
     }
 
-    public boolean MenorQueValor(Empresa empresa, double valor, Periodo perido){
+    public boolean MenorQue(Empresa empresa, double valor, Periodo perido){
         return this.indicador1.aplicar(empresa, perido)< valor;
     }
 
-    public boolean MayorQueEntreIndicadores(Empresa empresa, Periodo perido){
-        return this.indicador1.aplicar(empresa, perido)> this.indicador2.aplicar(empresa, perido);
-    }
 
-    public boolean MayorQueUnValorEnUnLapsoDeTiempo(Empresa empresa, int LosUltimosNanios, double valor){
+    public boolean MayorQueEnUnLapsoDeTiempo(Empresa empresa, int year, double valor){
 
-        Periodo perido = new Periodo( 2017 - LosUltimosNanios , 1);
+        Periodo perido = new Periodo( 2017 - year , 1);
 
         Double valorConsultado = 0.0;
 
@@ -65,9 +62,9 @@ public class Condicion {
     }
 
 
-    public boolean CrecienteEnUnLapsoDeTiempo(Empresa empresa, int LosUltimosNanios){
+    public boolean CrecienteEnUnLapsoDeTiempo(Empresa empresa, int year){
 
-        Periodo perido = new Periodo( 2017 - LosUltimosNanios , 1);
+        Periodo perido = new Periodo( 2017 - year , 1);
         Double valorMayor = 0.0;
         Double valorConsultado = 0.0;
 
@@ -84,7 +81,9 @@ public class Condicion {
         return true;
     }
 
+    public boolean DecrecienteEnUnLapsoDeTiemp(Empresa empresa, int year){
+        return true;
+    }
 
-    public void Funcionlocaomogit(){};
-    //Es una prueba de que git no se volvio loco
+
 }
