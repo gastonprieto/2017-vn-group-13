@@ -16,7 +16,7 @@ public class Metodologia {
         this.condicion = _condicion;
     }
 	
-	public ArrayList<Empresa> evaluar(Collection<Empresa> empresas) {
+	public ArrayList<Empresa> evaluar(Collection<Empresa> empresas, Periodo periodo) {
 		Stream<Empresa> streamEmpresas = empresas.stream();
 		for(Condicion condicion : condiciones) {
 			streamEmpresas = condicion.aplicar(streamEmpresas);

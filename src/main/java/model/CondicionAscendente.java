@@ -11,7 +11,7 @@ public class CondicionAscendente implements Condicion  {
 	}
 	
 	@Override
-	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
+	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas, Periodo periodo) {
 		return streamEmpresas.filter(p -> indicador.aplicar(p) > valorDeReferencia);
 	}
 }

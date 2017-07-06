@@ -9,7 +9,7 @@ import scala.xml.dtd.PEReference;
  */
 public interface Condicion {
 	
-	Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas);
+	Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas, Periodo periodo);
 
     //public Indicador indicador1;
 
