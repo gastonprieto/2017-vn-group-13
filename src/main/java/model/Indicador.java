@@ -2,7 +2,7 @@ package model;
 
 import exception.IndicadorException;
 
-public class Indicador {
+public class Indicador implements IndicadorAbstracto {
 
 	private String nombre;
 	private Operando operacion;
@@ -13,12 +13,14 @@ public class Indicador {
 		this.nombre = nombre;
 	}
 	
+	@Override
 	public Double aplicar(Empresa empresa, Periodo periodo) {
 		this.empresaTarget = empresa;
 		this.periodoTarget = periodo;
 		return operacion.resultado();
 	}
 
+	@Override
 	public String getNombre() {
 		return nombre;
 	}

@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
+import exception.IndicadorException;
 import model.Cuenta;
 import model.Empresa;
 import model.Indicador;
@@ -18,6 +19,12 @@ public class InterpretadorDeIndicadoresTest {
 	@After
 	public void tearDown() {
 		RepositorioDeIndicadores.getInstance().getIndicadores().clear();
+	}
+	
+	@Test(expected = IndicadorException.class)
+	public void interpretarIndicadorVacio() {
+		InterpretadorDeIndicadores interpretador = new InterpretadorDeIndicadores();
+		interpretador.interpretar("Indicador", "");
 	}
 	
 	@Test
