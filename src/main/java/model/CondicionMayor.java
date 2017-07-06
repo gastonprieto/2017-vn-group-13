@@ -13,6 +13,6 @@ public class CondicionMayor implements Condicion  {
 	
 	@Override
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas, Periodo periodo) {
-		return streamEmpresas.filter(p -> indicador.aplicar(p) > valorDeReferencia);
+		return streamEmpresas.filter(empresa -> indicador.aplicar(empresa, periodo) > valorDeReferencia);
 	}
 }
