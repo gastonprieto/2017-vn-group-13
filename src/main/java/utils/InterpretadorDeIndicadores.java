@@ -18,7 +18,7 @@ import model.Variable;
 public class InterpretadorDeIndicadores {
 	
 	public Indicador interpretar(String nombre, String calculo) {
-		if(StringUtils.isBlank(nombre) || StringUtils.isBlank(calculo) || !calculo.matches("((\\w+)(.\\w+)?[-+*/])*(\\w+)(.\\w+)?")) {
+		if(!calculo.matches("((\\w+)(.\\w+)?[-+*/])*(\\w+)(.\\w+)?") || calculo.contains(nombre)) {
 			throw new IndicadorException("La expresion ingresada para el indicador no es valida");
 		}
 		Indicador indicador = new Indicador(nombre);
@@ -27,8 +27,8 @@ public class InterpretadorDeIndicadores {
 	}
 	
 	private Operando generarOperando(Indicador indicador, String calculo) {
-		Operador operador = null;
-		if(this.getSiguienteOperador(calculo, operador)) {
+		Operador operador = this.getSiguienteOperador(calculo);
+		if(operador != null) {
 			return generarOperacion(indicador, calculo, operador);
 		}
 		if(NumberUtils.isNumber(calculo)) {
@@ -50,18 +50,16 @@ public class InterpretadorDeIndicadores {
 		return (Operacion) operandoIzq;
 	}
 
-	private boolean getSiguienteOperador(String indicador, Operador operador) {
+	private Operador getSiguienteOperador(String indicador) {
 		if(indicador.contains("+")) {
-			operador = new Suma();
+			return new Suma();
 		} else if(indicador.contains("-")){
-			operador = new Resta();
+			return new Resta();
 		} else if(indicador.contains("*")) {
-			operador = new Multiplicacion();
+			return new Multiplicacion();
 		} else if(indicador.contains("/")) {
-			operador = new Division();
-		} else {
-			return false;
+			return new Division();
 		}
-		return true;
+		return null;
 	}
 }
