@@ -21,7 +21,7 @@ public class Metodologia {
 		return (ArrayList<Empresa>) streamEmpresas.collect(Collectors.toList());		
 	}
 
-    public String getNombre() {
+	public String getNombre() {
         return nombre;
     }
 }
