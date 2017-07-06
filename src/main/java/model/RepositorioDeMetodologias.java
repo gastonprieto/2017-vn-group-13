@@ -1,13 +1,11 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- * Created by rapap on 02/07/2017.
- */
 public class RepositorioDeMetodologias {
     private static RepositorioDeMetodologias instance = null;
-    private Collection<Metodologia> metodologias;
+    private Collection<Metodologia> metodologias = new ArrayList<>();
 
     private RepositorioDeMetodologias() {
 
@@ -20,12 +18,11 @@ public class RepositorioDeMetodologias {
         return instance;
     }
 
+	public void registrarMetodologia(Metodologia metodologia) {
+		this.metodologias.add(metodologia);
+	}
+    
     public Collection<Metodologia> getMetodologias() {
         return metodologias;
     }
-
-    public void setMetodologias(Collection<Metodologia> metodologias) {
-        this.metodologias = metodologias;
-    }
-
 }
