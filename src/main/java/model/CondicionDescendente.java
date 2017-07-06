@@ -3,15 +3,15 @@ package model;
 import java.util.stream.Stream;
 
 public class CondicionDescendente implements Condicion  {
-	private double valorDeReferencia;
+	
 	private Indicador indicador;
 	
-	public CondicionDescendente(double valorDeReferencia, ...) {
-		this.valorDeReferencia = valorDeReferencia;
+	public CondicionDescendente(Indicador indicador){
+		this.indicador = indicador;
 	}
-	
 	@Override
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas, Periodo periodo) {
-		return streamEmpresas.filter(p -> indicador.aplicar(p) > valorDeReferencia);
-	}
+		return streamEmpresas.sorted((empresa1,empresa2)-> Double.compare(indicador.aplicar(empresa1,periodo), indicador.aplicar(empresa2, periodo)));
+		
+	}	
 }

@@ -5,12 +5,12 @@ import java.util.concurrent.locks.Condition;
 /**
  * Created by rapap on 05/07/2017.
  */
-public class CondicionCompuesta extends Condicion{
+public class CondicionCompuesta {
 
     public Indicador indicador2;
 
 //Falta modificar las funciones
-
+/*
     @Override
     public boolean MayorQue(Empresa empresa, double valor, Periodo perido) {
         return super.MayorQue(empresa, valor, perido);

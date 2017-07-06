@@ -10,7 +10,7 @@ public class Metodologia {
     public String nombre;
     //public Condicion condicion;
     Collection<Condicion> condiciones = new ArrayList<>();
-
+/*
     public Metodologia(String _nombre, Condicion _condicion){
         this.nombre = _nombre;
         this.condicion = _condicion;
@@ -23,7 +23,7 @@ public class Metodologia {
 		}
 		return (ArrayList<Empresa>) streamEmpresas.collect(Collectors.toList());		
 	}
-
+*/
     public String getNombre() {
         return nombre;
     }
@@ -31,7 +31,7 @@ public class Metodologia {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+/*
     public Condicion getCondicion() {
         return condicion;
     }
@@ -40,5 +40,5 @@ public class Metodologia {
         this.condicion = condicion;
     }
 
-
+*/
 }

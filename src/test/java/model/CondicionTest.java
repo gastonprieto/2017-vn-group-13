@@ -10,8 +10,10 @@ import static org.junit.Assert.assertTrue;
 
 //import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +22,9 @@ import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
 import model.RepositorioDeEmpresas;
+import scala.collection.immutable.Stream;
 import utils.ImportadorDeDatos;
+import utils.InterpretadorDeIndicadores;
 
 public class CondicionTest {
     ImportadorDeDatos importador;
@@ -78,10 +82,9 @@ public class CondicionTest {
         periodo3.setYear(2017);
         cuentaCreciente3.setPeriodo(periodo3);
 
-        indicador1 = new Indicador("Prueba 1");
-        //indicador1.setOperacion();
-
-        condicion1 = new Condicion(indicador1, indicador1);
+        indicador1 = new Indicador("pruebaAscendente");
+        
+        
     }
 
     @After
@@ -93,4 +96,65 @@ public class CondicionTest {
     public void EsMayorQueUnValorTest  () throws ParserException {
 
                 }
+    
+    @Test
+    public void ListaAscendiente  () throws ParserException {
+
+    	
+    	InterpretadorDeIndicadores interprete = new InterpretadorDeIndicadores();
+    	
+    	Empresa empresa1 = new Empresa();
+    	empresa1.setName("YPF");
+    	Empresa empresa2 = new Empresa();
+    	empresa2.setName("Exxon");
+    	Empresa empresa3 = new Empresa();
+    	empresa3.setName("Oracle");
+    	
+    	indicador1 = interprete.interpretar("indicadorAscendente","2*Cuenta 1");
+    	
+        periodo1 = new Periodo();
+        periodo1.setSemester(1);
+        periodo1.setYear(2016);
+        
+        cuentaCreciente1 = new Cuenta();
+        cuentaCreciente1.setName("Cuenta 1");
+        cuentaCreciente1.setValue((double) 1);
+        cuentaCreciente1.setPeriodo(periodo1);
+  
+        cuentaCreciente2 = new Cuenta();
+        cuentaCreciente2.setName("Cuenta 1");
+        cuentaCreciente2.setValue((double) 3);
+        cuentaCreciente2.setPeriodo(periodo1);
+
+        cuentaCreciente3 = new Cuenta();
+        cuentaCreciente3.setName("Cuenta 1");
+        cuentaCreciente3.setValue((double) 5);
+        cuentaCreciente3.setPeriodo(periodo1);
+        
+        ArrayList<Cuenta> cuentasEmpresa1 = new ArrayList<>();
+        ArrayList<Cuenta> cuentasEmpresa2 = new ArrayList<>();
+        ArrayList<Cuenta> cuentasEmpresa3 = new ArrayList<>();
+        
+        cuentasEmpresa1.add(cuentaCreciente1);
+        cuentasEmpresa2.add(cuentaCreciente2);
+        cuentasEmpresa3.add(cuentaCreciente3);
+        
+        empresa1.setCuentas(cuentasEmpresa1);
+        empresa2.setCuentas(cuentasEmpresa2);
+        empresa3.setCuentas(cuentasEmpresa3);
+        
+        ArrayList<Empresa> empresas = new ArrayList<Empresa>();
+        empresas.add(empresa1);
+        empresas.add(empresa2);
+        empresas.add(empresa3);
+        
+        //Stream<Empresa> streamEmpresas =   empresas.stream();
+        Empresa primera = new Empresa();
+        CondicionAscendente condicion1 = new CondicionAscendente(indicador1);
+        primera =  condicion1.aplicar( empresas.stream(), periodo1).findFirst().get();
+        
+        Assert.assertTrue(primera.getName().equals("Oracle"));
+        
+        }
+    
 }
