@@ -1,23 +1,27 @@
 package model;
 
+import java.util.stream.Stream;
+
 import scala.xml.dtd.PEReference;
 
 /**
  * Created by rapap on 01/07/2017.
  */
-public class Condicion {
+public interface Condicion {
+	
+	Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas);
 
-    public Indicador indicador1;
+    //public Indicador indicador1;
 
 
-    public Condicion(){}
+    //public Condicion(){}
 
 
-    public Condicion(Indicador _indicador1){
+    /*public Condicion(Indicador _indicador1){
         this.indicador1 = _indicador1;
-    }
+    }*/
 
-    public Indicador getIndicador1() {
+    /*public Indicador getIndicador1() {
         return indicador1;
     }
 
@@ -74,7 +78,7 @@ public class Condicion {
 
     public boolean DecrecienteEnUnLapsoDeTiemp(Empresa empresa, int year){
         return true;
-    }
+    }*/
 
 
 }
