@@ -1,18 +1,20 @@
 package model;
 
+import java.util.Collection;
 import java.util.stream.Stream;
 
-public class CondicionMayor implements Condicion  {
-	private double valorDeReferencia;
-	private Indicador indicador;
+public class CondicionMayor extends Condicion  {
 	
-	public CondicionMayor(double valorDeReferencia, Indicador indicador) {
+	private double valorDeReferencia;
+	
+	public CondicionMayor(double valorDeReferencia, Indicador indicador, Collection<Periodo> periodos) {
 		this.valorDeReferencia = valorDeReferencia;
 		this.indicador = indicador;
+		this.periodos = periodos;
 	}
 	
 	@Override
-	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas, Periodo periodo) {
-		return streamEmpresas.filter(empresa -> indicador.aplicar(empresa, periodo) > valorDeReferencia);
+	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
+		return streamEmpresas.filter(empresa -> indicador.aplicar(empresa, periodos) > valorDeReferencia);
 	}
 }

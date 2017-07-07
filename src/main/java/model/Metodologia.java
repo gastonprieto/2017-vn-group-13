@@ -8,16 +8,18 @@ import java.util.stream.Stream;
 public class Metodologia {
 
     public String nombre;
-    public Condicion condicion;
+    public Collection<Condicion> condiciones;
 
-    public Metodologia(String nombre, Condicion condicion){
+    public Metodologia(String nombre, Collection<Condicion> condiciones){
         this.nombre = nombre;
-        this.condicion = condicion;
+        this.condiciones = condiciones;
     }
 	
-	public ArrayList<Empresa> evaluar(Collection<Empresa> empresas, Collection<Periodo> periodos) {
+	public ArrayList<Empresa> evaluar(Collection<Empresa> empresas) {
 		Stream<Empresa> streamEmpresas = empresas.stream();
-		streamEmpresas = condicion.aplicar(streamEmpresas, periodos);
+		for(Condicion condicion : condiciones) {
+			streamEmpresas = condicion.aplicar(streamEmpresas);
+		}
 		return (ArrayList<Empresa>) streamEmpresas.collect(Collectors.toList());		
 	}
 

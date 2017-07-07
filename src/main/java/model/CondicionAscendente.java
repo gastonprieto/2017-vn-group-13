@@ -1,17 +1,18 @@
 package model;
 
+import java.util.Collection;
 import java.util.stream.Stream;
 
-public class CondicionAscendente implements Condicion  {
+public class CondicionAscendente extends Condicion {
 	
-	private Indicador indicador;
-	
-	public CondicionAscendente(Indicador indicador){
+	public CondicionAscendente(Indicador indicador, Collection<Periodo> periodos){
 		this.indicador = indicador;
+		this.periodos = periodos;
 	}
+	
 	@Override
-	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas, Periodo periodo) {
-		return streamEmpresas.sorted((empresa1,empresa2)-> Double.compare(indicador.aplicar(empresa2,periodo), indicador.aplicar(empresa1, periodo)));
-
-	}	
+	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
+		return streamEmpresas.sorted((empresa1, empresa2) ->
+			Double.compare(indicador.aplicar(empresa2, periodos), indicador.aplicar(empresa1, periodos)));
+	}
 }

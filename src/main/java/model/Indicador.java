@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Collection;
+
 import exception.IndicadorException;
 
 public class Indicador implements IndicadorAbstracto {
@@ -40,5 +42,10 @@ public class Indicador implements IndicadorAbstracto {
 		}
 		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
 				+ ", en el periodo: " + "A�o = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
+	}
+
+	@Override
+	public Double aplicar(Empresa empresa, Collection<Periodo> periodos) {
+		return this.aplicar(empresa, periodos.iterator().next());
 	}
 }

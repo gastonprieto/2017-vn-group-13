@@ -15,7 +15,8 @@ public class IndicadorMedioDecorator extends IndicadorDecorator {
 		return this.indicador.aplicar(empresa, periodo);
 	}
 
-	public Double obtenerMedia(Empresa empresa, Collection<Periodo> periodos) {
+	@Override
+	public Double aplicar(Empresa empresa, Collection<Periodo> periodos) {
 		List<Double> resultados = new ArrayList<>();
 		for(Periodo periodo : periodos) {
 			resultados.add(this.indicador.aplicar(empresa, periodo));

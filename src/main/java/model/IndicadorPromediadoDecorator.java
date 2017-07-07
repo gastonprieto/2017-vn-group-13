@@ -13,7 +13,8 @@ public class IndicadorPromediadoDecorator extends IndicadorDecorator {
 		return this.indicador.aplicar(empresa, periodo);
 	}
 	
-	public Double promediar(Empresa empresa, Collection<Periodo> periodos) {
+	@Override
+	public Double aplicar(Empresa empresa, Collection<Periodo> periodos) {
 		Double sumatoria = 0D;
 		int contador = 0;
 		for(Periodo periodo : periodos) {
