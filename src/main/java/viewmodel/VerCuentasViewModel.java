@@ -7,7 +7,11 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 public class VerCuentasViewModel {
+	private Indicador indicadorSeleccionado;
+
 	private Empresa empresaSeleccionada;
+
+
 	private Periodo peridosDisponibles;
 	
 	public Collection<Empresa> getEmpresas(){
@@ -22,8 +26,8 @@ public class VerCuentasViewModel {
 
 	public Collection<Indicador> getIndicadores(){ return RepositorioDeIndicadores.getInstance().getIndicadores();}
 
-	//public Indicador getIndicadorSeleccionada() {return indicadorSeleccionado;	}
+	public Indicador getIndicadorSeleccionada() {return indicadorSeleccionado;	}
 
-	//public void setIndicadorSeleccionada(Indicador indicadorSeleccionado) {this.indicadorSeleccionado = indicadorSeleccionado;}
+	public void setIndicadorSeleccionada(Indicador indicadorSeleccionado) {this.indicadorSeleccionado = indicadorSeleccionado;}
 
 }

@@ -22,7 +22,8 @@ import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
 import model.RepositorioDeEmpresas;
-import scala.collection.immutable.Stream;
+//import scala.collection.immutable.Stream;
+import java.util.stream.Stream;
 import utils.ImportadorDeDatos;
 import utils.InterpretadorDeIndicadores;
 
@@ -115,6 +116,9 @@ public class CondicionTest {
         periodo1 = new Periodo();
         periodo1.setSemester(1);
         periodo1.setYear(2016);
+
+        ArrayList<Periodo> periodos = new ArrayList<Periodo>();
+        periodos.add(periodo1);
         
         cuentaCreciente1 = new Cuenta();
         cuentaCreciente1.setName("Cuenta 1");
@@ -147,11 +151,11 @@ public class CondicionTest {
         empresas.add(empresa1);
         empresas.add(empresa2);
         empresas.add(empresa3);
-        
-        //Stream<Empresa> streamEmpresas =   empresas.stream();
+
+        java.util.stream.Stream<Empresa> streamEmpresas =  empresas.stream();
         Empresa primera = new Empresa();
-        CondicionAscendente condicion1 = new CondicionAscendente(indicador1);
-        primera =  condicion1.aplicar( empresas.stream(), periodo1).findFirst().get();
+        CondicionAscendente condicion1 = new CondicionAscendente(indicador1, periodos);
+        primera =  condicion1.aplicar(streamEmpresas).findFirst().get();
         
         Assert.assertTrue(primera.getName().equals("Oracle"));
         
