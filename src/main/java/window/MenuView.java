@@ -33,6 +33,7 @@ public class MenuView extends SimpleWindow<MenuViewModel> {
 		new Button(actionsPanel).setCaption("Aplicar Indicadores").onClick(this::abrirIndicadores);
 		new Button(actionsPanel).setCaption("Aplicar Metodologia").onClick(this::abrirMetodologias);
 		new Button(actionsPanel).setCaption("Crear Indicador").onClick(this::abrirCreadorDeIndicadores);
+		new Button(actionsPanel).setCaption("Crear Metodologias y Condiciones").onClick(this::abrirCreadorDeMetodologiasYCondiciones);
 	}
 	
 	public void abrirCuentas() {
@@ -55,6 +56,12 @@ public class MenuView extends SimpleWindow<MenuViewModel> {
 
 	public void abrirCreadorDeIndicadores() {
 		CreadorDeIndicadoresView creadorView = new CreadorDeIndicadoresView(this.parent);
+		this.close();
+		creadorView.open();
+	}
+	
+	public void abrirCreadorDeMetodologiasYCondiciones() {
+		CreadorDeMetodologiasYCondicionesView creadorView = new CreadorDeMetodologiasYCondicionesView(this.parent);
 		this.close();
 		creadorView.open();
 	}
