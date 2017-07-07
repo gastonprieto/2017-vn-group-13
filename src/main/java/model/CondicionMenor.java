@@ -13,6 +13,11 @@ public class CondicionMenor extends Condicion  {
 		this.periodos = periodos;
 	}
 	
+	public CondicionMenor(Indicador indicador, int cantPeriodos){
+		this.indicador = indicador;
+		this.periodos = this.getPeriodos(cantPeriodos);
+	}
+	
 	@Override
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
 		return streamEmpresas.filter(empresa -> indicador.aplicar(empresa, periodos) < valorDeReferencia);

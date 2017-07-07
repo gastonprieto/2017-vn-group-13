@@ -9,6 +9,11 @@ public class CondicionAscendente extends Condicion {
 		this.indicador = indicador;
 		this.periodos = periodos;
 	}
+
+	public CondicionAscendente(Indicador indicador, int cantPeriodos){
+		this.indicador = indicador;
+		this.periodos = this.getPeriodos(cantPeriodos);
+	}
 	
 	@Override
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
