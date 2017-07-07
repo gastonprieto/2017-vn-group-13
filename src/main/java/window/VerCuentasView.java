@@ -60,13 +60,13 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 		selectorEmpresas.bindItemsToProperty("empresas").setAdapter(new PropertyAdapter(Empresa.class, "name"));
 
 		menu = new Button(OpcionesPanel).setCaption("Volver al menu");
-		new Button(OpcionesPanel).setCaption("Agregar Indicador");
+		//new Button(OpcionesPanel).setCaption("Agregar Indicador");
 
 		/* Contenido CuentasPanel*/
 
 		Label TituloCuentas = new Label(CuentasPanel).setText("CUENTAS");
 		TituloCuentas.setBackground(Color.WHITE);
-
+		TituloCuentas.setWidth(500);
 
 		Table<Cuenta> table = new Table<Cuenta>(CuentasPanel, Cuenta.class);
 		table.bindItemsToProperty("empresaSeleccionada.cuentas");
@@ -80,26 +80,19 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 
 		Label TituloIndicadores = new Label(IndicadoresPanel).setText("INDICADORES");
 		TituloIndicadores.setBackground(Color.WHITE);
+		TituloIndicadores.setWidth(500);
 
-			/* Contenido IndicadoresOpcionesPanel*/
+		/* Contenido IndicadoresOpcionesPanel*/
 
 			Panel IndicadoresOpcionesPanel = new Panel(IndicadoresPanel).setLayout(new HorizontalLayout());
 
 			new Label(IndicadoresOpcionesPanel).setText("Seleccione un perido");
 
-			Selector<Periodo> selectorIndicadoresPerido = new Selector<Periodo>(IndicadoresOpcionesPanel);
-		//	selectorIndicadoresPerido.bindItemsToProperty("peridosDisponibles");
-
-			Selector<?> selectorIndicadoresSemestre = new Selector<>(IndicadoresOpcionesPanel);
-
-
-
-		Table<Indicador> table2 = new Table<Indicador>(IndicadoresPanel, Indicador.class);
-		table2.bindItemsToProperty("indicadores");
-
-
-		new Column<Indicador>(table2).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("nombre");
-		new Column<Indicador>(table2).setTitle("Operacion").setFixedSize(75).bindContentsToProperty("operacion");
+		/*	Selector<Indicador> selectorIndicador = new Selector<Indicador>(IndicadoresOpcionesPanel);
+			selectorEmpresas.allowNull(false);
+			selectorEmpresas.bindValueToProperty("indicadorSeleccionado");
+			selectorEmpresas.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
+*/
 	}
 	
 	@Override
