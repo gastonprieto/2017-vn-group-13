@@ -3,7 +3,9 @@ package model;
 import java.util.Collection;
 
 import exception.IndicadorException;
+import org.uqbar.commons.utils.Observable;
 
+@Observable
 public class Indicador implements IndicadorAbstracto {
 
 	private String nombre;

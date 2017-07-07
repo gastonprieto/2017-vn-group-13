@@ -16,14 +16,28 @@ import utils.ManejadorDeArchivos;
 public class CreadorDeMetodologiasYCondicionesViewModel {	
 	
 	private String tipoCondicionSeleccionado;
-	private Indicador indicadorSeleccionado;
+	private String tipoIndicadorSeleccionado;
+	private String indicadorSeleccionado;
+
 	
 	public Collection<String> getTipos(){
 		Collection<String> tiposCondisiones = new ArrayList<>();
-		tiposCondisiones.add("Filtro");
-		tiposCondisiones.add("Orden");
+		tiposCondisiones.add("Mayor");
+		tiposCondisiones.add("Menor");
+		tiposCondisiones.add("Ascendente");
+		tiposCondisiones.add("Descendente");
 		
 		return tiposCondisiones;
+	}
+
+	public Collection<String> getTiposIndicador(){
+		Collection<String> tiposIndicadores = new ArrayList<>();
+		tiposIndicadores.add("Simple");
+		tiposIndicadores.add("Promedio");
+		tiposIndicadores.add("Sumatoria");
+		tiposIndicadores.add("Media");
+
+		return tiposIndicadores;
 	}
 	
 	public String getTipoCondicionSeleccionado() {
@@ -34,8 +48,16 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
         this.tipoCondicionSeleccionado = valor;
     }
 	
-	public Indicador getIndicadorSeleccionado() {
+	public String getTipoIndicadorSeleccionado() {
+		return tipoIndicadorSeleccionado;
+	}
+
+	public String getIndicadorSeleccionado() {
 		return indicadorSeleccionado;
+	}
+
+	public void setIndicadorSeleccionado(String indicador) {
+		this.tipoIndicadorSeleccionado = indicador;
 	}
 	
 	public Collection<Indicador> getIndicadores(){

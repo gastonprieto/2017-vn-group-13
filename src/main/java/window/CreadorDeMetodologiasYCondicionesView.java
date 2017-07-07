@@ -44,6 +44,7 @@ public class CreadorDeMetodologiasYCondicionesView extends SimpleWindow<CreadorD
 		Panel panel2 = new Panel(mainPanel).setLayout(new VerticalLayout());
 		Panel panel3 = new Panel(mainPanel).setLayout(new VerticalLayout());
 		Panel panel4 = new Panel(mainPanel).setLayout(new VerticalLayout());
+		Panel panel5 = new Panel(mainPanel).setLayout(new VerticalLayout());
 		
 		new Label(panel).setText("Seleccione el tipo: ");
 		selectorTipos = new Selector(panel);
@@ -57,8 +58,14 @@ public class CreadorDeMetodologiasYCondicionesView extends SimpleWindow<CreadorD
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		selectorIndicadores.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
 		
-		new Label(panel3).setText("Seleccione periodo: ").setWidth(150);
-		new TextBox(panel3);		
+		new Label(panel3).setText("Seleccione cantidad de semestres: ").setWidth(150);
+		new TextBox(panel3);
+
+		new Label(panel5).setText("Seleccione tipo de indicador: ");
+		selectorTipos = new Selector(panel5);
+		selectorTipos.allowNull(false);
+		selectorTipos.bindItemsToProperty("tiposIndicador");
+		selectorTipos.bindValueToProperty("tipoIndicadorSeleccionado");
 		
 		cancelar = new Button(panel).setCaption("Cancelar");
 		siguiente = new Button(panel2).setCaption("Siguiente");
