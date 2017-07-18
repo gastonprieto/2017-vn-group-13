@@ -94,8 +94,6 @@ public class CreadorDeMetodologiasView extends SimpleWindow<CreadorDeMetodologia
 	protected void addActions(Panel actionsPanel) {
 		volverAlMenu.onClick(this::volverAlMenu);
 		siguiente.onClick(this::agregarCondicion);
-		selectorTipos.onSelection(this::seleccionarTipo);
-		selectorModo.onSelection(this::seleccionarModo);
 	}
 	
 	public void volverAlMenu() {

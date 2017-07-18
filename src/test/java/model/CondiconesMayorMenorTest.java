@@ -10,6 +10,7 @@ import utils.InterpretadorDeIndicadores;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -118,7 +119,7 @@ public class CondiconesMayorMenorTest {
     @Test
     public void AplicarMayorTest()  throws ParserException {
         Stream<Empresa> Resultado =  condicionMayor.aplicar(streamEmpresas);
-        Assert.assertNotEquals(Resultado, streamEmpresasMayor);
+        Assert.assertEquals(Resultado.collect(Collectors.toList()), streamEmpresasMayor.collect(Collectors.toList()));
     }
 
     @Test
