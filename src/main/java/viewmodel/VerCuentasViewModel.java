@@ -24,10 +24,12 @@ public class VerCuentasViewModel {
 
 	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {this.empresaSeleccionada = empresaSeleccionada;}
 
+
+
 	public Collection<Indicador> getIndicadores(){ return RepositorioDeIndicadores.getInstance().getIndicadores();}
 
-	public Indicador getIndicadorSeleccionada() {return indicadorSeleccionado;	}
+	public Indicador getindicadorSeleccionado() {return indicadorSeleccionado;	}
 
-	public void setIndicadorSeleccionada(Indicador indicadorSeleccionado) {this.indicadorSeleccionado = indicadorSeleccionado;}
+	public void setindicadorSeleccionado(Indicador indicadorSeleccionado) {this.indicadorSeleccionado = indicadorSeleccionado;}
 
 }

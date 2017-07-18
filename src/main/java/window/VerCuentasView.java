@@ -88,11 +88,11 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 
 			new Label(IndicadoresOpcionesPanel).setText("Seleccione un perido");
 
-		/*	Selector<Indicador> selectorIndicador = new Selector<Indicador>(IndicadoresOpcionesPanel);
-			selectorEmpresas.allowNull(false);
-			selectorEmpresas.bindValueToProperty("indicadorSeleccionado");
-			selectorEmpresas.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
-*/
+			Selector<Indicador> selectorIndicador = new Selector<Indicador>(IndicadoresOpcionesPanel);
+			selectorIndicador.allowNull(false);
+			selectorIndicador.bindValueToProperty("indicadorSeleccionado");
+			selectorIndicador.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
+
 	}
 	
 	@Override
