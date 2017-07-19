@@ -9,9 +9,7 @@ import org.uqbar.commons.utils.Observable;
 public class VerCuentasViewModel {
 	private Indicador indicadorSeleccionado;
 	private Empresa empresaSeleccionada;
-	private  Periodo peridoDesde;
-	private  Periodo periodoHasta;
-	
+	private  Periodo peridoSeleccionadao;
 	
 	public Collection<Empresa> getEmpresas(){
 		return RepositorioDeEmpresas.getInstance().getEmpresas();
@@ -29,13 +27,15 @@ public class VerCuentasViewModel {
 
 	public void setindicadorSeleccionado(Indicador indicadorSeleccionado) {this.indicadorSeleccionado = indicadorSeleccionado;}
 
-	public Periodo getperidoDesde() {return peridoDesde;	}
+	public Periodo getperidoSeleccionadao() {return peridoSeleccionadao;	}
 
-	public void setperidoDesde(Periodo peridoDesde) {this.peridoDesde = peridoDesde;}
+	public void setperidoSeleccionadao(Periodo peridoSeleccionadao) {this.peridoSeleccionadao = peridoSeleccionadao;}
 
-	public Periodo getperidoHasta() {return periodoHasta;	}
 
-	public void setperidoHasta(Periodo peridoDesde) {this.periodoHasta = periodoHasta;}
+	public void AplicarIndicadorEnPerido(){
+		indicadorSeleccionado.aplicar(empresaSeleccionada, peridoSeleccionadao);
+	}
+
 
 
 }
