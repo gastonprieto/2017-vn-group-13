@@ -5,15 +5,15 @@ import model.Periodo;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
+import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
-
+import org.uqbar.arena.windows.MessageBox;
 
 import scala.Array;
 import scala.collection.immutable.*;
@@ -24,11 +24,13 @@ import model.Empresa;
 import java.awt.*;
 import java.util.Collection;
 import java.util.Iterator;
+import org.uqbar.commons.model.UserException;
 
 public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	
 	private static final long serialVersionUID = 1L;
 	private Button menu;
+	private Button AplicarIndicador;
 	WindowOwner parent;
 	
 	
@@ -93,11 +95,27 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 			selectorIndicador.bindValueToProperty("indicadorSeleccionado");
 			selectorIndicador.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
 
+			//El año desde el que quiere aplicar el indicador
+			TextBox peridoAnioDesde = new TextBox(IndicadoresOpcionesPanel);
+			peridoAnioDesde.bindValueToProperty("peridoDesde.year");
+			peridoAnioDesde.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
+
+			TextBox peridoAnioHasta = new TextBox(IndicadoresOpcionesPanel);
+			peridoAnioHasta.bindValueToProperty("peridoHasta.year");
+			peridoAnioHasta.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
+
+
+
+			AplicarIndicador = new Button(IndicadoresOpcionesPanel).setCaption("Aplicar");
+
 	}
 	
 	@Override
 	protected void addActions(Panel actionsPanel) {
+
 		menu.onClick(this::abrirMenu);
+		AplicarIndicador.onClick(this::AplicarIndicadorAempresaSeleccionada);
+
 	}
 	
 	public void abrirMenu() {
@@ -106,7 +124,21 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 		menuView.open();
 	}
 
-	
+	public void AplicarIndicadorAempresaSeleccionada() {
+		try{
+			showErrorMessageBox("No hace nada");
+		}catch(UserException e){
+			showErrorMessageBox("Tal vez si hace algo y mal ensima");
+
+		}
+	}
+
+	protected void showErrorMessageBox(String message) {
+		MessageBox messageBox = new MessageBox(this, MessageBox.Type.Error);
+		messageBox.setMessage(message);
+		messageBox.open();
+	}
+
 }
 
 
