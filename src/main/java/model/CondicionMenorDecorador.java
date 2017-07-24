@@ -3,15 +3,15 @@ package model;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-public class CondicionMenor extends CondicionDecorador  {
+public class CondicionMenorDecorador extends CondicionDecorador  {
 
-	public CondicionMenor(double valorDeReferencia, Indicador indicador, Collection<Periodo> periodos) {
+	public CondicionMenorDecorador(double valorDeReferencia, Indicador indicador, Collection<Periodo> periodos) {
 		this.valorDeReferencia = valorDeReferencia;
 		this.indicador = indicador;
 		this.periodos = periodos;
 	}
 
-	public CondicionMenor(Indicador indicador, int cantPeriodos){
+	public CondicionMenorDecorador(Indicador indicador, int cantPeriodos){
 		this.indicador = indicador;
 		this.periodos = this.getPeriodos(cantPeriodos);
 	}
