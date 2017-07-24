@@ -63,7 +63,6 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 		selectorEmpresas.bindItemsToProperty("empresas").setAdapter(new PropertyAdapter(Empresa.class, "name"));
 
 		menu = new Button(OpcionesPanel).setCaption("Volver al menu");
-		//new Button(OpcionesPanel).setCaption("Agregar Indicador");
 
 		/* Contenido CuentasPanel*/
 
