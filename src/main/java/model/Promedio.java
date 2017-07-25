@@ -2,12 +2,12 @@ package model;
 
 import java.util.Collection;
 
-public class IndicadorPromediadoDecorator extends IndicadorDecorator {
-	
-	public IndicadorPromediadoDecorator(Indicador indicador) {
-		this.indicador = indicador;
+public class Promedio extends Calculo {	
+
+	public Promedio(Indicador indicador) {
+		super(indicador);
 	}
-	
+
 	@Override
 	public Double aplicar(Empresa empresa, Periodo periodo) {
 		return this.indicador.aplicar(empresa, periodo);
@@ -23,4 +23,5 @@ public class IndicadorPromediadoDecorator extends IndicadorDecorator {
 		}
 		return sumatoria / contador;
 	}
+
 }

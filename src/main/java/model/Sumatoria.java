@@ -2,10 +2,10 @@ package model;
 
 import java.util.Collection;
 
-public class IndicadorSumadoDecorator extends IndicadorDecorator {
+public class Sumatoria extends Calculo {
 	
-	public IndicadorSumadoDecorator(Indicador indicador) {
-		this.indicador = indicador;
+	public Sumatoria(Indicador indicador) {
+		super(indicador);
 	}
 	
 	@Override
@@ -21,4 +21,5 @@ public class IndicadorSumadoDecorator extends IndicadorDecorator {
 		}
 		return sumatoria;
 	}
+
 }

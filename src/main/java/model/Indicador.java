@@ -6,7 +6,7 @@ import exception.IndicadorException;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Indicador implements IndicadorAbstracto {
+public class Indicador {
 
 	private String nombre;
 	private Operando operacion;
@@ -16,15 +16,13 @@ public class Indicador implements IndicadorAbstracto {
 	public Indicador(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	@Override
+		
 	public Double aplicar(Empresa empresa, Periodo periodo) {
 		this.empresaTarget = empresa;
 		this.periodoTarget = periodo;
 		return operacion.resultado();
 	}
-
-	@Override
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -45,8 +43,7 @@ public class Indicador implements IndicadorAbstracto {
 		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
 				+ ", en el periodo: " + "A�o = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
 	}
-
-	@Override
+	
 	public Double aplicar(Empresa empresa, Collection<Periodo> periodos) {
 		return this.aplicar(empresa, periodos.iterator().next());
 	}
