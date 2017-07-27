@@ -1,10 +1,14 @@
 package viewmodel;
 
+import model.Empresa;
+import model.RepositorioDeEmpresas;
 import org.uqbar.commons.utils.Observable;
 
 import model.RepositorioDeIndicadores;
 import utils.InterpretadorDeIndicadores;
 import utils.ManejadorDeArchivos;
+
+import java.util.Collection;
 
 @Observable
 public class CreadorDeIndicadoresViewModel {
@@ -13,7 +17,8 @@ public class CreadorDeIndicadoresViewModel {
 	private String nombre;
 	private InterpretadorDeIndicadores interpretadorDeIndicadores = new InterpretadorDeIndicadores();
 	private ManejadorDeArchivos manejadorDeArchivos = new ManejadorDeArchivos();
-	
+	private Empresa empresaSeleccionada;
+
 	public void guardarIndicador() {
 		RepositorioDeIndicadores.getInstance().registrarIndicador(interpretadorDeIndicadores.interpretar(nombre, operacion));
 		manejadorDeArchivos.escribirArchivo(System.getProperty("user.dir") + "/src/test/assets/Indicadores.csv",
@@ -35,4 +40,15 @@ public class CreadorDeIndicadoresViewModel {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public Collection<Empresa> getEmpresas(){
+		return RepositorioDeEmpresas.getInstance().getEmpresas();
+	}
+
+	public Empresa getEmpresaSeleccionada() {
+		return empresaSeleccionada;
+	}
+
+	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {this.empresaSeleccionada = empresaSeleccionada;}
+
 }
