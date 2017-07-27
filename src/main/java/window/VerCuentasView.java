@@ -36,7 +36,7 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	
 	
 	public VerCuentasView(WindowOwner parent) {
-		super(parent, new VerCuentasViewModel());
+		super(parent, creadorVM);
 		this.parent = parent;
 	}
 
@@ -96,11 +96,11 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 			selectorIndicador.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
 
 			TextBox peridoYear = new TextBox(IndicadoresOpcionesPanel);
-			peridoYear.bindValueToProperty("peridoSeleccionadao.year");
+			peridoYear.bindValueToProperty("yearSeleccionado");
 			peridoYear.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
 
 			TextBox peridoSemestre = new TextBox(IndicadoresOpcionesPanel);
-			peridoSemestre.bindValueToProperty("peridoSeleccionadao.semester");
+			peridoSemestre.bindValueToProperty("semestreSeleccionado");
 			peridoSemestre.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
 
 			AplicarIndicador = new Button(IndicadoresOpcionesPanel).setCaption("Aplicar");
@@ -125,10 +125,10 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	}
 
 	public void AplicarIndicadorAempresaSeleccionada() {
-		try{
+		try {
 			getCreadorVM().AplicarIndicadorEnPerido();
-			showErrorMessageBox("No hace nada");
-		}catch(UserException e){
+			showErrorMessageBox("No hace nada2");
+		}catch (UserException e){
 			showErrorMessageBox("Tal vez si hace algo y mal ensima");
 
 		}
