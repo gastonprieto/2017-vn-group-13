@@ -148,6 +148,7 @@ public class CondicionTest {
 
         java.util.stream.Stream<Empresa> streamEmpresas =  empresas.stream();
         Empresa primera = new Empresa();
+
         CondicionCreciente condicion1 = new CondicionCreciente("hola", indicador1, periodos);
         primera =  condicion1.aplicar(streamEmpresas).findFirst().get();
         
