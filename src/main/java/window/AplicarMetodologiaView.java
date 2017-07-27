@@ -5,6 +5,7 @@ import model.Metodologia;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
+import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
@@ -20,7 +21,7 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
 
     private static final long serialVersionUID = 1L;
     private  static AplicarMetodologiaViewModel  creadorVM = new AplicarMetodologiaViewModel();
-
+    private Button menu;
     WindowOwner parent;
 
     public AplicarMetodologiaView(WindowOwner parent) {
@@ -31,12 +32,15 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
     @Override
     protected void createFormPanel(Panel mainPanel) {
         this.setTitle("Menu");
-        mainPanel.setLayout(new HorizontalLayout());
+        mainPanel.setLayout(new VerticalLayout());
 
         Panel panel = new Panel(mainPanel);
         Panel panel2 = new Panel(mainPanel);
 
-        panel.setLayout(new VerticalLayout());
+        panel.setLayout(new HorizontalLayout());
+
+        menu = new Button(panel).setCaption("Volver al menu");
+
         new Label(panel).setText("Seleccione una Metodologia: ");
         Selector<Metodologia> selectorMetodologia= new Selector<Metodologia>(panel);
         selectorMetodologia.allowNull(false);
@@ -48,7 +52,14 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
 
     @Override
     protected void addActions(Panel actionsPanel) {
+        menu.onClick(this::abrirMenu);
         actionsPanel.setLayout(new VerticalLayout());
+    }
+
+    public void abrirMenu() {
+        MenuView menuView = new MenuView(this.parent, false);
+        this.close();
+        menuView.open();
     }
 
     public AplicarMetodologiaViewModel getCreadorVM() {
