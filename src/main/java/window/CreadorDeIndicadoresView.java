@@ -64,7 +64,7 @@ public class CreadorDeIndicadoresView extends SimpleWindow<CreadorDeIndicadoresV
 		new TextBox(panel2).bindValueToProperty("nombre");
 		new Label(panel2).setText("Calculo: ").setWidth(150);
 		new TextBox(panel2).bindValueToProperty("operacion");
-		
+
 		crearIndicador = new Button(panel2).setCaption("Crear Indicador");
 		volverAlMenu = new Button(panel2).setCaption("Volver al menu");
 	}

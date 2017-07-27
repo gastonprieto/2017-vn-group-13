@@ -3,12 +3,9 @@ package viewmodel;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import model.*;
 import org.uqbar.commons.utils.Observable;
 
-import model.Empresa;
-import model.Indicador;
-import model.RepositorioDeEmpresas;
-import model.RepositorioDeIndicadores;
 import utils.InterpretadorDeIndicadores;
 import utils.ManejadorDeArchivos;
 
@@ -16,9 +13,11 @@ import utils.ManejadorDeArchivos;
 public class CreadorDeMetodologiasYCondicionesViewModel {	
 
 	private String nombreMetodologia;
+	private String nombreCondicion;
 	private Indicador indicadorSeleccionado;
 	private String tipoIndicadorSeleccionada;
 	private String tipoCondicionSeleccionada;
+	private Collection<Condicion> condicionesCreadas;
 
 	//private String indicadorSeleccionado;
 
@@ -28,6 +27,14 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	}
 	public void setNombreMetodologia(String nombreMetodologia) {
 		this.nombreMetodologia = nombreMetodologia;
+	}
+
+	/*--nombreCondicion--*/
+	public void setNombreCondicion(String nombreCondicion) {
+		this.nombreCondicion = nombreCondicion;
+	}
+	public String getNombreCondicion() {
+		return nombreCondicion;
 	}
 
 	/*-- indicadorSelecciondao --*/
@@ -75,9 +82,16 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 		return tiposCondisiones;
 	}
 
+	/*--condicionesCreadas--*/
+	public void setCondicionesCreadas(Collection<Condicion> condicionesCreadas) {
+		this.condicionesCreadas = condicionesCreadas;
+	}
+	public Collection<Condicion> getCondicionesCreadas() {
+		return condicionesCreadas;
+	}
 
-
-
-
-
+	/* --  FUNCIONES --*/
+	public void AgregarCondicion(){
+		//condicionesCreadas.add()
+	}
 }
