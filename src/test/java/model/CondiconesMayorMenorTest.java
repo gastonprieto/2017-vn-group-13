@@ -107,7 +107,7 @@ public class CondiconesMayorMenorTest {
         indicadorMenor = interprete.interpretar("indicadorMenor", "CuentaMenor+1");
 
         condicionMayor = new CondicionMayor("UnaCondicionMayor",8.8, indicadorMayor, periodos);
-        condicionMenor = new CondicionMenor(8.8, indicadorMenor, periodos);
+        condicionMenor = new CondicionMenor("hla",8.8, indicadorMenor, periodos);
 
     }
 

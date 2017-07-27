@@ -1,11 +1,15 @@
 package model;
 
+import org.uqbar.commons.utils.Observable;
+
 import java.util.Collection;
 import java.util.stream.Stream;
 
+@Observable
 public class CondicionCreciente extends CondicionPrioridad {
 
-    public CondicionCreciente(Indicador indicador, Collection<Periodo> periodos){
+    public CondicionCreciente(String name, Indicador indicador, Collection<Periodo> periodos){
+        this.name = name;
         this.indicador = indicador;
         this.periodos = periodos;
     }

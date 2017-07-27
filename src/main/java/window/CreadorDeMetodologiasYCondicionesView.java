@@ -10,8 +10,10 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
+import org.uqbar.arena.windows.MessageBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.commons.model.UserException;
 import viewmodel.CreadorDeMetodologiasYCondicionesViewModel;
 /**
  * Created by rapap on 27/07/2017.
@@ -21,6 +23,7 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
     private static final long serialVersionUID = 1L;
     private Button menu;
     private Button AgregarCondicion;
+    private Button GuardarMetodologia;
     WindowOwner parent;
     private  static CreadorDeMetodologiasYCondicionesViewModel  creadorVM = new CreadorDeMetodologiasYCondicionesViewModel();
 
@@ -41,12 +44,18 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
 
         menu = new Button(panel).setCaption("Volver al menu");
 
+        /* ---  TODO LO CORRESPONDIENTE A LA CREACION DE LA METODOLOGIA ---*/
+
         new Label(panel).setText("Nombre de la metodologia");
         TextBox NombreMetodologia= new TextBox(panel);
         NombreMetodologia.bindValueToProperty("nombreMetodologia");
 
         Table<Condicion> table = new Table<Condicion>(panel, Condicion.class);
         table.bindItemsToProperty("condicionesCreadas");
+
+        GuardarMetodologia = new Button(panel).setCaption("Guardar Metodologia");
+
+        /* --- TODO LO CORRESPONDIENTE A LA CREACION DE CONDICIONES  ---*/
 
         new Column<Condicion>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
 
@@ -84,6 +93,7 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
     protected void addActions(Panel actionsPanel) {
         menu.onClick(this::abrirMenu);
         AgregarCondicion.onClick(this::AgregarCondicion);
+        GuardarMetodologia.onClick(this::CrearMetodologia);
     }
 
     public void abrirMenu() {
@@ -93,7 +103,26 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
     }
 
     public void AgregarCondicion(){
-        getCreadorVM().AgregarCondicion();
+        try {
+            getCreadorVM().AgregarCondicion();
+        }catch (UserException e){
+            showErrorMessageBox("No se puedo crear la condicion");
+        }
+
+    }
+
+    public void CrearMetodologia(){
+        try {
+            getCreadorVM().GuardarMetodologia();
+            showErrorMessageBox("Se creo la Metodologia sadisfactoriaente");
+        }catch (UserException e) {
+            showErrorMessageBox("No se puedo crear la metodologia");
+        }
+    }
+    protected void showErrorMessageBox(String message) {
+        MessageBox messageBox = new MessageBox(this, MessageBox.Type.Error);
+        messageBox.setMessage(message);
+        messageBox.open();
     }
 
     public CreadorDeMetodologiasYCondicionesViewModel getCreadorVM() {

@@ -1,11 +1,15 @@
 package model;
 
+import org.uqbar.commons.utils.Observable;
+
 import java.util.Collection;
 import java.util.stream.Stream;
 
+@Observable
 public class CondicionMenor extends CondicionTaxativa  {
 
-	public CondicionMenor(double valorDeReferencia, Indicador indicador, Collection<Periodo> periodos) {
+	public CondicionMenor(String name, double valorDeReferencia, Indicador indicador, Collection<Periodo> periodos) {
+		this.name = name;
 		this.valorDeReferencia = valorDeReferencia;
 		this.indicador = indicador;
 		this.periodos = periodos;

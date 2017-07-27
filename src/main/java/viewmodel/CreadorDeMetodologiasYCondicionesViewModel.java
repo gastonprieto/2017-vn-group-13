@@ -96,13 +96,13 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 			condicionesCreadas.add(new CondicionMayor(nombreCondicion,10, indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
 		}
 		if(tipoCondicionSeleccionada == "Menor"){
-			condicionesCreadas.add(new CondicionMenor(10, indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
+			condicionesCreadas.add(new CondicionMenor(nombreCondicion, 10, indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
 		}
 		if(tipoCondicionSeleccionada == "Ascendente"){
-			condicionesCreadas.add(new CondicionCreciente(indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
+			condicionesCreadas.add(new CondicionCreciente(nombreCondicion,indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
 		}
 		if(tipoCondicionSeleccionada == "Descendente"){
-			condicionesCreadas.add(new CondicionDecreciente(indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
+			condicionesCreadas.add(new CondicionDecreciente(nombreCondicion,indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
 		}
 	}
 
