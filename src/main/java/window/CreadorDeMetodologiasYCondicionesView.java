@@ -52,12 +52,12 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
 
         Table<Condicion> table = new Table<Condicion>(panel, Condicion.class);
         table.bindItemsToProperty("condicionesCreadas");
+        new Column<Condicion>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
 
         GuardarMetodologia = new Button(panel).setCaption("Guardar Metodologia");
 
         /* --- TODO LO CORRESPONDIENTE A LA CREACION DE CONDICIONES  ---*/
 
-        new Column<Condicion>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
 
         new Label(panel2).setText("Nombre de la metodologia");
         TextBox NombreCondicion= new TextBox(panel2);

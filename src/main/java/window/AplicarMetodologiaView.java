@@ -1,5 +1,6 @@
 package window;
 
+import model.Empresa;
 import model.Indicador;
 import model.Metodologia;
 import org.uqbar.arena.bindings.PropertyAdapter;
@@ -9,10 +10,11 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import viewmodel.AplicarMetodologiaViewModel;
-
+import org.uqbar.arena.widgets.tables.Column;
 
 /**
  * Created by rapap on 27/07/2017.
@@ -22,6 +24,7 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
     private static final long serialVersionUID = 1L;
     private  static AplicarMetodologiaViewModel  creadorVM = new AplicarMetodologiaViewModel();
     private Button menu;
+    private Button aplicarMetodologia;
     WindowOwner parent;
 
     public AplicarMetodologiaView(WindowOwner parent) {
@@ -47,12 +50,21 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
         selectorMetodologia.bindValueToProperty("metodologiaSeleccionada");
         selectorMetodologia.bindItemsToProperty("metodologias").setAdapter(new PropertyAdapter(Metodologia.class, "nombre"));
 
+        aplicarMetodologia = new Button(panel).setCaption("Aplicar");
+
+        Table<Empresa> table = new Table<Empresa>(panel2, Empresa.class);
+        table.bindItemsToProperty("resultadoEmpresasEvaluadas");
+
+        new Column<Empresa>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
+
+
 
     }
 
     @Override
     protected void addActions(Panel actionsPanel) {
         menu.onClick(this::abrirMenu);
+        aplicarMetodologia.onClick(this::AplicarMetodologiaSeleccionada);
         actionsPanel.setLayout(new VerticalLayout());
     }
 
@@ -60,6 +72,10 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
         MenuView menuView = new MenuView(this.parent, false);
         this.close();
         menuView.open();
+    }
+
+    public void AplicarMetodologiaSeleccionada(){
+        getCreadorVM().aplicarMetodologiaSeleccionada();
     }
 
     public AplicarMetodologiaViewModel getCreadorVM() {
