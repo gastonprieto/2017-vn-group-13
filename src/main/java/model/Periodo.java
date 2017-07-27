@@ -1,11 +1,14 @@
 package model;
 
+import com.ibm.icu.util.Calendar;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
 
 //import java.sql.Date;
 import javax.rmi.CORBA.Tie;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import java.time.format.DateTimeFormatter;
@@ -14,13 +17,15 @@ public class Periodo {
 	private Integer year;
 	private Integer semester;
 	
-	public Periodo() {
-		
-	}
+	public Periodo() {}
 	
 	public Periodo(Integer year, Integer semester) {
 		this.year = year;
 		this.semester = semester;
+	}
+
+	public Periodo(int CantidadDePeriodos){
+
 	}
 	
 	public Integer getYear() {
@@ -82,8 +87,20 @@ public class Periodo {
 		return this.year == TiempoActual.getYear();
 	}
 
-	public void YearActual(){
-		Date TiempoActual = new Date();
-		this.year = TiempoActual.getYear();
+
+	public Collection<Periodo> ConvertYearToPeriodos(int cantidad) {
+		Collection<Periodo> periodos = new ArrayList<>();
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		int semester = (Calendar.getInstance().get(Calendar.MONTH) / 6) + 1;
+		for(int i = 0; i < cantidad; i ++) {
+			if(semester == 1) {
+				semester ++;
+				year --;
+			} else {
+				semester --;
+			}
+			periodos.add(new Periodo(year, semester));
+		}
+		return periodos;
 	}
 }

@@ -3,7 +3,7 @@ package model;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-public class CondicionMenorDecorador extends CondicionDecorador  {
+public class CondicionMenorDecorador extends CondicionTaxativa  {
 
 	public CondicionMenorDecorador(double valorDeReferencia, Indicador indicador, Collection<Periodo> periodos) {
 		this.valorDeReferencia = valorDeReferencia;

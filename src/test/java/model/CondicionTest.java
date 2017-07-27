@@ -10,7 +10,6 @@ import static org.junit.Assert.assertTrue;
 
 //import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -18,12 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exception.ParserException;
-import model.Cuenta;
-import model.Empresa;
-import model.Periodo;
-import model.RepositorioDeEmpresas;
 //import scala.collection.immutable.Stream;
-import java.util.stream.Stream;
 import utils.ImportadorDeDatos;
 import utils.InterpretadorDeIndicadores;
 
@@ -154,7 +148,7 @@ public class CondicionTest {
 
         java.util.stream.Stream<Empresa> streamEmpresas =  empresas.stream();
         Empresa primera = new Empresa();
-        CondicionAscendente condicion1 = new CondicionAscendente(indicador1, periodos);
+        CondicionCreciente condicion1 = new CondicionCreciente(indicador1, periodos);
         primera =  condicion1.aplicar(streamEmpresas).findFirst().get();
         
         Assert.assertTrue(primera.getName().equals("Oracle"));
