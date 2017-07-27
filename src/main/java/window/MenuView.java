@@ -31,7 +31,7 @@ public class MenuView extends SimpleWindow<MenuViewModel> {
 		actionsPanel.setLayout(new VerticalLayout());
 		new Button(actionsPanel).setCaption("Ver Cuentas e Indicadores").onClick(this::abrirCuentas).setWidth(200);
 		//new Button(actionsPanel).setCaption("Aplicar Indicadores").onClick(this::abrirIndicadores);
-		new Button(actionsPanel).setCaption("Aplicar Metodologia").onClick(this::abrirMetodologias);
+		new Button(actionsPanel).setCaption("Aplicar Metodologia").onClick(this::abrirAplicarMetodologias);
 		new Button(actionsPanel).setCaption("Crear Indicador").onClick(this::abrirCreadorDeIndicadores);
 		new Button(actionsPanel).setCaption("Crear Metodologias y Condiciones").onClick(this::abrirCreadorDeMetodologiasYCondiciones);
 	}
@@ -48,8 +48,8 @@ public class MenuView extends SimpleWindow<MenuViewModel> {
 		indicadoresView.open();
 	}
 
-	public void abrirMetodologias() {
-		VentanaMetodologia metodologiaView = new VentanaMetodologia(this.parent);
+	public void abrirAplicarMetodologias() {
+		AplicarMetodologiaView metodologiaView = new AplicarMetodologiaView(this.parent);
 		this.close();
 		metodologiaView.open();
 	}
