@@ -93,8 +93,7 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
     }
 
     public void AgregarCondicion(){
-
-
+        getCreadorVM().AgregarCondicion();
     }
 
     public CreadorDeMetodologiasYCondicionesViewModel getCreadorVM() {
