@@ -86,21 +86,4 @@ public class Periodo {
 		Date TiempoActual = new Date();
 		return this.year == TiempoActual.getYear();
 	}
-
-
-	public Collection<Periodo> ConvertYearToPeriodos(int cantidad) {
-		Collection<Periodo> periodos = new ArrayList<>();
-		int year = Calendar.getInstance().get(Calendar.YEAR);
-		int semester = (Calendar.getInstance().get(Calendar.MONTH) / 6) + 1;
-		for(int i = 0; i < cantidad; i ++) {
-			if(semester == 1) {
-				semester ++;
-				year --;
-			} else {
-				semester --;
-			}
-			periodos.add(new Periodo(year, semester));
-		}
-		return periodos;
-	}
 }

@@ -17,7 +17,8 @@ public class CondicionMayor extends CondicionTaxativa{
 
     public CondicionMayor(Indicador indicador, int cantPeriodos){
         this.indicador = indicador;
-       // this.periodos = this.getPeriodos(cantPeriodos);
+        ConversorYearToPeriodos Conversor = new ConversorYearToPeriodos(cantPeriodos);
+        this.periodos = Conversor.Convertir();
     }
 
     @Override

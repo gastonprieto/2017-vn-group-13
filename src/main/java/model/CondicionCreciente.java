@@ -12,7 +12,8 @@ public class CondicionCreciente extends CondicionPrioridad {
 
     public CondicionCreciente(Indicador indicador, int cantPeriodos){
         this.indicador = indicador;
-//        this.periodos = this.getPeriodos(cantPeriodos);
+        ConversorYearToPeriodos Conversor = new ConversorYearToPeriodos(cantPeriodos);
+        this.periodos = Conversor.Convertir();
     }
 
     @Override
