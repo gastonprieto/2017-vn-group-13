@@ -11,32 +11,27 @@ import com.ibm.icu.util.Calendar;
  */
 public class CondicionMaximizar extends CondicionPrioridad {
   
-    public CondicionMaximizar(Indicador indicador, Collection<Periodo> periodos){
-		this.indicador = indicador;
-		this.periodos = periodos;
-	}
+	public CondicionMaximizar(String name, Indicador indicador, Collection<Periodo> periodos){
+        this.name = name;
+        this.indicador = indicador;
+        this.periodos = periodos;
+    }
 
-	public CondicionMaximizar(Indicador indicador, int cantPeriodos){
-		this.indicador = indicador;
-		//this.periodos = this.getPeriodos(cantPeriodos);
-	}
+    public CondicionMaximizar(Indicador indicador, int cantPeriodos){
+        this.indicador = indicador;
+        ConversorYearToPeriodos Conversor = new ConversorYearToPeriodos(cantPeriodos);
+        this.periodos = Conversor.Convertir();
+    }
 
 	@Override
-	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
-		Collection<Double> roe = new ArrayList<>();
-				
-		
-		//periodos.add(new Periodo(year, semester));
-		//int year = Calendar.getInstance().get(Calendar.YEAR);
-		//int semester = (Calendar.getInstance().get(Calendar.MONTH) / 6) + 1;
-		
-		return streamEmpresas.sorted((empresa1, empresa2) ->
-			Double.compare(indicador.aplicar(empresa2, periodos), indicador.aplicar(empresa1, periodos)));
+	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {								
+		return streamEmpresas.sorted((empresa1, empresa2) -> comparar(empresa1, empresa2));
 	}
 	
-	public Boolean comparar(Empresa empresa1, Empresa empresa2) {
+	public Integer comparar(Empresa empresa1, Empresa empresa2) {
 		Collection<Double> roe1 = new ArrayList<>();
 		Collection<Double> roe2 = new ArrayList<>();
+		Integer mejor = 1;
 		
 		for(int i = 10; i > 0; i --) {
 			for(int j = 1; j < 3; i ++) {
@@ -47,11 +42,13 @@ public class CondicionMaximizar extends CondicionPrioridad {
 			}			
 		}
 		
-		//roe1.stream().filter(r -> p.getAge() > 16).collect(Collectors.toList());
-		
-		
-		
-		return null;
-		
+		for (Double i1 : roe1) {
+			for (Double i2 : roe2) {
+				if (i1 < i2) {
+					mejor = -1;					
+				}
+			}
+		}		
+		return mejor;		
 	}
 }
