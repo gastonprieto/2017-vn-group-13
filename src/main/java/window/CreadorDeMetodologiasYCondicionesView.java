@@ -113,7 +113,7 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
 
     public void CrearMetodologia(){
         try {
-            getCreadorVM().GuardarMetodologia();
+            getCreadorVM().GuardarMetodologia();            
             showErrorMessageBox("Se creo la Metodologia sadisfactoriaente");
         }catch (UserException e) {
             showErrorMessageBox("No se puedo crear la metodologia");

@@ -25,4 +25,9 @@ public class CondicionDecreciente extends CondicionPrioridad {
 		return streamEmpresas.sorted((empresa1, empresa2) ->
 				Double.compare(indicador.aplicar(empresa2, periodos), indicador.aplicar(empresa1, periodos)));
 	}
+
+	@Override
+	public Indicador getIndicador() {
+		return this.indicador;
+	}
 }

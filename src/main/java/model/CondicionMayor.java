@@ -29,4 +29,9 @@ public class CondicionMayor extends CondicionTaxativa{
     public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
         return streamEmpresas.filter(empresa -> indicador.aplicar(empresa, periodos) > valorDeReferencia);
     }
+
+	@Override
+	public Indicador getIndicador() {
+		return this.indicador;
+	}
 }

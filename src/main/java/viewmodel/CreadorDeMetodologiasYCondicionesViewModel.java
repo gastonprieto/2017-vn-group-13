@@ -1,5 +1,7 @@
 package viewmodel;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -18,6 +20,7 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	private String tipoIndicadorSeleccionada;
 	private String tipoCondicionSeleccionada;
 	private Collection<Condicion> condicionesCreadas = new ArrayList<Condicion>();
+	private ManejadorDeArchivos manejadorDeArchivos = new ManejadorDeArchivos();
 
 	//private String indicadorSeleccionado;
 
@@ -108,5 +111,19 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 
 	public void GuardarMetodologia(){
 		RepositorioDeMetodologias.getInstance().registrarMetodologia(new Metodologia(nombreMetodologia, condicionesCreadas));
+		
+		StringBuilder builderCondiciones = new StringBuilder();
+		
+		for(Condicion condicion : condicionesCreadas) {
+			builderCondiciones.append(",");
+			builderCondiciones.append(condicion.getName());
+			builderCondiciones.append(",");
+			builderCondiciones.append(condicion.getIndicador().getNombre());			
+		}
+		
+		builderCondiciones.toString();
+		
+		manejadorDeArchivos.escribirArchivo(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv",
+				nombreMetodologia + "," + builderCondiciones);		
 	}
 }

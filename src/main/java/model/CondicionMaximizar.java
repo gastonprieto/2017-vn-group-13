@@ -51,4 +51,9 @@ public class CondicionMaximizar extends CondicionPrioridad {
 		}		
 		return mejor;		
 	}
+
+	@Override
+	public Indicador getIndicador() {		
+		return this.indicador;
+	}
 }
