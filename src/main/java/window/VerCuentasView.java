@@ -127,11 +127,10 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	public void AplicarIndicadorAempresaSeleccionada() {
 		try {
 			getCreadorVM().AplicarIndicadorEnPerido();
-			showErrorMessageBox("No hace nada2");
-		}catch (UserException e){
-			showErrorMessageBox("Tal vez si hace algo y mal ensima");
-
+		}catch (NullPointerException e){
+			showErrorMessageBox("Se aplico el indicadr en un periodo en el cual la cuenta no tiene ningun valor");
 		}
+
 	}
 
 	public VerCuentasViewModel getCreadorVM() {

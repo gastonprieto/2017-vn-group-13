@@ -11,6 +11,7 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.tables.Table;
+import org.uqbar.arena.windows.MessageBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import viewmodel.AplicarMetodologiaViewModel;
@@ -75,7 +76,17 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
     }
 
     public void AplicarMetodologiaSeleccionada(){
+     try{
         getCreadorVM().aplicarMetodologiaSeleccionada();
+    }catch (NullPointerException e){
+        showErrorMessageBox("Se aplico el indicadr en un periodo en el cual la cuenta no tiene ningun valor");
+    }
+    }
+
+    protected void showErrorMessageBox(String message) {
+        MessageBox messageBox = new MessageBox(this, MessageBox.Type.Error);
+        messageBox.setMessage(message);
+        messageBox.open();
     }
 
     public AplicarMetodologiaViewModel getCreadorVM() {

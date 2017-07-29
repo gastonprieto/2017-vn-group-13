@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import exception.IndicadorException;
 import org.uqbar.commons.utils.Observable;
+import scala.xml.Null;
 
 @Observable
 public class Indicador {
@@ -32,17 +33,24 @@ public class Indicador {
 	}
 
 	public Double buscarValor(String nombre) {
+
 		Double valor = this.empresaTarget.buscarValorDeCuentaParaPeriodo(nombre, this.periodoTarget);
-		if(valor != null) {
+
+
+		if (valor != null) {
 			return valor;
 		}
 		valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(empresaTarget, periodoTarget);
-		if(valor != null) {
+		if (valor != null) {
 			return valor;
 		}
 		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
 				+ ", en el periodo: " + "A�o = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
+
+
+
 	}
+
 	
 	public Double aplicar(Empresa empresa, Collection<Periodo> periodos) {
 		return this.aplicar(empresa, periodos.iterator().next());

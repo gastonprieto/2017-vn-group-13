@@ -28,7 +28,7 @@ public class AplicarMetodologiaViewModel {
 		InterpretadorDeIndicadores interprete = new InterpretadorDeIndicadores();		
 		Indicador indicadorMayor = interprete.interpretar("ROE","2+Cuenta 1");
 		
-		Condicion condicion1 = new CondicionMayor("CondicionMayor1", 20, 10, new Sumatoria(indicadorMayor));
+		Condicion condicion1 = new CondicionMayor("CondicionMayor1", 0, 1, new Sumatoria(indicadorMayor));
 		Collection<Condicion> condiciones = new ArrayList();
 		condiciones.add(condicion1);
 		

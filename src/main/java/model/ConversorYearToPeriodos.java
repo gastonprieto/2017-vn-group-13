@@ -13,7 +13,7 @@ public class ConversorYearToPeriodos {
     int Cantidad;
 
     public ConversorYearToPeriodos(int _Cantidad){
-        this.Cantidad = _Cantidad;
+        this.Cantidad = _Cantidad -1;
     }
 
     public Collection<Periodo> Convertir() {
