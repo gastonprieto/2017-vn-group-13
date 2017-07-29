@@ -107,6 +107,10 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 		if(tipoCondicionSeleccionada == "Descendente"){
 			condicionesCreadas.add(new CondicionDecreciente(nombreCondicion,indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
 		}*/
+		
+		FabricaCondicionesDePrioridad fabrica = new FabricaCondicionesDePrioridad(nombreCondicion, indicadorSeleccionado, 10, tipoCondicionSeleccionada);
+		condicionesCreadas.add(fabrica.ObtenerCondicion());
+				
 	}
 
 	public void GuardarMetodologia(){
