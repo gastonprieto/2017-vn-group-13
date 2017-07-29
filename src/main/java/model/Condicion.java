@@ -10,7 +10,5 @@ public interface  Condicion {
 
 	public  void setName(String name);
 	public  String getName();
-	public Indicador getIndicador();
-
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas);
 }

@@ -95,8 +95,8 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 
 	/* --  FUNCIONES--*/
 	public void AgregarCondicion(){
-		if(tipoCondicionSeleccionada == "Mayor") {
-			condicionesCreadas.add(new CondicionMayor(nombreCondicion,10, indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
+	/*	if(tipoCondicionSeleccionada == "Mayor") {
+			condicionesCreadas.add(new CondicionMayor(nombreCondicion,10, indicadorSeleccionado, );
 		}
 		if(tipoCondicionSeleccionada == "Menor"){
 			condicionesCreadas.add(new CondicionMenor(nombreCondicion, 10, indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
@@ -106,7 +106,7 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 		}
 		if(tipoCondicionSeleccionada == "Descendente"){
 			condicionesCreadas.add(new CondicionDecreciente(nombreCondicion,indicadorSeleccionado, new ConversorYearToPeriodos(10).Convertir()));
-		}
+		}*/
 	}
 
 	public void GuardarMetodologia(){
@@ -114,7 +114,7 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 		
 		StringBuilder builderCondiciones = new StringBuilder();
 		
-		for(Condicion condicion : condicionesCreadas) {
+	/*	for(Condicion condicion : condicionesCreadas) {
 			builderCondiciones.append(",");
 			builderCondiciones.append(condicion.getName());
 			builderCondiciones.append(",");
@@ -124,6 +124,6 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 		builderCondiciones.toString();
 		
 		manejadorDeArchivos.escribirArchivo(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv",
-				nombreMetodologia + "," + builderCondiciones);		
+				nombreMetodologia + "," + builderCondiciones);*/
 	}
 }

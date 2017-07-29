@@ -52,7 +52,7 @@ public class CondiconesMayorMenorTest {
 
     @Before
     public void setUp() {
-
+/*
         importador = new ImportadorDeDatos();
         importador.importarRepositorioDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
 
@@ -107,7 +107,7 @@ public class CondiconesMayorMenorTest {
         indicadorMenor = interprete.interpretar("indicadorMenor", "CuentaMenor+1");
 
         condicionMayor = new CondicionMayor("UnaCondicionMayor",8.8, indicadorMayor, periodos);
-        condicionMenor = new CondicionMenor("hla",8.8, indicadorMenor, periodos);
+        condicionMenor = new CondicionMenor("hla",8.8, indicadorMenor, periodos);*/
 
     }
 

@@ -21,8 +21,4 @@ public class CondicionCreciente extends CondicionPrioridad {
                 Double.compare(indicador.aplicar(empresa2, periodos), indicador.aplicar(empresa1, periodos)));
     }
 
-	@Override
-	public Indicador getIndicador() {
-		return this.indicador;
-	}
 }

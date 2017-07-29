@@ -8,10 +8,11 @@ import java.util.stream.Stream;
 @Observable
 public class CondicionMenor extends CondicionTaxativa  {
 
-	public CondicionMenor(String name, double valorDeReferencia, Indicador indicador, int cantidadDePeriodos, Calculo calculo) {
+	public CondicionMenor(){}
+
+	public CondicionMenor(String name, double valorDeReferencia, int cantidadDePeriodos, Calculo calculo) {
 		this.name = name;
 		this.valorDeReferencia = valorDeReferencia;
-		this.indicador = indicador;
 		this.cantidadDePeriodos = cantidadDePeriodos;
 		this.calculo = calculo;
 	}
@@ -19,11 +20,6 @@ public class CondicionMenor extends CondicionTaxativa  {
 	@Override
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
 		Collection<Periodo> periodos = new ConversorYearToPeriodos(this.cantidadDePeriodos).Convertir();
-		return streamEmpresas.filter(empresa -> indicador.aplicar(empresa, periodos) < valorDeReferencia);
-	}
-
-	@Override
-	public Indicador getIndicador() {
-		return this.indicador;
+		return streamEmpresas.filter(empresa -> this.calculo.aplicar(empresa, periodos) < valorDeReferencia);
 	}
 }

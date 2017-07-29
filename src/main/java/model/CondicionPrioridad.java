@@ -9,7 +9,6 @@ public abstract class CondicionPrioridad implements Condicion{
     protected String name;
     protected Indicador indicador;
     protected int cantidadDePeriodos;
-    protected Calculo calculo;
 
     public String getName() {
         return name;
@@ -19,6 +18,14 @@ public abstract class CondicionPrioridad implements Condicion{
         this.name = name;
     }
 
+    public void setIndicador(Indicador indicador) {
+        this.indicador = indicador;
+    }
+
+    public Indicador getIndicador() {
+        return indicador;
+    }
+
     public int getCantidadDePeriodos() {
         return cantidadDePeriodos;
     }
@@ -26,4 +33,5 @@ public abstract class CondicionPrioridad implements Condicion{
     public void setCantidadDePeriodos(int cantidadDePeriodos) {
         this.cantidadDePeriodos = cantidadDePeriodos;
     }
+
 }

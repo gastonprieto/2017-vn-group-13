@@ -8,9 +8,9 @@ import java.util.Collection;
 public abstract class CondicionTaxativa implements Condicion{
     protected String name;
     protected double valorDeReferencia;
-    protected Indicador indicador;
-    protected int cantidadDePeriodos;
     protected Calculo calculo;
+    protected int cantidadDePeriodos;
+
 
     public String getName() {
         return name;
@@ -18,6 +18,14 @@ public abstract class CondicionTaxativa implements Condicion{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getValorDeReferencia() {
+        return valorDeReferencia;
+    }
+
+    public Calculo getCalculo() {
+        return calculo;
     }
 
     public void setCantidadDePeriodos(int cantidadDePeriodos) {
