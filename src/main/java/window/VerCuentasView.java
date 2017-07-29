@@ -95,10 +95,12 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 			selectorIndicador.bindValueToProperty("indicadorSeleccionado");
 			selectorIndicador.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
 
+			new Label(IndicadoresOpcionesPanel).setText("Año");
 			TextBox peridoYear = new TextBox(IndicadoresOpcionesPanel);
 			peridoYear.bindValueToProperty("yearSeleccionado");
 			peridoYear.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
 
+			new Label(IndicadoresOpcionesPanel).setText("Semestre");
 			TextBox peridoSemestre = new TextBox(IndicadoresOpcionesPanel);
 			peridoSemestre.bindValueToProperty("semestreSeleccionado");
 			peridoSemestre.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
@@ -128,7 +130,7 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 		try {
 			getCreadorVM().AplicarIndicadorEnPerido();
 		}catch (NullPointerException e){
-			showErrorMessageBox("Se aplico el indicadr en un periodo en el cual la cuenta no tiene ningun valor");
+			showErrorMessageBox("Se aplico el indicadr en un periodo en el cual la cuenta no tiene ningun valor, revise los datos ingresados");
 		}
 
 	}
