@@ -4,7 +4,7 @@ package model;
 /**
  * Created by rapap on 29/07/2017.
  */
-public abstract class FabricaCondicionTaxativas extends FabricaCondicion {
+public  class FabricaCondicionTaxativas extends FabricaCondicion {
 
     protected String name;
     protected String calculo;

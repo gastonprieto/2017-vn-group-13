@@ -83,9 +83,17 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
         selectorTiposCondiciones.bindValueToProperty("tipoCondicionSeleccionada");
         selectorTiposCondiciones.bindItemsToProperty("tipos");
 
+        new Label(panel2).setText("Cantidad de periodos: ");
+        TextBox CantidadDePeridos= new TextBox(panel2);
+        CantidadDePeridos.bindValueToProperty("cantidadDePeriodos");
+        CantidadDePeridos.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
+
+        new Label(panel2).setText("Valor de referencia: ");
+        TextBox VaLorDeReferencia= new TextBox(panel2);
+        VaLorDeReferencia.bindValueToProperty("valorDeReferencia");
+        VaLorDeReferencia.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
+
         AgregarCondicion = new Button(panel2).setCaption("Agregar Condicion");
-
-
 
     }
 
