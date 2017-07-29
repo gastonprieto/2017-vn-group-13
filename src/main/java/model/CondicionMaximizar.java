@@ -11,16 +11,16 @@ import com.ibm.icu.util.Calendar;
  */
 public class CondicionMaximizar extends CondicionPrioridad {
   
-	public CondicionMaximizar(String name, Indicador indicador, Collection<Periodo> periodos){
+	public CondicionMaximizar(String name, Indicador indicador, int cantidadDePeriodos){
         this.name = name;
         this.indicador = indicador;
-        this.periodos = periodos;
+        this.cantidadDePeriodos = cantidadDePeriodos;
     }
 
     public CondicionMaximizar(Indicador indicador, int cantPeriodos){
         this.indicador = indicador;
         ConversorYearToPeriodos Conversor = new ConversorYearToPeriodos(cantPeriodos);
-        this.periodos = Conversor.Convertir();
+        this.cantidadDePeriodos = cantPeriodos;
     }
 
 	@Override
