@@ -8,20 +8,15 @@ import java.util.stream.Stream;
 @Observable
 public class CondicionDecreciente extends CondicionPrioridad {
 
-	public CondicionDecreciente(String name, Indicador indicador, Collection<Periodo> periodos){
+	public CondicionDecreciente(String name, Indicador indicador, int cantidadDePeriodos){
 		this.name = name;
 		this.indicador = indicador;
-		this.periodos = periodos;
-	}
-
-	public CondicionDecreciente(Indicador indicador, int cantPeriodos){
-		this.indicador = indicador;
-		ConversorYearToPeriodos Conversor = new ConversorYearToPeriodos(cantPeriodos);
-		this.periodos = Conversor.Convertir();
+		this.cantidadDePeriodos = cantidadDePeriodos;
 	}
 
 	@Override
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
+		Collection<Periodo> periodos = new ConversorYearToPeriodos(this.cantidadDePeriodos).Convertir();
 		return streamEmpresas.sorted((empresa1, empresa2) ->
 				Double.compare(indicador.aplicar(empresa2, periodos), indicador.aplicar(empresa1, periodos)));
 	}

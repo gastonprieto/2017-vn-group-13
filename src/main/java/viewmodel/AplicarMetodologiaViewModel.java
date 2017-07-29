@@ -6,6 +6,7 @@ import model.RepositorioDeEmpresas;
 import model.RepositorioDeMetodologias;
 import org.uqbar.commons.utils.Observable;
 
+import java.text.CollationElementIterator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -40,6 +41,7 @@ public class AplicarMetodologiaViewModel {
     /* -- FUNCIONES --*/
 
     public void aplicarMetodologiaSeleccionada(){
-        resultadoEmpresasEvaluadas = metodologiaSeleccionada.evaluar(RepositorioDeEmpresas.getInstance().getEmpresas());
+        Collection<Empresa> TodasLasEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
+        resultadoEmpresasEvaluadas = metodologiaSeleccionada.evaluar(TodasLasEmpresas);
     }
 }

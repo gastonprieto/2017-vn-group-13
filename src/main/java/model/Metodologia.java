@@ -18,13 +18,15 @@ public class Metodologia {
         this.condiciones = condiciones;
     }
 	
-	public ArrayList<Empresa> evaluar(Collection<Empresa> empresas) {
+	public Collection<Empresa> evaluar(Collection<Empresa> empresas) {
 		Stream<Empresa> streamEmpresas = empresas.stream();
 		for(Condicion condicion : condiciones) {
 			streamEmpresas = condicion.aplicar(streamEmpresas);
 		}
 		return (ArrayList<Empresa>) streamEmpresas.collect(Collectors.toList());		
 	}
+
+
 
 	public String getNombre() {
         return nombre;

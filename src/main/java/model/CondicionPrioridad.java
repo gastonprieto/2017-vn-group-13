@@ -8,7 +8,8 @@ import java.util.Collection;
 public abstract class CondicionPrioridad implements Condicion{
     protected String name;
     protected Indicador indicador;
-    protected Collection<Periodo> periodos;
+    protected int cantidadDePeriodos;
+    protected Calculo calculo;
 
     public String getName() {
         return name;
@@ -16,5 +17,13 @@ public abstract class CondicionPrioridad implements Condicion{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCantidadDePeriodos() {
+        return cantidadDePeriodos;
+    }
+
+    public void setCantidadDePeriodos(int cantidadDePeriodos) {
+        this.cantidadDePeriodos = cantidadDePeriodos;
     }
 }
