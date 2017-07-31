@@ -35,7 +35,7 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
 
     @Override
     protected void createFormPanel(Panel mainPanel) {
-        this.setTitle("Menu");
+        this.setTitle("Aplicar Metodologia");
         mainPanel.setLayout(new VerticalLayout());
 
         Panel panel = new Panel(mainPanel);
@@ -52,6 +52,8 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
         selectorMetodologia.bindItemsToProperty("metodologias").setAdapter(new PropertyAdapter(Metodologia.class, "nombre"));
 
         aplicarMetodologia = new Button(panel).setCaption("Aplicar");
+
+        new Label(panel2).setText("Resultado de aplicar metodologia ");
 
         Table<Empresa> table = new Table<Empresa>(panel2, Empresa.class);
         table.bindItemsToProperty("resultadoEmpresasEvaluadas");

@@ -54,11 +54,7 @@ public class VerCuentasViewModel {
 
 	public void AplicarIndicadorEnPerido(){
 		Periodo periodoSeecionado = new Periodo(yearSeleccionado, semestreSeleccionado);
-		try {
-			resultadoDeAplicarIndiador = indicadorSeleccionado.aplicar(empresaSeleccionada, periodoSeecionado);
-		}catch (UserException e){
-			resultadoDeAplicarIndiador = 0.01;
-		}
+		resultadoDeAplicarIndiador = indicadorSeleccionado.aplicar(empresaSeleccionada, periodoSeecionado);
 	}
 
 

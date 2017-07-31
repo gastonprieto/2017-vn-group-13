@@ -1,13 +1,6 @@
 package viewmodel;
 
-import model.Condicion;
-import model.CondicionMayor;
-import model.Empresa;
-import model.Indicador;
-import model.Metodologia;
-import model.RepositorioDeEmpresas;
-import model.RepositorioDeMetodologias;
-import model.Sumatoria;
+import model.*;
 import utils.InterpretadorDeIndicadores;
 
 import org.uqbar.commons.utils.Observable;
@@ -28,7 +21,7 @@ public class AplicarMetodologiaViewModel {
 		InterpretadorDeIndicadores interprete = new InterpretadorDeIndicadores();		
 		Indicador indicadorMayor = interprete.interpretar("ROE","2+Cuenta 1");
 		
-		Condicion condicion1 = new CondicionMayor("CondicionMayor1", 0, 1, new Sumatoria(indicadorMayor));
+		Condicion condicion1 = new CondicionMenor("CondicionMayor1", 99, 1, new Sumatoria(indicadorMayor));
 		Collection<Condicion> condiciones = new ArrayList();
 		condiciones.add(condicion1);
 		
