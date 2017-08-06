@@ -148,10 +148,11 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 		RepositorioDeMetodologias.getInstance().registrarMetodologia(new Metodologia(nombreMetodologia, condicionesCreadas));			
 		
 		StringBuilder builderCondiciones = new StringBuilder();
-		
+
+		builderCondiciones.append(": ");
 		for(Condicion condicion : condicionesCreadas) {			
-			builderCondiciones.append(", ");
-			builderCondiciones.append(condicion.getInformacion());					
+			builderCondiciones.append(condicion.getInformacion());
+			builderCondiciones.append("&");
 		}
 		
 		builderCondiciones.toString();

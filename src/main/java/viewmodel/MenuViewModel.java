@@ -9,6 +9,8 @@ public class MenuViewModel {
 			ImportadorDeDatos importador = new ImportadorDeDatos();
 			importador.importarRepositorioDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
 			importador.importarIndicadores(System.getProperty("user.dir") + "/src/test/assets/Indicadores.csv");
+			importador.importarDeMetodologiasConCondiciones(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv");
+
 		}
 	}
 }

@@ -35,6 +35,6 @@ public abstract class CondicionPrioridad implements Condicion{
     }  
     
     public String getInformacion() {
-    	return name + ", " + indicador.getNombre() + ", " + cantidadDePeriodos;
+    	return  name + ", " +  getClass().getName() + ", " + indicador.getNombre() + ", " + cantidadDePeriodos ;
     }
 }

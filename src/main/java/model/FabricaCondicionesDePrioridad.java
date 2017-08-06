@@ -14,6 +14,7 @@ public class FabricaCondicionesDePrioridad extends FabricaCondicion {
 	        this.tipoCondicionPrioridad = tipoCondicionPrioridad;
 	    }
 
+
 	@Override
 	protected Condicion CrearCondicion() {
 		if (this.tipoCondicionPrioridad == "Creciente")

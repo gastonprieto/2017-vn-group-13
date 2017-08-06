@@ -12,6 +12,7 @@ public abstract class FabricaCondicion{
         
         return condicion;
     }
-	
+
+
 	protected abstract Condicion CrearCondicion();
 }
