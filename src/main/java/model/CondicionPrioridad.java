@@ -23,7 +23,7 @@ public abstract class CondicionPrioridad implements Condicion{
     }
 
     public Indicador getIndicador() {
-        return indicador;
+        return this.indicador;
     }
 
     public int getCantidadDePeriodos() {
@@ -32,6 +32,9 @@ public abstract class CondicionPrioridad implements Condicion{
 
     public void setCantidadDePeriodos(int cantidadDePeriodos) {
         this.cantidadDePeriodos = cantidadDePeriodos;
+    }  
+    
+    public String getInformacion() {
+    	return name + ", " + indicador.getNombre() + ", " + cantidadDePeriodos;
     }
-
 }

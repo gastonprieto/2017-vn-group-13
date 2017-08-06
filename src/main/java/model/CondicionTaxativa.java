@@ -35,4 +35,8 @@ public abstract class CondicionTaxativa implements Condicion{
     public int getCantidadDePeriodos() {
         return cantidadDePeriodos;
     }
+    
+    public String getInformacion() {
+    	return name + ", " + calculo.getClass().getSimpleName() + ", " + calculo.getIndicador().getNombre() + ", " + valorDeReferencia + ", " + cantidadDePeriodos;
+    }
 }

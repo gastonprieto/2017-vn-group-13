@@ -44,6 +44,7 @@ public class ManejadorDeArchivos {
 			}
 			FileWriter writer = new FileWriter(filePath, true);
 			writer.append(aEscribir);
+			writer.append("\n");
 			writer.flush();
 		    writer.close();
 		} catch (IOException e) {

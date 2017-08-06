@@ -10,5 +10,6 @@ public interface  Condicion {
 
 	public  void setName(String name);
 	public  String getName();
-	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas);
+	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas);	
+	public String getInformacion();	
 }

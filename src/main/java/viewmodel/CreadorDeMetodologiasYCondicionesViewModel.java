@@ -145,20 +145,18 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	}
 
 	public void GuardarMetodologia(){
-		RepositorioDeMetodologias.getInstance().registrarMetodologia(new Metodologia(nombreMetodologia, condicionesCreadas));
+		RepositorioDeMetodologias.getInstance().registrarMetodologia(new Metodologia(nombreMetodologia, condicionesCreadas));			
 		
 		StringBuilder builderCondiciones = new StringBuilder();
 		
-	/*	for(Condicion condicion : condicionesCreadas) {
-			builderCondiciones.append(",");
-			builderCondiciones.append(condicion.getName());
-			builderCondiciones.append(",");
-			builderCondiciones.append(condicion.getIndicador().getNombre());			
+		for(Condicion condicion : condicionesCreadas) {			
+			builderCondiciones.append(", ");
+			builderCondiciones.append(condicion.getInformacion());					
 		}
 		
 		builderCondiciones.toString();
 		
 		manejadorDeArchivos.escribirArchivo(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv",
-				nombreMetodologia + "," + builderCondiciones);*/
+				nombreMetodologia + builderCondiciones);
 	}
 }
