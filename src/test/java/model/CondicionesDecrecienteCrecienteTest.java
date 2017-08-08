@@ -22,13 +22,10 @@ public class CondicionesDecrecienteCrecienteTest {
 
     FabricaCondicion fabrica;
 
+    Stream<String> streamEmpresasResultadoCreciente;
+    Stream<String> streamEmpresasResultadoDecreciente;
 
-    Stream<Empresa> streamEmpresas;
-    Stream<Empresa> streamEmpresasResultadoCreciente;
-    Stream<Empresa> streamEmpresasMenor;
-
-    Indicador indicadorCreciente;
-    Indicador indicadorDecreciente;
+    Indicador indicadorPrueba;
 
     private Condicion condicionCreciente;
     private Condicion condicionDecreciente;
@@ -40,36 +37,53 @@ public class CondicionesDecrecienteCrecienteTest {
         importador = new ImportadorDeDatos();
         importador.importarRepositorioDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
 
-        interprete = new InterpretadorDeIndicadores();
-
-        indicadorCreciente = interprete.interpretar("Indicador1",    "Cuenta 1+2000");
-        indicadorDecreciente = interprete.interpretar("indicador2", "Cuenta 1+1");
-
-        RepositorioDeIndicadores.getInstance().registrarIndicador(indicadorCreciente);
-        RepositorioDeIndicadores.getInstance().registrarIndicador(indicadorDecreciente);
-
-        fabrica = new FabricaCondicionesDePrioridad("CondicionCreciente", indicadorCreciente  , 1, "Creciente");
-        condicionCreciente = fabrica.ObtenerCondicion();
-
-        fabrica = new FabricaCondicionesDePrioridad("CondicionCreciente", indicadorDecreciente , 1, "Decreciente");
-        condicionDecreciente = fabrica.ObtenerCondicion();
-
+        /* Retiramos del repositorio las Empresas 6 por no tener la Cuenta1 y la Empresa 7 por no tener la
+        * Cuenta 1 en el periodo -> año 2016, semestre 2*/
         Empresa empresa = new Empresa();
         empresa.setName("Empresa 6");
         empresa.setCuentas(new ArrayList<>());
         RepositorioDeEmpresas.getInstance().getEmpresas().remove(empresa);
-
         empresa.setName("Empresa 7");
         ArrayList<Cuenta> cuentas =new ArrayList<>();
-
         cuentas.add(new Cuenta("Cuenta 1", 5.0, new Periodo(0 ,0)));
         empresa.setCuentas(cuentas);
         RepositorioDeEmpresas.getInstance().getEmpresas().remove(empresa);
 
-        Collection<Empresa> lista = RepositorioDeEmpresas.getInstance().getEmpresas();
-        Collection<Empresa> ListaDeEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
-        streamEmpresasResultadoCreciente = ListaDeEmpresas.stream();
+        /*Creo las listas ordenadas segun el resultado esperado para comparar en el test*/
 
+        ArrayList<String> EmpresasResultado = new ArrayList<String>();
+
+        //Decreciente
+        EmpresasResultado.add("Empresa 1");
+        EmpresasResultado.add("Empresa 2");
+        EmpresasResultado.add("Empresa 3");
+        EmpresasResultado.add("Empresa 4");
+        EmpresasResultado.add("Empresa 5");
+
+        streamEmpresasResultadoDecreciente = EmpresasResultado.stream();
+
+        EmpresasResultado.clear();
+        //Creciente
+        EmpresasResultado.add("Empresa 5");
+        EmpresasResultado.add("Empresa 4");
+        EmpresasResultado.add("Empresa 3");
+        EmpresasResultado.add("Empresa 2");
+        EmpresasResultado.add("Empresa 1");
+
+
+        streamEmpresasResultadoCreciente = EmpresasResultado.stream();
+
+        /*Creo un indicador para probar la condiciones y la guardo en el Repositorio de Indicadores*/
+        interprete = new InterpretadorDeIndicadores();
+        indicadorPrueba = interprete.interpretar("Indicador1",    "Cuenta 1+2000");
+        RepositorioDeIndicadores.getInstance().registrarIndicador(indicadorPrueba);
+
+        /*Creo las Condiciones */
+        fabrica = new FabricaCondicionesDePrioridad("CondicionCreciente", indicadorPrueba  , 1, "Creciente");
+        condicionCreciente = fabrica.ObtenerCondicion();
+
+        fabrica = new FabricaCondicionesDePrioridad("CondicionDecreciente", indicadorPrueba , 1, "Decreciente");
+        condicionDecreciente = fabrica.ObtenerCondicion();
     }
 
     @After
@@ -79,13 +93,30 @@ public class CondicionesDecrecienteCrecienteTest {
     }
 
     @Test
-    public void AplicarCrecienteTest()  throws ParserException {
+    public void AplicarDecrecienteTest()  throws ParserException {
         Collection<Empresa> ListaDeEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
         Stream<Empresa> streamEmpresas = ListaDeEmpresas.stream();
 
         Stream<Empresa> Resultado =  condicionDecreciente.aplicar(streamEmpresas);
-        Assert.assertEquals(Resultado.toArray(),streamEmpresasResultadoCreciente.toArray());
-        //Assert.assertTrue(Resultado.toArray().equals(streamEmpresasResultadoCreciente.toArray()));
+        Stream<String> ResultadoString =Simplificar(Resultado);
+        Assert.assertArrayEquals( ResultadoString.toArray(), streamEmpresasResultadoDecreciente.toArray());
+
+    }
+
+    @Test
+    public void AplicarCrecienteTest()  throws ParserException {
+        Collection<Empresa> ListaDeEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
+        Stream<Empresa> streamEmpresas = ListaDeEmpresas.stream();
+
+        Stream<Empresa> Resultado =  condicionCreciente.aplicar(streamEmpresas);
+        Stream<String> ResultadoString =Simplificar(Resultado);
+        Assert.assertArrayEquals( ResultadoString.toArray(), streamEmpresasResultadoCreciente.toArray());
+    }
+
+    private Stream<String> Simplificar( Stream<Empresa> streamSimplifacar){
+        ArrayList<String> simplificacion = new ArrayList<>();
+        streamSimplifacar.forEach( e -> simplificacion.add(e.getName()));
+        return simplificacion.stream();
     }
 
 
