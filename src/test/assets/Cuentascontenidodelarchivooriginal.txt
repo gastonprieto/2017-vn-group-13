@@ -7,4 +7,6 @@
 {"name":"Empresa 4","cuentas":[{"name":"Cuenta 1","value":"4","periodo":{"year":"2016","semester":"2"}},
 {"name":"Cuenta 2","value":"2","periodo":{"year":"2016","semester":"2"}}]},
 {"name":"Empresa 5","cuentas":[{"name":"Cuenta 1","value":"5","periodo":{"year":"2016","semester":"2"}},
-{"name":"Cuenta 2","value":"1","periodo":{"year":"2016","semester":"2"}}]}]}
+{"name":"Cuenta 2","value":"1","periodo":{"year":"2016","semester":"2"}}]},
+{"name":"Empresa 6","cuentas":[]},
+{"name":"Empresa 7","cuentas":[{"name":"Cuenta 1","value":"5","periodo":{"year":"0","semester":"0"}}]}]}

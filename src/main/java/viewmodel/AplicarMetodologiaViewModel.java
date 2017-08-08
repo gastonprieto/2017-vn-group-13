@@ -17,17 +17,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 @Observable
 public class AplicarMetodologiaViewModel {
 	
-	public AplicarMetodologiaViewModel() {
-		InterpretadorDeIndicadores interprete = new InterpretadorDeIndicadores();		
-		Indicador indicadorMayor = interprete.interpretar("ROE","2+Cuenta 1");
-		
-		Condicion condicion1 = new CondicionMenor("CondicionMayor1", 99, 1, new Sumatoria(indicadorMayor));
-		Collection<Condicion> condiciones = new ArrayList();
-		condiciones.add(condicion1);
-		
-		Metodologia metodologia = new Metodologia("WB", condiciones);
-		RepositorioDeMetodologias.getInstance().registrarMetodologia(metodologia);
-	}
+
 
     private Metodologia metodologiaSeleccionada;
     private Collection<Empresa> resultadoEmpresasEvaluadas = new ArrayList<>();

@@ -93,20 +93,14 @@ public class CondicionesDecrecienteCrecienteTest {
 
     @Test
     public void AplicarDecrecienteTest()  throws ParserException {
-        Collection<Empresa> ListaDeEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
-        Stream<Empresa> streamEmpresas = ListaDeEmpresas.stream();
-
-        Stream<Empresa> Resultado =  condicionDecreciente.aplicar(streamEmpresas);
+        Stream<Empresa> Resultado =  condicionDecreciente.aplicar(RepositorioDeEmpresas.getInstance().getEmpresas().stream());
         Stream<String> ResultadoString =Simplificar(Resultado);
         Assert.assertArrayEquals( ResultadoString.toArray(), streamEmpresasResultadoDecreciente.toArray());
     }
 
     @Test
     public void AplicarCrecienteTest()  throws ParserException {
-        Collection<Empresa> ListaDeEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
-        Stream<Empresa> streamEmpresas = ListaDeEmpresas.stream();
-
-        Stream<Empresa> Resultado =  condicionCreciente.aplicar(streamEmpresas);
+        Stream<Empresa> Resultado =  condicionCreciente.aplicar(RepositorioDeEmpresas.getInstance().getEmpresas().stream());
         Stream<String> ResultadoString =Simplificar(Resultado);
         Assert.assertArrayEquals( ResultadoString.toArray(), streamEmpresasResultadoCreciente.toArray());
     }
