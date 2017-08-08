@@ -9,6 +9,7 @@ import utils.InterpretadorDeIndicadores;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 /**
@@ -41,28 +42,39 @@ public class CondicionesDecrecienteCrecienteTest {
 
         interprete = new InterpretadorDeIndicadores();
 
-        indicadorCreciente = interprete.interpretar("Indicador1",    "Cuenta1-1");
-        indicadorDecreciente = interprete.interpretar("indicador2", "Cuenta1+1");
+        indicadorCreciente = interprete.interpretar("Indicador1",    "Cuenta 1+2000");
+        indicadorDecreciente = interprete.interpretar("indicador2", "Cuenta 1+1");
 
-        fabrica = new FabricaCondicionesDePrioridad("CondicionCreciente", indicadorCreciente  , 2, "Creciente");
+        RepositorioDeIndicadores.getInstance().registrarIndicador(indicadorCreciente);
+        RepositorioDeIndicadores.getInstance().registrarIndicador(indicadorDecreciente);
+
+        fabrica = new FabricaCondicionesDePrioridad("CondicionCreciente", indicadorCreciente  , 1, "Creciente");
         condicionCreciente = fabrica.ObtenerCondicion();
 
         fabrica = new FabricaCondicionesDePrioridad("CondicionCreciente", indicadorDecreciente , 1, "Decreciente");
         condicionDecreciente = fabrica.ObtenerCondicion();
 
-        streamEmpresasResultadoCreciente = RepositorioDeEmpresas.getInstance().getEmpresas().stream();
+        Empresa empresa = new Empresa();
+        empresa.setName("Empresa 6");
+        empresa.setCuentas(new ArrayList<>());
+        RepositorioDeEmpresas.getInstance().getEmpresas().remove(empresa);
+        Collection<Empresa> lista = RepositorioDeEmpresas.getInstance().getEmpresas();
+        Collection<Empresa> ListaDeEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
+        streamEmpresasResultadoCreciente = ListaDeEmpresas.stream();
 
     }
 
     @After
     public void tearDown() {
         RepositorioDeEmpresas.getInstance().getEmpresas().clear();
+        RepositorioDeIndicadores.getInstance().getIndicadores().clear();
     }
 
     @Test
     public void AplicarCrecienteTest()  throws ParserException {
-        Stream<Empresa> Resultado =  condicionCreciente.aplicar(RepositorioDeEmpresas.getInstance().getEmpresas().stream());
-        Assert.assertTrue(Resultado.equals(streamEmpresasResultadoCreciente));
+        Collection<Empresa> ListaDeEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
+        Stream<Empresa> Resultado =  condicionDecreciente.aplicar(ListaDeEmpresas.stream());
+        Assert.assertTrue(Resultado.toArray().equals(streamEmpresasResultadoCreciente.toArray()));
     }
 
 

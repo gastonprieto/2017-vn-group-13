@@ -95,7 +95,7 @@ public class CondicionTest {
     @Test
     public void ListaAscendiente  () throws ParserException {
 
-    	/*
+
     	InterpretadorDeIndicadores interprete = new InterpretadorDeIndicadores();
     	
     	Empresa empresa1 = new Empresa();
@@ -149,11 +149,11 @@ public class CondicionTest {
         java.util.stream.Stream<Empresa> streamEmpresas =  empresas.stream();
         Empresa primera = new Empresa();
 
-        CondicionCreciente condicion1 = new CondicionCreciente("hola", indicador1, periodos);
+        CondicionCreciente condicion1 = new CondicionCreciente("hola", indicador1, 1);
         primera =  condicion1.aplicar(streamEmpresas).findFirst().get();
         
         Assert.assertTrue(primera.getName().equals("Oracle"));
-        */
+
         }
     
 }

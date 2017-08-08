@@ -13,13 +13,13 @@ public class ConversorYearToPeriodos {
     int Cantidad;
 
     public ConversorYearToPeriodos(int _Cantidad){
-        this.Cantidad = _Cantidad -1;
+        this.Cantidad = _Cantidad ;
     }
 
     public Collection<Periodo> Convertir() {
         Collection<Periodo> periodos = new ArrayList<>();
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        int semester = (Calendar.getInstance().get(Calendar.MONTH) / 6) + 1;
+        int year = Calendar.getInstance().get(Calendar.YEAR) ;
+        int semester = (Calendar.getInstance().get(Calendar.MONTH) / 6) ;//
         for(int i = 0; i < this.Cantidad; i ++) {
             if(semester == 1) {
                 semester ++;
