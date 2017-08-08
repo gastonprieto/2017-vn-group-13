@@ -51,27 +51,26 @@ public class CondicionesDecrecienteCrecienteTest {
 
         /*Creo las listas ordenadas segun el resultado esperado para comparar en el test*/
 
-        ArrayList<String> EmpresasResultado = new ArrayList<String>();
+        ArrayList<String> EmpresasResultadoCreciente = new ArrayList<String>();
+        ArrayList<String> EmpresasResultadoDecreciente = new ArrayList<String>();
 
         //Decreciente
-        EmpresasResultado.add("Empresa 1");
-        EmpresasResultado.add("Empresa 2");
-        EmpresasResultado.add("Empresa 3");
-        EmpresasResultado.add("Empresa 4");
-        EmpresasResultado.add("Empresa 5");
+        EmpresasResultadoDecreciente.add("Empresa 5");
+        EmpresasResultadoDecreciente.add("Empresa 4");
+        EmpresasResultadoDecreciente.add("Empresa 3");
+        EmpresasResultadoDecreciente.add("Empresa 2");
+        EmpresasResultadoDecreciente.add("Empresa 1");
 
-        streamEmpresasResultadoDecreciente = EmpresasResultado.stream();
+        streamEmpresasResultadoDecreciente = EmpresasResultadoDecreciente.stream();
 
-        EmpresasResultado.clear();
         //Creciente
-        EmpresasResultado.add("Empresa 5");
-        EmpresasResultado.add("Empresa 4");
-        EmpresasResultado.add("Empresa 3");
-        EmpresasResultado.add("Empresa 2");
-        EmpresasResultado.add("Empresa 1");
+        EmpresasResultadoCreciente.add("Empresa 1");
+        EmpresasResultadoCreciente.add("Empresa 2");
+        EmpresasResultadoCreciente.add("Empresa 3");
+        EmpresasResultadoCreciente.add("Empresa 4");
+        EmpresasResultadoCreciente.add("Empresa 5");
 
-
-        streamEmpresasResultadoCreciente = EmpresasResultado.stream();
+        streamEmpresasResultadoCreciente = EmpresasResultadoCreciente.stream();
 
         /*Creo un indicador para probar la condiciones y la guardo en el Repositorio de Indicadores*/
         interprete = new InterpretadorDeIndicadores();
@@ -100,7 +99,6 @@ public class CondicionesDecrecienteCrecienteTest {
         Stream<Empresa> Resultado =  condicionDecreciente.aplicar(streamEmpresas);
         Stream<String> ResultadoString =Simplificar(Resultado);
         Assert.assertArrayEquals( ResultadoString.toArray(), streamEmpresasResultadoDecreciente.toArray());
-
     }
 
     @Test
