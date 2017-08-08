@@ -58,6 +58,14 @@ public class CondicionesDecrecienteCrecienteTest {
         empresa.setName("Empresa 6");
         empresa.setCuentas(new ArrayList<>());
         RepositorioDeEmpresas.getInstance().getEmpresas().remove(empresa);
+
+        empresa.setName("Empresa 7");
+        ArrayList<Cuenta> cuentas =new ArrayList<>();
+
+        cuentas.add(new Cuenta("Cuenta 1", 5.0, new Periodo(0 ,0)));
+        empresa.setCuentas(cuentas);
+        RepositorioDeEmpresas.getInstance().getEmpresas().remove(empresa);
+
         Collection<Empresa> lista = RepositorioDeEmpresas.getInstance().getEmpresas();
         Collection<Empresa> ListaDeEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
         streamEmpresasResultadoCreciente = ListaDeEmpresas.stream();
@@ -73,8 +81,11 @@ public class CondicionesDecrecienteCrecienteTest {
     @Test
     public void AplicarCrecienteTest()  throws ParserException {
         Collection<Empresa> ListaDeEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
-        Stream<Empresa> Resultado =  condicionDecreciente.aplicar(ListaDeEmpresas.stream());
-        Assert.assertTrue(Resultado.toArray().equals(streamEmpresasResultadoCreciente.toArray()));
+        Stream<Empresa> streamEmpresas = ListaDeEmpresas.stream();
+
+        Stream<Empresa> Resultado =  condicionDecreciente.aplicar(streamEmpresas);
+        Assert.assertEquals(Resultado.toArray(),streamEmpresasResultadoCreciente.toArray());
+        //Assert.assertTrue(Resultado.toArray().equals(streamEmpresasResultadoCreciente.toArray()));
     }
 
 
