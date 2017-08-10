@@ -2,6 +2,7 @@ package model;
 
 import java.util.Collection;
 
+import exception.EmpresaException;
 import exception.IndicadorException;
 import org.uqbar.commons.utils.Observable;
 import scala.xml.Null;
@@ -32,22 +33,25 @@ public class Indicador {
 		this.operacion = operacion;
 	}
 
-	public Double buscarValor(String nombre) {
+	public Double buscarValor(String nombre) {		
+		Double valor = null;
 
-		Double valor = this.empresaTarget.buscarValorDeCuentaParaPeriodo(nombre, this.periodoTarget);
+		try {
+			valor = this.empresaTarget.buscarValorDeCuentaParaPeriodo(nombre, this.periodoTarget);
+		} catch (EmpresaException e) {
+			throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado ya que " + e.getMessage());
+		}		
 
 		if (valor != null) {
 			return valor;
 		}
-		
-		try {
-			valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(empresaTarget, periodoTarget);			
-		} catch (Exception e) {
-			throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
-			+ ", en el periodo: " + "A�o = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
-		}				
-				
-		return valor;
+		valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(empresaTarget, periodoTarget);
+		if (valor != null) {
+			return valor;
+		}
+		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
+				+ ", en el periodo: " + "A�o = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
+
 	}
 
 	

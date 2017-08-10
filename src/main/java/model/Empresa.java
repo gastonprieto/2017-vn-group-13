@@ -4,6 +4,9 @@ import java.util.Collection;
 
 import org.uqbar.commons.utils.Observable;
 
+import exception.EmpresaException;
+import exception.IndicadorException;
+
 @Observable
 public class Empresa {
 	private String name;
@@ -15,7 +18,9 @@ public class Empresa {
 				return cuenta.getValue();
 			}
 		}
-		return null;
+		
+		throw new EmpresaException("la empresa " + this.name + " no posee cuenta para el pediodo en el periodo: " + "A�o = " +
+				periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
 	}
 
 	public String getName() {
