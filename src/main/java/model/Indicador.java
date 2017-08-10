@@ -36,19 +36,18 @@ public class Indicador {
 
 		Double valor = this.empresaTarget.buscarValorDeCuentaParaPeriodo(nombre, this.periodoTarget);
 
-
 		if (valor != null) {
 			return valor;
 		}
-		valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(empresaTarget, periodoTarget);
-		if (valor != null) {
-			return valor;
-		}
-		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
-				+ ", en el periodo: " + "A�o = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
-
-
-
+		
+		try {
+			valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(empresaTarget, periodoTarget);			
+		} catch (Exception e) {
+			throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
+			+ ", en el periodo: " + "A�o = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
+		}				
+				
+		return valor;
 	}
 
 	
