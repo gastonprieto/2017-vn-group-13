@@ -5,7 +5,7 @@ import java.util.Collection;
 import exception.EmpresaException;
 import exception.IndicadorException;
 import org.uqbar.commons.utils.Observable;
-import scala.xml.Null;
+
 
 @Observable
 public class Indicador {

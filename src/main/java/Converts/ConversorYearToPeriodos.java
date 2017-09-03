@@ -1,6 +1,7 @@
-package model;
+package Converts;
 
 import com.ibm.icu.util.Calendar;
+import model.Periodo;
 
 import java.util.ArrayList;
 import java.util.Collection;

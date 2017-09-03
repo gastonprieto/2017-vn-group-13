@@ -1,14 +1,9 @@
 package viewmodel;
 
 import model.*;
-import utils.InterpretadorDeIndicadores;
-
 import org.uqbar.commons.utils.Observable;
-
-import java.text.CollationElementIterator;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Created by rapap on 27/07/2017.

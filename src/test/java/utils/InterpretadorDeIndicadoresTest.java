@@ -1,17 +1,9 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Test;
-
 import exception.IndicadorException;
-import model.Cuenta;
-import model.Empresa;
-import model.Indicador;
-import model.Periodo;
 import model.RepositorioDeIndicadores;
 
 public class InterpretadorDeIndicadoresTest {

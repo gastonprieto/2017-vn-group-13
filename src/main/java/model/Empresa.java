@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.uqbar.commons.utils.Observable;
 
 import exception.EmpresaException;
-import exception.IndicadorException;
 
 @Observable
 public class Empresa {

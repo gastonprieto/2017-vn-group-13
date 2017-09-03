@@ -1,18 +1,13 @@
 package viewmodel;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
-
-import Converts.ConvertCondicionToString;
 import model.*;
 import org.uqbar.commons.utils.Observable;
-
 import utils.ExportadorDeDatos;
-import utils.InterpretadorDeIndicadores;
-import utils.ManejadorDeArchivos;
+
 
 @Observable
 public class CreadorDeMetodologiasYCondicionesViewModel {	

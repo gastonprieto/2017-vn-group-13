@@ -1,12 +1,10 @@
 package viewmodel;
 
-import java.time.Year;
-import java.util.Collection;
 
+import java.util.Collection;
 import model.*;
-import org.eclipse.core.internal.databinding.observable.masterdetail.DetailObservableList;
 import org.uqbar.commons.utils.Observable;
-import org.uqbar.commons.model.UserException;
+
 
 @Observable
 public class VerCuentasViewModel {

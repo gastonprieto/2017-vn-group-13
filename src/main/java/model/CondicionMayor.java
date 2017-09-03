@@ -1,6 +1,7 @@
 package model;
 
 
+import Converts.ConversorYearToPeriodos;
 import org.uqbar.commons.utils.Observable;
 
 import java.util.Collection;

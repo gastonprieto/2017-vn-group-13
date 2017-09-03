@@ -1,19 +1,11 @@
 package utils;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import Converts.ConvertStringToCondicion;
 import model.*;
 import org.apache.commons.lang.StringUtils;
-
 import com.google.gson.Gson;
-
-import javax.persistence.Convert;
 
 public class ImportadorDeDatos {
 	private ManejadorDeArchivos lectorDeArchivos;

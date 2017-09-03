@@ -6,18 +6,14 @@ package model;
 
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
-//import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import exception.ParserException;
-//import scala.collection.immutable.Stream;
 import utils.ImportadorDeDatos;
 import utils.InterpretadorDeIndicadores;
 

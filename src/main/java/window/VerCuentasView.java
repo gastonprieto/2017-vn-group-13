@@ -1,7 +1,6 @@
 package window;
 
 import model.Indicador;
-import model.Periodo;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -14,17 +13,10 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.arena.windows.MessageBox;
-
-import scala.Array;
-import scala.collection.immutable.*;
 import viewmodel.VerCuentasViewModel;
 import model.Cuenta;
 import model.Empresa;
-
 import java.awt.*;
-import java.util.Collection;
-import java.util.Iterator;
-import org.uqbar.commons.model.UserException;
 
 public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	

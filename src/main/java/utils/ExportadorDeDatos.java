@@ -3,7 +3,7 @@ package utils;
 import Converts.ConvertCondicionToString;
 import model.Condicion;
 import model.Metodologia;
-import model.RepositorioDeMetodologias;
+
 
 /**
  * Created by rapap on 03/09/2017.

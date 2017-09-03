@@ -1,7 +1,6 @@
 package window;
 
 import model.Empresa;
-import model.Indicador;
 import model.Metodologia;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;

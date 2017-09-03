@@ -6,11 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import utils.ImportadorDeDatos;
 import utils.InterpretadorDeIndicadores;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 /**
  * Created by rapap on 06/08/2017.

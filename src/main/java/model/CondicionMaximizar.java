@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
 
+import Converts.ConversorYearToPeriodos;
 import com.ibm.icu.util.Calendar;
 
 /**

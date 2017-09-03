@@ -3,11 +3,9 @@ package viewmodel;
 import model.Empresa;
 import model.RepositorioDeEmpresas;
 import org.uqbar.commons.utils.Observable;
-
 import model.RepositorioDeIndicadores;
 import utils.InterpretadorDeIndicadores;
 import utils.ManejadorDeArchivos;
-
 import java.util.Collection;
 
 @Observable
