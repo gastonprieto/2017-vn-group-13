@@ -15,28 +15,23 @@ public abstract class CondicionTaxativa implements Condicion{
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public Integer getCantidadDePeriodos() {
+        return cantidadDePeriodos;
     }
-
-    public double getValorDeReferencia() {
+    public Indicador getIndicador(){return null;}
+    public Calculo getCalculo() {
+        return calculo;
+    }
+    public Double getValorDeReferencia() {
         return valorDeReferencia;
     }
 
-    public Calculo getCalculo() {
-        return calculo;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setCantidadDePeriodos(int cantidadDePeriodos) {
         this.cantidadDePeriodos = cantidadDePeriodos;
     }
 
-    public int getCantidadDePeriodos() {
-        return cantidadDePeriodos;
-    }
-    
-    public String getInformacion() {
-    	return name + ", " +  getClass().getName() + ", " + calculo.getClass().getSimpleName() + ", " + calculo.getIndicador().getNombre() + ", " + valorDeReferencia + ", " + cantidadDePeriodos ;
-    }
 }

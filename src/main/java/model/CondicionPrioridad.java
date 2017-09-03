@@ -13,28 +13,23 @@ public abstract class CondicionPrioridad implements Condicion{
     public String getName() {
         return name;
     }
+    public Indicador getIndicador() {
+        return this.indicador;
+    }
+    public Calculo getCalculo(){return null;}
+    public Integer getCantidadDePeriodos() {
+        return cantidadDePeriodos;
+    }
+    public Double getValorDeReferencia(){return  null;}
 
     public void setName(String name) {
         this.name = name;
     }
-
     public void setIndicador(Indicador indicador) {
         this.indicador = indicador;
     }
-
-    public Indicador getIndicador() {
-        return this.indicador;
-    }
-
-    public int getCantidadDePeriodos() {
-        return cantidadDePeriodos;
-    }
-
     public void setCantidadDePeriodos(int cantidadDePeriodos) {
         this.cantidadDePeriodos = cantidadDePeriodos;
     }  
-    
-    public String getInformacion() {
-    	return  name + ", " +  getClass().getName() + ", " + indicador.getNombre() + ", " + cantidadDePeriodos ;
-    }
+
 }

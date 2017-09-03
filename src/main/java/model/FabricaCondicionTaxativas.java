@@ -1,6 +1,8 @@
 package model;
 
 
+import Converts.DatoCompatable;
+
 /**
  * Created by rapap on 29/07/2017.
  */
@@ -20,6 +22,15 @@ public  class FabricaCondicionTaxativas extends FabricaCondicion {
         this.cantidadDePeriodos = _cantidadDePeriodos;
         this.tipoCondicionTaxativa = _tipoCondicionTaxativa;
         this.valorDeReferencia = _valorDeReferencia;
+    }
+
+    public FabricaCondicionTaxativas(DatoCompatable nuevaCondicion){
+        this.name = nuevaCondicion.getNameCondicion();
+        this.calculo = nuevaCondicion.getClassCalculo();
+        this.indicador = RepositorioDeIndicadores.getInstance().buscarIndicador(nuevaCondicion.getNameIndicador());
+        this.cantidadDePeriodos = Integer.parseInt(nuevaCondicion.getCantDePeriodos());
+        this.tipoCondicionTaxativa = nuevaCondicion.getClassCondicion();
+        this.valorDeReferencia = Double.parseDouble(nuevaCondicion.getValorDeReferencia());
     }
 
     @Override

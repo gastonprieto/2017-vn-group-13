@@ -24,7 +24,6 @@ public class CondicionMayor extends CondicionTaxativa{
     @Override
     public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
         Collection<Periodo> periodos = new ConversorYearToPeriodos(this.cantidadDePeriodos).Convertir();
-
         return streamEmpresas.filter(empresa -> this.calculo.aplicar(empresa, periodos) > valorDeReferencia);
     }
 

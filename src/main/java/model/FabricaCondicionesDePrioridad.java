@@ -1,5 +1,7 @@
 package model;
 
+import Converts.DatoCompatable;
+
 public class FabricaCondicionesDePrioridad extends FabricaCondicion {
 	
 	protected String name;
@@ -14,6 +16,12 @@ public class FabricaCondicionesDePrioridad extends FabricaCondicion {
 	        this.tipoCondicionPrioridad = tipoCondicionPrioridad;
 	    }
 
+	public FabricaCondicionesDePrioridad(DatoCompatable nuevaCondicion){
+		this.name = nuevaCondicion.getNameCondicion();
+		this.indicador = RepositorioDeIndicadores.getInstance().buscarIndicador(nuevaCondicion.getNameIndicador());
+		this.cantidadDePeriodos = Integer.parseInt(nuevaCondicion.getCantDePeriodos());
+		this.tipoCondicionPrioridad = nuevaCondicion.getClassCondicion();
+	}
 
 	@Override
 	protected Condicion CrearCondicion() {

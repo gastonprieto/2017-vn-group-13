@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
 
+import Converts.ConvertCondicionToString;
 import model.*;
 import org.uqbar.commons.utils.Observable;
 
@@ -25,7 +26,7 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	private Collection<Condicion> condicionesCreadas = new ArrayList<Condicion>();
 	private ManejadorDeArchivos manejadorDeArchivos = new ManejadorDeArchivos();
 
-
+	private Condicion [] lista = {};
 
 	/*-- nombreMetodologia --*/
 	public String getNombreMetodologia() {
@@ -145,13 +146,15 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	}
 
 	public void GuardarMetodologia(){
-		RepositorioDeMetodologias.getInstance().registrarMetodologia(new Metodologia(nombreMetodologia, condicionesCreadas));			
-		
+		RepositorioDeMetodologias.getInstance().registrarMetodologia(new Metodologia(nombreMetodologia, condicionesCreadas));
+		ConvertCondicionToString conversor;
+
 		StringBuilder builderCondiciones = new StringBuilder();
 
 		builderCondiciones.append(": ");
-		for(Condicion condicion : condicionesCreadas) {			
-			builderCondiciones.append(condicion.getInformacion());
+		for(Condicion condicion : condicionesCreadas) {
+			conversor = new ConvertCondicionToString(condicion);
+			builderCondiciones.append(conversor.Convertir());
 			builderCondiciones.append("&");
 		}
 		

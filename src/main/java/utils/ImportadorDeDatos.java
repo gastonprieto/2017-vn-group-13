@@ -7,10 +7,13 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import Converts.ConvertStringToCondicion;
 import model.*;
 import org.apache.commons.lang.StringUtils;
 
 import com.google.gson.Gson;
+
+import javax.persistence.Convert;
 
 public class ImportadorDeDatos {
 	private ManejadorDeArchivos lectorDeArchivos;
@@ -39,11 +42,13 @@ public class ImportadorDeDatos {
 	}
 
 	public void importarDeMetodologiasConCondiciones(String filePath) {
-		FabricaCondicion fabrica = null;
-		FabricaMetodologia fabricaMetodologia = null;
+		//FabricaCondicion fabrica = null;
+		//FabricaMetodologia fabricaMetodologia = null;
 		ArrayList<Condicion> CondicionesCreadas = new ArrayList<>();
-		Indicador indicador;
-		Calculo calculo;
+		//Indicador indicador;
+		ConvertStringToCondicion Coversor;
+
+		//Calculo calculo;
 		Collection<String> lineasLeidas = this.lectorDeArchivos.leerArchivoCSV(filePath);
 		if(!lineasLeidas.isEmpty()) {
 			for(String line : lineasLeidas) {
@@ -51,7 +56,12 @@ public class ImportadorDeDatos {
 					String[] metdologiaLeida = StringUtils.splitByWholeSeparator(line, ":");
 					String[] ListaCondiciones = StringUtils.splitByWholeSeparator(metdologiaLeida[1], "&");
 					for (String unaCondicion : ListaCondiciones){
-						if(unaCondicion == "") {
+						if(unaCondicion == ""){ // para que era esta linea??
+							Coversor = new ConvertStringToCondicion(unaCondicion);
+							CondicionesCreadas.add(Coversor.Convertir());
+						}
+
+						/*if(unaCondicion == "") {
 							String[] nuevaCondicion = StringUtils.splitByWholeSeparator(unaCondicion, ",");
 							String[] tipoCondicion = StringUtils.splitByWholeSeparator(nuevaCondicion[1], ".");
 
@@ -66,7 +76,7 @@ public class ImportadorDeDatos {
 								fabrica = new FabricaCondicionesDePrioridad(nuevaCondicion[0], indicador, Integer.valueOf(nuevaCondicion[3]), tipoCondicion[1]);
 							}
 							CondicionesCreadas.add(fabrica.ObtenerCondicion());
-						}
+						}*/
 					}
 
 					//FabricaMetodologia = new FabricaMetodologia( metdologiaLeida[0] , CondicionesCreadas );
