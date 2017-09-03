@@ -10,6 +10,7 @@ import Converts.ConvertCondicionToString;
 import model.*;
 import org.uqbar.commons.utils.Observable;
 
+import utils.ExportadorDeDatos;
 import utils.InterpretadorDeIndicadores;
 import utils.ManejadorDeArchivos;
 
@@ -24,7 +25,7 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	private String cantidadDePeriodos;
 	private Double valorDeReferencia;
 	private Collection<Condicion> condicionesCreadas = new ArrayList<Condicion>();
-	private ManejadorDeArchivos manejadorDeArchivos = new ManejadorDeArchivos();
+	private ExportadorDeDatos manejadorDeArchivos = new ExportadorDeDatos();
 
 	private Condicion [] lista = {};
 
@@ -146,21 +147,12 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	}
 
 	public void GuardarMetodologia(){
-		RepositorioDeMetodologias.getInstance().registrarMetodologia(new Metodologia(nombreMetodologia, condicionesCreadas));
-		ConvertCondicionToString conversor;
+		Metodologia NuevaMetodologia = new Metodologia(nombreMetodologia, condicionesCreadas);
 
-		StringBuilder builderCondiciones = new StringBuilder();
+		RepositorioDeMetodologias.getInstance().registrarMetodologia(NuevaMetodologia);
 
-		builderCondiciones.append(": ");
-		for(Condicion condicion : condicionesCreadas) {
-			conversor = new ConvertCondicionToString(condicion);
-			builderCondiciones.append(conversor.Convertir());
-			builderCondiciones.append("&");
-		}
-		
-		builderCondiciones.toString();
-		
-		manejadorDeArchivos.escribirArchivo(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv",
-				nombreMetodologia + builderCondiciones);
+		ExportadorDeDatos ManejadorDeArchivo = new ExportadorDeDatos();
+
+		manejadorDeArchivos.ExportadorDeMetodologia(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv", NuevaMetodologia);
 	}
 }
