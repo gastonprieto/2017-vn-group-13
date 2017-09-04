@@ -3,7 +3,7 @@ package model;
 /**
  * Created by rapap on 27/07/2017.
  */
-public abstract class CondicionPrioridad implements Condicion{
+public abstract class CondicionPrioridad extends Condicion{
     protected String name;
     protected Indicador indicador;
     protected int cantidadDePeriodos;

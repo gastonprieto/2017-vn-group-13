@@ -1,9 +1,10 @@
-package model;
+package Repositorio;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import exception.IndicadorException;
+import model.Indicador;
 
 public class RepositorioDeIndicadores {
 	private static RepositorioDeIndicadores instance = null;

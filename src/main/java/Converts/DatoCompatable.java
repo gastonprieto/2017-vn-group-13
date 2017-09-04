@@ -35,7 +35,7 @@ public class DatoCompatable {
         this.SuperClassCondicion = condicion.getClass().getSuperclass().toString();
         this.ClassCondicion = condicion.getClass().toString();
         this.NameCondicion = condicion.getName();
-        this.CantDePeriodos = condicion.getCantidadDePeriodos().toString();
+        this.CantDePeriodos = condicion.getCantDePeriodos().toString();
 
         if(this.SuperClassCondicion.equals("CondicionTaxativa")){
             this.NameIndicador = condicion.getCalculo().getIndicador().getNombre().toString();

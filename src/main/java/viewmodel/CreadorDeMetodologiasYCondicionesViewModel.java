@@ -4,6 +4,9 @@ package viewmodel;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
+
+import Repositorio.RepositorioDeIndicadores;
+import Repositorio.RepositorioDeMetodologias;
 import model.*;
 import org.uqbar.commons.utils.Observable;
 import utils.ExportadorDeDatos;

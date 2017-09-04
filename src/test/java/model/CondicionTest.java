@@ -9,6 +9,7 @@ package model;
 
 import java.util.ArrayList;
 
+import Repositorio.RepositorioDeEmpresas;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

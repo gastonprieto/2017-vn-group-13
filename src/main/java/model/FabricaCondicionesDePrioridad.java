@@ -1,6 +1,7 @@
 package model;
 
 import Converts.DatoCompatable;
+import Repositorio.RepositorioDeIndicadores;
 import exception.FabricaException;
 
 public class FabricaCondicionesDePrioridad extends FabricaCondicion {

@@ -1,8 +1,6 @@
 package window;
 
 import model.Condicion;
-import model.Cuenta;
-import model.Empresa;
 import model.Indicador;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;

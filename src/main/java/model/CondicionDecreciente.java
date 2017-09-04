@@ -18,14 +18,6 @@ public class CondicionDecreciente extends CondicionCreciente {
 		this.cantidadDePeriodos = cantidadDePeriodos;
 	}
 
-	/*@Override
-	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
-		Collection<Periodo> periodos = new ConversorYearToPeriodos(this.cantidadDePeriodos).Convertir();
-		return S
-				streamEmpresas.sorted((empresa1, empresa2) ->
-				Double.compare(indicador.aplicar(empresa2, periodos), indicador.aplicar(empresa1, periodos)));
-	}*/
-
 	@Override
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
 		 Stream<Empresa> StreamSinInvertir = super.aplicar(streamEmpresas);

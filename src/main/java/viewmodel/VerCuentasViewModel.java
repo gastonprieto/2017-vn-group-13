@@ -2,6 +2,9 @@ package viewmodel;
 
 
 import java.util.Collection;
+
+import Repositorio.RepositorioDeEmpresas;
+import Repositorio.RepositorioDeIndicadores;
 import model.*;
 import org.uqbar.commons.utils.Observable;
 

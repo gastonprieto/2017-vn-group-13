@@ -2,16 +2,37 @@ package model;
 
 import java.util.stream.Stream;
 
-public interface  Condicion {
+/**
+ * Created by rapap on 04/09/2017.
+ */
+public abstract class Condicion {
 
-	public  void setName(String name);
+    protected String Name;
+    protected Indicador indicador;
+    protected Calculo calculo;
+    protected Integer CantDePeriodos;
+    protected Double ValorDeReferencia;
 
-	public String getName();
-	public Indicador getIndicador();
-	public Calculo getCalculo();
-	public Integer getCantidadDePeriodos();
-	public Double getValorDeReferencia();
+    public abstract Stream<Empresa>  aplicar(Stream<Empresa> streamEmpresas);
 
-	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas);	
+    public String getName() {
+        return Name;
+    }
+
+    public Indicador getIndicador() {
+        return indicador;
+    }
+
+    public Calculo getCalculo() {
+        return calculo;
+    }
+
+    public Integer getCantDePeriodos() {
+        return CantDePeriodos;
+    }
+
+    public Double getValorDeReferencia() {
+        return ValorDeReferencia;
+    }
 
 }

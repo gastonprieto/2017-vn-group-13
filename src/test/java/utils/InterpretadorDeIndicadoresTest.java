@@ -4,7 +4,7 @@ package utils;
 import org.junit.After;
 import org.junit.Test;
 import exception.IndicadorException;
-import model.RepositorioDeIndicadores;
+import Repositorio.RepositorioDeIndicadores;
 
 public class InterpretadorDeIndicadoresTest {
 	

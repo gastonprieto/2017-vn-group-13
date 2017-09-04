@@ -3,6 +3,7 @@ package model;
 import java.util.Collection;
 
 import Parser.Operando;
+import Repositorio.RepositorioDeIndicadores;
 import exception.EmpresaException;
 import exception.IndicadorException;
 import org.uqbar.commons.utils.Observable;

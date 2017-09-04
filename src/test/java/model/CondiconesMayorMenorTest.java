@@ -1,5 +1,6 @@
 package model;
 
+import Repositorio.RepositorioDeEmpresas;
 import exception.ParserException;
 import org.junit.After;
 import org.junit.Assert;

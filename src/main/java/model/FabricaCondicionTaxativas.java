@@ -2,6 +2,7 @@ package model;
 
 
 import Converts.DatoCompatable;
+import Repositorio.RepositorioDeIndicadores;
 import exception.FabricaException;
 
 /**

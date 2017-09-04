@@ -1,4 +1,6 @@
-package model;
+package Repositorio;
+
+import model.Empresa;
 
 import java.util.Collection;
 

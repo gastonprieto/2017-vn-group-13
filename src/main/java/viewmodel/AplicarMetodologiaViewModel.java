@@ -1,5 +1,7 @@
 package viewmodel;
 
+import Repositorio.RepositorioDeEmpresas;
+import Repositorio.RepositorioDeMetodologias;
 import model.*;
 import org.uqbar.commons.utils.Observable;
 import java.util.ArrayList;

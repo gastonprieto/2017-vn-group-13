@@ -3,3 +3,4 @@ MetodologiaDecreciente: UnaCondicionDecreciente, model.CondicionDecreciente, ROE
 UnaNuevaEpoca: asd, model.CondicionMayor, Sumatoria, ROE, 10.1, 10&asd2, model.CondicionDecreciente, ROE, 10&
 OtraCondicon: class model.CondicionTaxativaclass model.CondicionMayorasdnullnull10null&class model.CondicionPrioridadclass model.CondicionDecrecienteasd2nullnull10null&
 asd: class model.CondicionTaxativaclass model.CondicionMayorqwenullnull10null&class model.CondicionPrioridadclass model.CondicionDecrecienteqwe2nullnull10null&
+esto: class model.CondicionTaxativaclass model.CondicionMayoranullnull10null&class model.CondicionPrioridadclass model.CondicionCrecientea2nullnull10null&
