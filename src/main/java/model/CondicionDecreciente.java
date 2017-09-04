@@ -30,9 +30,8 @@ public class CondicionDecreciente extends CondicionCreciente {
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
 		 Stream<Empresa> algo = super.aplicar(streamEmpresas);
 		 List<Empresa> esto = algo.collect(Collectors.toList());
-
-		 Collections.reverse(algo.collect(Collectors.toList()));
-		 return  algo;
+		 Collections.reverse(esto);
+		 return  esto.stream();
 	}
 
 	private int Comparar(Empresa empresa1, Empresa empresa2, Collection<Periodo> periodos){
