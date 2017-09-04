@@ -5,15 +5,15 @@ import org.apache.commons.lang.math.NumberUtils;
 
 import exception.IndicadorException;
 import model.Constante;
-import model.Division;
+import Parser.Division;
 import model.Indicador;
-import model.Multiplicacion;
-import model.Operacion;
-import model.Operador;
-import model.Operando;
-import model.Resta;
-import model.Suma;
-import model.Variable;
+import Parser.Multiplicacion;
+import Parser.Operacion;
+import Parser.Operador;
+import Parser.Operando;
+import Parser.Resta;
+import Parser.Suma;
+import Parser.Variable;
 
 public class InterpretadorDeIndicadores {
 	

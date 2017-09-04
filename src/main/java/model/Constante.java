@@ -1,5 +1,7 @@
 package model;
 
+import Parser.Operando;
+
 public class Constante implements Operando {
 
 	private String valor;

@@ -2,6 +2,7 @@ package model;
 
 
 import Converts.DatoCompatable;
+import exception.FabricaException;
 
 /**
  * Created by rapap on 29/07/2017.
@@ -36,12 +37,13 @@ public  class FabricaCondicionTaxativas extends FabricaCondicion {
     @Override
     protected Condicion CrearCondicion() {
         FabricaCalculos fabrica = new FabricaCalculos(this.calculo, this.indicador);
-        if(this.tipoCondicionTaxativa == "Mayor") {
+        if(this.tipoCondicionTaxativa.equals("Mayor")) {
             return new CondicionMayor(this.name, this.valorDeReferencia, this.cantidadDePeriodos, fabrica.CrearCalculo());
         }
-         if(this.tipoCondicionTaxativa == "Menor"){
+         if(this.tipoCondicionTaxativa.equals("Menor")){
             return  new CondicionMenor(this.name, this.valorDeReferencia, this.cantidadDePeriodos, fabrica.CrearCalculo());
-        }
-        return null;
+        }else{
+             throw new FabricaException("El Tipo de condiciones no corresponde a una Condicion Taxativa, su valor es :" + this.tipoCondicionTaxativa);
+         }
     }
 }

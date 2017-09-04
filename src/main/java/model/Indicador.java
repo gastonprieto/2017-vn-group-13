@@ -2,6 +2,7 @@ package model;
 
 import java.util.Collection;
 
+import Parser.Operando;
 import exception.EmpresaException;
 import exception.IndicadorException;
 import org.uqbar.commons.utils.Observable;
@@ -14,7 +15,7 @@ public class Indicador {
 	private Operando operacion;
 	private Empresa empresaTarget;
 	private Periodo periodoTarget;
-	
+
 	public Indicador(String nombre) {
 		this.nombre = nombre;
 	}
@@ -33,7 +34,7 @@ public class Indicador {
 		this.operacion = operacion;
 	}
 
-	public Double buscarValor(String nombre) {		
+	public Double buscarValor(String nombre) {
 		Double valor = null;
 
 		try {
@@ -45,12 +46,13 @@ public class Indicador {
 		if (valor != null) {
 			return valor;
 		}
-		valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(empresaTarget, periodoTarget);
+		/*porque aca no puede ir un this.aplicar? o alago asi*/
+		valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(this.empresaTarget, this.periodoTarget);
 		if (valor != null) {
 			return valor;
 		}
-		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresaTarget.getName()
-				+ ", en el periodo: " + "A�o = " + periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
+		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + this.empresaTarget.getName()
+				+ ", en el periodo: " + "A�o = " + this.periodoTarget.getYear() + " Semestre = " + this.periodoTarget.getSemester());
 
 	}
 

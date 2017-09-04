@@ -1,6 +1,7 @@
 package model;
 
 import Converts.DatoCompatable;
+import exception.FabricaException;
 
 public class FabricaCondicionesDePrioridad extends FabricaCondicion {
 	
@@ -25,14 +26,15 @@ public class FabricaCondicionesDePrioridad extends FabricaCondicion {
 
 	@Override
 	protected Condicion CrearCondicion() {
-		if (this.tipoCondicionPrioridad == "Creciente")
+		if (this.tipoCondicionPrioridad.equals("Creciente")){
 			return new CondicionCreciente(name, indicador, cantidadDePeriodos);
-		else if (this.tipoCondicionPrioridad == "Decreciente")
+		}else if (this.tipoCondicionPrioridad.equals("Decreciente")) {
 			return new CondicionDecreciente(name, indicador, cantidadDePeriodos);
-		else if (this.tipoCondicionPrioridad == "Maximizar")
+		}else if (this.tipoCondicionPrioridad.equals("Maximizar")) {
 			return new CondicionMaximizar(name, indicador, cantidadDePeriodos);
-		
-		return null;
+		}else{
+			throw new FabricaException("El Tipo de condiciones no corresponde a una Condicion de Prioridad, su valor es :" + this.tipoCondicionPrioridad);
+		}
 	}
 	
 }

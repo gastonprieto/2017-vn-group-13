@@ -1,6 +1,7 @@
 package utils;
 
 import Converts.ConvertCondicionToString;
+import exception.ConvertsException;
 import model.Condicion;
 import model.Metodologia;
 
@@ -23,9 +24,13 @@ public class ExportadorDeDatos {
 
         builderCondiciones.append(": ");
         for(Condicion condicion : metodologia.condiciones) {
-            conversor = new ConvertCondicionToString(condicion);
-            builderCondiciones.append(conversor.Convertir());
-            builderCondiciones.append("&");
+            try {
+                conversor = new ConvertCondicionToString(condicion);
+                builderCondiciones.append(conversor.Convertir());
+                builderCondiciones.append("&");
+            }catch (ConvertsException e){
+                throw e;
+            }
         }
 
         builderCondiciones.toString();

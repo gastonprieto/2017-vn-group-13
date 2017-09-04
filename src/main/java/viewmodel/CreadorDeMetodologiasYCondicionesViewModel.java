@@ -146,8 +146,6 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 
 		RepositorioDeMetodologias.getInstance().registrarMetodologia(NuevaMetodologia);
 
-		ExportadorDeDatos ManejadorDeArchivo = new ExportadorDeDatos();
-
 		manejadorDeArchivos.ExportadorDeMetodologia(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv", NuevaMetodologia);
 	}
 }

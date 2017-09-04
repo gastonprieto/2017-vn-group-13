@@ -1,4 +1,4 @@
-package model;
+package Parser;
 
 public class Division implements Operador {
 	

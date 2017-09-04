@@ -1,4 +1,4 @@
-package model;
+package Parser;
 
 public class Multiplicacion implements Operador {
 

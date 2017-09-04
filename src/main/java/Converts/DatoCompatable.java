@@ -32,17 +32,16 @@ public class DatoCompatable {
     }
 
     public DatoCompatable(Condicion condicion){
-
         this.SuperClassCondicion = condicion.getClass().getSuperclass().toString();
         this.ClassCondicion = condicion.getClass().toString();
         this.NameCondicion = condicion.getName();
         this.CantDePeriodos = condicion.getCantidadDePeriodos().toString();
 
-        if(this.SuperClassCondicion == "CondicionTaxativa"){
+        if(this.SuperClassCondicion.equals("CondicionTaxativa")){
             this.NameIndicador = condicion.getCalculo().getIndicador().getNombre().toString();
             this.ClassCalculo = condicion.getCalculo().getClass().toString();
             this.ValorDeReferencia = condicion.getValorDeReferencia().toString();
-        }else if (this.SuperClassCondicion == "CondicionPrioridad"){
+        }else if (this.SuperClassCondicion.equals("CondicionPrioridad")){
             this.NameIndicador = condicion.getIndicador().getNombre();
             this.ClassCalculo = "NULL";
             this.ValorDeReferencia = "NULL";

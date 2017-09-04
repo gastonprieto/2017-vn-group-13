@@ -1,4 +1,8 @@
-package model;
+package Parser;
+
+import model.Empresa;
+import model.Indicador;
+import model.Periodo;
 
 public class Variable implements Operando {
 
