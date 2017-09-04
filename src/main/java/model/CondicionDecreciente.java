@@ -28,13 +28,10 @@ public class CondicionDecreciente extends CondicionCreciente {
 
 	@Override
 	public Stream<Empresa> aplicar(Stream<Empresa> streamEmpresas) {
-		 Stream<Empresa> algo = super.aplicar(streamEmpresas);
-		 List<Empresa> esto = algo.collect(Collectors.toList());
-		 Collections.reverse(esto);
-		 return  esto.stream();
+		 Stream<Empresa> StreamSinInvertir = super.aplicar(streamEmpresas);
+		 List<Empresa> StreamInvertido = StreamSinInvertir.collect(Collectors.toList());
+		 Collections.reverse(StreamInvertido);
+		 return  StreamInvertido.stream();
 	}
 
-	private int Comparar(Empresa empresa1, Empresa empresa2, Collection<Periodo> periodos){
-		return  Double.compare(indicador.aplicar(empresa1, periodos), indicador.aplicar(empresa2, periodos));
-	}
 }
