@@ -3,6 +3,7 @@ package model.Condicion.Taxativa;
 
 import model.Calculo.Calculo;
 import model.Condicion.Condicion;
+import model.Empresa;
 import model.Indicador;
 import org.apache.commons.lang.StringUtils;
 
@@ -17,6 +18,7 @@ public abstract class CondicionTaxativa  {
     protected Calculo calculo;
 
 
+
     public String getName() {
         return name;
     }
@@ -24,6 +26,7 @@ public abstract class CondicionTaxativa  {
     public String getClassClean(){
         String[] myClass = StringUtils.splitByWholeSeparator( this.getClass().toString(), ".");
         return myClass[myClass.length-1];
+
     }
 
     public int getCantidadDePeriodos() {

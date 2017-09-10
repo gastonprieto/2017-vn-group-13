@@ -7,6 +7,9 @@ import model.Indicador;
 import model.Metodologia;
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.PropertyAdapter;
+import org.uqbar.arena.widgets.Button;
+import org.uqbar.arena.widgets.Label;
+import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.widgets.tree.ObservableTwoProperty;
@@ -19,9 +22,11 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.lacar.ui.model.ControlBuilder;
 import viewmodel.CreadorMetodologiasViewModel;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by rapap on 09/09/2017.
@@ -36,6 +41,7 @@ public class CreadorMetodologiasView extends SimpleWindow<CreadorMetodologiasVie
     private Button GuardarMetodologia;
     private Button AgregarCondicionTaxativa;
     private Button AgregarCondicionPrioridad;
+    Table<CondicionPrioridad> tablePrioridad;
     Selector<String> superTiposDeCondicion;
     Selector<String> tiposDeCondicion;
     WindowOwner parent;
@@ -57,91 +63,110 @@ public class CreadorMetodologiasView extends SimpleWindow<CreadorMetodologiasVie
                 menu = new Button(panelDeBotonesSuperior).setCaption("Volver al menu");
                 NuevaMetodologia = new Button(panelDeBotonesSuperior).setCaption("Nueva Metodologia");
 
-        new Label(mainPanel).setText("Metodologia ");
+        new Label(mainPanel).setText("Metodologia").setBackground(Color.ORANGE);
         Panel panelMetodologia = new Panel(mainPanel).setLayout(new HorizontalLayout());
             new Label(panelMetodologia).setText("Nombre :");
             TextBox NombreMetodologia= new TextBox(panelMetodologia);
             NombreMetodologia.bindValueToProperty("nombreMetodologia");
 
-        Panel panelSuperCondiciones = new Panel(mainPanel) .setLayout(new HorizontalLayout());
-            Panel panelCondicionesDeOrden = new Panel(panelSuperCondiciones).setLayout(new HorizontalLayout());
-                new Label(panelCondicionesDeOrden).setText("Condiciones de Orden ");
-                Panel panelCamposCondicionDeOrden = new Panel(panelCondicionesDeOrden).setLayout(new VerticalLayout());
-                panelCamposCondicionDeOrden.setLayout(new ColumnLayout(2));
-                    new Label(panelCamposCondicionDeOrden).setText("Nombre : ");
-                    TextBox nombreCondicionPrioridad = new TextBox(panelCamposCondicionDeOrden);
-                    nombreCondicionPrioridad.bindValueToProperty("nombreCondicionPrioridad");
+        new Label(mainPanel).setText("Condiciones de Orden ").setBackground(Color.ORANGE);
+        Panel panelCondicionesDeOrden = new Panel(mainPanel).setLayout(new HorizontalLayout());
+            Panel panelCamposCondicionDeOrden = new Panel(panelCondicionesDeOrden).setLayout(new VerticalLayout());
+            panelCamposCondicionDeOrden.setLayout(new ColumnLayout(2));
+                new Label(panelCamposCondicionDeOrden).setText("Nombre : ");
+                TextBox nombreCondicionPrioridad = new TextBox(panelCamposCondicionDeOrden);
+                nombreCondicionPrioridad.setWidth(100);
+                nombreCondicionPrioridad.bindValueToProperty("nombreCondicionPrioridad");
 
-                    new Label(panelCamposCondicionDeOrden).setText("Tipo de condicion: ");
-                    Selector<String> tiposDeCondicionPrioridad=  new Selector<>(panelCamposCondicionDeOrden);
-                    tiposDeCondicionPrioridad.allowNull(false);
-                    tiposDeCondicionPrioridad.bindValueToProperty("condicionSeleccionadaPrioridad");
-                    tiposDeCondicionPrioridad.bindItemsToProperty("tiposCondicionesOrden");
+                new Label(panelCamposCondicionDeOrden).setText("Tipo de condicion: ");
+                Selector<String> tiposDeCondicionPrioridad=  new Selector<>(panelCamposCondicionDeOrden);
+                tiposDeCondicionPrioridad.allowNull(false);
+                tiposDeCondicionPrioridad.setWidth(100);
+                tiposDeCondicionPrioridad.bindValueToProperty("condicionSeleccionadaPrioridad");
+                tiposDeCondicionPrioridad.bindItemsToProperty("tiposCondicionesOrden");
 
-                    new Label(panelCamposCondicionDeOrden).setText("Seleccione un indicador: ");
-                    Selector<Indicador> selectorIndicadorPrioridad = new Selector<Indicador>(panelCamposCondicionDeOrden);
-                    selectorIndicadorPrioridad.allowNull(false);
-                    selectorIndicadorPrioridad.bindValueToProperty("indicadorSeleccionadoPrioridad");
-                    selectorIndicadorPrioridad.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
+                new Label(panelCamposCondicionDeOrden).setText("Seleccione un indicador: ");
+                Selector<Indicador> selectorIndicadorPrioridad = new Selector<Indicador>(panelCamposCondicionDeOrden);
+                selectorIndicadorPrioridad.allowNull(false);
+                selectorIndicadorPrioridad.setWidth(100);
+                selectorIndicadorPrioridad.bindValueToProperty("indicadorSeleccionadoPrioridad");
+                selectorIndicadorPrioridad.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
 
-                    new Label(panelCamposCondicionDeOrden).setText("Cantidad de periodos: ");
-                    TextBox CantidadDePeridosPrioridad = new TextBox(panelCamposCondicionDeOrden);
-                    CantidadDePeridosPrioridad.bindValueToProperty("cantidadDePeriodosPrioridad");
-                    CantidadDePeridosPrioridad.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
+                new Label(panelCamposCondicionDeOrden).setText("Cantidad de periodos: ");
+                TextBox CantidadDePeridosPrioridad = new TextBox(panelCamposCondicionDeOrden);
+                CantidadDePeridosPrioridad.setWidth(100);
+                CantidadDePeridosPrioridad.bindValueToProperty("cantidadDePeriodosPrioridad");
+                CantidadDePeridosPrioridad.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
 
-                    AgregarCondicionPrioridad = new Button(panelCamposCondicionDeOrden).setCaption("Agregar Condicion");
-
-
-                Panel panelTablaCondicionDeOrden = new Panel(panelCondicionesDeOrden).setLayout(new VerticalLayout());
-                    new Label(panelTablaCondicionDeOrden).setText("Condiciones de orden: ");
-                    Table<CondicionPrioridad> tablePrioridad = new Table<CondicionPrioridad>(panelTablaCondicionDeOrden, CondicionPrioridad.class);
-                    tablePrioridad.bindItemsToProperty("metodologia.condicionesPrioridad");
-                    new Column<CondicionPrioridad>(tablePrioridad).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
+                new Label(panelCamposCondicionDeOrden).setText("  "); // Este label vacio es para que el boton se acomode en la segunda columna de la tabla
+                AgregarCondicionPrioridad = new Button(panelCamposCondicionDeOrden).setCaption("Agregar Condicion");
 
 
-            Panel panelCondicionesDeFiltro = new Panel(panelSuperCondiciones).setLayout(new HorizontalLayout());
-                new Label(panelCondicionesDeFiltro).setText("Condiciones de Filtro ");
-                Panel panelCamposCondicionDeFiltro = new Panel(panelCondicionesDeFiltro).setLayout(new VerticalLayout());
-                panelCamposCondicionDeFiltro.setLayout(new ColumnLayout(2));
-                    new Label(panelCamposCondicionDeFiltro).setText("Nombre : ");
-                    TextBox nombreCondicionTaxativa = new TextBox(panelCamposCondicionDeFiltro);
-                    nombreCondicionTaxativa.bindValueToProperty("nombreCondicionTaxativa");
+            Panel panelTablaCondicionDeOrden = new Panel(panelCondicionesDeOrden).setLayout(new VerticalLayout());
+                tablePrioridad = new Table<CondicionPrioridad>(panelTablaCondicionDeOrden, CondicionPrioridad.class);
+                tablePrioridad.bindItemsToProperty("metodologia.condicionesPrioridad");
+                new Column<CondicionPrioridad>(tablePrioridad).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
+                new Column<CondicionPrioridad>(tablePrioridad).setTitle("Cantidad de periodos").setFixedSize(150).bindContentsToProperty("cantidadDePeriodos");
+                new Column<CondicionPrioridad>(tablePrioridad).setTitle("indicador").setFixedSize(150).bindContentsToProperty("indicador.nombre");
 
-                    new Label(panelCamposCondicionDeFiltro).setText("Tipo de condicion: ");
-                    Selector<String> tiposDeCondicionTaxativas=  new Selector<>(panelCamposCondicionDeFiltro);
-                    tiposDeCondicionTaxativas.allowNull(false);
-                    tiposDeCondicionTaxativas.bindValueToProperty("condicionSeleccionadaTaxativa");
-                    tiposDeCondicionTaxativas.bindItemsToProperty("tiposCondicionesFiltro");
 
-                    new Label(panelCamposCondicionDeFiltro).setText("Seleccione un indicador: ");
-                    Selector<Indicador> selectorIndicadorTaxativa = new Selector<Indicador>(panelCamposCondicionDeFiltro);
-                    selectorIndicadorTaxativa.allowNull(false);
-                    selectorIndicadorTaxativa.bindValueToProperty("indicadorSeleccionadoTaxativa");
-                    selectorIndicadorTaxativa.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
 
-                    new Label(panelCamposCondicionDeFiltro).setText("Cantidad de periodos: ");
-                    TextBox CantidadDePeridosTaxativa = new TextBox(panelCamposCondicionDeFiltro);
-                    CantidadDePeridosTaxativa.bindValueToProperty("cantidadDePeriodosTaxativa");
-                    CantidadDePeridosTaxativa.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
 
-                    new Label(panelCamposCondicionDeFiltro).setText("Seleccione un calculo: ");
-                    Selector<String> selectorCalculoTaxativa = new Selector<String>(panelCamposCondicionDeFiltro);
-                    selectorCalculoTaxativa.allowNull(false);
-                    selectorCalculoTaxativa.bindValueToProperty("tipoCalculoSeleccionadoTaxativa");
-                    selectorCalculoTaxativa.bindItemsToProperty("tiposCalculo");
+        new Label(mainPanel).setText("Condiciones de Filtro ").setBackground(Color.ORANGE);
+        Panel panelCondicionesDeFiltro = new Panel(mainPanel).setLayout(new HorizontalLayout());
+            Panel panelCamposCondicionDeFiltro = new Panel(panelCondicionesDeFiltro).setLayout(new VerticalLayout());
+            panelCamposCondicionDeFiltro.setLayout(new ColumnLayout(2));
+                new Label(panelCamposCondicionDeFiltro).setText("Nombre : ");
+                TextBox nombreCondicionTaxativa = new TextBox(panelCamposCondicionDeFiltro);
+                nombreCondicionTaxativa.setWidth(100);
+                nombreCondicionTaxativa.bindValueToProperty("nombreCondicionTaxativa");
 
-                    new Label(panelCamposCondicionDeFiltro).setText("Valor de referencia: ");
-                    TextBox VaLorDeReferenciaTaxativa = new TextBox(panelCamposCondicionDeFiltro);
-                    VaLorDeReferenciaTaxativa.bindValueToProperty("valoreDeReferenciaTaxativa");
-                    VaLorDeReferenciaTaxativa.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
+                new Label(panelCamposCondicionDeFiltro).setText("Tipo de condicion: ");
+                Selector<String> tiposDeCondicionTaxativas=  new Selector<>(panelCamposCondicionDeFiltro);
+                tiposDeCondicionTaxativas.allowNull(false);
+                tiposDeCondicionTaxativas.setWidth(100);
+                tiposDeCondicionTaxativas.bindValueToProperty("condicionSeleccionadaTaxativa");
+                tiposDeCondicionTaxativas.bindItemsToProperty("tiposCondicionesFiltro");
 
-                    AgregarCondicionTaxativa = new Button(panelCamposCondicionDeFiltro).setCaption("Agregar Condicion");
+                new Label(panelCamposCondicionDeFiltro).setText("Seleccione un indicador: ");
+                Selector<Indicador> selectorIndicadorTaxativa = new Selector<Indicador>(panelCamposCondicionDeFiltro);
+                selectorIndicadorTaxativa.allowNull(false);
+                selectorIndicadorTaxativa.setWidth(100);
+                selectorIndicadorTaxativa.bindValueToProperty("indicadorSeleccionadoTaxativa");
+                selectorIndicadorTaxativa.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
 
-                Panel panelTablasCondicionDeFiltro = new Panel(panelCondicionesDeFiltro).setLayout(new VerticalLayout());
-                    new Label(panelTablasCondicionDeFiltro).setText("Condiciones de filtro: ");
-                    Table<CondicionTaxativa> tableTaxativa = new Table<CondicionTaxativa>(panelTablasCondicionDeFiltro, CondicionTaxativa.class);
-                    tableTaxativa.bindItemsToProperty("metodologia.condicionesTaxativas");
-                    new Column<CondicionTaxativa>(tableTaxativa).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
+                new Label(panelCamposCondicionDeFiltro).setText("Cantidad de periodos: ");
+                TextBox CantidadDePeridosTaxativa = new TextBox(panelCamposCondicionDeFiltro);
+                CantidadDePeridosTaxativa.setWidth(100);
+                CantidadDePeridosTaxativa.bindValueToProperty("cantidadDePeriodosTaxativa");
+                CantidadDePeridosTaxativa.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
+
+                new Label(panelCamposCondicionDeFiltro).setText("Seleccione un calculo: ");
+                Selector<String> selectorCalculoTaxativa = new Selector<String>(panelCamposCondicionDeFiltro);
+                selectorCalculoTaxativa.allowNull(false);
+                selectorCalculoTaxativa.setWidth(100);
+                selectorCalculoTaxativa.bindValueToProperty("tipoCalculoSeleccionadoTaxativa");
+                selectorCalculoTaxativa.bindItemsToProperty("tiposCalculo");
+
+                new Label(panelCamposCondicionDeFiltro).setText("Valor de referencia: ");
+                TextBox VaLorDeReferenciaTaxativa = new TextBox(panelCamposCondicionDeFiltro);
+                VaLorDeReferenciaTaxativa.setWidth(100);
+                VaLorDeReferenciaTaxativa.bindValueToProperty("valoreDeReferenciaTaxativa");
+                VaLorDeReferenciaTaxativa.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
+
+                new Label(panelCamposCondicionDeFiltro).setText("  "); // Este label vacio es para que el boton se acomode en la segunda columna de la tabla
+                AgregarCondicionTaxativa = new Button(panelCamposCondicionDeFiltro).setCaption("Agregar Condicion");
+
+        Panel panelTablasCondicionDeFiltro = new Panel(panelCondicionesDeFiltro).setLayout(new VerticalLayout());
+            Table<CondicionTaxativa> tableTaxativa = new Table<CondicionTaxativa>(panelTablasCondicionDeFiltro, CondicionTaxativa.class);
+            tableTaxativa.bindItemsToProperty("metodologia.condicionesTaxativas");
+            new Column<CondicionTaxativa>(tableTaxativa).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
+            new Column<CondicionTaxativa>(tableTaxativa).setTitle("Cant de periodos").setFixedSize(150).bindContentsToProperty("cantidadDePeriodos");
+            new Column<CondicionTaxativa>(tableTaxativa).setTitle("Indicador").setFixedSize(150).bindContentsToProperty("calculo.indicador.nombre");
+            new Column<CondicionTaxativa>(tableTaxativa).setTitle("Calculo").setFixedSize(150).bindContentsToProperty("calculo.getClassClean();");
+            new Column<CondicionTaxativa>(tableTaxativa).setTitle("Valor de referencia").setFixedSize(150).bindContentsToProperty("valorDeReferencia");
+
+
 
         Panel panelDeBotonesInferior = new Panel(mainPanel).setLayout(new HorizontalLayout());
             GuardarMetodologia = new Button(panelDeBotonesInferior).setCaption("Guardar Metodologia");
@@ -157,10 +182,11 @@ public class CreadorMetodologiasView extends SimpleWindow<CreadorMetodologiasVie
     @Override
     protected void addActions(Panel actionsPanel) {
         menu.onClick(this::abrirMenu);
-//        AgregarCondicionTaxativa.onClick(this::AgregarCondicionFiltro);
+        AgregarCondicionTaxativa.onClick(this::AgregarCondicionFiltro);
         AgregarCondicionPrioridad.onClick(this::AgregarCondicionOrden);
         GuardarMetodologia.onClick(this::CrearMetodologia);
         NuevaMetodologia.onClick(this::NuevaMetodologia);
+
     }
 
     public void abrirMenu() {

@@ -7,6 +7,7 @@ import model.Condicion.Prioridad.CondicionPrioridad;
 import model.Condicion.Taxativa.CondicionTaxativa;
 import model.Indicador;
 import model.Metodologia;
+import org.uqbar.arena.windows.MessageBox;
 import org.uqbar.commons.utils.Observable;
 import utils.File.ExportadorDeDatos;
 
@@ -33,6 +34,7 @@ public class CreadorMetodologiasViewModel {
     private String condicionSeleccionadaPrioridad;
     private Indicador indicadorSeleccionadoPrioridad;
     private String cantidadDePeriodosPrioridad;
+    private CondicionPrioridad condicioneTablaPrioridadSeleccionada;
 
     //Panel Condiciones Filtro
     private String nombreCondicionTaxativa;
@@ -70,6 +72,15 @@ public class CreadorMetodologiasViewModel {
     }
 
     /* GETTERS AND SETTERS*/
+
+    public CondicionPrioridad getCondicioneTablaPrioridadSeleccionada() {
+
+        return condicioneTablaPrioridadSeleccionada;
+    }
+
+    public void setCondicioneTablaPrioridadSeleccionada(CondicionPrioridad condicioneTablaPrioridadSeleccionada) {
+        this.condicioneTablaPrioridadSeleccionada = condicioneTablaPrioridadSeleccionada;
+    }
 
     public Collection<CondicionPrioridad> getCondicionesPrioridadMetodologia(){
         return metodologia.getCondicionesPrioridad();

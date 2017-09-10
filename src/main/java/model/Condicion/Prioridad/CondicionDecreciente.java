@@ -3,11 +3,11 @@ package model.Condicion.Prioridad;
 
 import model.Empresa;
 import model.Indicador;
-import model.Resultado;
+import model.Periodo;
 import org.uqbar.commons.utils.Observable;
-import java.util.List;
-import java.util.Collections;
-import java.util.stream.Collectors;
+
+import java.util.Collection;
+
 
 @Observable
 public class CondicionDecreciente extends CondicionCreciente {
@@ -19,12 +19,7 @@ public class CondicionDecreciente extends CondicionCreciente {
 	}
 
 	@Override
-	public void aplicar() {
-		 super.aplicar();
-		 Resultado.getInstance().getResultadoEmpresas();
-		 List<Empresa> StreamInvertido = Resultado.getInstance().getResultadoEmpresas().collect(Collectors.toList());
-		 Collections.reverse(StreamInvertido);
-		 Resultado.getInstance().setResultadoEmpresas( StreamInvertido.stream());
+	public int comparar(Empresa empresa1, Empresa empresa2, Collection<Periodo> periodos) {
+		return super.comparar(empresa1, empresa2, periodos); // Deberia poder aplicar una funcion que invierta el resultado de super
 	}
-
 }
