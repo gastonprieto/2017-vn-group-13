@@ -2,7 +2,6 @@ package model.Condicion.Taxativa;
 
 
 import model.Calculo.Calculo;
-import model.Condicion.Condicion;
 import model.Empresa;
 import model.Indicador;
 import org.apache.commons.lang.StringUtils;
@@ -17,7 +16,7 @@ public abstract class CondicionTaxativa  {
     protected Double valorDeReferencia;
     protected Calculo calculo;
 
-
+    public abstract boolean aplicar(Empresa empresa);
 
     public String getName() {
         return name;
@@ -33,16 +32,13 @@ public abstract class CondicionTaxativa  {
         return cantidadDePeriodos;
     }
 
-
     public Double getValorDeReferencia() {
         return valorDeReferencia;
     }
 
-
     public Calculo getCalculo() {
         return calculo;
     }
-
 
     public Indicador getIndicador() {
         return null;

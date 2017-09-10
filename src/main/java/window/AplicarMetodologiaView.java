@@ -35,29 +35,27 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
     @Override
     protected void createFormPanel(Panel mainPanel) {
         this.setTitle("Aplicar Metodologia");
-        mainPanel.setLayout(new VerticalLayout());
+        mainPanel.setLayout(new HorizontalLayout());
 
-        Panel panel = new Panel(mainPanel);
-        Panel panel2 = new Panel(mainPanel);
+        menu = new Button(mainPanel).setCaption("Volver a menu");
 
-        panel.setLayout(new HorizontalLayout());
 
-        menu = new Button(panel).setCaption("Volver al menu");
 
-        new Label(panel).setText("Seleccione una Metodologia: ");
-        Selector<Metodologia> selectorMetodologia= new Selector<Metodologia>(panel);
-        selectorMetodologia.allowNull(false);
-        selectorMetodologia.bindValueToProperty("metodologiaSeleccionada");
-        selectorMetodologia.bindItemsToProperty("metodologias").setAdapter(new PropertyAdapter(Metodologia.class, "nombre"));
+        Panel panelMetodologia = new Panel(mainPanel);
+        panelMetodologia.setLayout(new VerticalLayout());
+            new Label(panelMetodologia).setText("Metodologia");
+            Selector<Metodologia> selectorMetodologia = new Selector<>(panelMetodologia);
+            selectorMetodologia.bindItemsToProperty("metodologiaSeleccionada");
+            selectorMetodologia.bindItemsToProperty("metodologias").setAdapter(new PropertyAdapter(Metodologia.class, "nombre"));
 
-        aplicarMetodologia = new Button(panel).setCaption("Aplicar");
 
-        new Label(panel2).setText("Resultado de aplicar metodologia ");
+        aplicarMetodologia = new Button(panelMetodologia).setCaption("Evaluar");
 
-        Table<Empresa> table = new Table<Empresa>(panel2, Empresa.class);
-        table.bindItemsToProperty("resultadoEmpresasEvaluadas");
-
-        new Column<Empresa>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
+        Panel panelResultados = new Panel(mainPanel);
+        panelResultados.setLayout(new VerticalLayout());
+            Table<Empresa> tablaResultado = new Table<>(panelResultados, Empresa.class);
+            tablaResultado.bindItemsToProperty("resultadoEmpresasEvaluadas");
+            new Column<Empresa>(tablaResultado).setTitle("Nombre").setWeight(150).bindContentsToProperty("name");
 
 
 

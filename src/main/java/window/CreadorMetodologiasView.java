@@ -1,20 +1,15 @@
 package window;
 
-import model.Condicion.Condicion;
 import model.Condicion.Prioridad.CondicionPrioridad;
 import model.Condicion.Taxativa.CondicionTaxativa;
 import model.Indicador;
-import model.Metodologia;
-import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
-import org.uqbar.arena.widgets.tree.ObservableTwoProperty;
 import org.uqbar.commons.model.UserException;
-import org.uqbar.commons.utils.Observable.*;
 import org.uqbar.arena.windows.MessageBox;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.HorizontalLayout;
@@ -22,10 +17,8 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.lacar.ui.model.ControlBuilder;
 import viewmodel.CreadorMetodologiasViewModel;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**

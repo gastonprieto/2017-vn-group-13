@@ -1,13 +1,12 @@
 package model.Condicion.Taxativa;
 
 
-import utils.Converts.ConversorYearToPeriodos;
-import model.Resultado;
 import org.uqbar.commons.utils.Observable;
+import model.Calculo.Calculo;
+import model.Empresa;
+import utils.Converts.ConversorYearToPeriodos;
 import model.Periodo;
 import java.util.Collection;
-import model.Calculo.Calculo;
-
 /**
  * Created by rapap on 27/07/2017.
  */
@@ -23,12 +22,10 @@ public class CondicionMayor extends CondicionTaxativa {
         this.calculo = calculo;
     }
 
-
-    public void aplicar() {
+    @Override
+    public boolean aplicar(Empresa empresa) {
         Collection<Periodo> periodos = new ConversorYearToPeriodos(this.cantidadDePeriodos).Convertir();
-        Resultado.getInstance().getResultadoEmpresas().filter(empresa -> this.calculo.aplicar(empresa, periodos) > valorDeReferencia);
+        return this.calculo.aplicar(empresa, periodos) > valorDeReferencia;
     }
-
-
 
 }

@@ -2,12 +2,9 @@ package viewmodel;
 
 import Repositorio.RepositorioDeIndicadores;
 import Repositorio.RepositorioDeMetodologias;
-import model.Condicion.Condicion;
 import model.Condicion.Prioridad.CondicionPrioridad;
-import model.Condicion.Taxativa.CondicionTaxativa;
 import model.Indicador;
 import model.Metodologia;
-import org.uqbar.arena.windows.MessageBox;
 import org.uqbar.commons.utils.Observable;
 import utils.File.ExportadorDeDatos;
 

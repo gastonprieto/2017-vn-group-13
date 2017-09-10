@@ -1,15 +1,11 @@
 package model.Condicion.Taxativa;
 
-import utils.Converts.ConversorYearToPeriodos;
 import model.Calculo.Calculo;
-import model.Periodo;
-import model.Resultado;
+import model.Empresa;
 import org.uqbar.commons.utils.Observable;
 
-import java.util.Collection;
-
 @Observable
-public class CondicionMenor extends CondicionTaxativa  {
+public class CondicionMenor extends CondicionMayor  {
 
 	public CondicionMenor(String name, double valorDeReferencia, int cantidadDePeriodos, Calculo calculo) {
 		this.name = name;
@@ -18,10 +14,14 @@ public class CondicionMenor extends CondicionTaxativa  {
 		this.calculo = calculo;
 	}
 
-
-	public void aplicar() {
-		Collection<Periodo> periodos = new ConversorYearToPeriodos(this.cantidadDePeriodos).Convertir();
-		Resultado.getInstance().getResultadoEmpresas().filter(empresa -> this.calculo.aplicar(empresa, periodos) < valorDeReferencia);
+	@Override
+	public boolean aplicar(Empresa empresa) {
+		return !super.aplicar(empresa);
 	}
+
+	//public void aplicar() {
+		//Collection<Periodo> periodos = new ConversorYearToPeriodos(this.cantidadDePeriodos).Convertir();
+	//	Resultado.getInstance().getResultadoEmpresas().filter(empresa -> this.calculo.aplicar(empresa, periodos) < valorDeReferencia);
+	//}
 
 }

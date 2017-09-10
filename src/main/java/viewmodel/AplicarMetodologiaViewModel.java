@@ -6,6 +6,7 @@ import model.*;
 import org.uqbar.commons.utils.Observable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 /**
  * Created by rapap on 27/07/2017.
@@ -39,7 +40,8 @@ public class AplicarMetodologiaViewModel {
     /* -- FUNCIONES --*/
 
     public void aplicarMetodologiaSeleccionada(){
-        Collection<Empresa> TodasLasEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
-        // esto uya no se usa resultadoEmpresasEvaluadas = metodologiaSeleccionada.evaluar(TodasLasEmpresas);
+     //   Collection<Empresa> TodasLasEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
+       // Evaluador Evaluacion = new Evaluador(metodologiaSeleccionada, TodasLasEmpresas.stream());
+       // resultadoEmpresasEvaluadas = Evaluacion.procesar().collect(Collectors.toList());
     }
 }

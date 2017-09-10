@@ -1,7 +1,6 @@
 package utils.Converts;
 
 import Repositorio.RepositorioDeIndicadores;
-import model.Condicion.Condicion;
 import model.Indicador;
 import exception.FabricaException;
 import model.Condicion.Prioridad.*;
