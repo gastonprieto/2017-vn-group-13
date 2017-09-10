@@ -4,7 +4,7 @@ package model.Condicion.Taxativa;
 import org.uqbar.commons.utils.Observable;
 import model.Calculo.Calculo;
 import model.Empresa;
-import utils.Converts.ConversorYearToPeriodos;
+import utils.Converts.GeneradorDePeriodos;
 import model.Periodo;
 import java.util.Collection;
 /**
@@ -24,7 +24,7 @@ public class CondicionMayor extends CondicionTaxativa {
 
     @Override
     public boolean aplicar(Empresa empresa) {
-        Collection<Periodo> periodos = new ConversorYearToPeriodos(this.cantidadDePeriodos).Convertir();
+        Collection<Periodo> periodos = new GeneradorDePeriodos(this.cantidadDePeriodos).Convertir();
         return this.calculo.aplicar(empresa, periodos) > valorDeReferencia;
     }
 
