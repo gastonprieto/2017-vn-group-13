@@ -19,52 +19,43 @@ import java.util.Collection;
 
 @Observable
 public class CreadorMetodologiasViewModel {
-    private Metodologia metodologia = null;
-    private String nombreMetodologia;
-    private String listaSuperTiposCondiciones;
-    private String cantidadDePeriodos;
-    private boolean estadoPanteallaFiltro = false;
-    private String valorDeReferencia;
-    private boolean estadoPanteallaOrden = true;
-    private String nombreCondicion;
-    private Collection<Condicion> condicionesCreadas = new ArrayList<Condicion>();
-    private String tipoCalculoeleccionada ;
-    private Indicador indicadorSeleccionado ;
-    private String condicionSeleccionadaPrioridad;
-    private String condicionSeleccionadaTaxativa;
+
     private ExportadorDeDatos manejadorDeArchivos = new ExportadorDeDatos();
+
+    //Panel de Botones Sueprior
+    private Metodologia metodologia = null;
+
+    //Panel Metodologia
+    private String nombreMetodologia;
+
+    //Panel Condiciones Orden
+    private String nombreCondicionPrioridad;
+    private String condicionSeleccionadaPrioridad;
+    private Indicador indicadorSeleccionadoPrioridad;
+    private String cantidadDePeriodosPrioridad;
+
+    //Panel Condiciones Filtro
+    private String nombreCondicionTaxativa;
+    private String condicionSeleccionadaTaxativa;
+    private Indicador indicadorSeleccionadoTaxativa;
+    private String cantidadDePeriodosTaxativa;
+    private String tipoCalculoSeleccionadoTaxativa;
+    private String valoreDeReferenciaTaxativa;
+
+
+
+
 
     private Collection<String> tiposCondiciones;
 
     /* FUNCIONES */
 
-    public void cambiarEstadoPantalla(){
-        estadoPanteallaOrden = invertirEstadoPantallaOrden();
-        estadoPanteallaFiltro = invertirEstadoPanteallaFiltro();
-    }
-
-    private boolean invertirEstadoPantallaOrden(){return estadoPanteallaOrden ? false : true;}
-    private boolean invertirEstadoPanteallaFiltro(){return estadoPanteallaFiltro ? false : true;}
-
-    public void cambiar(){
-        tiposCondiciones= new ArrayList<>();
-        if(estadoPanteallaFiltro == true) {
-            tiposCondiciones.add("Mayor");
-            tiposCondiciones.add("Menor");
-        }else if(estadoPanteallaOrden == true){
-            tiposCondiciones.add("Creciente");
-            tiposCondiciones.add("Decreciente");
-            tiposCondiciones.add("Maximizar");
-        }
-    }
-
-
     public void AgregarCondicionOrden(){
-        metodologia.addCondicionPrioridad( condicionSeleccionadaPrioridad ,nombreCondicion, indicadorSeleccionado.getNombre(), cantidadDePeriodos);
+        metodologia.addCondicionPrioridad( condicionSeleccionadaPrioridad ,nombreCondicionPrioridad, indicadorSeleccionadoPrioridad.getNombre(), cantidadDePeriodosPrioridad);
     }
 
     public void AgregarCondicionFiltro(){
-        metodologia.addCondicionTaxativa(condicionSeleccionadaTaxativa ,nombreCondicion, indicadorSeleccionado.getNombre(), tipoCalculoeleccionada, cantidadDePeriodos, valorDeReferencia);
+        metodologia.addCondicionTaxativa(condicionSeleccionadaTaxativa ,nombreCondicionTaxativa, indicadorSeleccionadoTaxativa.getNombre(), tipoCalculoSeleccionadoTaxativa, cantidadDePeriodosTaxativa, valoreDeReferenciaTaxativa);
     }
 
     public void NuevaMetodologia(){
@@ -92,52 +83,79 @@ public class CreadorMetodologiasViewModel {
         this.metodologia = metodologia;
     }
 
-    public String getListaSuperTiposCondiciones() {
-        return listaSuperTiposCondiciones;
+
+    public ExportadorDeDatos getManejadorDeArchivos() {
+        return manejadorDeArchivos;
     }
 
-    public void setListaSuperTiposCondiciones(String listaSuperTiposCondiciones) {
-        this.listaSuperTiposCondiciones = listaSuperTiposCondiciones;
+    public void setManejadorDeArchivos(ExportadorDeDatos manejadorDeArchivos) {
+        this.manejadorDeArchivos = manejadorDeArchivos;
     }
 
-    public boolean isEstadoPanteallaFiltro() {
-        return estadoPanteallaFiltro;
+    public String getNombreCondicionPrioridad() {
+        return nombreCondicionPrioridad;
     }
 
-    public void setEstadoPanteallaFiltro(boolean estadoPanteallaFiltro) {
-        this.estadoPanteallaFiltro = estadoPanteallaFiltro;
+    public void setNombreCondicionPrioridad(String nombreCondicionPrioridad) {
+        this.nombreCondicionPrioridad = nombreCondicionPrioridad;
     }
 
-    public boolean isEstadoPanteallaOrden() {
-        return estadoPanteallaOrden;
+    public Indicador getIndicadorSeleccionadoPrioridad() {
+        return indicadorSeleccionadoPrioridad;
     }
 
-    public void setEstadoPanteallaOrden(boolean estadoPanteallaOrden) {
-        this.estadoPanteallaOrden = estadoPanteallaOrden;
+    public void setIndicadorSeleccionadoPrioridad(Indicador indicadorSeleccionadoPrioridad) {
+        this.indicadorSeleccionadoPrioridad = indicadorSeleccionadoPrioridad;
     }
 
-    public String getCondicionSeleccionadaTaxativa() {
-        return condicionSeleccionadaTaxativa;
+    public Indicador getIndicadorSeleccionadoTaxativa() {
+        return indicadorSeleccionadoTaxativa;
     }
 
-    public void setCondicionSeleccionadaTaxativa(String condicionSeleccionadaTaxativa) {
-        this.condicionSeleccionadaTaxativa = condicionSeleccionadaTaxativa;
+    public void setIndicadorSeleccionadoTaxativa(Indicador indicadorSeleccionadoTaxativa) {
+        this.indicadorSeleccionadoTaxativa = indicadorSeleccionadoTaxativa;
     }
 
-    public String getNombreCondicion() {
-        return nombreCondicion;
+    public String getCantidadDePeriodosPrioridad() {
+        return cantidadDePeriodosPrioridad;
     }
 
-    public void setNombreCondicion(String nombreCondicion) {
-        this.nombreCondicion = nombreCondicion;
+    public void setCantidadDePeriodosPrioridad(String cantidadDePeriodosPrioridad) {
+        this.cantidadDePeriodosPrioridad = cantidadDePeriodosPrioridad;
     }
 
-    public String getCantidadDePeriodos() {
-        return cantidadDePeriodos;
+    public String getNombreCondicionTaxativa() {
+        return nombreCondicionTaxativa;
     }
 
-    public void setCantidadDePeriodos(String cantidadDePeriodos) {
-        this.cantidadDePeriodos = cantidadDePeriodos;
+    public void setNombreCondicionTaxativa(String nombreCondicionTaxativa) {
+        this.nombreCondicionTaxativa = nombreCondicionTaxativa;
+    }
+
+
+
+    public String getTipoCalculoSeleccionadoTaxativa() {
+        return tipoCalculoSeleccionadoTaxativa;
+    }
+
+    public void setTipoCalculoSeleccionadoTaxativa(String tipoCalculoSeleccionadoTaxativa) {
+        this.tipoCalculoSeleccionadoTaxativa = tipoCalculoSeleccionadoTaxativa;
+    }
+
+    public String getCantidadDePeriodosTaxativa() {
+        return cantidadDePeriodosTaxativa;
+    }
+
+    public void setCantidadDePeriodosTaxativa(String cantidadDePeriodosTaxativa) {
+        this.cantidadDePeriodosTaxativa = cantidadDePeriodosTaxativa;
+    }
+
+    public String getValoreDeReferenciaTaxativa() {
+        return valoreDeReferenciaTaxativa;
+    }
+
+    public void setValoreDeReferenciaTaxativa(String valoreDeReferenciaTaxativa) {
+        this.valoreDeReferenciaTaxativa = valoreDeReferenciaTaxativa;
     }
 
     public Collection<String> getTiposCondiciones() {
@@ -148,28 +166,12 @@ public class CreadorMetodologiasViewModel {
         this.tiposCondiciones = tiposCondiciones;
     }
 
-    public String getValorDeReferencia() {
-        return valorDeReferencia;
+    public String getCondicionSeleccionadaTaxativa() {
+        return condicionSeleccionadaTaxativa;
     }
 
-    public void setValorDeReferencia(String valorDeReferencia) {
-        this.valorDeReferencia = valorDeReferencia;
-    }
-
-    public String getTipoCalculoeleccionada() {
-        return tipoCalculoeleccionada;
-    }
-
-    public void setTipoCalculoeleccionada(String tipoCalculoeleccionada) {
-        this.tipoCalculoeleccionada = tipoCalculoeleccionada;
-    }
-
-    public Indicador getIndicadorSeleccionado() {
-        return indicadorSeleccionado;
-    }
-
-    public void setIndicadorSeleccionado(Indicador indicadorSeleccionado) {
-        this.indicadorSeleccionado = indicadorSeleccionado;
+    public void setCondicionSeleccionadaTaxativa(String condicionSeleccionadaTaxativa) {
+        this.condicionSeleccionadaTaxativa = condicionSeleccionadaTaxativa;
     }
 
 
@@ -181,13 +183,8 @@ public class CreadorMetodologiasViewModel {
         this.condicionSeleccionadaPrioridad = condicionSeleccionadaPrioridad;
     }
 
-    public Collection<Condicion> getCondicionesCreadas() {
-        return condicionesCreadas;
-    }
 
-    public void setCondicionesCreadas(Collection<Condicion> condicionesCreadas) {
-        this.condicionesCreadas = condicionesCreadas;
-    }
+
 
     public String getNombreMetodologia() {
         return nombreMetodologia;
@@ -195,13 +192,6 @@ public class CreadorMetodologiasViewModel {
 
     public void setNombreMetodologia(String nombreMetodologia) {
         this.nombreMetodologia = nombreMetodologia;
-    }
-
-    public Collection<String> getSuperTiposCondiciones(){
-        Collection<String> superTiposCondisiones = new ArrayList<>();
-        superTiposCondisiones.add("Filtro");
-        superTiposCondisiones.add("Orden");
-        return superTiposCondisiones;
     }
 
     public Collection<String> getTiposCondicionesFiltro(){
@@ -220,12 +210,12 @@ public class CreadorMetodologiasViewModel {
     }
 
     public Collection<String> getTiposCalculo(){
-        Collection<String> tiposIndicadores = new ArrayList<>();
-        tiposIndicadores.add("Promedio");
-        tiposIndicadores.add("Sumatoria");
-        tiposIndicadores.add("Media");
+        Collection<String> tiposCalculo = new ArrayList<>();
+        tiposCalculo.add("Promedio");
+        tiposCalculo.add("Sumatoria");
+        tiposCalculo.add("Media");
 
-        return tiposIndicadores;
+        return tiposCalculo;
     }
 
     public Collection<Indicador> getIndicadores(){
