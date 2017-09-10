@@ -15,6 +15,7 @@ import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
 import Repositorio.RepositorioDeEmpresas;
+import utils.File.ImportadorDeDatos;
 
 public class ImportadorDeDatosTest {	
 	ImportadorDeDatos importador;

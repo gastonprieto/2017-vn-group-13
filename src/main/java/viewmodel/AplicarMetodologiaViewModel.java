@@ -40,6 +40,6 @@ public class AplicarMetodologiaViewModel {
 
     public void aplicarMetodologiaSeleccionada(){
         Collection<Empresa> TodasLasEmpresas = RepositorioDeEmpresas.getInstance().getEmpresas();
-        resultadoEmpresasEvaluadas = metodologiaSeleccionada.evaluar(TodasLasEmpresas);
+        // esto uya no se usa resultadoEmpresasEvaluadas = metodologiaSeleccionada.evaluar(TodasLasEmpresas);
     }
 }

@@ -54,7 +54,6 @@ public class Indicador {
 		}
 		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + this.empresaTarget.getName()
 				+ ", en el periodo: " + "A�o = " + this.periodoTarget.getYear() + " Semestre = " + this.periodoTarget.getSemester());
-
 	}
 
 	

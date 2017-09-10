@@ -1,19 +1,22 @@
 package viewmodel;
 
 
+import java.beans.Visibility;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Stream;
 
 import Repositorio.RepositorioDeIndicadores;
-import Repositorio.RepositorioDeMetodologias;
 import model.*;
+import model.Condicion.Condicion;
 import org.uqbar.commons.utils.Observable;
-import utils.ExportadorDeDatos;
+import utils.File.ExportadorDeDatos;
 
 
 @Observable
 public class CreadorDeMetodologiasYCondicionesViewModel {	
+
+
 
 	private String nombreMetodologia;
 	private String nombreCondicion;
@@ -22,10 +25,20 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	private String tipoCondicionSeleccionada;
 	private String cantidadDePeriodos;
 	private Double valorDeReferencia;
+	private boolean estadoDePantall = false;
 	private Collection<Condicion> condicionesCreadas = new ArrayList<Condicion>();
 	private ExportadorDeDatos manejadorDeArchivos = new ExportadorDeDatos();
 
 	private Condicion [] lista = {};
+
+	public Collection<String> getSuperTiposDeCondiciones(){
+		Collection<String> tiposSuperCondiciones = new ArrayList<>();
+		tiposSuperCondiciones.add("Orden");
+		tiposSuperCondiciones.add("filtro");
+		return tiposSuperCondiciones;
+	}
+
+
 
 	/*-- nombreMetodologia --*/
 	public String getNombreMetodologia() {
@@ -33,6 +46,14 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	}
 	public void setNombreMetodologia(String nombreMetodologia) {
 		this.nombreMetodologia = nombreMetodologia;
+	}
+
+	public boolean isEstadoDePantall() {
+		return estadoDePantall;
+	}
+
+	public void setEstadoDePantall(boolean estadoDePantall) {
+		this.estadoDePantall = estadoDePantall;
 	}
 
 	/*--nombreCondicion--*/
@@ -78,6 +99,7 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 	public String getTipoIndicadorSeleccionada() {
 		return tipoIndicadorSeleccionada;
 	}
+
 	public Collection<String> getTiposIndicador(){
 		Collection<String> tiposIndicadores = new ArrayList<>();
 		tiposIndicadores.add("Promedio");
@@ -131,24 +153,16 @@ public class CreadorDeMetodologiasYCondicionesViewModel {
 
 	/* --  FUNCIONES--*/
 	public void AgregarCondicion(){
-		FabricaCondicion fabrica;
-		if(getTiposPrioridad().anyMatch(condicion -> condicion == tipoCondicionSeleccionada)) {
-			fabrica = new FabricaCondicionesDePrioridad(nombreCondicion, indicadorSeleccionado, 10, tipoCondicionSeleccionada);
-			condicionesCreadas.add(fabrica.ObtenerCondicion());
-		}
-		if(getTiposTaxativas().anyMatch(condicion -> condicion ==tipoCondicionSeleccionada)) {
-			fabrica = new FabricaCondicionTaxativas(nombreCondicion, tipoIndicadorSeleccionada, indicadorSeleccionado, 10, tipoCondicionSeleccionada, 10.1);
-			condicionesCreadas.add(fabrica.ObtenerCondicion());
-		}
+
 
 
 	}
 
 	public void GuardarMetodologia(){
-		Metodologia NuevaMetodologia = new Metodologia(nombreMetodologia, condicionesCreadas);
+		/*Metodologia NuevaMetodologia = new Metodologia(nombreMetodologia, condicionesCreadas);
 
 		RepositorioDeMetodologias.getInstance().registrarMetodologia(NuevaMetodologia);
 
-		manejadorDeArchivos.ExportadorDeMetodologia(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv", NuevaMetodologia);
+		manejadorDeArchivos.ExportadorDeMetodologia(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv", NuevaMetodologia);*/
 	}
 }

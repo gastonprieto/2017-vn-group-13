@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Test;
 import exception.IndicadorException;
 import Repositorio.RepositorioDeIndicadores;
+import utils.File.InterpretadorDeIndicadores;
 
 public class InterpretadorDeIndicadoresTest {
 	

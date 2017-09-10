@@ -124,7 +124,6 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 		}catch (NullPointerException e){
 			showErrorMessageBox("Se aplico el indicadr en un periodo en el cual la cuenta no tiene ningun valor, revise los datos ingresados");
 		}
-
 	}
 
 	public VerCuentasViewModel getCreadorVM() {

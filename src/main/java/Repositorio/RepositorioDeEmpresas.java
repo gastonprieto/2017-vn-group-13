@@ -1,7 +1,6 @@
 package Repositorio;
 
 import model.Empresa;
-
 import java.util.Collection;
 
 public class RepositorioDeEmpresas {

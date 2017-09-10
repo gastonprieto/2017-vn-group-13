@@ -1,6 +1,6 @@
 package window;
 
-import model.Condicion;
+import model.Condicion.Condicion;
 import model.Indicador;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
@@ -19,9 +19,11 @@ import viewmodel.CreadorDeMetodologiasYCondicionesViewModel;
 public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<CreadorDeMetodologiasYCondicionesViewModel> {
 
     private static final long serialVersionUID = 1L;
+
     private Button menu;
     private Button AgregarCondicion;
     private Button GuardarMetodologia;
+
     WindowOwner parent;
     private  static CreadorDeMetodologiasYCondicionesViewModel  creadorVM = new CreadorDeMetodologiasYCondicionesViewModel();
 
@@ -42,19 +44,9 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
 
         menu = new Button(panel).setCaption("Volver al menu");
 
-        /* ---  TODO LO CORRESPONDIENTE A LA CREACION DE LA METODOLOGIA ---*/
+        /* --- PANEL DE CONDICIONES --- */
+        Panel panelDeCondiciones = new Panel(mainPanel).setLayout(new VerticalLayout());
 
-        new Label(panel).setText("Nombre de la metodologia");
-        TextBox NombreMetodologia= new TextBox(panel);
-        NombreMetodologia.bindValueToProperty("nombreMetodologia");
-
-        Table<Condicion> table = new Table<Condicion>(panel, Condicion.class);
-        table.bindItemsToProperty("condicionesCreadas");
-        new Column<Condicion>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
-
-        GuardarMetodologia = new Button(panel).setCaption("Guardar Metodologia");
-
-        /* --- TODO LO CORRESPONDIENTE A LA CREACION DE CONDICIONES  ---*/
 
 
         new Label(panel2).setText("Nombre de la metodologia");
@@ -66,7 +58,7 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
         selectorIndicador.allowNull(false);
         selectorIndicador.bindValueToProperty("indicadorSeleccionado");
         selectorIndicador.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
-
+        selectorIndicador.bindVisibleToProperty("estadoDePantall");
 
         new Label(panel2).setText("Seleccione un tipo de indicador: ");
         Selector<String> selectorTiposIndicadores = new Selector<String>(panel2);
@@ -92,6 +84,21 @@ public class CreadorDeMetodologiasYCondicionesView  extends SimpleWindow<Creador
         VaLorDeReferencia.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
 
         AgregarCondicion = new Button(panel2).setCaption("Agregar Condicion");
+
+
+        /* ---  TODO LO CORRESPONDIENTE A LA CREACION DE LA METODOLOGIA ---*/
+
+        new Label(panel).setText("Nombre de la metodologia");
+        TextBox NombreMetodologia= new TextBox(panel);
+        NombreMetodologia.bindValueToProperty("nombreMetodologia");
+
+        Table<Condicion> table = new Table<Condicion>(panel, Condicion.class);
+        table.bindItemsToProperty("condicionesCreadas");
+        new Column<Condicion>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
+
+        GuardarMetodologia = new Button(panel).setCaption("Guardar Metodologia");
+
+
 
     }
 

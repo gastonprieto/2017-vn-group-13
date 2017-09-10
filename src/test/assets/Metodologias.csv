@@ -1,6 +1,2 @@
-Warren Buffet: MaximixarROE, model.CondicionCreciente, ROE, 10&MinimizarDeuda, model.CondicionDecreciente, ROE, 10&
-MetodologiaDecreciente: UnaCondicionDecreciente, model.CondicionDecreciente, ROE, 10&
-UnaNuevaEpoca: asd, model.CondicionMayor, Sumatoria, ROE, 10.1, 10&asd2, model.CondicionDecreciente, ROE, 10&
-OtraCondicon: class model.CondicionTaxativaclass model.CondicionMayorasdnullnull10null&class model.CondicionPrioridadclass model.CondicionDecrecienteasd2nullnull10null&
-asd: class model.CondicionTaxativaclass model.CondicionMayorqwenullnull10null&class model.CondicionPrioridadclass model.CondicionDecrecienteqwe2nullnull10null&
-esto: class model.CondicionTaxativaclass model.CondicionMayoranullnull10null&class model.CondicionPrioridadclass model.CondicionCrecientea2nullnull10null&
+2/CondicionMayor,ads,ROE,CondicionMayor,2,2.0&CondicionMayor,ads,ROE,CondicionMayor,2,2.0/
+2/CondicionMayor,ads2,ROE,CondicionMayor,2,2.0&CondicionMayor,ads2,ROE,CondicionMayor,2,2.0/CondicionDecreciente,ads2,ROE,2&CondicionDecreciente,ads2,ROE,2

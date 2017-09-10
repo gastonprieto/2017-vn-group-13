@@ -4,8 +4,8 @@ import model.Empresa;
 import Repositorio.RepositorioDeEmpresas;
 import org.uqbar.commons.utils.Observable;
 import Repositorio.RepositorioDeIndicadores;
-import utils.InterpretadorDeIndicadores;
-import utils.ManejadorDeArchivos;
+import utils.File.InterpretadorDeIndicadores;
+import utils.File.ManejadorDeArchivos;
 import java.util.Collection;
 
 @Observable
