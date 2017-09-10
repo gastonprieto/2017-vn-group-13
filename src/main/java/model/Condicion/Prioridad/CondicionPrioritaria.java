@@ -5,9 +5,6 @@ import model.Indicador;
 import model.Periodo;
 import model.formasDeAplicacion.FormaAplicacion;
 
-import org.apache.commons.lang.StringUtils;
-
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +26,11 @@ public abstract class CondicionPrioritaria  {
 		return resultado;
 	}
 	
-	public abstract int comparar(Empresa empresa1, Empresa empresa2, Periodo periodo);
+	public double aplicarIndicador(Empresa empresa, Periodo periodo) {
+		return this.indicador.aplicar(empresa, periodo);
+	}
+	
+	public abstract int comparar(double resultadoEmpresa1, double resultadoEmpresa2);
 	
 //    protected String name;
 //    protected Indicador indicador;

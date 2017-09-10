@@ -1,8 +1,6 @@
 package model.Condicion.Prioridad;
 
-import model.Empresa;
 import model.Indicador;
-import model.Periodo;
 import model.formasDeAplicacion.FormaAplicacion;
 
 public class CondicionMayorPrioritaria extends CondicionPrioritaria {
@@ -14,8 +12,8 @@ public class CondicionMayorPrioritaria extends CondicionPrioritaria {
 	}
 
 	@Override
-	public int comparar(Empresa empresa1, Empresa empresa2, Periodo periodo) {
+	public int comparar(double resultadoEmpresa1, double resultadoEmpresa2) {
 		// Devuelve un numero negativo si el primero es el menor, cero si son iguales y un numero postivo si el segundo es el menor
-		return Double.compare(this.indicador.aplicar(empresa1, periodo), this.indicador.aplicar(empresa2, periodo));
+		return Double.compare(resultadoEmpresa1, resultadoEmpresa2);
 	}
 }
