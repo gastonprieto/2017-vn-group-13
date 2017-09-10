@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 
 public abstract class CondicionPrioritaria  {
 	
-	private Indicador indicador;
-	private CondicionPrioritaria condicionDesempate;
-	private FormaAplicacion formaAplicacion;
+	protected Indicador indicador;
+	protected CondicionPrioritaria condicionDesempate;
+	protected FormaAplicacion formaAplicacion;
 	
 	public List<Empresa> ordenar(List<Empresa> empresas) {
 		return empresas.stream().sorted((empresa1, empresa2) -> this.realizarComparacion(empresa1, empresa2)).collect(Collectors.toList());
@@ -29,7 +29,7 @@ public abstract class CondicionPrioritaria  {
 		return resultado;
 	}
 	
-	public abstract int comparar(Empresa empresa1, Empresa empresa2);
+	public abstract int comparar(Empresa empresa1, Empresa empresa2, Periodo periodo);
 	
 //    protected String name;
 //    protected Indicador indicador;
