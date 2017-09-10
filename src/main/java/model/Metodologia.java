@@ -9,85 +9,98 @@ import utils.Converts.ConvertToCondicionPrioridad;
 import utils.Converts.ConvertToCondicionTaxativa;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.ArrayList;
 
-@Observable
+//@Observable
 public class Metodologia {
+	
+	private String nombre;
+	private CondicionPrioritaria condicionPrioritaria;
+	
+	public Metodologia(String nombre, CondicionPrioritaria condicionPrioritaria) {
+		this.nombre = nombre;
+		this.condicionPrioritaria = condicionPrioritaria;
+	}
+	
+	public List<Empresa> evaluar(List<Empresa> empresas) {
+		return condicionPrioritaria.ordenar(empresas);
+	}
 
-    private String nombre;
-    private Collection<CondicionPrioritaria> condicionesPrioridad;
-    private Collection<CondicionTaxativa> condicionesTaxativas;
-
-    public Metodologia(String nombre){
-        this.nombre = nombre;
-        this.condicionesPrioridad = new ArrayList<CondicionPrioritaria>();
-        this.condicionesTaxativas = new ArrayList<CondicionTaxativa>();
-    }
-
-    public Metodologia(){
-        this.nombre = "";
-        this.condicionesPrioridad = new ArrayList<CondicionPrioritaria>();
-        this.condicionesTaxativas = new ArrayList<CondicionTaxativa>();
-    }
-
-    public void addCondicionTaxativa(String _classCondicion,
-                             String _nameCondicion,
-                             String _nameIndicador,
-                             String _classCalculo,
-                             String _cantidadDePeriodos,
-                             String _valorDeReferencia){
-        ConvertToCondicionTaxativa NuevoConvertTaxativa = new ConvertToCondicionTaxativa(_nameCondicion, _classCalculo, _nameIndicador, _cantidadDePeriodos, _classCondicion, _valorDeReferencia);
-        try {
-            this.condicionesTaxativas.add(NuevoConvertTaxativa.Convertit());
-        }catch (Exception a){
-            throw new ConvertsException("Aaa No se pudo convertir a ningun tipo de subcondicion de Taxativa a '" +  _classCondicion + "' del nombre : " + _nameCondicion + "Porque  " + a.getMessage());
-        }
-
-    }
-
-    public void addCondicionPrioridad(String _classCondicion,
-                                     String _nameCondicion,
-                                     String _nameIndicador,
-                                     String _cantidadDePeriodos){
-        ConvertToCondicionPrioridad NuevoConvertPrioridad = new ConvertToCondicionPrioridad( _nameCondicion, _nameIndicador, _cantidadDePeriodos,_classCondicion);;
-        if(this.condicionesPrioridad.size() < 2){
-            try{
-                this.condicionesPrioridad.add(NuevoConvertPrioridad.Convertit());
-            }catch (ConvertsException e){
-                throw e;
-            }
-        }else {
-            throw new ConvertsException("No se pudo crear la condicion de orden, debido a que ya llegaste al tope, mejorar este mensaje");
-        }
-    }
-
-
-    public void removeCondicion(Object condicion){
-        this.condicionesTaxativas.removeIf(c -> c.equals(condicion));
-        this.condicionesPrioridad.removeIf(c -> c.equals(condicion));
-    }
-
-	public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Collection<CondicionTaxativa> getCondicionesTaxativas() {
-        return condicionesTaxativas;
-    }
-
-    public Collection<CondicionPrioritaria> getCondicionesPrioridad() {
-        return condicionesPrioridad;
-    }
-
-    public void setCondicionesTaxativas(Collection<CondicionTaxativa> condicionesTaxativas) {
-        this.condicionesTaxativas = condicionesTaxativas;
-    }
-
-    public void setCondicionesPrioridad(Collection<CondicionPrioritaria> condicionesPrioridad) {
-        this.condicionesPrioridad = condicionesPrioridad;
-    }
+//    private String nombre;
+//    private Collection<CondicionPrioritaria> condicionesPrioridad;
+//    private Collection<CondicionTaxativa> condicionesTaxativas;
+//
+//    public Metodologia(String nombre){
+//        this.nombre = nombre;
+//        this.condicionesPrioridad = new ArrayList<CondicionPrioritaria>();
+//        this.condicionesTaxativas = new ArrayList<CondicionTaxativa>();
+//    }
+//
+//    public Metodologia(){
+//        this.nombre = "";
+//        this.condicionesPrioridad = new ArrayList<CondicionPrioritaria>();
+//        this.condicionesTaxativas = new ArrayList<CondicionTaxativa>();
+//    }
+//
+//    public void addCondicionTaxativa(String _classCondicion,
+//                             String _nameCondicion,
+//                             String _nameIndicador,
+//                             String _classCalculo,
+//                             String _cantidadDePeriodos,
+//                             String _valorDeReferencia){
+//        ConvertToCondicionTaxativa NuevoConvertTaxativa = new ConvertToCondicionTaxativa(_nameCondicion, _classCalculo, _nameIndicador, _cantidadDePeriodos, _classCondicion, _valorDeReferencia);
+//        try {
+//            this.condicionesTaxativas.add(NuevoConvertTaxativa.Convertit());
+//        }catch (Exception a){
+//            throw new ConvertsException("Aaa No se pudo convertir a ningun tipo de subcondicion de Taxativa a '" +  _classCondicion + "' del nombre : " + _nameCondicion + "Porque  " + a.getMessage());
+//        }
+//
+//    }
+//
+//    public void addCondicionPrioridad(String _classCondicion,
+//                                     String _nameCondicion,
+//                                     String _nameIndicador,
+//                                     String _cantidadDePeriodos){
+//        ConvertToCondicionPrioridad NuevoConvertPrioridad = new ConvertToCondicionPrioridad( _nameCondicion, _nameIndicador, _cantidadDePeriodos,_classCondicion);;
+//        if(this.condicionesPrioridad.size() < 2){
+//            try{
+//                this.condicionesPrioridad.add(NuevoConvertPrioridad.Convertit());
+//            }catch (ConvertsException e){
+//                throw e;
+//            }
+//        }else {
+//            throw new ConvertsException("No se pudo crear la condicion de orden, debido a que ya llegaste al tope, mejorar este mensaje");
+//        }
+//    }
+//
+//
+//    public void removeCondicion(Object condicion){
+//        this.condicionesTaxativas.removeIf(c -> c.equals(condicion));
+//        this.condicionesPrioridad.removeIf(c -> c.equals(condicion));
+//    }
+//
+//	public String getNombre() {
+//        return nombre;
+//    }
+//
+//    public void setNombre(String nombre) {
+//        this.nombre = nombre;
+//    }
+//
+//    public Collection<CondicionTaxativa> getCondicionesTaxativas() {
+//        return condicionesTaxativas;
+//    }
+//
+//    public Collection<CondicionPrioritaria> getCondicionesPrioridad() {
+//        return condicionesPrioridad;
+//    }
+//
+//    public void setCondicionesTaxativas(Collection<CondicionTaxativa> condicionesTaxativas) {
+//        this.condicionesTaxativas = condicionesTaxativas;
+//    }
+//
+//    public void setCondicionesPrioridad(Collection<CondicionPrioritaria> condicionesPrioridad) {
+//        this.condicionesPrioridad = condicionesPrioridad;
+//    }
 }
