@@ -1,6 +1,6 @@
 package window;
 
-import model.Condicion.Prioridad.CondicionPrioridad;
+import model.Condicion.Prioridad.CondicionPrioritaria;
 import model.Condicion.Taxativa.CondicionTaxativa;
 import model.Indicador;
 import org.uqbar.arena.bindings.PropertyAdapter;
@@ -34,7 +34,7 @@ public class CreadorMetodologiasView extends SimpleWindow<CreadorMetodologiasVie
     private Button GuardarMetodologia;
     private Button AgregarCondicionTaxativa;
     private Button AgregarCondicionPrioridad;
-    Table<CondicionPrioridad> tablePrioridad;
+    Table<CondicionPrioritaria> tablePrioridad;
     Selector<String> superTiposDeCondicion;
     Selector<String> tiposDeCondicion;
     WindowOwner parent;
@@ -96,11 +96,11 @@ public class CreadorMetodologiasView extends SimpleWindow<CreadorMetodologiasVie
 
 
             Panel panelTablaCondicionDeOrden = new Panel(panelCondicionesDeOrden).setLayout(new VerticalLayout());
-                tablePrioridad = new Table<CondicionPrioridad>(panelTablaCondicionDeOrden, CondicionPrioridad.class);
+                tablePrioridad = new Table<CondicionPrioritaria>(panelTablaCondicionDeOrden, CondicionPrioritaria.class);
                 tablePrioridad.bindItemsToProperty("metodologia.condicionesPrioridad");
-                new Column<CondicionPrioridad>(tablePrioridad).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
-                new Column<CondicionPrioridad>(tablePrioridad).setTitle("Cantidad de periodos").setFixedSize(150).bindContentsToProperty("cantidadDePeriodos");
-                new Column<CondicionPrioridad>(tablePrioridad).setTitle("indicador").setFixedSize(150).bindContentsToProperty("indicador.nombre");
+                new Column<CondicionPrioritaria>(tablePrioridad).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
+                new Column<CondicionPrioritaria>(tablePrioridad).setTitle("Cantidad de periodos").setFixedSize(150).bindContentsToProperty("cantidadDePeriodos");
+                new Column<CondicionPrioritaria>(tablePrioridad).setTitle("indicador").setFixedSize(150).bindContentsToProperty("indicador.nombre");
 
 
 

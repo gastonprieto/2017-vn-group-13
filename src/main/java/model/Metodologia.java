@@ -2,7 +2,7 @@ package model;
 
 import exception.ConvertsException;
 import exception.FabricaException;
-import model.Condicion.Prioridad.CondicionPrioridad;
+import model.Condicion.Prioridad.CondicionPrioritaria;
 import model.Condicion.Taxativa.CondicionTaxativa;
 import org.uqbar.commons.utils.Observable;
 import utils.Converts.ConvertToCondicionPrioridad;
@@ -15,18 +15,18 @@ import java.util.ArrayList;
 public class Metodologia {
 
     private String nombre;
-    private Collection<CondicionPrioridad> condicionesPrioridad;
+    private Collection<CondicionPrioritaria> condicionesPrioridad;
     private Collection<CondicionTaxativa> condicionesTaxativas;
 
     public Metodologia(String nombre){
         this.nombre = nombre;
-        this.condicionesPrioridad = new ArrayList<CondicionPrioridad>();
+        this.condicionesPrioridad = new ArrayList<CondicionPrioritaria>();
         this.condicionesTaxativas = new ArrayList<CondicionTaxativa>();
     }
 
     public Metodologia(){
         this.nombre = "";
-        this.condicionesPrioridad = new ArrayList<CondicionPrioridad>();
+        this.condicionesPrioridad = new ArrayList<CondicionPrioritaria>();
         this.condicionesTaxativas = new ArrayList<CondicionTaxativa>();
     }
 
@@ -79,7 +79,7 @@ public class Metodologia {
         return condicionesTaxativas;
     }
 
-    public Collection<CondicionPrioridad> getCondicionesPrioridad() {
+    public Collection<CondicionPrioritaria> getCondicionesPrioridad() {
         return condicionesPrioridad;
     }
 
@@ -87,7 +87,7 @@ public class Metodologia {
         this.condicionesTaxativas = condicionesTaxativas;
     }
 
-    public void setCondicionesPrioridad(Collection<CondicionPrioridad> condicionesPrioridad) {
+    public void setCondicionesPrioridad(Collection<CondicionPrioritaria> condicionesPrioridad) {
         this.condicionesPrioridad = condicionesPrioridad;
     }
 }

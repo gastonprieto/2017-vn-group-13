@@ -8,10 +8,10 @@ import model.Condicion.Prioridad.*;
  * Created by rapap on 08/09/2017.
  */
 public class SerializadorDeCondicionesDePrioridad {
-    private Collection<CondicionPrioridad> Lista;
+    private Collection<CondicionPrioritaria> Lista;
     private String contenido ;
 
-    public SerializadorDeCondicionesDePrioridad(Collection<CondicionPrioridad> _lista){
+    public SerializadorDeCondicionesDePrioridad(Collection<CondicionPrioritaria> _lista){
         this.Lista = _lista;
         this.contenido = "";
     }
@@ -21,7 +21,7 @@ public class SerializadorDeCondicionesDePrioridad {
         return this.contenido;
     }
 
-    private boolean sumar(CondicionPrioridad condicionRemovida, boolean UltimoElemento){
+    private boolean sumar(CondicionPrioritaria condicionRemovida, boolean UltimoElemento){
         contenido += (condicionRemovida.getClassClean() + "," +
                       condicionRemovida.getName() + "," +
                       condicionRemovida.getIndicador().getNombre() + "," +

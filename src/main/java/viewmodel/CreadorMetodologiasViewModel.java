@@ -2,7 +2,7 @@ package viewmodel;
 
 import Repositorio.RepositorioDeIndicadores;
 import Repositorio.RepositorioDeMetodologias;
-import model.Condicion.Prioridad.CondicionPrioridad;
+import model.Condicion.Prioridad.CondicionPrioritaria;
 import model.Indicador;
 import model.Metodologia;
 import org.uqbar.commons.utils.Observable;
@@ -31,7 +31,7 @@ public class CreadorMetodologiasViewModel {
     private String condicionSeleccionadaPrioridad;
     private Indicador indicadorSeleccionadoPrioridad;
     private String cantidadDePeriodosPrioridad;
-    private CondicionPrioridad condicioneTablaPrioridadSeleccionada;
+    private CondicionPrioritaria condicioneTablaPrioridadSeleccionada;
 
     //Panel Condiciones Filtro
     private String nombreCondicionTaxativa;
@@ -70,16 +70,16 @@ public class CreadorMetodologiasViewModel {
 
     /* GETTERS AND SETTERS*/
 
-    public CondicionPrioridad getCondicioneTablaPrioridadSeleccionada() {
+    public CondicionPrioritaria getCondicioneTablaPrioridadSeleccionada() {
 
         return condicioneTablaPrioridadSeleccionada;
     }
 
-    public void setCondicioneTablaPrioridadSeleccionada(CondicionPrioridad condicioneTablaPrioridadSeleccionada) {
+    public void setCondicioneTablaPrioridadSeleccionada(CondicionPrioritaria condicioneTablaPrioridadSeleccionada) {
         this.condicioneTablaPrioridadSeleccionada = condicioneTablaPrioridadSeleccionada;
     }
 
-    public Collection<CondicionPrioridad> getCondicionesPrioridadMetodologia(){
+    public Collection<CondicionPrioritaria> getCondicionesPrioridadMetodologia(){
         return metodologia.getCondicionesPrioridad();
     }
 

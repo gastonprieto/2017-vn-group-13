@@ -13,7 +13,7 @@ import java.util.Collection;
  */
 
 
-public abstract class CondicionPrioridad  {
+public abstract class CondicionPrioritaria  {
     protected String name;
     protected Indicador indicador;
     protected int cantidadDePeriodos;

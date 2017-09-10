@@ -23,7 +23,7 @@ public class ConvertToCondicionPrioridad {
     }
 
 
-    public CondicionPrioridad Convertit() {
+    public CondicionPrioritaria Convertit() {
         Indicador indicador  = RepositorioDeIndicadores.getInstance().buscarIndicador(this.indicador);
         int CantidadDePeriodosParseada = Integer.parseInt(this.cantidadDePeriodos);
         if (this.tipoCondicionPrioridad.equals("Creciente")){

@@ -8,7 +8,7 @@ import org.uqbar.commons.utils.Observable;
 import java.util.Collection;
 
 @Observable
-public class CondicionCreciente extends CondicionPrioridad {
+public class CondicionCreciente extends CondicionPrioritaria {
 
 
     public CondicionCreciente(){}

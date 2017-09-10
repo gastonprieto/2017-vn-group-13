@@ -9,7 +9,7 @@ import java.util.Collection;
 /**
  * Created by rapap on 27/07/2017.
  */
-public class CondicionMaximizar extends CondicionPrioridad {
+public class CondicionMaximizar extends CondicionPrioritaria {
   
 	public CondicionMaximizar(String name, Indicador indicador, int cantidadDePeriodos){
 
