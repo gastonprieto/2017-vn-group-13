@@ -3,7 +3,7 @@ package utils.Serializadores;
 
 import java.util.Collection;
 
-import model.Condicion.Prioridad.*;
+import model.condiciones.prioritarias.*;
 /**
  * Created by rapap on 08/09/2017.
  */

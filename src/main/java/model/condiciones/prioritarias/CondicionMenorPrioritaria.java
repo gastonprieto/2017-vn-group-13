@@ -1,7 +1,7 @@
-package model.Condicion.Prioridad;
+package model.condiciones.prioritarias;
 
 import model.Indicador;
-import model.formasDeAplicacion.FormaAplicacion;
+import model.formas.de.aplicacion.FormaAplicacion;
 
 public class CondicionMenorPrioritaria extends CondicionPrioritaria {
 

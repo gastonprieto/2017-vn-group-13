@@ -1,10 +1,10 @@
-package model.formasDeAplicacion;
+package model.formas.de.aplicacion;
 
 import java.util.Collection;
 
 import model.Empresa;
 import model.Periodo;
-import model.Condicion.Prioridad.CondicionPrioritaria;
+import model.condiciones.prioritarias.CondicionPrioritaria;
 import utils.Converts.GeneradorDePeriodos;
 
 public class AplicacionPorPromedio implements FormaAplicacion {

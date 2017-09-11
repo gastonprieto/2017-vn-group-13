@@ -2,8 +2,8 @@ package utils.Converts;
 
 import Repositorio.RepositorioDeIndicadores;
 import model.Indicador;
+import model.condiciones.prioritarias.*;
 import exception.FabricaException;
-import model.Condicion.Prioridad.*;
 
 /**
  * Created by rapap on 08/09/2017.

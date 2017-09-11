@@ -2,9 +2,10 @@ package viewmodel;
 
 import Repositorio.RepositorioDeIndicadores;
 import Repositorio.RepositorioDeMetodologias;
-import model.Condicion.Prioridad.CondicionPrioritaria;
 import model.Indicador;
 import model.Metodologia;
+import model.condiciones.prioritarias.CondicionPrioritaria;
+
 import org.uqbar.commons.utils.Observable;
 import utils.File.ExportadorDeDatos;
 

@@ -2,8 +2,9 @@ package model;
 
 import exception.ConvertsException;
 import exception.FabricaException;
-import model.Condicion.Prioridad.CondicionPrioritaria;
 import model.Condicion.Taxativa.CondicionTaxativa;
+import model.condiciones.prioritarias.CondicionPrioritaria;
+
 import org.uqbar.commons.utils.Observable;
 import utils.Converts.ConvertToCondicionPrioridad;
 import utils.Converts.ConvertToCondicionTaxativa;

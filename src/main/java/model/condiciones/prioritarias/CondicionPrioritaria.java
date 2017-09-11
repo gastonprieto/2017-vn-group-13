@@ -1,9 +1,9 @@
-package model.Condicion.Prioridad;
+package model.condiciones.prioritarias;
 
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
-import model.formasDeAplicacion.FormaAplicacion;
+import model.formas.de.aplicacion.FormaAplicacion;
 
 import java.util.List;
 import java.util.stream.Collectors;
