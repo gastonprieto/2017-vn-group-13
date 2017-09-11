@@ -19,7 +19,7 @@ public abstract class CondicionPrioritaria  {
 	}
 	
 	public int realizarComparacion(Empresa empresa1, Empresa empresa2) {
-		int resultado = this.formaAplicacion.aplicar(this, empresa1, empresa2);
+		int resultado = this.formaAplicacion.aplicarPrioridad(this, empresa1, empresa2);
 		if(resultado == 0 && condicionDesempate != null) {
 			return condicionDesempate.realizarComparacion(empresa1, empresa2);
 		}
@@ -31,30 +31,4 @@ public abstract class CondicionPrioritaria  {
 	}
 	
 	public abstract int comparar(double resultadoEmpresa1, double resultadoEmpresa2);
-	
-//    protected String name;
-//    protected Indicador indicador;
-//    protected int cantidadDePeriodos;
-//
-//
-//    public abstract int comparar(Empresa empresa1, Empresa empresa2, Collection<Periodo> periodos);
-//
-//    public String getClassClean(){
-//        String[] myClass = StringUtils.splitByWholeSeparator( this.getClass().toString(), ".");
-//        return myClass[myClass.length-1];
-//    }
-//    public String getName() {
-//        return name;
-//    }
-//
-//
-//    public Indicador getIndicador() {
-//        return indicador;
-//    }
-//
-//
-//    public int getCantidadDePeriodos() {
-//        return cantidadDePeriodos;
-//    }
-
 }

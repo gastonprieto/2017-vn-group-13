@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import model.Empresa;
 import model.Periodo;
+import model.Condicion.Taxativa.CondicionTaxativa;
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import utils.Converts.GeneradorDePeriodos;
 
@@ -16,7 +17,7 @@ public class AplicacionPorPromedio implements FormaAplicacion {
 	}
 
 	@Override
-	public int aplicar(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2) {
+	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2) {
 		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(this.cantPeriodos);
 		int contador = 0;
 		double sumatoriaEmpresa1 = 0;
@@ -27,5 +28,17 @@ public class AplicacionPorPromedio implements FormaAplicacion {
 			sumatoriaEmpresa2 += condicionPrioritaria.aplicarIndicador(empresa2, periodo);
 		}
 		return condicionPrioritaria.comparar(sumatoriaEmpresa1 / contador, sumatoriaEmpresa2 / contador);
+	}
+
+	@Override
+	public boolean aplicarFiltro(CondicionTaxativa condicionTaxativa, Empresa empresa) {
+		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(this.cantPeriodos);
+		int contador = 0;
+		double sumatoria = 0;
+		for(Periodo periodo : periodos) {
+			contador ++;
+			sumatoria += condicionTaxativa.aplicarIndicador(empresa, periodo);
+		}
+		return condicionTaxativa.comparar(sumatoria/ contador);
 	}
 }

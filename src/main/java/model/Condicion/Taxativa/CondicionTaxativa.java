@@ -1,46 +1,32 @@
 package model.Condicion.Taxativa;
 
-
-import model.Calculo.Calculo;
+import model.formas.de.aplicacion.FormaAplicacion;
 import model.Empresa;
 import model.Indicador;
-import org.apache.commons.lang.StringUtils;
+import model.Periodo;
 
-/**
- * Created by rapap on 27/07/2017.
- */
+import java.util.List;
+import java.util.stream.Collectors;
+
 public abstract class CondicionTaxativa  {
-
-    protected  String name;
-    protected int cantidadDePeriodos;
-    protected Double valorDeReferencia;
-    protected Calculo calculo;
-
-    public abstract boolean aplicar(Empresa empresa);
-
-    public String getName() {
-        return name;
-    }
-
-    public String getClassClean(){
-        String[] myClass = StringUtils.splitByWholeSeparator( this.getClass().toString(), ".");
-        return myClass[myClass.length-1];
-
-    }
-
-    public int getCantidadDePeriodos() {
-        return cantidadDePeriodos;
-    }
-
-    public Double getValorDeReferencia() {
-        return valorDeReferencia;
-    }
-
-    public Calculo getCalculo() {
-        return calculo;
-    }
-
-    public Indicador getIndicador() {
-        return null;
-    }
+	
+	protected Indicador indicador;
+	protected CondicionTaxativa siguienteCondicion;
+	protected FormaAplicacion formaAplicacion;
+	protected double valorReferencia;
+	
+	public List<Empresa> filtrar(List<Empresa> empresas) {
+		List<Empresa> empresasSeleccionadas = empresas.stream().filter((empresa) -> this.formaAplicacion.aplicarFiltro(this, empresa))
+				.collect(Collectors.toList());
+		if(siguienteCondicion == null)
+			return empresasSeleccionadas;
+		else
+			return siguienteCondicion.filtrar(empresasSeleccionadas);
+	}
+	
+	public double aplicarIndicador(Empresa empresa, Periodo periodo) {
+		return this.indicador.aplicar(empresa, periodo);
+	}
+	
+	public abstract boolean comparar(double resultado);
 }
