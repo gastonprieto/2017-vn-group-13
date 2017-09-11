@@ -19,7 +19,7 @@ public class AplicacionPorMediana implements FormaAplicacion {
 
 	@Override
 	public int aplicar(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2) {
-		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(cantPeriodos);
+		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(this.cantPeriodos);
 		Collection<Double> resultadosEmpresa1 = new ArrayList<>();
 		Collection<Double> resultadosEmpresa2 = new ArrayList<>();
 		periodos.stream().forEach((periodo) -> resultadosEmpresa1.add(condicionPrioritaria.aplicarIndicador(empresa1, periodo)));

@@ -17,7 +17,7 @@ public class AplicacionPorPromedio implements FormaAplicacion {
 
 	@Override
 	public int aplicar(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2) {
-		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(cantPeriodos);
+		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(this.cantPeriodos);
 		int contador = 0;
 		double sumatoriaEmpresa1 = 0;
 		double sumatoriaEmpresa2 = 0;
