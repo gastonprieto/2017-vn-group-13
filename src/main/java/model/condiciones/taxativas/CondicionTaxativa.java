@@ -1,4 +1,4 @@
-package model.Condicion.Taxativa;
+package model.condiciones.taxativas;
 
 import model.formas.de.aplicacion.FormaAplicacion;
 import model.Empresa;

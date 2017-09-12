@@ -1,8 +1,8 @@
 package utils.Serializadores;
 
-import model.Condicion.Taxativa.*;
-
 import java.util.Collection;
+
+import model.condiciones.taxativas.*;
 
 /**
  * Created by rapap on 08/09/2017.

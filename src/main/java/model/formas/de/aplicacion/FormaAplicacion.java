@@ -1,8 +1,8 @@
 package model.formas.de.aplicacion;
 
 import model.Empresa;
-import model.Condicion.Taxativa.CondicionTaxativa;
 import model.condiciones.prioritarias.CondicionPrioritaria;
+import model.condiciones.taxativas.CondicionTaxativa;
 
 public interface FormaAplicacion {
 	int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2);

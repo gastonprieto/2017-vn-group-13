@@ -5,8 +5,8 @@ import java.util.Collection;
 
 import model.Empresa;
 import model.Periodo;
-import model.Condicion.Taxativa.CondicionTaxativa;
 import model.condiciones.prioritarias.CondicionPrioritaria;
+import model.condiciones.taxativas.CondicionTaxativa;
 import utils.Converts.GeneradorDePeriodos;
 
 public class AplicacionPorConsistencia implements FormaAplicacion {

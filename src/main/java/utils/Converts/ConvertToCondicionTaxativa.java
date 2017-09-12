@@ -1,8 +1,8 @@
 package utils.Converts;
 
 import Repositorio.RepositorioDeIndicadores;
-import model.Condicion.Taxativa.*;
 import model.Indicador;
+import model.condiciones.taxativas.*;
 import exception.FabricaException;
 
 

@@ -1,7 +1,7 @@
 package window;
 
-import model.Condicion.Taxativa.CondicionTaxativa;
 import model.condiciones.prioritarias.CondicionPrioritaria;
+import model.condiciones.taxativas.CondicionTaxativa;
 import model.Indicador;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.widgets.Button;

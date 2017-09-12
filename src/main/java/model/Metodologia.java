@@ -1,7 +1,7 @@
 package model;
 
-import model.Condicion.Taxativa.CondicionTaxativa;
 import model.condiciones.prioritarias.CondicionPrioritaria;
+import model.condiciones.taxativas.CondicionTaxativa;
 
 import java.util.List;
 
