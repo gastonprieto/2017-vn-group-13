@@ -7,11 +7,15 @@ import org.junit.Before;
 
 import model.Cuenta;
 import model.Empresa;
+import model.Indicador;
 import model.Periodo;
+import utils.File.InterpretadorDeIndicadores;
 
 public abstract class CondicionTest {
 	
 	protected List<Empresa> empresas;
+	protected InterpretadorDeIndicadores interpretadorDeIndicadores = new InterpretadorDeIndicadores();
+	protected Indicador indicador = interpretadorDeIndicadores.interpretar("Indicador 1", "Cuenta 1");
 	
 	@Before
 	public void setUp() {
