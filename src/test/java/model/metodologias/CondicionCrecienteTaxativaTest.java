@@ -11,7 +11,7 @@ import model.condiciones.taxativas.CondicionTaxativa;
 public class CondicionCrecienteTaxativaTest extends CondicionTest {
 
 	@Test
-	public void condicionMenorTaxativaConAplicacionPorConsistenciaTest() {
+	public void condicionCrecienteTaxativaConAplicacionPorConsistenciaTest() {
 		CondicionTaxativa condicionCrecienteTaxativa = new CondicionCrecienteTaxativa(indicador, null, 3);
 		Metodologia metodologia = new Metodologia("Cuenta 1 creciente en los ultimos 3 periodos", null, condicionCrecienteTaxativa);
 		

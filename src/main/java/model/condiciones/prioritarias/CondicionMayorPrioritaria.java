@@ -13,7 +13,7 @@ public class CondicionMayorPrioritaria extends CondicionPrioritaria {
 
 	@Override
 	public int comparar(double resultadoEmpresa1, double resultadoEmpresa2) {
-		// Devuelve un numero negativo si el primero es el menor, cero si son iguales y un numero postivo si el segundo es el menor
-		return Double.compare(resultadoEmpresa1, resultadoEmpresa2);
+		// Devuelve un numero postivo si el primero es el menor, cero si son iguales y un numero negativo si el segundo es el menor
+		return 0 - Double.compare(resultadoEmpresa1, resultadoEmpresa2);
 	}
 }
