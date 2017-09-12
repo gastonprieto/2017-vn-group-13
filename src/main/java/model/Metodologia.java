@@ -11,13 +11,26 @@ public class Metodologia {
 	private CondicionPrioritaria condicionPrioritaria;
 	private CondicionTaxativa condicionTaxativa;
 	
-	public Metodologia(String nombre, CondicionPrioritaria condicionPrioritaria) {
+	public Metodologia(String nombre, CondicionPrioritaria condicionPrioritaria, CondicionTaxativa condicionTaxativa) {
 		this.nombre = nombre;
 		this.condicionPrioritaria = condicionPrioritaria;
+		this.condicionTaxativa = condicionTaxativa;
 	}
 	
 	public List<Empresa> evaluar(List<Empresa> empresas) {
-		return this.condicionPrioritaria.ordenar(this.condicionTaxativa.filtrar(empresas));
+		return this.ordenar(this.filtrar(empresas));
+	}
+	
+	public List<Empresa> filtrar(List<Empresa> empresas) {
+		if(this.condicionTaxativa != null)
+			return this.condicionTaxativa.filtrar(empresas);
+		return empresas;
+	}
+	
+	public List<Empresa> ordenar(List<Empresa> empresas) {
+		if(this.condicionPrioritaria != null)
+			return this.condicionPrioritaria.ordenar(empresas);
+		return empresas;
 	}
 	
 	public String getNombre() {
