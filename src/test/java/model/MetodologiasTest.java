@@ -63,8 +63,8 @@ public class MetodologiasTest {
 		InterpretadorDeIndicadores interpretadorDeIndicadores = new InterpretadorDeIndicadores();
 		Indicador indicador = interpretadorDeIndicadores.interpretar("Indicador 1", "Cuenta 1");
 		FormaAplicacion aplicacionSimple = new AplicacionSimple();
-		CondicionTaxativa condicionMayorTaxativa = new CondicionMenorTaxativa(indicador, aplicacionSimple, null, 2);
-		Metodologia metodologia = new Metodologia("Cuenta 1 menor a 2 en el ultimo periodo", null, condicionMayorTaxativa);
+		CondicionTaxativa condicionMenorTaxativa = new CondicionMenorTaxativa(indicador, aplicacionSimple, null, 2);
+		Metodologia metodologia = new Metodologia("Cuenta 1 menor a 2 en el ultimo periodo", null, condicionMenorTaxativa);
 		
 		assertEquals(1, metodologia.evaluar(empresas).size());
 	}
