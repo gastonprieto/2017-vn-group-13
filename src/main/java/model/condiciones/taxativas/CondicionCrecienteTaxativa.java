@@ -24,4 +24,9 @@ public class CondicionCrecienteTaxativa extends CondicionTaxativa {
 		this.valorReferencia = resultado;
 		return comparacion;
 	}
+	
+	@Override
+	public void reiniciar() {
+		this.esComparacionInicial = true;
+	}
 }

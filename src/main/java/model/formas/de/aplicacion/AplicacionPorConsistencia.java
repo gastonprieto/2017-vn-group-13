@@ -40,6 +40,7 @@ public class AplicacionPorConsistencia implements FormaAplicacion {
 		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(this.cantPeriodos);
 		Collection<Boolean> resultados = new ArrayList<>();
 		periodos.stream().forEach((periodo) -> resultados.add(condicionTaxativa.comparar(condicionTaxativa.aplicarIndicador(empresa, periodo))));
+		condicionTaxativa.reiniciar();
 		return resultados.stream().allMatch((unResultado) -> unResultado == true);
 	}
 }

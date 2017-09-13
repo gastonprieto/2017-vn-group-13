@@ -29,4 +29,8 @@ public abstract class CondicionTaxativa  {
 	}
 	
 	public abstract boolean comparar(double resultado);
+
+	public void reiniciar() {
+		// Se sobreescribe en creciente y decreciente
+	}
 }
