@@ -51,22 +51,22 @@ public class CreadorMetodologiasViewModel {
     /* FUNCIONES */
 
     public void AgregarCondicionOrden(){
-        metodologia.addCondicionPrioridad( condicionSeleccionadaPrioridad ,nombreCondicionPrioridad, indicadorSeleccionadoPrioridad.getNombre(), cantidadDePeriodosPrioridad);
+    //    metodologia.addCondicionPrioridad( condicionSeleccionadaPrioridad ,nombreCondicionPrioridad, indicadorSeleccionadoPrioridad.getNombre(), cantidadDePeriodosPrioridad);
     }
 
     public void AgregarCondicionFiltro(){
-        metodologia.addCondicionTaxativa(condicionSeleccionadaTaxativa ,nombreCondicionTaxativa, indicadorSeleccionadoTaxativa.getNombre(), tipoCalculoSeleccionadoTaxativa, cantidadDePeriodosTaxativa, valoreDeReferenciaTaxativa);
+    //    metodologia.addCondicionTaxativa(condicionSeleccionadaTaxativa ,nombreCondicionTaxativa, indicadorSeleccionadoTaxativa.getNombre(), tipoCalculoSeleccionadoTaxativa, cantidadDePeriodosTaxativa, valoreDeReferenciaTaxativa);
     }
 
-    public void NuevaMetodologia(){
+/*    public void NuevaMetodologia(){
         metodologia = new Metodologia();
-    }
+    }*/
 
     public void GuardarMetodologia(){
-        metodologia.setNombre(nombreMetodologia);
+ /*       metodologia.setNombre(nombreMetodologia);
         manejadorDeArchivos.ExportadorDeMetodologia(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv", metodologia);
         RepositorioDeMetodologias.getInstance().registrarMetodologia(metodologia);
-        metodologia = new Metodologia();
+        metodologia = new Metodologia();*/
     }
 
     /* GETTERS AND SETTERS*/
@@ -80,9 +80,9 @@ public class CreadorMetodologiasViewModel {
         this.condicioneTablaPrioridadSeleccionada = condicioneTablaPrioridadSeleccionada;
     }
 
-    public Collection<CondicionPrioritaria> getCondicionesPrioridadMetodologia(){
-        return metodologia.getCondicionesPrioridad();
-    }
+  /*  public Collection<CondicionPrioritaria> getCondicionesPrioridadMetodologia(){
+     //   return metodologia.getCondicionesPrioridad();
+    }*/
 
     public Metodologia getMetodologia() {
         return metodologia;
@@ -191,8 +191,6 @@ public class CreadorMetodologiasViewModel {
     public void setCondicionSeleccionadaPrioridad(String condicionSeleccionadaPrioridad) {
         this.condicionSeleccionadaPrioridad = condicionSeleccionadaPrioridad;
     }
-
-
 
 
     public String getNombreMetodologia() {

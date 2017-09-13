@@ -205,12 +205,12 @@ public class CreadorMetodologiasView extends SimpleWindow<CreadorMetodologiasVie
     }
 
     public void NuevaMetodologia(){
-        try {
+      /*  try {
             getCreadorVM().NuevaMetodologia();
 
         }catch (UserException e) {
             showErrorMessageBox("No se puedo crear la metodologia");
-        }
+        }*/
     }
 
     public void CrearMetodologia(){

@@ -22,11 +22,11 @@ public class SerializadorDeCondicionesDePrioridad {
     }
 
     private boolean sumar(CondicionPrioritaria condicionRemovida, boolean UltimoElemento){
-        contenido += (condicionRemovida.getClassClean() + "," +
+   /*     contenido += (condicionRemovida.getClassClean() + "," +
                       condicionRemovida.getName() + "," +
                       condicionRemovida.getIndicador().getNombre() + "," +
                       condicionRemovida.getCantidadDePeriodos()  +
-                      (!UltimoElemento ? "&" : "" ) );
+                      (!UltimoElemento ? "&" : "" ) );*/
         return true;
     }
 

@@ -16,8 +16,8 @@ public class ExportadorDeDatos {
     }
 
     public void ExportadorDeMetodologia(String filePath, Metodologia metodologia){
-       SerializadorDeMetodologias SerializadorM = new SerializadorDeMetodologias(metodologia);
-       EscritorDeArchivos.escribirArchivo(filePath, SerializadorM.SerializarMe());
+    /*   SerializadorDeMetodologias SerializadorM = new SerializadorDeMetodologias(metodologia);
+       EscritorDeArchivos.escribirArchivo(filePath, SerializadorM.SerializarMe());*/
     }
 
 }
