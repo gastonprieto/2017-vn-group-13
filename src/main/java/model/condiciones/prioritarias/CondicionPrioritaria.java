@@ -8,11 +8,31 @@ import model.formas.de.aplicacion.FormaAplicacion;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Transient;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class CondicionPrioritaria  {
 	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Transient
 	protected Indicador indicador;
+	
+	@Transient
 	protected CondicionPrioritaria condicionDesempate;
+	
+	@Transient
 	protected FormaAplicacion formaAplicacion;
+	
+	public CondicionPrioritaria() {}
 	
 	public List<Empresa> ordenar(List<Empresa> empresas) {
 		return empresas.stream().sorted((empresa1, empresa2) -> this.realizarComparacion(empresa1, empresa2)).collect(Collectors.toList());

@@ -5,11 +5,28 @@ import model.condiciones.taxativas.CondicionTaxativa;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Metodologia {
 	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	private String nombre;
+	
+	@OneToOne
 	private CondicionPrioritaria condicionPrioritaria;
+	
+	@OneToOne
 	private CondicionTaxativa condicionTaxativa;
+	
+	public Metodologia() {}
 	
 	public Metodologia(String nombre, CondicionPrioritaria condicionPrioritaria, CondicionTaxativa condicionTaxativa) {
 		this.nombre = nombre;
