@@ -3,6 +3,9 @@ package model.condiciones.taxativas;
 import model.Indicador;
 import model.formas.de.aplicacion.FormaAplicacion;
 
+import javax.persistence.Entity;
+
+@Entity
 public class CondicionMayorTaxativa extends CondicionTaxativa {
 	
 	public CondicionMayorTaxativa(Indicador indicador, FormaAplicacion formaAplicacion,

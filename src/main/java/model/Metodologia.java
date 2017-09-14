@@ -3,13 +3,27 @@ package model;
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Metodologia {
-	
+
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	@Column(length = 50)
 	private String nombre;
+
+	@OneToOne
 	private CondicionPrioritaria condicionPrioritaria;
+
+	@OneToOne
 	private CondicionTaxativa condicionTaxativa;
+
+
+
 	
 	public Metodologia(String nombre, CondicionPrioritaria condicionPrioritaria, CondicionTaxativa condicionTaxativa) {
 		this.nombre = nombre;

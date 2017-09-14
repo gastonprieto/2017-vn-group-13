@@ -1,5 +1,7 @@
 package viewmodel;
 
+import utils.*;
+
 import utils.File.ImportadorDeDatos;
 
 public class MenuViewModel {
@@ -11,6 +13,8 @@ public class MenuViewModel {
 			importador.importarIndicadores(System.getProperty("user.dir") + "/src/test/assets/Indicadores.csv");
 			importador.importarDeMetodologiasConCondiciones(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv");
 
+			PersistenciaDB persistidor = new PersistenciaDB();
+			persistidor.persistirMetodologiaYCondiciones();
 		}
 	}
 }

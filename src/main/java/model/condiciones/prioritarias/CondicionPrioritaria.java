@@ -5,13 +5,25 @@ import model.Indicador;
 import model.Periodo;
 import model.formas.de.aplicacion.FormaAplicacion;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Entity
 public abstract class CondicionPrioritaria  {
-	
+
+	@Id
+	@GeneratedValue
+	private Long id;
+
+
+	@Transient
 	protected Indicador indicador;
+	@Transient
 	protected CondicionPrioritaria condicionDesempate;
+	@Transient
 	protected FormaAplicacion formaAplicacion;
 	
 	public List<Empresa> ordenar(List<Empresa> empresas) {
