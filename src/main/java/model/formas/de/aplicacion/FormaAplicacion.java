@@ -4,8 +4,7 @@ import model.Empresa;
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 
-import javax.persistence.Entity;
-
+import javax.persistence.*;
 
 public interface FormaAplicacion {
 	int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2);

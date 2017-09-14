@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class CondicionTaxativa  {
@@ -18,18 +19,15 @@ public abstract class CondicionTaxativa  {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne()
-	@JoinColumn(name = "id_metodologia")
-	private Metodologia id_metodologia;
-
-
-	@Transient
+	@ManyToOne
 	protected Indicador indicador;
 
-	@OneToOne
+	@Transient
 	protected CondicionTaxativa siguienteCondicion;
+
 	@Transient
 	protected FormaAplicacion formaAplicacion;
+	
 	protected double valorReferencia;
 
 	public CondicionTaxativa(){}
@@ -52,5 +50,13 @@ public abstract class CondicionTaxativa  {
 
 	public void reiniciar() {
 		// Se sobreescribe en creciente y decreciente
+	}
+	
+	public CondicionTaxativa getSiguienteCondicion() {
+		return siguienteCondicion;
+	}
+
+	public void setSiguienteCondicion(CondicionTaxativa siguienteCondicion) {
+		this.siguienteCondicion = siguienteCondicion;
 	}
 }

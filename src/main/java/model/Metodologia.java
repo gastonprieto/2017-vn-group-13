@@ -3,8 +3,11 @@ package model;
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 
+
 import javax.persistence.*;
+
 import java.util.List;
+
 
 @Entity
 public class Metodologia {
@@ -16,14 +19,14 @@ public class Metodologia {
 	@Column(length = 50)
 	private String nombre;
 
-	@OneToOne
+	@Transient
 	private CondicionPrioritaria condicionPrioritaria;
 
-	@OneToOne
+	@Transient
 	private CondicionTaxativa condicionTaxativa;
 
-
-
+	
+	public Metodologia() {}
 	
 	public Metodologia(String nombre, CondicionPrioritaria condicionPrioritaria, CondicionTaxativa condicionTaxativa) {
 		this.nombre = nombre;

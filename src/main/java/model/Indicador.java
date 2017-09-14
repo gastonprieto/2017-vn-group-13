@@ -7,14 +7,28 @@ import Repositorio.RepositorioDeIndicadores;
 import exception.EmpresaException;
 import exception.IndicadorException;
 import org.uqbar.commons.utils.Observable;
+import sun.security.util.Length;
 
+import javax.persistence.*;
 
+@Entity
 @Observable
 public class Indicador {
 
+	@Id
+	@GeneratedValue
+	private long id;
+
+	@Column(length = 50)
 	public String nombre;
+
+	@Transient
 	private Operando operacion;
+
+	@Transient
 	private Empresa empresaTarget;
+
+	@Transient
 	private Periodo periodoTarget;
 
 	public Indicador(String nombre) {

@@ -21,9 +21,6 @@ import viewmodel.CreadorMetodologiasViewModel;
 
 import java.awt.*;
 
-/**
- * Created by rapap on 09/09/2017.
- */
 public class CreadorMetodologiasView extends SimpleWindow<CreadorMetodologiasViewModel> {
 
     private static final long serialVersionUID = 1L;
