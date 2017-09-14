@@ -11,7 +11,7 @@ import utils.Converts.GeneradorDePeriodos;
 import javax.persistence.*;
 
 @Embeddable
-public class AplicacionPorSumatoria implements FormaAplicacion {
+public class AplicacionPorSumatoria extends FormaAplicacion {
 
 
 

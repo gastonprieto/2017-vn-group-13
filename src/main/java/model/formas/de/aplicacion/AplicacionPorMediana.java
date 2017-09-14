@@ -13,7 +13,7 @@ import utils.Converts.GeneradorDePeriodos;
 import javax.persistence.*;
 
 @Embeddable
-public class AplicacionPorMediana implements FormaAplicacion {
+public class AplicacionPorMediana extends FormaAplicacion {
 
 
 	private int cantPeriodos;
