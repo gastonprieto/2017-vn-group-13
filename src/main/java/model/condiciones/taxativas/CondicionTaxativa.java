@@ -12,6 +12,7 @@ public abstract class CondicionTaxativa  {
 	
 	protected Indicador indicador;
 	protected CondicionTaxativa siguienteCondicion;
+
 	protected FormaAplicacion formaAplicacion;
 	protected double valorReferencia;
 	
@@ -32,5 +33,13 @@ public abstract class CondicionTaxativa  {
 
 	public void reiniciar() {
 		// Se sobreescribe en creciente y decreciente
+	}
+	
+	public CondicionTaxativa getSiguienteCondicion() {
+		return siguienteCondicion;
+	}
+
+	public void setSiguienteCondicion(CondicionTaxativa siguienteCondicion) {
+		this.siguienteCondicion = siguienteCondicion;
 	}
 }

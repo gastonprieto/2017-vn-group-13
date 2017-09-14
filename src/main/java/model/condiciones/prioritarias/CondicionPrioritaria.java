@@ -12,6 +12,7 @@ public abstract class CondicionPrioritaria  {
 	
 	protected Indicador indicador;
 	protected CondicionPrioritaria condicionDesempate;
+
 	protected FormaAplicacion formaAplicacion;
 	
 	public List<Empresa> ordenar(List<Empresa> empresas) {
@@ -31,4 +32,12 @@ public abstract class CondicionPrioritaria  {
 	}
 	
 	public abstract int comparar(double resultadoEmpresa1, double resultadoEmpresa2);
+	
+	public void setCondicionDesempate(CondicionPrioritaria condicionDesempate) {
+		this.condicionDesempate = condicionDesempate;
+	}
+	
+	public CondicionPrioritaria getCondicionDesempate() {
+		return condicionDesempate;
+	}
 }
