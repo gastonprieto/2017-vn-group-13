@@ -14,9 +14,6 @@ import javax.persistence.*;
 @Embeddable
 public class AplicacionPorConsistencia implements FormaAplicacion {
 
-
-
-
 	private int cantPeriodos;
 	
 	public AplicacionPorConsistencia(int cantPeriodos) {

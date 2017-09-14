@@ -1,10 +1,12 @@
 package model;
 
 
+import javax.persistence.Embeddable;
 import java.util.Date;
 
 import java.time.format.DateTimeFormatter;
 
+@Embeddable
 public class Periodo {
 	private Integer year;
 	private Integer semester;
