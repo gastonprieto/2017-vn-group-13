@@ -19,10 +19,13 @@ public class Metodologia {
 	@Column(length = 50)
 	private String nombre;
 
-	@Transient
+	@OneToOne
+	@JoinColumn(name = "id_primer_condicion_prioritaria")
 	private CondicionPrioritaria condicionPrioritaria;
 
-	@Transient
+
+	@OneToOne
+	@JoinColumn(name = "id_primer_condicion_taxativa")
 	private CondicionTaxativa condicionTaxativa;
 
 	

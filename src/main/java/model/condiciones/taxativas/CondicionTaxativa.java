@@ -5,6 +5,7 @@ import model.formas.de.aplicacion.FormaAplicacion;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,9 +26,10 @@ public abstract class CondicionTaxativa  {
 	@Transient
 	protected CondicionTaxativa siguienteCondicion;
 
-	@Transient
+	@Embedded
 	protected FormaAplicacion formaAplicacion;
-	
+
+	@Column
 	protected double valorReferencia;
 
 	public CondicionTaxativa(){}

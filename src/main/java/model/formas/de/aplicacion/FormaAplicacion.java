@@ -6,6 +6,7 @@ import model.condiciones.taxativas.CondicionTaxativa;
 
 import javax.persistence.*;
 
+@Embeddable()
 public interface FormaAplicacion {
 	int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2);
 	boolean aplicarFiltro(CondicionTaxativa condicionTaxativa, Empresa empresa);
