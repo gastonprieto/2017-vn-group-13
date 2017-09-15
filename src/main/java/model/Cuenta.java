@@ -2,10 +2,20 @@ package model;
 
 import org.uqbar.commons.utils.Observable;
 
+import javax.persistence.*;
+
+@Entity
 @Observable
 public class Cuenta {
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	@Column(length = 50)
 	private String name;
+	@Column(length = 50)
 	private Double value;
+	@Embedded
 	private Periodo periodo;
 	
 	public Cuenta(){

@@ -10,8 +10,12 @@ import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 import utils.Converts.GeneradorDePeriodos;
 
-public class AplicacionPorMediana implements FormaAplicacion {
-	
+import javax.persistence.*;
+
+@Embeddable
+public class AplicacionPorMediana extends FormaAplicacion {
+
+
 	private int cantPeriodos;
 	
 	public AplicacionPorMediana(int cantPeriodos) {

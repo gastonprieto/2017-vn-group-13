@@ -3,6 +3,9 @@ package model.condiciones.prioritarias;
 import model.Indicador;
 import model.formas.de.aplicacion.FormaAplicacion;
 
+import javax.persistence.Entity;
+
+@Entity
 public class CondicionMayorPrioritaria extends CondicionPrioritaria {
 	
 	public CondicionMayorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion, CondicionPrioritaria condicionDesempate) {

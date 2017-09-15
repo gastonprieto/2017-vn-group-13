@@ -2,18 +2,16 @@ package model.condiciones.prioritarias;
 
 import model.Empresa;
 import model.Indicador;
+import model.Metodologia;
 import model.Periodo;
+import model.formas.de.aplicacion.AplicacionPorConsistencia;
 import model.formas.de.aplicacion.FormaAplicacion;
 
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Transient;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -22,16 +20,17 @@ public abstract class CondicionPrioritaria  {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@Transient
+
+	@ManyToOne
 	protected Indicador indicador;
-	
+
 	@Transient
 	protected CondicionPrioritaria condicionDesempate;
 
-	@Transient
+	@Embedded
 	protected FormaAplicacion formaAplicacion;
-	
+
+
 	public CondicionPrioritaria() {}
 	
 	public List<Empresa> ordenar(List<Empresa> empresas) {

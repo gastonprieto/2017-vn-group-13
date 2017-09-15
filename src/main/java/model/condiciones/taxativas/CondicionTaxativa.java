@@ -1,41 +1,40 @@
 package model.condiciones.taxativas;
 
+import model.Metodologia;
 import model.formas.de.aplicacion.FormaAplicacion;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Transient;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class CondicionTaxativa  {
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@Transient
+
+	@ManyToOne
 	protected Indicador indicador;
-	
+
 	@Transient
 	protected CondicionTaxativa siguienteCondicion;
 
-	@Transient
+	@Embedded
 	protected FormaAplicacion formaAplicacion;
-	
+
+	@Column
 	protected double valorReferencia;
-	
-	public CondicionTaxativa() {}
-	
+
+	public CondicionTaxativa(){}
+
+
 	public List<Empresa> filtrar(List<Empresa> empresas) {
 		List<Empresa> empresasSeleccionadas = empresas.stream().filter((empresa) -> this.formaAplicacion.aplicarFiltro(this, empresa))
 				.collect(Collectors.toList());

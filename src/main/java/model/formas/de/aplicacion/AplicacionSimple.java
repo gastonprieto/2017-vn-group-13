@@ -6,7 +6,12 @@ import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 import utils.Converts.GeneradorDePeriodos;
 
-public class AplicacionSimple implements FormaAplicacion {
+import javax.persistence.*;
+
+@Embeddable
+public class AplicacionSimple extends FormaAplicacion {
+
+
 
 	@Override
 	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2) {

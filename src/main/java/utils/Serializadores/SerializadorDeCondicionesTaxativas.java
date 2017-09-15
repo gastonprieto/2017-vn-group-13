@@ -23,13 +23,13 @@ public class  SerializadorDeCondicionesTaxativas {
     }
 
     private boolean sumar(CondicionTaxativa condicionRemovida, boolean UltimoElemento){
-//        contenido += (condicionRemovida.getClassClean() + "," +
-//                      condicionRemovida.getName() + "," +
-//                      condicionRemovida.getCalculo().getIndicador().getNombre() + "," +
-//                      condicionRemovida.getClassClean() + "," +
-//                      condicionRemovida.getCantidadDePeriodos() + "," +
-//                      condicionRemovida.getValorDeReferencia().toString() +
-//                      (!UltimoElemento ? "&" : "" ) );
+     /*   contenido += (condicionRemovida.getClassClean() + "," +
+                      condicionRemovida.getName() + "," +
+                      condicionRemovida.getCalculo().getIndicador().getNombre() + "," +
+                      condicionRemovida.getClassClean() + "," +
+                      condicionRemovida.getCantidadDePeriodos() + "," +
+                      condicionRemovida.getValorDeReferencia().toString() +
+                      (!UltimoElemento ? "&" : "" ) );*/
         return true;
 
     }

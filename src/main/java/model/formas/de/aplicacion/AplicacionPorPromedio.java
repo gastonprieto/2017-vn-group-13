@@ -8,8 +8,11 @@ import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 import utils.Converts.GeneradorDePeriodos;
 
-public class AplicacionPorPromedio implements FormaAplicacion {
-	
+import javax.persistence.*;
+
+@Embeddable
+public class AplicacionPorPromedio extends FormaAplicacion {
+
 	private int cantPeriodos;
 	
 	public AplicacionPorPromedio(int cantPeriodos) {

@@ -3,6 +3,9 @@ package model.condiciones.taxativas;
 import model.Indicador;
 import model.formas.de.aplicacion.AplicacionPorConsistencia;
 
+import javax.persistence.Entity;
+
+@Entity
 public class CondicionCrecienteTaxativa extends CondicionTaxativa {
 
 	private boolean esComparacionInicial = true;

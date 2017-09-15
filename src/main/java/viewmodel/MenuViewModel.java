@@ -1,6 +1,8 @@
 package viewmodel;
 
+
 import utils.DB.PersistenciaDB;
+
 import utils.File.ImportadorDeDatos;
 
 public class MenuViewModel {
@@ -15,6 +17,8 @@ public class MenuViewModel {
 			PersistenciaDB persistencia = new PersistenciaDB();
 			persistencia.persistirMetodologiaYCondiciones();
 
+			PersistenciaDB persistidor = new PersistenciaDB();
+			persistidor.persistirMetodologiaYCondiciones();
 		}
 	}
 }
