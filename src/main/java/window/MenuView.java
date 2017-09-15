@@ -63,7 +63,7 @@ public class MenuView extends SimpleWindow<MenuViewModel> {
 
 
 	public void abrirCreadorDeMetodologias() {
-		CreadorMetodologiasView creadorView = new CreadorMetodologiasView(this.parent);
+		CrearMetodologiaView creadorView = new CrearMetodologiaView(this.parent);
 		this.close();
 		creadorView.open();
 	}

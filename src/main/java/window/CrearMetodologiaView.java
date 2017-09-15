@@ -9,6 +9,8 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+import Repositorio.RepositorioDeIndicadores;
+import model.Indicador;
 import viewmodel.CrearMetodologiaViewModel;
 
 public class CrearMetodologiaView extends SimpleWindow<CrearMetodologiaViewModel> {
@@ -17,6 +19,7 @@ public class CrearMetodologiaView extends SimpleWindow<CrearMetodologiaViewModel
 
 	public CrearMetodologiaView(WindowOwner parent) {
 		super(parent, new CrearMetodologiaViewModel());
+		RepositorioDeIndicadores.getInstance().registrarIndicador(new Indicador("Indicador 1"));
 	}
 	
 	@Override
@@ -56,8 +59,12 @@ public class CrearMetodologiaView extends SimpleWindow<CrearMetodologiaViewModel
 	}
 	
 	private void abrirCrearCondicionView() {
-		CrearCondicionView crearCondicionView = new CrearCondicionView(this.getOwner(), this.getModelObject().getBuilder());
-		this.close();
-		crearCondicionView.open();
+		try {
+			CrearCondicionView crearCondicionView = new CrearCondicionView(this.getOwner(), this.getModelObject().getBuilder());
+			this.close();
+			crearCondicionView.open();
+		} catch(RuntimeException e) {
+			showError(e.getMessage());
+		}
 	}
 }

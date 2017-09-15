@@ -24,16 +24,17 @@ public class ConvertToCondicionPrioridad {
 
 
     public CondicionPrioritaria Convertit() {
-        Indicador indicador  = RepositorioDeIndicadores.getInstance().buscarIndicador(this.indicador);
-        int CantidadDePeriodosParseada = Integer.parseInt(this.cantidadDePeriodos);
-        if (this.tipoCondicionPrioridad.equals("Creciente")){
-            return new CondicionCreciente(name, indicador, CantidadDePeriodosParseada);
-        }else if (this.tipoCondicionPrioridad.equals("Decreciente")) {
-            return new CondicionDecreciente(name, indicador, CantidadDePeriodosParseada);
-        }else if (this.tipoCondicionPrioridad.equals("Maximizar")) {
-            return new CondicionMaximizar(name, indicador, CantidadDePeriodosParseada);
-        }else{
-            throw new FabricaException("El Tipo de condiciones no corresponde a una Condicion de Prioridad, su valor es :" + this.tipoCondicionPrioridad);
-        }
+//        Indicador indicador  = RepositorioDeIndicadores.getInstance().buscarIndicador(this.indicador);
+//        int CantidadDePeriodosParseada = Integer.parseInt(this.cantidadDePeriodos);
+//        if (this.tipoCondicionPrioridad.equals("Creciente")){
+//            return new CondicionCreciente(name, indicador, CantidadDePeriodosParseada);
+//        }else if (this.tipoCondicionPrioridad.equals("Decreciente")) {
+//            return new CondicionDecreciente(name, indicador, CantidadDePeriodosParseada);
+//        }else if (this.tipoCondicionPrioridad.equals("Maximizar")) {
+//            return new CondicionMaximizar(name, indicador, CantidadDePeriodosParseada);
+//        }else{
+//            throw new FabricaException("El Tipo de condiciones no corresponde a una Condicion de Prioridad, su valor es :" + this.tipoCondicionPrioridad);
+//        }
+    	return null;
     }
 }

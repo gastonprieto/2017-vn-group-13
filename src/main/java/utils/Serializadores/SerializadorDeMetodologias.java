@@ -19,8 +19,9 @@ public class SerializadorDeMetodologias {
     }
 
     public String  SerializarMe(){
-        SerializadorDeCondicionesTaxativas SerializadorT = new SerializadorDeCondicionesTaxativas(this.metodologia.getCondicionesTaxativas());
-        SerializadorDeCondicionesDePrioridad SerializadorP = new SerializadorDeCondicionesDePrioridad(this.metodologia.getCondicionesPrioridad());
-        return  this.metodologia.getNombre() + "/" + SerializadorT.Serializar() + "/" + SerializadorP.Serializar();
+//        SerializadorDeCondicionesTaxativas SerializadorT = new SerializadorDeCondicionesTaxativas(this.metodologia.getCondicionesTaxativas());
+//        SerializadorDeCondicionesDePrioridad SerializadorP = new SerializadorDeCondicionesDePrioridad(this.metodologia.getCondicionesPrioridad());
+//        return  this.metodologia.getNombre() + "/" + SerializadorT.Serializar() + "/" + SerializadorP.Serializar();
+    	return "a";
     }
 }

@@ -12,7 +12,7 @@ import org.uqbar.commons.utils.Observable;
 @Observable
 public class Indicador {
 
-	public String nombre;
+	private String nombre;
 	private Operando operacion;
 	private Empresa empresaTarget;
 	private Periodo periodoTarget;

@@ -13,6 +13,13 @@ public class CondicionMenorTaxativa extends CondicionTaxativa {
 		this.valorReferencia = valorReferencia;
 	}
 
+	public CondicionMenorTaxativa(Indicador indicador, FormaAplicacion formaAplicacion,
+			double valorReferencia) {
+		this.indicador = indicador;
+		this.formaAplicacion = formaAplicacion;
+		this.valorReferencia = valorReferencia;
+	}
+
 	@Override
 	public boolean comparar(double resultado) {
 		return resultado < this.valorReferencia;

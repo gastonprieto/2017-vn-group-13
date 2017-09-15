@@ -13,6 +13,11 @@ public class CondicionCrecienteTaxativa extends CondicionTaxativa {
 		this.siguienteCondicion = siguienteCondicion;
 	}
 	
+	public CondicionCrecienteTaxativa(Indicador indicadorSeleccionado, int cantPeriodos) {
+		this.indicador = indicadorSeleccionado;
+		this.formaAplicacion = new AplicacionPorConsistencia(cantPeriodos);
+	}
+
 	@Override
 	public boolean comparar(double resultado) {
 		if(this.esComparacionInicial) {

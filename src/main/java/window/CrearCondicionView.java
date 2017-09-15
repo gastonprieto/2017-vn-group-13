@@ -1,14 +1,17 @@
 package window;
 
+import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+import model.Indicador;
 import model.builders.MetodologiaBuilder;
 import viewmodel.CrearCondicionViewModel;
 
@@ -18,6 +21,7 @@ public class CrearCondicionView extends SimpleWindow<CrearCondicionViewModel>{
 
 	public CrearCondicionView(WindowOwner parent, MetodologiaBuilder builder) {
 		super(parent, new CrearCondicionViewModel());
+		this.getModelObject().setBuilder(builder);
 	}
 	
 	@Override
@@ -26,10 +30,15 @@ public class CrearCondicionView extends SimpleWindow<CrearCondicionViewModel>{
 		mainPanel.setLayout(new VerticalLayout());
 		
 		// Selector de tipo de condicion
-		Panel topRow = new Panel(mainPanel).setLayout(new HorizontalLayout());
+		Panel firstRow = new Panel(mainPanel).setLayout(new HorizontalLayout());
 
-		Label labelCondicion = new Label(topRow).setText("Condicion: ");
+		Label labelCondicion = new Label(firstRow).setText("Condicion: ");
 		labelCondicion.setWidth(120);
+		
+		Selector<String> selectorCondicion = new Selector<>(firstRow);
+		selectorCondicion.bindItemsToProperty("tiposDeCondicion");
+		selectorCondicion.bindValueToProperty("tipoDeCondicionSeleccionada");
+		selectorCondicion.setWidth(170);
 		
 		// Selector de indicador
 		Panel secondRow = new Panel(mainPanel).setLayout(new HorizontalLayout());
@@ -37,21 +46,41 @@ public class CrearCondicionView extends SimpleWindow<CrearCondicionViewModel>{
 		Label labelIndicador = new Label(secondRow).setText("Indicador: ");
 		labelIndicador.setWidth(120);
 		
+		Selector<Indicador> selectorIndicador = new Selector<>(secondRow);
+		selectorIndicador.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
+		selectorIndicador.bindValueToProperty("indicadorSeleccionado");
+		selectorIndicador.setWidth(170);
+		
 		// Selector de forma de aplicacion
 		Panel thirdRow = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		
 		Label labelFormaAplicacion = new Label(thirdRow).setText("Forma de aplicacion: ");
 		labelFormaAplicacion.setWidth(120);
-
-		// Selector de cantidad de periodos
-		Panel bottomRow = new Panel(mainPanel).setLayout(new HorizontalLayout());
 		
-		Label labelPeriodos = new Label(bottomRow).setText("Periodos: ");
+		Selector<String> selectorFormaAplicacion = new Selector<>(thirdRow);
+		selectorFormaAplicacion.bindItemsToProperty("formasDeAplicacion");
+		selectorFormaAplicacion.bindValueToProperty("formaDeAplicacionSeleccionada");
+		selectorFormaAplicacion.setWidth(170);
+
+		// Input de cantidad de periodos
+		Panel fourthRow = new Panel(mainPanel).setLayout(new HorizontalLayout());
+		
+		Label labelPeriodos = new Label(fourthRow).setText("Periodos: ");
 		labelPeriodos.setWidth(120);
 		
-		TextBox inputPeriodos = new TextBox(bottomRow);
+		TextBox inputPeriodos = new TextBox(fourthRow);
 		inputPeriodos.setWidth(185);
 		inputPeriodos.bindValueToProperty("cantPeriodos");
+		
+		// Input de valor de referencia
+		Panel fifthRow = new Panel(mainPanel).setLayout(new HorizontalLayout());
+		
+		Label labelValorReferencia = new Label(fifthRow).setText("Valor de referencia: ");
+		labelValorReferencia.setWidth(120);
+		
+		TextBox inputValorReferencia = new TextBox(fifthRow);
+		inputValorReferencia.setWidth(185);
+		inputValorReferencia.bindValueToProperty("valorDeReferencia");
 	}
 
 	@Override
@@ -81,13 +110,21 @@ public class CrearCondicionView extends SimpleWindow<CrearCondicionViewModel>{
 	}
 	
 	private void abrirCrearCondicionView() {
-		CrearCondicionView crearCondicionView = new CrearCondicionView(this.getOwner(), this.getModelObject().getBuilder());
-		this.close();
-		crearCondicionView.open();
+		try {
+			CrearCondicionView crearCondicionView = new CrearCondicionView(this.getOwner(), this.getModelObject().getBuilder());
+			this.close();
+			crearCondicionView.open();
+		} catch(RuntimeException e) {
+			showError(e.getMessage());
+		}
 	}
 	
 	private void finalizarCreacion() {
-		this.getModelObject().crearMetodologia();
-		this.volverAlMenu();
+		try {
+			this.getModelObject().crearMetodologia();
+			this.volverAlMenu();
+		} catch(RuntimeException e) {
+			showError(e.getMessage());
+		}
 	}
 }

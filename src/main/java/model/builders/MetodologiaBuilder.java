@@ -1,5 +1,8 @@
 package model.builders;
 
+import org.apache.commons.lang.StringUtils;
+
+import exception.BuilderException;
 import model.Metodologia;
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
@@ -12,12 +15,16 @@ public class MetodologiaBuilder {
 	private boolean existeCondicionPrioritaria = false;
 	
 	public MetodologiaBuilder(String name) {
+		if(StringUtils.isEmpty(name))
+			throw new BuilderException("Debe ingresar un nombre");
 		this.name = name;
 	}
 	
 	public void agregarCondicionTaxativa(CondicionTaxativa nuevaCondicionTaxativa) {
-		CondicionTaxativa ultimaCondicionTaxativa = this.condicionTaxativa;
-		nuevaCondicionTaxativa.setSiguienteCondicion(ultimaCondicionTaxativa);
+		if(condicionTaxativa != null) {
+			CondicionTaxativa ultimaCondicionTaxativa = this.condicionTaxativa;
+			nuevaCondicionTaxativa.setSiguienteCondicion(ultimaCondicionTaxativa);
+		}
 		this.condicionTaxativa = nuevaCondicionTaxativa;
 	}
 	
