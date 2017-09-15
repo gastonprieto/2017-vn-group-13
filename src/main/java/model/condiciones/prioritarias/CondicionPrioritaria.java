@@ -4,12 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 import model.Empresa;
 import model.Indicador;
@@ -48,7 +43,11 @@ public abstract class CondicionPrioritaria  {
 	}
 	
 	public double aplicarIndicador(Empresa empresa, Periodo periodo) {
-		return this.indicador.aplicar(empresa, periodo);
+		try {
+			return this.indicador.aplicar(empresa, periodo);
+		}catch (Exception e){
+			return 0.0;
+		}
 	}
 	
 	public abstract int comparar(double resultadoEmpresa1, double resultadoEmpresa2);
