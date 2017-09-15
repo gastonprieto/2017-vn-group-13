@@ -54,7 +54,9 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
 	}
 
 	// TODO este try-catch es feisimo, hay que hacer que se pueda aplicar igual la metodologia pero que no tome
-	// en cuenta a esa empresa o algo asi
+	// en cuenta a esa empresa o algo asi.
+	// RESUELTO, pero por las dudas, por ahora vamos a dejar la excepcion. Al menos hasta estar seguros de contemplamos
+	//las expeciones bien mas abajo.
 	public void aplicarMetodologiaSeleccionada(){
 		try {
 			this.getModelObject().aplicarMetodologiaSeleccionada();
