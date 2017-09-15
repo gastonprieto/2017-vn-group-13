@@ -24,6 +24,11 @@ public class AplicacionSimple extends FormaAplicacion {
 	@Override
 	public boolean aplicarFiltro(CondicionTaxativa condicionTaxativa, Empresa empresa) {
 		Periodo periodo = GeneradorDePeriodos.generarPeriodos(1).iterator().next();
-		return condicionTaxativa.comparar(condicionTaxativa.aplicarIndicador(empresa, periodo));
+		try {
+			return condicionTaxativa.comparar(condicionTaxativa.aplicarIndicador(empresa, periodo));
+		}catch (Exception e){
+			return false;
+		}
+
 	}
 }

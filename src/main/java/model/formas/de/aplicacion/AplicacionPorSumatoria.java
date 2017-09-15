@@ -38,7 +38,11 @@ public class AplicacionPorSumatoria extends FormaAplicacion {
 		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(this.cantPeriodos);
 		double sumatoria = 0;
 		for(Periodo periodo : periodos) {
-			sumatoria += condicionTaxativa.aplicarIndicador(empresa, periodo);
+			try{
+				sumatoria += condicionTaxativa.aplicarIndicador(empresa, periodo);
+			}catch (Exception e){
+				return false;
+			}
 		}
 		return condicionTaxativa.comparar(sumatoria);
 	}

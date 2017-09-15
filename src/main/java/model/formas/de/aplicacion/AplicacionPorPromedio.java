@@ -40,8 +40,12 @@ public class AplicacionPorPromedio extends FormaAplicacion {
 		double sumatoria = 0;
 		for(Periodo periodo : periodos) {
 			contador ++;
-			sumatoria += condicionTaxativa.aplicarIndicador(empresa, periodo);
+			try {
+				sumatoria += condicionTaxativa.aplicarIndicador(empresa, periodo);
+			}catch (Exception e){
+				return false;
+			}
 		}
-		return condicionTaxativa.comparar(sumatoria/ contador);
+		return condicionTaxativa.comparar(sumatoria / contador);
 	}
 }

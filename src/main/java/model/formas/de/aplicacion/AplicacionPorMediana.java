@@ -42,11 +42,15 @@ public class AplicacionPorMediana extends FormaAplicacion {
 	public boolean aplicarFiltro(CondicionTaxativa condicionTaxativa, Empresa empresa) {
 		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(this.cantPeriodos);
 		Collection<Double> resultados = new ArrayList<>();
+		try {
 		periodos.stream().forEach((periodo) -> resultados.add(condicionTaxativa.aplicarIndicador(empresa, periodo)));
 		double mediana = resultados.stream()
 				.sorted((resultado1, resultado2) -> Double.compare(resultado1, resultado2)).collect(Collectors.toList())
 				.get(resultados.size() / 2);
 		return condicionTaxativa.comparar(mediana);
+		}catch (Exception e){
+		return  false;
+		}
 	}
 
 }
