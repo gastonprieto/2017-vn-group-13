@@ -9,6 +9,7 @@ import utils.Converts.GeneradorDePeriodos;
 import javax.persistence.*;
 
 @Embeddable
+@DiscriminatorValue("5")
 public class AplicacionSimple extends FormaAplicacion {
 
 

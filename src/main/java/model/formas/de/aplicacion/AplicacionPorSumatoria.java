@@ -11,10 +11,11 @@ import utils.Converts.GeneradorDePeriodos;
 import javax.persistence.*;
 
 @Embeddable
+@DiscriminatorValue("4")
 public class AplicacionPorSumatoria extends FormaAplicacion {
 
 
-
+	@Column
 	private int cantPeriodos;
 	
 	public AplicacionPorSumatoria(int cantPeriodos) {

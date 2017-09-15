@@ -25,10 +25,10 @@ public abstract class CondicionTaxativa  {
 	@OneToOne(cascade = CascadeType.PERSIST)
 	protected CondicionTaxativa siguienteCondicion;
 
-	@Embedded
+	@Transient
 	protected FormaAplicacion formaAplicacion;
 
-	//@Column
+	@Column
 	protected double valorReferencia;
 
 	public CondicionTaxativa(){}

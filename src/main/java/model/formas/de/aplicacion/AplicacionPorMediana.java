@@ -13,9 +13,10 @@ import utils.Converts.GeneradorDePeriodos;
 import javax.persistence.*;
 
 @Embeddable
+@DiscriminatorValue("2")
 public class AplicacionPorMediana extends FormaAplicacion {
 
-
+	@Column
 	private int cantPeriodos;
 	
 	public AplicacionPorMediana(int cantPeriodos) {
