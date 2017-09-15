@@ -57,4 +57,19 @@ public class PersistenciaDB {
 		entityManager.close();
 	}
 
+	 public void PerisistrMetodologiaDelRepositorio(Metodologia metodologia){
+		 entityManager.getTransaction().begin();
+		 entityManager.persist(metodologia);
+		 entityManager.getTransaction().commit();
+		 entityManager.close();
+	 }
+
+	public void PerisistrIndicadorDelRepositorio(Indicador indicador){
+		entityManager.getTransaction().begin();
+		entityManager.persist(indicador);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+	}
+
+
 }

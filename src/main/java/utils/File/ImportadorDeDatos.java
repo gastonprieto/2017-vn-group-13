@@ -60,7 +60,7 @@ public class ImportadorDeDatos {
 			//		NuevaMetodologia.addCondicionPrioridad(condicion[0], condicion[1], condicion[2], condicion[3]);
 				}
 
-				RepositorioDeMetodologias.getInstance().registrarMetodologia(NuevaMetodologia);
+				//RepositorioDeMetodologias.getInstance().registrarMetodologia(NuevaMetodologia);
 			}
 		}
 	}

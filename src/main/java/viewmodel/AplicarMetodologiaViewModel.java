@@ -25,8 +25,8 @@ public class AplicarMetodologiaViewModel {
 	}
 	
 	public Collection<Metodologia> getMetodologias(){
-		//return RepositorioDeMetodologias.getInstance().getMetodologias();
-		return new ArrayList<Metodologia>();
+		return RepositorioDeMetodologias.getInstance().getMetodologias();
+		//return new ArrayList<Metodologia>();
 	}
 	
 	public Collection<Empresa> getResultadoEmpresasEvaluadas() {

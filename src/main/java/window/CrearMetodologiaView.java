@@ -19,7 +19,7 @@ public class CrearMetodologiaView extends SimpleWindow<CrearMetodologiaViewModel
 
 	public CrearMetodologiaView(WindowOwner parent) {
 		super(parent, new CrearMetodologiaViewModel());
-		RepositorioDeIndicadores.getInstance().registrarIndicador(new Indicador("Indicador 1"));
+		//RepositorioDeIndicadores.getInstance().registrarIndicador(new Indicador("Indicador 1"));
 	}
 	
 	@Override

@@ -2,22 +2,21 @@ package model;
 
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
+import org.uqbar.commons.utils.Observable;
 
 @Entity
+@Observable
 public class Metodologia {
 	
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
+	@Column(length = 50)
 	private String nombre;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
