@@ -26,10 +26,10 @@ public abstract class CondicionPrioritaria  {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	protected Indicador indicador;
 
-	@Transient
+	@OneToOne(cascade = CascadeType.PERSIST)
 	protected CondicionPrioritaria condicionDesempate;
 
 	@Embedded

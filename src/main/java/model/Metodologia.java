@@ -2,11 +2,10 @@ package model;
 
 import java.util.Collection;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import model.condiciones.prioritarias.CondicionPrioritaria;
@@ -14,20 +13,17 @@ import model.condiciones.taxativas.CondicionTaxativa;
 
 @Entity
 public class Metodologia {
-
+	
 	@Id
 	@GeneratedValue
 	private Long id;
-
-	@Column(length = 50)
+	
 	private String nombre;
-
-	@OneToOne
-	@JoinColumn(name = "id_primer_condicion_prioritaria")
+	
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private CondicionPrioritaria condicionPrioritaria;
 
-	@OneToOne
-	@JoinColumn(name = "id_primer_condicion_taxativa")
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private CondicionTaxativa condicionTaxativa;
 
 	public Metodologia() {}
