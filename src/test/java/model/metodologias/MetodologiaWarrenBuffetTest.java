@@ -3,6 +3,7 @@ package model.metodologias;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Before;
@@ -145,16 +146,21 @@ public class MetodologiaWarrenBuffetTest {
 	
 	@Test
 	public void mejorEmpresaSegunLaMetodologiaWarrenBuffetTest() {
-		assertEquals("Empresa 3", metodologiaWarrenBuffet.evaluar(empresas).get(0).getName());
+		assertEquals("Empresa 3", metodologiaWarrenBuffet.evaluar(empresas).iterator().next().getName());
 	}
 	
 	@Test
 	public void segundaEmpresaSegunLaMetodologiaWarrenBuffetTest() {
-		assertEquals("Empresa 4", metodologiaWarrenBuffet.evaluar(empresas).get(1).getName());
+		Iterator<Empresa> iterator = metodologiaWarrenBuffet.evaluar(empresas).iterator();
+		iterator.next();
+		assertEquals("Empresa 4", iterator.next().getName());
 	}
 	
 	@Test
 	public void ultimaEmpresaSegunLaMetodologiaWarrenBuffetTest() {
-		assertEquals("Empresa 2", metodologiaWarrenBuffet.evaluar(empresas).get(2).getName());
+		Iterator<Empresa> iterator = metodologiaWarrenBuffet.evaluar(empresas).iterator();
+		iterator.next();
+		iterator.next();
+		assertEquals("Empresa 2", iterator.next().getName());
 	}
 }

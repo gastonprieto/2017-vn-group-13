@@ -22,7 +22,7 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 		CondicionPrioritaria condicionMenorPrioritaria = new CondicionMenorPrioritaria(indicador, aplicacionSimple, null);
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por el valor de la Cuenta 1", condicionMenorPrioritaria, null);
 		
-		assertEquals("Empresa 1", metodologia.evaluar(empresas).get(0).getName());
+		assertEquals("Empresa 1", metodologia.evaluar(empresas).iterator().next().getName());
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por la sumatoria de la Cuenta 1 en los ultimos 3 periodos",
 				condicionMenorPrioritaria, null);
 		
-		assertEquals("Empresa 1", metodologia.evaluar(empresas).get(0).getName());
+		assertEquals("Empresa 1", metodologia.evaluar(empresas).iterator().next().getName());
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por el promedio de la Cuenta 1 en los ultimos 3 periodos",
 				condicionMenorPrioritaria, null);
 		
-		assertEquals("Empresa 1", metodologia.evaluar(empresas).get(0).getName());
+		assertEquals("Empresa 1", metodologia.evaluar(empresas).iterator().next().getName());
 	}
 	
 	@Test
@@ -52,7 +52,7 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por el promedio de la Cuenta 1 en los ultimos 3 periodos",
 				condicionMenorPrioritaria, null);
 		
-		assertEquals("Empresa 1", metodologia.evaluar(empresas).get(0).getName());
+		assertEquals("Empresa 1", metodologia.evaluar(empresas).iterator().next().getName());
 	}
 	
 	@Test
@@ -62,6 +62,6 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por la consistencia de la Cuenta 1 en los ultimos 3 periodos",
 				condicionMenorPrioritaria, null);
 		
-		assertEquals("Empresa 1", metodologia.evaluar(empresas).get(0).getName());
+		assertEquals("Empresa 1", metodologia.evaluar(empresas).iterator().next().getName());
 	}
 }

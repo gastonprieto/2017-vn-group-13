@@ -1,17 +1,22 @@
 package model.condiciones.prioritarias;
 
-import model.Empresa;
-import model.Indicador;
-import model.Metodologia;
-import model.Periodo;
-import model.formas.de.aplicacion.AplicacionPorConsistencia;
-import model.formas.de.aplicacion.FormaAplicacion;
-
-import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import model.Empresa;
+import model.Indicador;
+import model.Periodo;
+import model.formas.de.aplicacion.FormaAplicacion;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -30,11 +35,10 @@ public abstract class CondicionPrioritaria  {
 	@Embedded
 	protected FormaAplicacion formaAplicacion;
 
-
 	public CondicionPrioritaria() {}
 	
-	public List<Empresa> ordenar(List<Empresa> empresas) {
-		return empresas.stream().sorted((empresa1, empresa2) -> this.realizarComparacion(empresa1, empresa2)).collect(Collectors.toList());
+	public List<Empresa> ordenar(Collection<Empresa> collection) {
+		return collection.stream().sorted((empresa1, empresa2) -> this.realizarComparacion(empresa1, empresa2)).collect(Collectors.toList());
 	}
 	
 	public int realizarComparacion(Empresa empresa1, Empresa empresa2) {

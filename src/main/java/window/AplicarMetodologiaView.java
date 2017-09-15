@@ -1,7 +1,5 @@
 package window;
 
-import model.Empresa;
-import model.Metodologia;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -9,86 +7,65 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MessageBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
-import viewmodel.AplicarMetodologiaViewModel;
-import org.uqbar.arena.widgets.tables.Column;
 
-/**
- * Created by rapap on 27/07/2017.
- */
+import model.Empresa;
+import model.Metodologia;
+import viewmodel.AplicarMetodologiaViewModel;
+
 public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewModel> {
 
-    private static final long serialVersionUID = 1L;
-    private  static AplicarMetodologiaViewModel  creadorVM = new AplicarMetodologiaViewModel();
-    private Button menu;
-    private Button aplicarMetodologia;
-    WindowOwner parent;
+	private static final long serialVersionUID = 1L;
 
-    public AplicarMetodologiaView(WindowOwner parent) {
-        super(parent, creadorVM);
-        this.parent = parent;
-    }
+	public AplicarMetodologiaView(WindowOwner parent) {
+		super(parent, new AplicarMetodologiaViewModel());
+	}
 
-    @Override
-    protected void createFormPanel(Panel mainPanel) {
-        this.setTitle("Aplicar Metodologia");
-        mainPanel.setLayout(new HorizontalLayout());
+	@Override
+	protected void createFormPanel(Panel mainPanel) {
+		this.setTitle("Aplicar Metodologia");
+		mainPanel.setLayout(new VerticalLayout());
+		
+		new Label(mainPanel).setText("Seleccione metodologia: ");
+		Selector<Metodologia> selectorMetodologia = new Selector<>(mainPanel);
+		selectorMetodologia.bindValueToProperty("metodologiaSeleccionada");
+		selectorMetodologia.bindItemsToProperty("metodologias").setAdapter(new PropertyAdapter(Metodologia.class, "nombre"));
 
-        menu = new Button(mainPanel).setCaption("Volver a menu");
+		Table<Empresa> tablaResultado = new Table<>(mainPanel, Empresa.class);
+		tablaResultado.bindItemsToProperty("resultadoEmpresasEvaluadas");
+		new Column<Empresa>(tablaResultado).setTitle("Nombre").setWeight(150).bindContentsToProperty("name");
+	}
 
+	@Override
+	protected void addActions(Panel actionsPanel) {
+		actionsPanel.setLayout(new HorizontalLayout());
+		new Button(actionsPanel).setCaption("Volver a menu").onClick(this::abrirMenu);
+		new Button(actionsPanel).setCaption("Evaluar").onClick(this::aplicarMetodologiaSeleccionada);
+	}
 
+	public void abrirMenu() {
+		MenuView menuView = new MenuView(this.getOwner(), false);
+		this.close();
+		menuView.open();
+	}
 
-        Panel panelMetodologia = new Panel(mainPanel);
-        panelMetodologia.setLayout(new VerticalLayout());
-            new Label(panelMetodologia).setText("Metodologia");
-            Selector<Metodologia> selectorMetodologia = new Selector<>(panelMetodologia);
-            selectorMetodologia.bindItemsToProperty("metodologiaSeleccionada");
-            selectorMetodologia.bindItemsToProperty("metodologias").setAdapter(new PropertyAdapter(Metodologia.class, "nombre"));
+	// TODO este try-catch es feisimo, hay que hacer que se pueda aplicar igual la metodologia pero que no tome
+	// en cuenta a esa empresa o algo asi
+	public void aplicarMetodologiaSeleccionada(){
+		try {
+			this.getModelObject().aplicarMetodologiaSeleccionada();
+		} catch(Exception e) {
+			showErrorMessageBox(e.getMessage());
+		}
+	}
 
-
-        aplicarMetodologia = new Button(panelMetodologia).setCaption("Evaluar");
-
-        Panel panelResultados = new Panel(mainPanel);
-        panelResultados.setLayout(new VerticalLayout());
-            Table<Empresa> tablaResultado = new Table<>(panelResultados, Empresa.class);
-            tablaResultado.bindItemsToProperty("resultadoEmpresasEvaluadas");
-            new Column<Empresa>(tablaResultado).setTitle("Nombre").setWeight(150).bindContentsToProperty("name");
-
-
-
-    }
-
-    @Override
-    protected void addActions(Panel actionsPanel) {
-        menu.onClick(this::abrirMenu);
-        aplicarMetodologia.onClick(this::AplicarMetodologiaSeleccionada);
-        actionsPanel.setLayout(new VerticalLayout());
-    }
-
-    public void abrirMenu() {
-        MenuView menuView = new MenuView(this.parent, false);
-        this.close();
-        menuView.open();
-    }
-
-    public void AplicarMetodologiaSeleccionada(){
-     try{
-        getCreadorVM().aplicarMetodologiaSeleccionada();
-    }catch (NullPointerException e){
-        showErrorMessageBox("Se aplico el indicadr en un periodo en el cual la cuenta no tiene ningun valor");
-    }
-    }
-
-    protected void showErrorMessageBox(String message) {
-        MessageBox messageBox = new MessageBox(this, MessageBox.Type.Error);
-        messageBox.setMessage(message);
-        messageBox.open();
-    }
-
-    public AplicarMetodologiaViewModel getCreadorVM() {
-        return creadorVM;
-    }
+	protected void showErrorMessageBox(String message) {
+		MessageBox messageBox = new MessageBox(this, MessageBox.Type.Error);
+		messageBox.setMessage(message);
+		messageBox.open();
+	}
 }
