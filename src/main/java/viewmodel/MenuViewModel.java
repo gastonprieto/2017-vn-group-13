@@ -1,6 +1,10 @@
 package viewmodel;
 
 
+import java.util.Collection;
+
+import Repositorio.RepositorioDeMetodologias;
+import model.Metodologia;
 import utils.DB.PersistenciaDB;
 
 import utils.File.ImportadorDeDatos;
@@ -16,9 +20,10 @@ public class MenuViewModel {
 			
 			PersistenciaDB persistencia = new PersistenciaDB();
 			persistencia.persistirMetodologiaYCondiciones();
-
-			PersistenciaDB persistidor = new PersistenciaDB();
-			persistidor.persistirMetodologiaYCondiciones();
+			
+			
+			/*Collection<Metodologia> metodologias = RepositorioDeMetodologias.getInstance().getMetodologias();
+			int x = 0;*/
 		}
 	}
 }

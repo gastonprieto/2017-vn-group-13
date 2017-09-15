@@ -20,16 +20,16 @@ public abstract class CondicionTaxativa  {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	protected Indicador indicador;
 
-	@Transient
+	@OneToOne(cascade = CascadeType.PERSIST)
 	protected CondicionTaxativa siguienteCondicion;
 
 	@Embedded
 	protected FormaAplicacion formaAplicacion;
 
-	@Column
+	//@Column
 	protected double valorReferencia;
 
 	public CondicionTaxativa(){}
