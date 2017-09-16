@@ -11,8 +11,6 @@ import javax.xml.bind.annotation.XmlEnum;
 @MappedSuperclass
 public abstract class FormaAplicacion {
 
-
-
 	public abstract int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2);
 	public abstract boolean aplicarFiltro(CondicionTaxativa condicionTaxativa, Empresa empresa);
 }

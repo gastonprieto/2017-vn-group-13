@@ -18,7 +18,8 @@ public class Empresa {
 	@Column(length = 50)
 	private String name;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
+	//Flta join
 	private Collection<Cuenta> cuentas;
 	
 	public Double buscarValorDeCuentaParaPeriodo(String nombre, Periodo periodoTarget) {

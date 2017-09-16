@@ -21,7 +21,7 @@ public class InterpretadorDeIndicadores {
 		if(!calculo.matches("((\\w+)(.\\w+)?[-+*/])*(\\w+)(.\\w+)?") || calculo.contains(nombre)) {
 			throw new IndicadorException("La expresion ingresada para el indicador no es valida");
 		}
-		Indicador indicador = new Indicador(nombre);
+		Indicador indicador = new Indicador(nombre, calculo);
 		indicador.setOperacion(this.generarOperando(indicador, calculo));
 		return indicador;
 	}

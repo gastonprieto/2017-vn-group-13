@@ -25,6 +25,9 @@ public class Indicador {
 	@Transient
 	private Operando operacion;
 
+	@Column
+	private String operacionPersistencia;
+
 	@Transient
 	private Empresa empresaTarget;
 
@@ -39,6 +42,11 @@ public class Indicador {
 		this.empresaTarget = empresa;
 		this.periodoTarget = periodo;
 		return operacion.resultado();
+	}
+
+	public Indicador(String nombre, String OperacionPersistir){
+		this.nombre = nombre;
+		this.operacionPersistencia = OperacionPersistir;
 	}
 	
 	public String getNombre() {
