@@ -12,13 +12,15 @@ public class CondicionDecrecienteTaxativa extends CondicionTaxativa {
 	
 	public CondicionDecrecienteTaxativa(Indicador indicador, CondicionTaxativa siguienteCondicion, int cantPeriodos) {
 		this.indicador = indicador;
-		this.formaAplicacion = new AplicacionPorConsistencia(cantPeriodos);
+		this.formaAplicacion = new AplicacionPorConsistencia();
 		this.siguienteCondicion = siguienteCondicion;
+		this.cantPeriodos = cantPeriodos;
 	}
 	
 	public CondicionDecrecienteTaxativa(Indicador indicadorSeleccionado, int cantPeriodos) {
 		this.indicador = indicadorSeleccionado;
-		this.formaAplicacion = new AplicacionPorConsistencia(cantPeriodos);
+		this.formaAplicacion = new AplicacionPorConsistencia();
+		this.cantPeriodos = cantPeriodos;
 	}
 
 	@Override

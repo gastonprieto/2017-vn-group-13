@@ -62,15 +62,15 @@ public class CrearCondicionViewModel {
 
 	private void crearCondicion() {
 		if(StringUtils.equals(tipoDeCondicionSeleccionada, "Mayor Prioritaria")) {
-			this.builder.agregarCondicionPrioritaria(new CondicionMayorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion()));
+			this.builder.agregarCondicionPrioritaria(new CondicionMayorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion(), cantPeriodos));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Menor Prioritaria")) {
-			this.builder.agregarCondicionPrioritaria(new CondicionMenorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion()));
+			this.builder.agregarCondicionPrioritaria(new CondicionMenorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion(), cantPeriodos));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Mayor Taxativa")) {
 			this.builder.agregarCondicionTaxativa(new CondicionMayorTaxativa(indicadorSeleccionado,
-					this.crearFormaAplicacion(),this.valorDeReferencia));
+					this.crearFormaAplicacion(),this.valorDeReferencia, cantPeriodos));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Menor Taxativa")) {
 			this.builder.agregarCondicionTaxativa(new CondicionMenorTaxativa(indicadorSeleccionado,
-					this.crearFormaAplicacion(),this.valorDeReferencia));
+					this.crearFormaAplicacion(),this.valorDeReferencia, cantPeriodos));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Creciente")) {
 			this.builder.agregarCondicionTaxativa(new CondicionCrecienteTaxativa(indicadorSeleccionado, this.cantPeriodos));
 		} else {
@@ -82,13 +82,13 @@ public class CrearCondicionViewModel {
 		if(StringUtils.equals(formaDeAplicacionSeleccionada, "Simple")) {
 			return new AplicacionSimple();
 		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Sumatoria")) {
-			return new AplicacionPorSumatoria(cantPeriodos);
+			return new AplicacionPorSumatoria();
 		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Promedio")) {
-			return new AplicacionPorPromedio(cantPeriodos);
+			return new AplicacionPorPromedio();
 		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Mediana")) {
-			return new AplicacionPorMediana(cantPeriodos);
+			return new AplicacionPorMediana();
 		} else {
-			return new AplicacionPorConsistencia(cantPeriodos);
+			return new AplicacionPorConsistencia();
 		}
 	}
 

@@ -27,6 +27,9 @@ public abstract class CondicionTaxativa  {
 
 	@Transient
 	protected FormaAplicacion formaAplicacion;
+	
+	@Column
+	protected int cantPeriodos;
 
 	@Column
 	protected double valorReferencia;
@@ -35,7 +38,7 @@ public abstract class CondicionTaxativa  {
 
 	public List<Empresa> filtrar(Collection<Empresa> empresas) {
 			List<Empresa> empresasSeleccionadas = empresas.stream().filter((empresa) ->
-					this.formaAplicacion.aplicarFiltro(this, empresa))
+					this.formaAplicacion.aplicarFiltro(this, empresa, this.cantPeriodos))
 					.collect(Collectors.toList());
 
 		if(siguienteCondicion == null)

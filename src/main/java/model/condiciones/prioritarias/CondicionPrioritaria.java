@@ -27,6 +27,9 @@ public abstract class CondicionPrioritaria  {
 
 	@Embedded
 	protected FormaAplicacion formaAplicacion;
+	
+	@Column
+	protected int cantPeriodos;
 
 	public CondicionPrioritaria() {}
 	
@@ -35,7 +38,7 @@ public abstract class CondicionPrioritaria  {
 	}
 	
 	public int realizarComparacion(Empresa empresa1, Empresa empresa2) {
-		int resultado = this.formaAplicacion.aplicarPrioridad(this, empresa1, empresa2);
+		int resultado = this.formaAplicacion.aplicarPrioridad(this, empresa1, empresa2, this.cantPeriodos);
 		if(resultado == 0 && condicionDesempate != null) {
 			return condicionDesempate.realizarComparacion(empresa1, empresa2);
 		}

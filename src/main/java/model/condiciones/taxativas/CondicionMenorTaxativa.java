@@ -9,18 +9,20 @@ import javax.persistence.Entity;
 public class CondicionMenorTaxativa extends CondicionTaxativa {
 	
 	public CondicionMenorTaxativa(Indicador indicador, FormaAplicacion formaAplicacion,
-			CondicionTaxativa siguienteCondicion, double valorReferencia) {
+			CondicionTaxativa siguienteCondicion, double valorReferencia, int cantPeriodos) {
 		this.indicador = indicador;
 		this.formaAplicacion = formaAplicacion;
 		this.siguienteCondicion = siguienteCondicion;
 		this.valorReferencia = valorReferencia;
+		this.cantPeriodos = cantPeriodos;
 	}
 
 	public CondicionMenorTaxativa(Indicador indicador, FormaAplicacion formaAplicacion,
-			double valorReferencia) {
+			double valorReferencia, int cantPeriodos) {
 		this.indicador = indicador;
 		this.formaAplicacion = formaAplicacion;
 		this.valorReferencia = valorReferencia;
+		this.cantPeriodos = cantPeriodos;
 	}
 
 	@Override

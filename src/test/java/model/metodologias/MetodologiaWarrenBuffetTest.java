@@ -37,11 +37,11 @@ public class MetodologiaWarrenBuffetTest {
 		
 		Indicador nivelDeDeuda = interpretadorDeIndicadores.interpretar("Nivel de deuda", "Cuenta 3");
 		FormaAplicacion aplicacionSimple = new AplicacionSimple();
-		CondicionPrioritaria minimizarNivelDeDeuda = new CondicionMenorPrioritaria(nivelDeDeuda, aplicacionSimple, null);
+		CondicionPrioritaria minimizarNivelDeDeuda = new CondicionMenorPrioritaria(nivelDeDeuda, aplicacionSimple, null, 1);
 		
 		Indicador roe = interpretadorDeIndicadores.interpretar("ROE", "Cuenta 2");
-		FormaAplicacion aplicacionPorConsistencia = new AplicacionPorConsistencia(5);
-		CondicionPrioritaria maximizarROE = new CondicionMayorPrioritaria(roe, aplicacionPorConsistencia, minimizarNivelDeDeuda);
+		FormaAplicacion aplicacionPorConsistencia = new AplicacionPorConsistencia();
+		CondicionPrioritaria maximizarROE = new CondicionMayorPrioritaria(roe, aplicacionPorConsistencia, minimizarNivelDeDeuda, 5);
 		
 		Indicador margenes = interpretadorDeIndicadores.interpretar("Margenes", "Cuenta 1");
 		CondicionTaxativa margenesConsistentementeCrecientes = new CondicionCrecienteTaxativa(margenes, null, 5);

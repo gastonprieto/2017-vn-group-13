@@ -13,18 +13,14 @@ import javax.persistence.*;
 
 @Embeddable
 @DiscriminatorValue("1")
-public class AplicacionPorConsistencia extends FormaAplicacion {
-
-	@Column
-	private int cantPeriodos;
+public class AplicacionPorConsistencia extends FormaAplicacion {	
 	
-	public AplicacionPorConsistencia(int cantPeriodos) {
-		this.cantPeriodos = cantPeriodos;
+	public AplicacionPorConsistencia() {		
 	}
 	
 	@Override
-	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2) {
-		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(this.cantPeriodos);
+	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2, int cantPeriodos) {
+		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(cantPeriodos);
 		Collection<Integer> resultados = new ArrayList<>();
 		try {
 			periodos.stream().forEach((periodo) -> resultados.add(this.aplicarEnUnPeriodo(condicionPrioritaria, empresa1, empresa2, periodo)));
@@ -45,8 +41,8 @@ public class AplicacionPorConsistencia extends FormaAplicacion {
 	}
 
 	@Override
-	public boolean aplicarFiltro(CondicionTaxativa condicionTaxativa, Empresa empresa) {
-		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(this.cantPeriodos);
+	public boolean aplicarFiltro(CondicionTaxativa condicionTaxativa, Empresa empresa, int cantPeriodos) {
+		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(cantPeriodos);
 		Collection<Boolean> resultados = new ArrayList<>();
 		periodos.stream().forEach((periodo) -> resultados.add(condicionTaxativa.comparar(condicionTaxativa.aplicarIndicador(empresa, periodo))));
 		condicionTaxativa.reiniciar();

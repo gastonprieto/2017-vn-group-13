@@ -8,15 +8,17 @@ import javax.persistence.Entity;
 @Entity
 public class CondicionMenorPrioritaria extends CondicionPrioritaria {
 
-	public CondicionMenorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion, CondicionPrioritaria condicionDesempate) {
+	public CondicionMenorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion, CondicionPrioritaria condicionDesempate, int cantPeriodos) {
 		this.indicador = indicador;
 		this.formaAplicacion = formaAplicacion;
 		this.condicionDesempate = condicionDesempate;
+		this.cantPeriodos = cantPeriodos;
 	}
 
-	public CondicionMenorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion) {
+	public CondicionMenorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion, int cantPeriodos) {
 		this.indicador = indicador;
 		this.formaAplicacion = formaAplicacion;
+		this.cantPeriodos = cantPeriodos;
 	}
 
 	@Override

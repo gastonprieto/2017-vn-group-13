@@ -3,20 +3,24 @@ package model.condiciones.prioritarias;
 import model.Indicador;
 import model.formas.de.aplicacion.FormaAplicacion;
 
+import java.util.concurrent.CancellationException;
+
 import javax.persistence.Entity;
 
 @Entity
 public class CondicionMayorPrioritaria extends CondicionPrioritaria {
 	
-	public CondicionMayorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion, CondicionPrioritaria condicionDesempate) {
+	public CondicionMayorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion, CondicionPrioritaria condicionDesempate, int cantPeriodos) {
 		this.indicador = indicador;
 		this.formaAplicacion = formaAplicacion;
 		this.condicionDesempate = condicionDesempate;
+		this.cantPeriodos = cantPeriodos;
 	}
 
-	public CondicionMayorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion) {
+	public CondicionMayorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion, int cantPeriodos) {
 		this.indicador = indicador;
 		this.formaAplicacion = formaAplicacion;
+		this.cantPeriodos = cantPeriodos;
 	}
 
 	@Override
