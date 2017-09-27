@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import exception.IndicadorException;
 import model.Indicador;
+import utils.DB.PersistenciaDB;
 
 public class RepositorioDeIndicadores {
 	private static RepositorioDeIndicadores instance = null;
@@ -25,6 +26,10 @@ public class RepositorioDeIndicadores {
 		if(this.buscarIndicador(indicador.getNombre()) != null) {
 			throw new IndicadorException("El indicador ya existe");
 		}
+		PersistenciaDB persistenciaDB = new PersistenciaDB();
+		persistenciaDB.PerisistrIndicadorDelRepositorio(indicador);
+
+
 		indicadores.add(indicador);
 	}
 	

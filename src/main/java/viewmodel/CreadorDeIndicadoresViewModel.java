@@ -21,6 +21,8 @@ public class CreadorDeIndicadoresViewModel {
 		RepositorioDeIndicadores.getInstance().registrarIndicador(interpretadorDeIndicadores.interpretar(nombre, operacion));
 		manejadorDeArchivos.escribirArchivo(System.getProperty("user.dir") + "/src/test/assets/Indicadores.csv",
 				nombre + "," + operacion);
+
+
 	}
 	
 	public String getOperacion() {

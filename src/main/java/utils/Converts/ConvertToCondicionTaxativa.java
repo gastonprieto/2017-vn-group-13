@@ -1,8 +1,8 @@
 package utils.Converts;
 
 import Repositorio.RepositorioDeIndicadores;
-import model.Condicion.Taxativa.*;
 import model.Indicador;
+import model.condiciones.taxativas.*;
 import exception.FabricaException;
 
 
@@ -29,14 +29,15 @@ public class ConvertToCondicionTaxativa {
 
 
     public CondicionTaxativa Convertit() {
-        ConvertToCalculo convertCalculo = new ConvertToCalculo(this.calculo, this.indicador);
-        if(this.tipoCondicionTaxativa.equals("Mayor")) {
-            return new CondicionMayor(this.name, this.valorDeReferencia, this.cantidadDePeriodos, convertCalculo.Convertir());
-        }
-        if(this.tipoCondicionTaxativa.equals("Menor")){
-            return  new CondicionMenor(this.name, this.valorDeReferencia, this.cantidadDePeriodos, convertCalculo.Convertir());
-        }else{
-            throw new FabricaException("El Tipo de condiciones no corresponde a una Condicion Taxativa, su valor es :" + this.tipoCondicionTaxativa);
-        }
+//        ConvertToCalculo convertCalculo = new ConvertToCalculo(this.calculo, this.indicador);
+//        if(this.tipoCondicionTaxativa.equals("Mayor")) {
+//            return new CondicionMayor(this.name, this.valorDeReferencia, this.cantidadDePeriodos, convertCalculo.Convertir());
+//        }
+//        if(this.tipoCondicionTaxativa.equals("Menor")){
+//            return  new CondicionMenor(this.name, this.valorDeReferencia, this.cantidadDePeriodos, convertCalculo.Convertir());
+//        }else{
+//            throw new FabricaException("El Tipo de condiciones no corresponde a una Condicion Taxativa, su valor es :" + this.tipoCondicionTaxativa);
+//        }
+    	return null;
     }
 }

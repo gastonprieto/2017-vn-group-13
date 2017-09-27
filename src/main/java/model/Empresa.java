@@ -6,9 +6,20 @@ import org.uqbar.commons.utils.Observable;
 
 import exception.EmpresaException;
 
+import javax.persistence.*;
+
+@Entity
 @Observable
 public class Empresa {
+	@Id
+	@GeneratedValue
+	private Long id;
+
+	@Column(length = 50)
 	private String name;
+
+	@OneToMany(cascade = CascadeType.PERSIST)
+	//Flta join
 	private Collection<Cuenta> cuentas;
 	
 	public Double buscarValorDeCuentaParaPeriodo(String nombre, Periodo periodoTarget) {

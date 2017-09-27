@@ -48,19 +48,19 @@ public class ImportadorDeDatos {
 			for(String line : lineasLeidas) { //-->Recorro las lineas leidas del archivo
 
 				Dererializador = new DeserializadorDeMetodologias(line);
-				NuevaMetodologia = new Metodologia(Dererializador.getNombreMetodologia());
+				//NuevaMetodologia = new Metodologia(Dererializador.getNombreMetodologia());
 
 				while (Dererializador.deserializacionCondicionesTaxativasFinalizada()){
 					condicion = Dererializador.obtenerCondicionTaxativa();
-					NuevaMetodologia.addCondicionTaxativa(condicion[0], condicion[1], condicion[2], condicion[3], condicion[4], condicion[5]);
+				//	NuevaMetodologia.addCondicionTaxativa(condicion[0], condicion[1], condicion[2], condicion[3], condicion[4], condicion[5]);
 				}
 
 				while (Dererializador.deserializacionCondicionesDePrioridadFinalizada()){
 					condicion = Dererializador.obtenerCondicionDePrioridad();
-					NuevaMetodologia.addCondicionPrioridad(condicion[0], condicion[1], condicion[2], condicion[3]);
+			//		NuevaMetodologia.addCondicionPrioridad(condicion[0], condicion[1], condicion[2], condicion[3]);
 				}
 
-				RepositorioDeMetodologias.getInstance().registrarMetodologia(NuevaMetodologia);
+				//RepositorioDeMetodologias.getInstance().registrarMetodologia(NuevaMetodologia);
 			}
 		}
 	}

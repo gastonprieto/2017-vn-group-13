@@ -1,6 +1,8 @@
 package Repositorio;
 
 import model.Empresa;
+import utils.DB.PersistenciaDB;
+
 import java.util.Collection;
 
 public class RepositorioDeEmpresas {
@@ -14,6 +16,8 @@ public class RepositorioDeEmpresas {
 	public static RepositorioDeEmpresas getInstance() {
 		if(instance == null) {
 			instance = new RepositorioDeEmpresas();
+			//PersistenciaDB persistencia = new PersistenciaDB();
+			//instance.setEmpresas(persistencia.LeerEmpresasDelRepositorio());
 		}
 		return instance;
 	}
@@ -23,7 +27,14 @@ public class RepositorioDeEmpresas {
 	}
 	
 	public void setEmpresas(Collection<Empresa> empresas) {
+		recorreParaPersistir(empresas);
 		this.empresas = empresas;
+	}
+
+	private void recorreParaPersistir(Collection<Empresa> empresas){
+		PersistenciaDB persistencia = new PersistenciaDB();
+		persistencia.PerisistrEmprasasDelRepositorio(empresas);
+
 	}
 }
 

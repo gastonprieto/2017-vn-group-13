@@ -1,8 +1,8 @@
 package utils.Serializadores;
 
-import model.Condicion.Taxativa.*;
-
 import java.util.Collection;
+
+import model.condiciones.taxativas.*;
 
 /**
  * Created by rapap on 08/09/2017.
@@ -23,13 +23,13 @@ public class  SerializadorDeCondicionesTaxativas {
     }
 
     private boolean sumar(CondicionTaxativa condicionRemovida, boolean UltimoElemento){
-        contenido += (condicionRemovida.getClassClean() + "," +
+     /*   contenido += (condicionRemovida.getClassClean() + "," +
                       condicionRemovida.getName() + "," +
                       condicionRemovida.getCalculo().getIndicador().getNombre() + "," +
                       condicionRemovida.getClassClean() + "," +
                       condicionRemovida.getCantidadDePeriodos() + "," +
                       condicionRemovida.getValorDeReferencia().toString() +
-                      (!UltimoElemento ? "&" : "" ) );
+                      (!UltimoElemento ? "&" : "" ) );*/
         return true;
 
     }

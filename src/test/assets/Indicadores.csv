@@ -1,2 +1,7 @@
 
 ROE,Cuenta 1+20
+A,1
+W,1
+MePersisti,Cuenta 1*2
+MiPersistenciaCalculo,Cuenta 1*2
+DePrueba,Cuenta 1*2

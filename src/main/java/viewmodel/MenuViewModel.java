@@ -1,5 +1,12 @@
 package viewmodel;
 
+
+import java.util.Collection;
+
+import Repositorio.RepositorioDeMetodologias;
+import model.Metodologia;
+import utils.DB.PersistenciaDB;
+
 import utils.File.ImportadorDeDatos;
 
 public class MenuViewModel {
@@ -10,7 +17,13 @@ public class MenuViewModel {
 			importador.importarRepositorioDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
 			importador.importarIndicadores(System.getProperty("user.dir") + "/src/test/assets/Indicadores.csv");
 			importador.importarDeMetodologiasConCondiciones(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv");
-
+			
+			PersistenciaDB persistencia = new PersistenciaDB();
+			persistencia.persistirMetodologiaYCondiciones();
+			
+			
+			/*Collection<Metodologia> metodologias = RepositorioDeMetodologias.getInstance().getMetodologias();
+			int x = 0;*/
 		}
 	}
 }
