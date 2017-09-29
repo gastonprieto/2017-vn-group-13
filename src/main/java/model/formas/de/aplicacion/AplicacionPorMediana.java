@@ -12,8 +12,6 @@ import utils.Converts.GeneradorDePeriodos;
 
 import javax.persistence.*;
 
-
-@DiscriminatorValue("2")
 public class AplicacionPorMediana extends FormaAplicacion {
 	
 	public AplicacionPorMediana() {		

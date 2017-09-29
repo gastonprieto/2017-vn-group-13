@@ -10,8 +10,6 @@ import utils.Converts.GeneradorDePeriodos;
 
 import javax.persistence.*;
 
-@Embeddable
-@DiscriminatorValue("3")
 public class AplicacionPorPromedio extends FormaAplicacion {	
 	
 	public AplicacionPorPromedio() {

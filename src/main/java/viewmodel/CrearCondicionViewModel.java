@@ -18,6 +18,7 @@ import model.condiciones.taxativas.CondicionCrecienteTaxativa;
 import model.condiciones.taxativas.CondicionDecrecienteTaxativa;
 import model.condiciones.taxativas.CondicionMayorTaxativa;
 import model.condiciones.taxativas.CondicionMenorTaxativa;
+import model.formas.de.aplicacion.AplicacionForma;
 import model.formas.de.aplicacion.AplicacionPorConsistencia;
 import model.formas.de.aplicacion.AplicacionPorMediana;
 import model.formas.de.aplicacion.AplicacionPorPromedio;
@@ -62,15 +63,17 @@ public class CrearCondicionViewModel {
 
 	private void crearCondicion() {
 		if(StringUtils.equals(tipoDeCondicionSeleccionada, "Mayor Prioritaria")) {
-			this.builder.agregarCondicionPrioritaria(new CondicionMayorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion(), cantPeriodos));
+			this.builder.agregarCondicionPrioritaria(new CondicionMayorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion(), cantPeriodos,
+					this.crearAplicacionForma()));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Menor Prioritaria")) {
-			this.builder.agregarCondicionPrioritaria(new CondicionMenorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion(), cantPeriodos));
+			this.builder.agregarCondicionPrioritaria(new CondicionMenorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion(), cantPeriodos,
+					this.crearAplicacionForma()));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Mayor Taxativa")) {
-			this.builder.agregarCondicionTaxativa(new CondicionMayorTaxativa(indicadorSeleccionado,
-					this.crearFormaAplicacion(),this.valorDeReferencia, cantPeriodos));
+			this.builder.agregarCondicionTaxativa(new CondicionMayorTaxativa(indicadorSeleccionado,this.crearFormaAplicacion(),
+					this.valorDeReferencia, cantPeriodos, this.crearAplicacionForma()));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Menor Taxativa")) {
 			this.builder.agregarCondicionTaxativa(new CondicionMenorTaxativa(indicadorSeleccionado,
-					this.crearFormaAplicacion(),this.valorDeReferencia, cantPeriodos));
+					this.crearFormaAplicacion(),this.valorDeReferencia, cantPeriodos, this.crearAplicacionForma()));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Creciente")) {
 			this.builder.agregarCondicionTaxativa(new CondicionCrecienteTaxativa(indicadorSeleccionado, this.cantPeriodos));
 		} else {
@@ -89,6 +92,20 @@ public class CrearCondicionViewModel {
 			return new AplicacionPorMediana();
 		} else {
 			return new AplicacionPorConsistencia();
+		}
+	}
+	
+	private AplicacionForma crearAplicacionForma() {
+		if(StringUtils.equals(formaDeAplicacionSeleccionada, "Simple")) {
+			return AplicacionForma.SIMPLE;
+		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Sumatoria")) {
+			return AplicacionForma.PORSUMATORIA;
+		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Promedio")) {
+			return AplicacionForma.PORPROMEDIO;
+		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Mediana")) {
+			return AplicacionForma.PORMEDIANA;
+		} else {
+			return AplicacionForma.PORCONSISTENCIA;
 		}
 	}
 

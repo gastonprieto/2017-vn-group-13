@@ -9,6 +9,7 @@ import javax.persistence.*;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import model.formas.de.aplicacion.AplicacionForma;
 import model.formas.de.aplicacion.FormaAplicacion;
 
 @Entity
@@ -25,13 +26,14 @@ public abstract class CondicionTaxativa  {
 	@OneToOne(cascade = CascadeType.PERSIST)
 	protected CondicionTaxativa siguienteCondicion;
 
+	@Enumerated(EnumType.ORDINAL)
+	protected AplicacionForma aplicacionForma;
+	
 	@Transient
 	protected FormaAplicacion formaAplicacion;
-	
-	@Column
+		
 	protected int cantPeriodos;
-
-	@Column
+	
 	protected double valorReferencia;
 
 	public CondicionTaxativa(){}

@@ -11,8 +11,6 @@ import utils.Converts.GeneradorDePeriodos;
 
 import javax.persistence.*;
 
-@Embeddable
-@DiscriminatorValue("1")
 public class AplicacionPorConsistencia extends FormaAplicacion {	
 	
 	public AplicacionPorConsistencia() {		

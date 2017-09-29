@@ -25,7 +25,7 @@ public class Indicador {
 	@Transient
 	private Operando operacion;
 
-	@Column
+	@Column(length = 100)
 	private String operacionPersistencia;
 
 	@Transient
