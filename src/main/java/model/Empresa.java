@@ -18,7 +18,7 @@ public class Empresa {
 	@Column(length = 50)
 	private String name;
 	
-	@JoinColumn(name = "cuenta_id")
+	@JoinColumn(name = "empresa_id")
 	@OneToMany(cascade = CascadeType.PERSIST)
 	private Collection<Cuenta> cuentas;
 	
