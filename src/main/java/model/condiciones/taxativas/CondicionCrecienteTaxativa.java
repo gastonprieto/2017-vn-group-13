@@ -1,6 +1,7 @@
 package model.condiciones.taxativas;
 
 import model.Indicador;
+import model.formas.de.aplicacion.AplicacionForma;
 import model.formas.de.aplicacion.AplicacionPorConsistencia;
 
 import javax.persistence.Entity;
@@ -15,12 +16,14 @@ public class CondicionCrecienteTaxativa extends CondicionTaxativa {
 		this.formaAplicacion = new AplicacionPorConsistencia();
 		this.siguienteCondicion = siguienteCondicion;
 		this.cantPeriodos = cantPeriodos;
+		this.aplicacionForma = AplicacionForma.PORCONSISTENCIA;
 	}
 	
 	public CondicionCrecienteTaxativa(Indicador indicadorSeleccionado, int cantPeriodos) {
 		this.indicador = indicadorSeleccionado;
 		this.formaAplicacion = new AplicacionPorConsistencia();
 		this.cantPeriodos = cantPeriodos;
+		this.aplicacionForma = AplicacionForma.PORCONSISTENCIA;
 	}
 
 	@Override

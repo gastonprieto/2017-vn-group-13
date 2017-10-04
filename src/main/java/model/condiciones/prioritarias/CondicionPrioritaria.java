@@ -9,6 +9,7 @@ import javax.persistence.*;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import model.formas.de.aplicacion.AplicacionForma;
 import model.formas.de.aplicacion.FormaAplicacion;
 
 @Entity
@@ -25,10 +26,12 @@ public abstract class CondicionPrioritaria  {
 	@OneToOne(cascade = CascadeType.PERSIST)
 	protected CondicionPrioritaria condicionDesempate;
 
-	@Embedded
+	@Enumerated(EnumType.ORDINAL)
+	protected AplicacionForma aplicacionForma;
+	
+	@Transient
 	protected FormaAplicacion formaAplicacion;
 	
-	@Column
 	protected int cantPeriodos;
 
 	public CondicionPrioritaria() {}
@@ -61,5 +64,7 @@ public abstract class CondicionPrioritaria  {
 	
 	public CondicionPrioritaria getCondicionDesempate() {
 		return condicionDesempate;
-	}
+	}	
 }
+
+
