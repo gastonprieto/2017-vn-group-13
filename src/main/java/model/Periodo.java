@@ -1,13 +1,12 @@
 package model;
 
+import java.util.Calendar;
 
 import javax.persistence.Embeddable;
-import java.util.Date;
-
-import java.time.format.DateTimeFormatter;
 
 @Embeddable
 public class Periodo {
+	
 	private Integer year;
 	private Integer semester;
 	
@@ -18,9 +17,7 @@ public class Periodo {
 		this.semester = semester;
 	}
 
-	public Periodo(int CantidadDePeriodos){
-
-	}
+	public Periodo(int CantidadDePeriodos) {}
 	
 	public Integer getYear() {
 		return year;
@@ -40,22 +37,15 @@ public class Periodo {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-
-		if (!Periodo.class.isAssignableFrom(obj.getClass())) {
+		if (!Periodo.class.isAssignableFrom(obj.getClass()))
 			return false;
-		}
-
 		final Periodo periodoAComparar = (Periodo) obj;
-
 		if (!this.year.equals(periodoAComparar.year))
-			return false;	
-		
+			return false;
 		if (!this.semester.equals(periodoAComparar.semester))
-			return false;	
-								
+			return false;
 		return true;
 	}
 
@@ -77,7 +67,6 @@ public class Periodo {
 	}
 
 	public boolean EsYearActual(){
-		Date TiempoActual = new Date();
-		return this.year == TiempoActual.getYear();
+		return this.year == Calendar.getInstance().get(Calendar.YEAR);
 	}
 }

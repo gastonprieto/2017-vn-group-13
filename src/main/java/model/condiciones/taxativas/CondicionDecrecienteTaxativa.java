@@ -1,29 +1,28 @@
 package model.condiciones.taxativas;
 
-import model.Indicador;
-import model.formas.de.aplicacion.AplicacionForma;
-import model.formas.de.aplicacion.AplicacionPorConsistencia;
-
 import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+import model.Indicador;
+import model.formas.de.aplicacion.FormaAplicacionEnum;
 
 @Entity
 public class CondicionDecrecienteTaxativa extends CondicionTaxativa {
 
+	@Transient
 	private boolean esComparacionInicial = true;
 	
 	public CondicionDecrecienteTaxativa(Indicador indicador, CondicionTaxativa siguienteCondicion, int cantPeriodos) {
 		this.indicador = indicador;
-		this.formaAplicacion = new AplicacionPorConsistencia();
+		this.formaAplicacion = FormaAplicacionEnum.AplicacionPorConsistencia;
 		this.siguienteCondicion = siguienteCondicion;
 		this.cantPeriodos = cantPeriodos;
-		this.aplicacionForma = AplicacionForma.PORCONSISTENCIA;
 	}
 	
 	public CondicionDecrecienteTaxativa(Indicador indicadorSeleccionado, int cantPeriodos) {
 		this.indicador = indicadorSeleccionado;
-		this.formaAplicacion = new AplicacionPorConsistencia();
+		this.formaAplicacion = FormaAplicacionEnum.AplicacionPorConsistencia;
 		this.cantPeriodos = cantPeriodos;
-		this.aplicacionForma = AplicacionForma.PORCONSISTENCIA;
 	}
 
 	@Override

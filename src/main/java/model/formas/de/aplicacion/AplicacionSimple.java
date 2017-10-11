@@ -6,11 +6,17 @@ import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 import utils.Converts.GeneradorDePeriodos;
 
-import javax.persistence.*;
-
 public class AplicacionSimple extends FormaAplicacion {
 
-
+	private static AplicacionSimple instance;
+	
+	public static AplicacionSimple getInstance() {
+		if(instance == null)
+			instance = new AplicacionSimple();
+		return instance;
+	}
+	
+	private AplicacionSimple() {}
 
 	@Override
 	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2, int cantPeriodos) {
@@ -28,6 +34,5 @@ public class AplicacionSimple extends FormaAplicacion {
 		}catch (Exception e){
 			return false;
 		}
-
 	}
 }

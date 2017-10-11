@@ -1,28 +1,25 @@
 package model.condiciones.prioritarias;
 
-import model.Indicador;
-import model.formas.de.aplicacion.AplicacionForma;
-import model.formas.de.aplicacion.FormaAplicacion;
-
 import javax.persistence.Entity;
+
+import model.Indicador;
+import model.formas.de.aplicacion.FormaAplicacionEnum;
 
 @Entity
 public class CondicionMenorPrioritaria extends CondicionPrioritaria {
 
-	public CondicionMenorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion, CondicionPrioritaria condicionDesempate, int cantPeriodos,
-			AplicacionForma aplicacionForma) {
+	public CondicionMenorPrioritaria(Indicador indicador, FormaAplicacionEnum formaAplicacion,
+			CondicionPrioritaria condicionDesempate, int cantPeriodos) {
 		this.indicador = indicador;
 		this.formaAplicacion = formaAplicacion;
 		this.condicionDesempate = condicionDesempate;
 		this.cantPeriodos = cantPeriodos;
-		this.aplicacionForma = aplicacionForma;
 	}
 
-	public CondicionMenorPrioritaria(Indicador indicador, FormaAplicacion formaAplicacion, int cantPeriodos, AplicacionForma aplicacionForma) {
+	public CondicionMenorPrioritaria(Indicador indicador, FormaAplicacionEnum formaAplicacion, int cantPeriodos) {
 		this.indicador = indicador;
 		this.formaAplicacion = formaAplicacion;
 		this.cantPeriodos = cantPeriodos;
-		this.aplicacionForma = aplicacionForma;
 	}
 
 	@Override

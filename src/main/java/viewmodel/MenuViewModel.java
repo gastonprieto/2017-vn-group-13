@@ -1,12 +1,6 @@
 package viewmodel;
 
-
-import java.util.Collection;
-
-import Repositorio.RepositorioDeMetodologias;
-import model.Metodologia;
 import utils.DB.PersistenciaDB;
-
 import utils.File.ImportadorDeDatos;
 
 public class MenuViewModel {

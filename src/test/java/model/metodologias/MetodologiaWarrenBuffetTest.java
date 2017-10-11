@@ -19,9 +19,7 @@ import model.condiciones.prioritarias.CondicionMenorPrioritaria;
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionCrecienteTaxativa;
 import model.condiciones.taxativas.CondicionTaxativa;
-import model.formas.de.aplicacion.AplicacionPorConsistencia;
-import model.formas.de.aplicacion.AplicacionSimple;
-import model.formas.de.aplicacion.FormaAplicacion;
+import model.formas.de.aplicacion.FormaAplicacionEnum;
 import utils.File.InterpretadorDeIndicadores;
 
 public class MetodologiaWarrenBuffetTest {
@@ -36,12 +34,12 @@ public class MetodologiaWarrenBuffetTest {
 		InterpretadorDeIndicadores interpretadorDeIndicadores = new InterpretadorDeIndicadores();
 		
 		Indicador nivelDeDeuda = interpretadorDeIndicadores.interpretar("Nivel de deuda", "Cuenta 3");
-		FormaAplicacion aplicacionSimple = new AplicacionSimple();
-		CondicionPrioritaria minimizarNivelDeDeuda = new CondicionMenorPrioritaria(nivelDeDeuda, aplicacionSimple, null, 1);
+		CondicionPrioritaria minimizarNivelDeDeuda =
+				new CondicionMenorPrioritaria(nivelDeDeuda, FormaAplicacionEnum.AplicacionSimple, null, 1);
 		
 		Indicador roe = interpretadorDeIndicadores.interpretar("ROE", "Cuenta 2");
-		FormaAplicacion aplicacionPorConsistencia = new AplicacionPorConsistencia();
-		CondicionPrioritaria maximizarROE = new CondicionMayorPrioritaria(roe, aplicacionPorConsistencia, minimizarNivelDeDeuda, 5);
+		CondicionPrioritaria maximizarROE = 
+				new CondicionMayorPrioritaria(roe, FormaAplicacionEnum.AplicacionPorConsistencia, minimizarNivelDeDeuda, 5);
 		
 		Indicador margenes = interpretadorDeIndicadores.interpretar("Margenes", "Cuenta 1");
 		CondicionTaxativa margenesConsistentementeCrecientes = new CondicionCrecienteTaxativa(margenes, null, 5);

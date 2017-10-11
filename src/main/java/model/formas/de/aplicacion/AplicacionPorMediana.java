@@ -10,12 +10,17 @@ import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 import utils.Converts.GeneradorDePeriodos;
 
-import javax.persistence.*;
-
 public class AplicacionPorMediana extends FormaAplicacion {
 	
-	public AplicacionPorMediana() {		
+	private static AplicacionPorMediana instance;
+	
+	public static AplicacionPorMediana getInstance() {
+		if(instance == null)
+			instance = new AplicacionPorMediana();
+		return instance;
 	}
+	
+	private AplicacionPorMediana() {}
 
 	@Override
 	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2, int cantPeriodos) {
@@ -38,13 +43,13 @@ public class AplicacionPorMediana extends FormaAplicacion {
 		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(cantPeriodos);
 		Collection<Double> resultados = new ArrayList<>();
 		try {
-		periodos.stream().forEach((periodo) -> resultados.add(condicionTaxativa.aplicarIndicador(empresa, periodo)));
-		double mediana = resultados.stream()
+			periodos.stream().forEach((periodo) -> resultados.add(condicionTaxativa.aplicarIndicador(empresa, periodo)));
+			double mediana = resultados.stream()
 				.sorted((resultado1, resultado2) -> Double.compare(resultado1, resultado2)).collect(Collectors.toList())
 				.get(resultados.size() / 2);
-		return condicionTaxativa.comparar(mediana);
-		}catch (Exception e){
-		return  false;
+			return condicionTaxativa.comparar(mediana);
+		} catch(Exception e) {
+			return  false;
 		}
 	}
 

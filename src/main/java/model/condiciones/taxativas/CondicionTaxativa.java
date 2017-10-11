@@ -4,13 +4,22 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
-import model.formas.de.aplicacion.AplicacionForma;
-import model.formas.de.aplicacion.FormaAplicacion;
+import model.formas.de.aplicacion.FormaAplicacionEnum;
+import model.formas.de.aplicacion.FormaAplicacionFactory;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -20,17 +29,14 @@ public abstract class CondicionTaxativa  {
 	@GeneratedValue
 	private Long id;
 
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	protected Indicador indicador;
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	protected CondicionTaxativa siguienteCondicion;
 
-	@Enumerated(EnumType.ORDINAL)
-	protected AplicacionForma aplicacionForma;
-	
-	@Transient
-	protected FormaAplicacion formaAplicacion;
+	@Enumerated(EnumType.STRING)
+	protected FormaAplicacionEnum formaAplicacion;
 		
 	protected int cantPeriodos;
 	
@@ -40,9 +46,8 @@ public abstract class CondicionTaxativa  {
 
 	public List<Empresa> filtrar(Collection<Empresa> empresas) {
 			List<Empresa> empresasSeleccionadas = empresas.stream().filter((empresa) ->
-					this.formaAplicacion.aplicarFiltro(this, empresa, this.cantPeriodos))
-					.collect(Collectors.toList());
-
+					new FormaAplicacionFactory().getFormaAplicacion(this.formaAplicacion)
+					.aplicarFiltro(this, empresa, this.cantPeriodos)).collect(Collectors.toList());
 		if(siguienteCondicion == null)
 			return empresasSeleccionadas;
 		else

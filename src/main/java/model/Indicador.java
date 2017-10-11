@@ -59,13 +59,11 @@ public class Indicador {
 
 	public Double buscarValor(String nombre) {
 		Double valor = null;
-
 		try {
 			valor = this.empresaTarget.buscarValorDeCuentaParaPeriodo(nombre, this.periodoTarget);
 		} catch (EmpresaException e) {
 			throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado ya que " + e.getMessage());
 		}		
-
 		if (valor != null) {
 			return valor;
 		}
@@ -78,7 +76,6 @@ public class Indicador {
 				+ ", en el periodo: " + "A�o = " + this.periodoTarget.getYear() + " Semestre = " + this.periodoTarget.getSemester());
 	}
 
-	
 	public Double aplicar(Empresa empresa, Collection<Periodo> periodos) {
 		return this.aplicar(empresa, periodos.iterator().next());
 	}

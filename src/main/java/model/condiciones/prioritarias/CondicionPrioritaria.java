@@ -4,13 +4,22 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
-import model.formas.de.aplicacion.AplicacionForma;
-import model.formas.de.aplicacion.FormaAplicacion;
+import model.formas.de.aplicacion.FormaAplicacionEnum;
+import model.formas.de.aplicacion.FormaAplicacionFactory;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -20,17 +29,14 @@ public abstract class CondicionPrioritaria  {
 	@GeneratedValue
 	private Long id;
 
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	protected Indicador indicador;
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	protected CondicionPrioritaria condicionDesempate;
 
-	@Enumerated(EnumType.ORDINAL)
-	protected AplicacionForma aplicacionForma;
-	
-	@Transient
-	protected FormaAplicacion formaAplicacion;
+	@Enumerated(EnumType.STRING)
+	protected FormaAplicacionEnum formaAplicacion;
 	
 	protected int cantPeriodos;
 
@@ -41,7 +47,8 @@ public abstract class CondicionPrioritaria  {
 	}
 	
 	public int realizarComparacion(Empresa empresa1, Empresa empresa2) {
-		int resultado = this.formaAplicacion.aplicarPrioridad(this, empresa1, empresa2, this.cantPeriodos);
+		int resultado = new FormaAplicacionFactory().getFormaAplicacion(this.formaAplicacion)
+				.aplicarPrioridad(this, empresa1, empresa2, this.cantPeriodos);
 		if(resultado == 0 && condicionDesempate != null) {
 			return condicionDesempate.realizarComparacion(empresa1, empresa2);
 		}
@@ -51,7 +58,7 @@ public abstract class CondicionPrioritaria  {
 	public double aplicarIndicador(Empresa empresa, Periodo periodo) {
 		try {
 			return this.indicador.aplicar(empresa, periodo);
-		}catch (Exception e){
+		} catch(Exception e) {
 			return 0.0;
 		}
 	}

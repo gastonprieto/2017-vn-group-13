@@ -18,13 +18,7 @@ import model.condiciones.taxativas.CondicionCrecienteTaxativa;
 import model.condiciones.taxativas.CondicionDecrecienteTaxativa;
 import model.condiciones.taxativas.CondicionMayorTaxativa;
 import model.condiciones.taxativas.CondicionMenorTaxativa;
-import model.formas.de.aplicacion.AplicacionForma;
-import model.formas.de.aplicacion.AplicacionPorConsistencia;
-import model.formas.de.aplicacion.AplicacionPorMediana;
-import model.formas.de.aplicacion.AplicacionPorPromedio;
-import model.formas.de.aplicacion.AplicacionPorSumatoria;
-import model.formas.de.aplicacion.AplicacionSimple;
-import model.formas.de.aplicacion.FormaAplicacion;
+import model.formas.de.aplicacion.FormaAplicacionEnum;
 
 @Observable
 public class CrearCondicionViewModel {
@@ -63,17 +57,17 @@ public class CrearCondicionViewModel {
 
 	private void crearCondicion() {
 		if(StringUtils.equals(tipoDeCondicionSeleccionada, "Mayor Prioritaria")) {
-			this.builder.agregarCondicionPrioritaria(new CondicionMayorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion(), cantPeriodos,
-					this.crearAplicacionForma()));
+			this.builder.agregarCondicionPrioritaria(new CondicionMayorPrioritaria(indicadorSeleccionado,
+					this.crearFormaAplicacion(), cantPeriodos));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Menor Prioritaria")) {
-			this.builder.agregarCondicionPrioritaria(new CondicionMenorPrioritaria(indicadorSeleccionado, this.crearFormaAplicacion(), cantPeriodos,
-					this.crearAplicacionForma()));
+			this.builder.agregarCondicionPrioritaria(new CondicionMenorPrioritaria(indicadorSeleccionado,
+					this.crearFormaAplicacion(), cantPeriodos));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Mayor Taxativa")) {
-			this.builder.agregarCondicionTaxativa(new CondicionMayorTaxativa(indicadorSeleccionado,this.crearFormaAplicacion(),
-					this.valorDeReferencia, cantPeriodos, this.crearAplicacionForma()));
+			this.builder.agregarCondicionTaxativa(new CondicionMayorTaxativa(indicadorSeleccionado, this.crearFormaAplicacion(),
+					this.valorDeReferencia, cantPeriodos));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Menor Taxativa")) {
 			this.builder.agregarCondicionTaxativa(new CondicionMenorTaxativa(indicadorSeleccionado,
-					this.crearFormaAplicacion(),this.valorDeReferencia, cantPeriodos, this.crearAplicacionForma()));
+					this.crearFormaAplicacion(),this.valorDeReferencia, cantPeriodos));
 		} else if(StringUtils.equals(tipoDeCondicionSeleccionada, "Creciente")) {
 			this.builder.agregarCondicionTaxativa(new CondicionCrecienteTaxativa(indicadorSeleccionado, this.cantPeriodos));
 		} else {
@@ -81,31 +75,17 @@ public class CrearCondicionViewModel {
 		}
 	}
 
-	private FormaAplicacion crearFormaAplicacion() {
+	private FormaAplicacionEnum crearFormaAplicacion() {
 		if(StringUtils.equals(formaDeAplicacionSeleccionada, "Simple")) {
-			return new AplicacionSimple();
+			return FormaAplicacionEnum.AplicacionSimple;
 		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Sumatoria")) {
-			return new AplicacionPorSumatoria();
+			return FormaAplicacionEnum.AplicacionPorSumatoria;
 		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Promedio")) {
-			return new AplicacionPorPromedio();
+			return FormaAplicacionEnum.AplicacionPorPromedio;
 		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Mediana")) {
-			return new AplicacionPorMediana();
+			return FormaAplicacionEnum.AplicacionPorMediana;
 		} else {
-			return new AplicacionPorConsistencia();
-		}
-	}
-	
-	private AplicacionForma crearAplicacionForma() {
-		if(StringUtils.equals(formaDeAplicacionSeleccionada, "Simple")) {
-			return AplicacionForma.SIMPLE;
-		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Sumatoria")) {
-			return AplicacionForma.PORSUMATORIA;
-		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Promedio")) {
-			return AplicacionForma.PORPROMEDIO;
-		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Mediana")) {
-			return AplicacionForma.PORMEDIANA;
-		} else {
-			return AplicacionForma.PORCONSISTENCIA;
+			return FormaAplicacionEnum.AplicacionPorConsistencia;
 		}
 	}
 

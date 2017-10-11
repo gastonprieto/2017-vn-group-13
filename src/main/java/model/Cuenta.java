@@ -7,20 +7,21 @@ import javax.persistence.*;
 @Entity
 @Observable
 public class Cuenta {
+	
 	@Id
 	@GeneratedValue
 	private Long id;
 
 	@Column(length = 50)
 	private String name;
+	
 	@Column(length = 50)
 	private Double value;
+	
 	@Embedded
 	private Periodo periodo;
 	
-	public Cuenta(){
-		
-	}
+	public Cuenta() {}
 	
 	public Cuenta(String name, Double value, Periodo periodo) {
 		this.name = name;
@@ -54,25 +55,15 @@ public class Cuenta {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-
-		if (!Cuenta.class.isAssignableFrom(obj.getClass())) {
+		if (!Cuenta.class.isAssignableFrom(obj.getClass()))
 			return false;
-		}
-
 		final Cuenta cuentaAComparar = (Cuenta) obj;
-
-		if (!this.name.equals(cuentaAComparar.name))
-			return false;	
-		
-		if (!this.value.equals(cuentaAComparar.value))
-			return false;	
-		
-		if (!this.periodo.equals(cuentaAComparar.periodo))
+		if (!this.name.equals(cuentaAComparar.name) 
+				|| !this.value.equals(cuentaAComparar.value) 
+				|| !this.periodo.equals(cuentaAComparar.periodo))
 			return false;				
-
 		return true;
 	}
 

@@ -8,13 +8,18 @@ import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 import utils.Converts.GeneradorDePeriodos;
 
-import javax.persistence.*;
-
 public class AplicacionPorPromedio extends FormaAplicacion {	
 	
-	public AplicacionPorPromedio() {
+	private static AplicacionPorPromedio instance;
+	
+	public static AplicacionPorPromedio getInstance() {
+		if(instance == null)
+			instance = new AplicacionPorPromedio();
+		return instance;
 	}
-
+	
+	private AplicacionPorPromedio() {}
+	
 	@Override
 	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2, int cantPeriodos) {
 		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(cantPeriodos);

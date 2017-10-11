@@ -9,12 +9,17 @@ import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 import utils.Converts.GeneradorDePeriodos;
 
-import javax.persistence.*;
-
 public class AplicacionPorConsistencia extends FormaAplicacion {	
 	
-	public AplicacionPorConsistencia() {		
+	private static AplicacionPorConsistencia instance;
+	
+	public static AplicacionPorConsistencia getInstance() {
+		if(instance == null)
+			instance = new AplicacionPorConsistencia();
+		return instance;
 	}
+	
+	private AplicacionPorConsistencia() {}
 	
 	@Override
 	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2, int cantPeriodos) {

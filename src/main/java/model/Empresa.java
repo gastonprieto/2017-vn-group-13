@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Observable
 public class Empresa {
+	
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -28,7 +29,6 @@ public class Empresa {
 				return cuenta.getValue();
 			}
 		}
-		
 		throw new EmpresaException("la empresa " + this.name + " no posee cuenta para el pediodo en el periodo: " + "A�o = " +
 				periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
 	}
@@ -51,24 +51,17 @@ public class Empresa {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-
-		if (!Empresa.class.isAssignableFrom(obj.getClass())) {
+		if (!Empresa.class.isAssignableFrom(obj.getClass()))
 			return false;
-		}
-
 		final Empresa empresaAComparar = (Empresa) obj;
-
 		if (!this.name.equals(empresaAComparar.name))
 			return false;			
-
 		for (Cuenta cuentaAComparar : empresaAComparar.cuentas) {
 			if (!cuentas.contains(cuentaAComparar))
 				return false;		
 		}		
-
 		return true;
 	}
 
