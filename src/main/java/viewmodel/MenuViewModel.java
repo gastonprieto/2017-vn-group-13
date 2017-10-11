@@ -8,18 +8,12 @@ import utils.File.ImportadorDeDatos;
 
 public class MenuViewModel {
 
-	public MenuViewModel(boolean cargarDatos) {
-		ImportadorDeDatos importador = new ImportadorDeDatos();
-		
+	public MenuViewModel(boolean cargarDatos) {				
 		if(cargarDatos) {			
-			importador.importarRepositorioDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");			
-			importador.importarIndicadores(System.getProperty("user.dir") + "/src/test/assets/Indicadores.csv");
-			importador.importarDeMetodologiasConCondiciones(System.getProperty("user.dir") + "/src/test/assets/Metodologias.csv");						
-		}
-		else {		
+			ImportadorDeDatos importador = new ImportadorDeDatos();
 			importador.importarEmpresasDeDB();
 			importador.importarIndicadoresDeDB();
-			importador.importarMetodologiasYCondicionesDeDB();
+			importador.importarMetodologiasYCondicionesDeDB();						
 		}
 	}
 }
