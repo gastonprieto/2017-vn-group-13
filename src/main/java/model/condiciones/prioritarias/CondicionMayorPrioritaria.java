@@ -8,6 +8,10 @@ import model.formas.de.aplicacion.FormaAplicacionEnum;
 @Entity
 public class CondicionMayorPrioritaria extends CondicionPrioritaria {
 	
+	public CondicionMayorPrioritaria(){
+		super();
+	}
+	
 	public CondicionMayorPrioritaria(Indicador indicador, FormaAplicacionEnum formaAplicacion,
 			CondicionPrioritaria condicionDesempate, int cantPeriodos) {
 		this.indicador = indicador;

@@ -37,6 +37,8 @@ public class Indicador {
 	public Indicador(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public Indicador() {}
 		
 	public Double aplicar(Empresa empresa, Periodo periodo) {
 		this.empresaTarget = empresa;

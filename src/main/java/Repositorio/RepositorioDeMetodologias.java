@@ -1,6 +1,7 @@
 package Repositorio;
 
 
+import model.Indicador;
 import model.Metodologia;
 import utils.DB.PersistenciaDB;
 
@@ -37,4 +38,8 @@ public class RepositorioDeMetodologias {
     public Collection<Metodologia> getMetodologias() {
         return metodologias;
     }
+    
+    public void setMetodologias(Collection<Metodologia> metodologias) {
+		this.metodologias = metodologias;
+	}
 }

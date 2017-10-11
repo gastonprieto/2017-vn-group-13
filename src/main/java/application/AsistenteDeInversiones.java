@@ -14,6 +14,6 @@ public class AsistenteDeInversiones extends Application {
 	
 	@Override
 	protected Window<?> createMainWindow() {
-		return new MenuView(this, true);
+		return new MenuView(this, false);
 	}
 }

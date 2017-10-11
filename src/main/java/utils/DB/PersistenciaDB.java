@@ -29,36 +29,6 @@ public class PersistenciaDB {
 	public PersistenciaDB() { 		
 		entityManager = PerThreadEntityManagers.getEntityManager(); 	
 	} 	 	
-	
-	public void persistirMetodologiaYCondiciones() {
-		/*entityManager.getTransaction().begin();
-		
-		Collection<Metodologia> metodologias = RepositorioDeMetodologias.getInstance().getMetodologias();
-		
-		for(Metodologia metodologia : metodologias){ 	
-			entityManager.persist(metodologia);	 		
-		}	*/
-		
-	/*	InterpretadorDeIndicadores interpretadorDeIndicadores = new InterpretadorDeIndicadores();
-		
-		Indicador nivelDeDeuda = interpretadorDeIndicadores.interpretar("Nivel de deuda", "Cuenta 3");
-		FormaAplicacion aplicacionSimple = new AplicacionSimple();
-		CondicionPrioritaria minimizarNivelDeDeuda = new CondicionMenorPrioritaria(nivelDeDeuda, aplicacionSimple, null);
-		
-		Indicador roe = interpretadorDeIndicadores.interpretar("ROE", "Cuenta 2");
-		FormaAplicacion aplicacionPorConsistencia = new AplicacionPorConsistencia(5);
-		CondicionPrioritaria maximizarROE = new CondicionMayorPrioritaria(roe, aplicacionPorConsistencia, minimizarNivelDeDeuda);
-		
-		Indicador margenes = interpretadorDeIndicadores.interpretar("Margenes", "Cuenta 1");
-		CondicionTaxativa margenesConsistentementeCrecientes = new CondicionCrecienteTaxativa(margenes, null, 5);
-		
-		Metodologia metodologiaWarrenBuffet = new Metodologia("Warren Buffet", maximizarROE, margenesConsistentementeCrecientes);			
-		
-		entityManager.persist(metodologiaWarrenBuffet);
-		
-		entityManager.getTransaction().commit(); 	    
-		entityManager.close();*/
-	}
 
 	 public void PerisistrMetodologiaDelRepositorio(Metodologia metodologia){
 		 entityManager.getTransaction().begin();
@@ -83,19 +53,34 @@ public class PersistenciaDB {
 		entityManager.close();
 	}
 
-	public Collection<Empresa> LeerEmpresasDelRepositorio(){
-	/*	Collection<Empresa> empresasLeidas = new ArrayList<Empresa>();
-		entityManager.getTransaction().begin();
+	public Collection<Empresa> LeerEmpresasDeDB(){
+		Collection<Empresa> empresasLeidas = new ArrayList<Empresa>();			
+		
 		String consulta = "select e from model.Empresa e";
 		Query query = entityManager.createQuery(consulta);
-		empresasLeidas = (Collection<Empresa>) query.getResultList();
-		entityManager.close();
-		return empresasLeidas;
-		/*entityManager.find(Empresa.class, null);
-		entityManager.close();
-		return empresasLeidas;*/
-		Collection<Empresa> empresasLeidas = new ArrayList<Empresa>();
-		return empresasLeidas;
+		empresasLeidas = (Collection<Empresa>) query.getResultList();			
+		
+		return empresasLeidas;		
+	}
+	
+	public Collection<Indicador> LeerIndicadoresDeDB(){
+		Collection<Indicador> indicadoresLeidos = new ArrayList<Indicador>();				
+		
+		String consulta = "select e from model.Indicador e";
+		Query query = entityManager.createQuery(consulta);
+		indicadoresLeidos = (Collection<Indicador>) query.getResultList();
+		
+		return indicadoresLeidos;		
+	}
+	
+	public Collection<Metodologia> LeerMetodologiasYCondicionesDeDB(){
+		Collection<Metodologia> metodologiasYCondicionesLeidas = new ArrayList<Metodologia>();
+		
+		String consulta = "select e from model.Metodologia e";
+		Query query = entityManager.createQuery(consulta);
+		metodologiasYCondicionesLeidas = (Collection<Metodologia>) query.getResultList();
+		
+		return metodologiasYCondicionesLeidas;		
 	}
 
 }

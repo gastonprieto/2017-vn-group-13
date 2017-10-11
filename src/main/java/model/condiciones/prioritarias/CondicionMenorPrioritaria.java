@@ -7,6 +7,10 @@ import model.formas.de.aplicacion.FormaAplicacionEnum;
 
 @Entity
 public class CondicionMenorPrioritaria extends CondicionPrioritaria {
+	
+	public CondicionMenorPrioritaria(){
+		super();
+	}
 
 	public CondicionMenorPrioritaria(Indicador indicador, FormaAplicacionEnum formaAplicacion,
 			CondicionPrioritaria condicionDesempate, int cantPeriodos) {

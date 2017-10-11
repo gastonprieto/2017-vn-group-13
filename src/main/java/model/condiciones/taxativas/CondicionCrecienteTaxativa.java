@@ -24,6 +24,10 @@ public class CondicionCrecienteTaxativa extends CondicionTaxativa {
 		this.formaAplicacion = FormaAplicacionEnum.AplicacionPorConsistencia;
 		this.cantPeriodos = cantPeriodos;
 	}
+	
+	public CondicionCrecienteTaxativa(){
+		super();
+	}
 
 	@Override
 	public boolean comparar(double resultado) {

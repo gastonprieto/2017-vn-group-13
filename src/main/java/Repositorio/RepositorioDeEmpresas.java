@@ -27,14 +27,7 @@ public class RepositorioDeEmpresas {
 	}
 	
 	public void setEmpresas(Collection<Empresa> empresas) {
-		recorreParaPersistir(empresas);
 		this.empresas = empresas;
-	}
-
-	private void recorreParaPersistir(Collection<Empresa> empresas){
-		PersistenciaDB persistencia = new PersistenciaDB();
-		persistencia.PerisistrEmprasasDelRepositorio(empresas);
-
 	}
 }
 

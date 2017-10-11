@@ -8,6 +8,10 @@ import model.formas.de.aplicacion.FormaAplicacionEnum;
 @Entity
 public class CondicionMayorTaxativa extends CondicionTaxativa {
 	
+	public CondicionMayorTaxativa(){
+		super();
+	}
+	
 	public CondicionMayorTaxativa(Indicador indicador, FormaAplicacionEnum formaAplicacion,
 			CondicionTaxativa siguienteCondicion, double valorReferencia, int cantPeriodos) {
 		this.indicador = indicador;

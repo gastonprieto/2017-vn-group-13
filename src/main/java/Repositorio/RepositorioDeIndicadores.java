@@ -26,15 +26,19 @@ public class RepositorioDeIndicadores {
 		if(this.buscarIndicador(indicador.getNombre()) != null) {
 			throw new IndicadorException("El indicador ya existe");
 		}
+		
 		PersistenciaDB persistenciaDB = new PersistenciaDB();
 		persistenciaDB.PerisistrIndicadorDelRepositorio(indicador);
-
 
 		indicadores.add(indicador);
 	}
 	
 	public Collection<Indicador> getIndicadores() {
 		return indicadores;
+	}
+	
+	public void setIndicadores(Collection<Indicador> indicadores) {
+		this.indicadores = indicadores;
 	}
 
 	public Indicador buscarIndicador(String nombre) {
