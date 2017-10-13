@@ -38,6 +38,10 @@ public class Indicador {
 		this.nombre = nombre;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+	
 	public Indicador() {}
 		
 	public Double aplicar(Empresa empresa, Periodo periodo) {

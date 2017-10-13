@@ -24,7 +24,7 @@ import utils.File.InterpretadorDeIndicadores;
 
 public class PersistenciaDB {
 	
-	private EntityManager entityManager;
+	public EntityManager entityManager;
 	
 	public PersistenciaDB() { 		
 		entityManager = PerThreadEntityManagers.getEntityManager(); 	
@@ -81,6 +81,26 @@ public class PersistenciaDB {
 		metodologiasYCondicionesLeidas = (Collection<Metodologia>) query.getResultList();
 		
 		return metodologiasYCondicionesLeidas;		
+	}
+	
+	public void registrarIndicador(Indicador unIndicador){
+		entityManager.getTransaction().begin();
+		this.entityManager.persist(unIndicador);
+		entityManager.getTransaction().commit();
+	}
+	
+	public Indicador obtenerIndicador(Long indicadorId){
+		return this.entityManager.find(Indicador.class, indicadorId);
+	}
+	
+	public void registrarMetodologia(Metodologia unaMetodologia){
+		entityManager.getTransaction().begin();
+		this.entityManager.persist(unaMetodologia);
+		entityManager.getTransaction().commit();
+	}
+	
+	public Metodologia obtenerMetodologia(Long metodologiaId){
+		return this.entityManager.find(Metodologia.class, metodologiaId);
 	}
 
 }
