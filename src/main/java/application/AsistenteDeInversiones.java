@@ -11,7 +11,7 @@ public class AsistenteDeInversiones extends Application {
 
 	public static void main(String[] args) {		
 		//new AsistenteDeInversiones().start();
-		Spark.port(8080);
+		Spark.port(1004);
 		DebugScreen.enableDebugScreen();
 		Router.configure();
 	}

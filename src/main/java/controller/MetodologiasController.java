@@ -12,6 +12,6 @@ public class MetodologiasController {
 	
 	public ModelAndView aplicar(Request req, Response res) {
 		// Pagina de metodologias con una metodolgia aplicada
-		return new ModelAndView(null, "Metodologias.hbs");
+		return new ModelAndView(null, "AplicarMetodologias.hbs");
 	}
 }
