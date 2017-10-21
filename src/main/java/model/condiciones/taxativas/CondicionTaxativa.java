@@ -19,7 +19,6 @@ import model.Empresa;
 import model.Indicador;
 import model.Periodo;
 import model.formas.de.aplicacion.FormaAplicacionEnum;
-import model.formas.de.aplicacion.FormaAplicacionFactory;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -46,7 +45,7 @@ public abstract class CondicionTaxativa  {
 
 	public List<Empresa> filtrar(Collection<Empresa> empresas) {
 			List<Empresa> empresasSeleccionadas = empresas.stream().filter((empresa) ->
-					new FormaAplicacionFactory().getFormaAplicacion(this.formaAplicacion)
+				this.formaAplicacion.getInstance()
 					.aplicarFiltro(this, empresa, this.cantPeriodos)).collect(Collectors.toList());
 		if(siguienteCondicion == null)
 			return empresasSeleccionadas;

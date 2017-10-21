@@ -1,6 +1,8 @@
 package Parser;
 
 import Parser.Operando;
+import model.Empresa;
+import model.Periodo;
 
 public class Constante implements Operando {
 
@@ -11,7 +13,7 @@ public class Constante implements Operando {
 	}
 	
 	@Override
-	public Double resultado() {
+	public Double resultado(Empresa empresa, Periodo periodo) {
 		return Double.valueOf(valor);
 	}
 }

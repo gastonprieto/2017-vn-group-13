@@ -1,5 +1,8 @@
 package Parser;
 
+import model.Empresa;
+import model.Periodo;
+
 public class Operacion implements Operando {
 
 	private Operando operandoIzquierdo;
@@ -13,7 +16,7 @@ public class Operacion implements Operando {
 	}
 	
 	@Override
-	public Double resultado() {
-		return this.operador.operar(operandoIzquierdo.resultado(), operandoDerecho.resultado());
+	public Double resultado(Empresa empresa, Periodo periodo) {
+		return this.operador.operar(operandoIzquierdo.resultado(empresa, periodo), operandoDerecho.resultado(empresa, periodo));
 	}
 }

@@ -28,12 +28,6 @@ public class Indicador {
 	@Column(length = 100)
 	private String operacionPersistencia;
 
-	@Transient
-	private Empresa empresaTarget;
-
-	@Transient
-	private Periodo periodoTarget;
-
 	public Indicador(String nombre) {
 		this.nombre = nombre;
 	}
@@ -45,9 +39,7 @@ public class Indicador {
 	public Indicador() {}
 		
 	public Double aplicar(Empresa empresa, Periodo periodo) {
-		this.empresaTarget = empresa;
-		this.periodoTarget = periodo;
-		return operacion.resultado();
+		return operacion.resultado(empresa, periodo);
 	}
 
 	public Indicador(String nombre, String OperacionPersistir){
@@ -63,23 +55,22 @@ public class Indicador {
 		this.operacion = operacion;
 	}
 
-	public Double buscarValor(String nombre) {
+	public Double buscarValor(String nombre, Empresa empresa, Periodo periodo) {
 		Double valor = null;
 		try {
-			valor = this.empresaTarget.buscarValorDeCuentaParaPeriodo(nombre, this.periodoTarget);
+			valor = empresa.buscarValorDeCuentaParaPeriodo(nombre, periodo);
 		} catch (EmpresaException e) {
 			throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado ya que " + e.getMessage());
 		}		
 		if (valor != null) {
 			return valor;
 		}
-		/*porque aca no puede ir un this.aplicar? o alago asi*/
-		valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(this.empresaTarget, this.periodoTarget);
+		valor = RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(empresa, periodo);
 		if (valor != null) {
 			return valor;
 		}
-		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + this.empresaTarget.getName()
-				+ ", en el periodo: " + "A�o = " + this.periodoTarget.getYear() + " Semestre = " + this.periodoTarget.getSemester());
+		throw new IndicadorException("El indicador: " + nombre + ", no puede ser aplicado para la empresa: " + empresa.getName()
+				+ ", en el periodo: " + "A�o = " + periodo.getYear() + " Semestre = " + periodo.getSemester());
 	}
 
 	public Double aplicar(Empresa empresa, Collection<Periodo> periodos) {

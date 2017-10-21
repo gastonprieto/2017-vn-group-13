@@ -77,7 +77,7 @@ public class ImportadorDeDatos {
 	}
 	
 	public void importarMetodologiasYCondicionesDeDB() {		
-		RepositorioDeMetodologias.getInstance().setMetodologias(persistencia.LeerMetodologiasYCondicionesDeDB());
+		RepositorioDeMetodologias.getInstance().LeerMetodologiasYCondicionesDeDB();
 	}
 
 }

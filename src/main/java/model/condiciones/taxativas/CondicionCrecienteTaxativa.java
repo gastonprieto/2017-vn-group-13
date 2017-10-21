@@ -14,14 +14,14 @@ public class CondicionCrecienteTaxativa extends CondicionTaxativa {
 	
 	public CondicionCrecienteTaxativa(Indicador indicador, CondicionTaxativa siguienteCondicion, int cantPeriodos) {
 		this.indicador = indicador;
-		this.formaAplicacion = FormaAplicacionEnum.AplicacionPorConsistencia;
+		this.formaAplicacion = FormaAplicacionEnum.APLICACION_POR_CONSISTENCIA;
 		this.siguienteCondicion = siguienteCondicion;
 		this.cantPeriodos = cantPeriodos;
 	}
 	
 	public CondicionCrecienteTaxativa(Indicador indicadorSeleccionado, int cantPeriodos) {
 		this.indicador = indicadorSeleccionado;
-		this.formaAplicacion = FormaAplicacionEnum.AplicacionPorConsistencia;
+		this.formaAplicacion = FormaAplicacionEnum.APLICACION_POR_CONSISTENCIA;
 		this.cantPeriodos = cantPeriodos;
 	}
 	
