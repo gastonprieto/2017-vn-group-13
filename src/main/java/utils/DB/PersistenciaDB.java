@@ -37,23 +37,23 @@ public class PersistenciaDB {
 		 entityManager.close();
 	 }
 
-	public void PerisistrIndicadorDelRepositorio(Indicador indicador){
+/*	public void PerisistrIndicadorDelRepositorio(Indicador indicador){
 		entityManager.getTransaction().begin();
 		entityManager.persist(indicador);
 		entityManager.getTransaction().commit();
 		entityManager.close();
-	}
+	}*/
 
-	public void PerisistrEmprasasDelRepositorio(Collection<Empresa> empresas){
+	/*public void PerisistrEmprasasDelRepositorio(Collection<Empresa> empresas){
 		entityManager.getTransaction().begin();
 		for(Empresa empresa : empresas){
 			entityManager.persist(empresa);
 		}
 		entityManager.getTransaction().commit();
 		entityManager.close();
-	}
+	}*/
 
-	public Collection<Empresa> LeerEmpresasDeDB(){
+/*	public Collection<Empresa> LeerEmpresasDeDB(){
 		Collection<Empresa> empresasLeidas = new ArrayList<Empresa>();			
 		
 		String consulta = "select e from model.Empresa e";
@@ -61,9 +61,9 @@ public class PersistenciaDB {
 		empresasLeidas = (Collection<Empresa>) query.getResultList();			
 		
 		return empresasLeidas;		
-	}
+	}*/
 	
-	public Collection<Indicador> LeerIndicadoresDeDB(){
+	/*public Collection<Indicador> LeerIndicadoresDeDB(){
 		Collection<Indicador> indicadoresLeidos = new ArrayList<Indicador>();				
 		
 		String consulta = "select e from model.Indicador e";
@@ -71,7 +71,7 @@ public class PersistenciaDB {
 		indicadoresLeidos = (Collection<Indicador>) query.getResultList();
 		
 		return indicadoresLeidos;		
-	}
+	}*/
 	
 	public Collection<Metodologia> LeerMetodologiasYCondicionesDeDB(){
 		Collection<Metodologia> metodologiasYCondicionesLeidas = new ArrayList<Metodologia>();

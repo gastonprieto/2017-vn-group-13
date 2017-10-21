@@ -17,14 +17,13 @@ public class ImportadorDeDatos {
 	
 	public ImportadorDeDatos() {
 		this.lectorDeArchivos = new ManejadorDeArchivos();
-		persistencia = new PersistenciaDB();
 	}
 	
 	public void importarRepositorioDeEmpresas(String filePath) {
 		String datosLeidos = this.lectorDeArchivos.leerArchivoJson(filePath);
 		Gson gson = new Gson();
 		RepositorioDeEmpresas.getInstance().setEmpresas(gson.fromJson(datosLeidos, RepositorioDeEmpresas.class).getEmpresas());		
-		persistencia.PerisistrEmprasasDelRepositorio(gson.fromJson(datosLeidos, RepositorioDeEmpresas.class).getEmpresas());
+		RepositorioDeEmpresas.getInstance().PerisistrEmprasasDelRepositorio(gson.fromJson(datosLeidos, RepositorioDeEmpresas.class).getEmpresas());
 	}
 	
 	public void importarIndicadores(String filePath) {
@@ -70,11 +69,11 @@ public class ImportadorDeDatos {
 	}
 	
 	public void importarEmpresasDeDB() {		
-		RepositorioDeEmpresas.getInstance().setEmpresas(persistencia.LeerEmpresasDeDB());
+		RepositorioDeEmpresas.getInstance().setEmpresas(RepositorioDeEmpresas.getInstance().LeerEmpresasDeDB());
 	}
 	
 	public void importarIndicadoresDeDB() {		
-		RepositorioDeIndicadores.getInstance().setIndicadores(persistencia.LeerIndicadoresDeDB());
+		RepositorioDeIndicadores.getInstance().setIndicadores(RepositorioDeIndicadores.getInstance().LeerIndicadoresDeDB());
 	}
 	
 	public void importarMetodologiasYCondicionesDeDB() {		

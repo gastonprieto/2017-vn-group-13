@@ -61,13 +61,16 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
 		try {
 			this.getModelObject().aplicarMetodologiaSeleccionada();
 		} catch(Exception e) {
+			if(e.getMessage() == null){
+				e.printStackTrace();
+			}
 			showErrorMessageBox(e.getMessage());
 		}
 	}
 
 	protected void showErrorMessageBox(String message) {
 		MessageBox messageBox = new MessageBox(this, MessageBox.Type.Error);
-		messageBox.setMessage(message);
+		messageBox.setMessage("");
 		messageBox.open();
 	}
 }
