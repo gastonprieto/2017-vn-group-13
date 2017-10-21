@@ -14,7 +14,7 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 	@Test
 	public void condicionMenorPrioritariaConAplicacionSimpleTest() {
 		CondicionPrioritaria condicionMenorPrioritaria =
-				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.AplicacionSimple, null, 1);
+				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.APLICACION_SIMPLE, null, 1);
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por el valor de la Cuenta 1", condicionMenorPrioritaria, null);
 		
 		assertEquals("Empresa 1", metodologia.evaluar(empresas).iterator().next().getName());
@@ -23,7 +23,7 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 	@Test
 	public void condicionMenorPrioritariaConAplicacionPorSumatoriaTest() {
 		CondicionPrioritaria condicionMenorPrioritaria =
-				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.AplicacionPorSumatoria, null, 3);
+				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.APLICACION_POR_SUMATORIA, null, 3);
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por la sumatoria de la Cuenta 1 en los ultimos 3 periodos",
 				condicionMenorPrioritaria, null);
 		
@@ -33,7 +33,7 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 	@Test
 	public void condicionMenorPrioritariaConAplicacionPorPromedioTest() {
 		CondicionPrioritaria condicionMenorPrioritaria = 
-				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.AplicacionPorPromedio, null, 3);
+				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.APLICACION_POR_PROMEDIO, null, 3);
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por el promedio de la Cuenta 1 en los ultimos 3 periodos",
 				condicionMenorPrioritaria, null);
 		
@@ -43,7 +43,7 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 	@Test
 	public void condicionMenorPrioritariaConAplicacionPorMedianaTest() {
 		CondicionPrioritaria condicionMenorPrioritaria = 
-				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.AplicacionPorMediana, null, 3);
+				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.APLICACION_POR_MEDIANA, null, 3);
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por el promedio de la Cuenta 1 en los ultimos 3 periodos",
 				condicionMenorPrioritaria, null);
 		
@@ -53,7 +53,7 @@ public class CondicionMenorPrioritariaTest extends CondicionTest {
 	@Test
 	public void condicionMenorPrioritariaConAplicacionPorConsistenciaTest() {
 		CondicionPrioritaria condicionMenorPrioritaria = 
-				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.AplicacionPorConsistencia, null, 3);
+				new CondicionMenorPrioritaria(indicador, FormaAplicacionEnum.APLICACION_POR_CONSISTENCIA, null, 3);
 		Metodologia metodologia = new Metodologia("Ordena de mayor a menor por la consistencia de la Cuenta 1 en los ultimos 3 periodos",
 				condicionMenorPrioritaria, null);
 		

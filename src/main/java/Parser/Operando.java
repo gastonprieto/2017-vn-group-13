@@ -4,5 +4,5 @@ import model.Empresa;
 import model.Periodo;
 
 public interface Operando {
-	public Double resultado();
+	public Double resultado(Empresa empresa, Periodo periodo);
 }

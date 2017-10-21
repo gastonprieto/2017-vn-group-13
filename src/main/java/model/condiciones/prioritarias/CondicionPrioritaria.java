@@ -19,7 +19,6 @@ import model.Empresa;
 import model.Indicador;
 import model.Periodo;
 import model.formas.de.aplicacion.FormaAplicacionEnum;
-import model.formas.de.aplicacion.FormaAplicacionFactory;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -47,7 +46,7 @@ public abstract class CondicionPrioritaria  {
 	}
 	
 	public int realizarComparacion(Empresa empresa1, Empresa empresa2) {
-		int resultado = new FormaAplicacionFactory().getFormaAplicacion(this.formaAplicacion)
+		int resultado = this.formaAplicacion.getInstance()
 				.aplicarPrioridad(this, empresa1, empresa2, this.cantPeriodos);
 		if(resultado == 0 && condicionDesempate != null) {
 			return condicionDesempate.realizarComparacion(empresa1, empresa2);

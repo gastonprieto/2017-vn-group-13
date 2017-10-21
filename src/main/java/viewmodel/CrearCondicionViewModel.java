@@ -77,15 +77,15 @@ public class CrearCondicionViewModel {
 
 	private FormaAplicacionEnum crearFormaAplicacion() {
 		if(StringUtils.equals(formaDeAplicacionSeleccionada, "Simple")) {
-			return FormaAplicacionEnum.AplicacionSimple;
+			return FormaAplicacionEnum.APLICACION_SIMPLE;
 		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Sumatoria")) {
-			return FormaAplicacionEnum.AplicacionPorSumatoria;
+			return FormaAplicacionEnum.APLICACION_POR_SUMATORIA;
 		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Promedio")) {
-			return FormaAplicacionEnum.AplicacionPorPromedio;
+			return FormaAplicacionEnum.APLICACION_POR_PROMEDIO;
 		} else if(StringUtils.equals(formaDeAplicacionSeleccionada, "Por Mediana")) {
-			return FormaAplicacionEnum.AplicacionPorMediana;
+			return FormaAplicacionEnum.APLICACION_POR_MEDIANA;
 		} else {
-			return FormaAplicacionEnum.AplicacionPorConsistencia;
+			return FormaAplicacionEnum.APLICACION_POR_CONSISTENCIA;
 		}
 	}
 

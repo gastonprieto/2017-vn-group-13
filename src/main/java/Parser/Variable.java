@@ -15,7 +15,7 @@ public class Variable implements Operando {
 	}
 	
 	@Override
-	public Double resultado() {
-		return indicador.buscarValor(nombre);
+	public Double resultado(Empresa empresa, Periodo periodo) {
+		return indicador.buscarValor(nombre, empresa, periodo);
 	}
 }
