@@ -10,7 +10,6 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import exception.IndicadorException;
 import model.Indicador;
-import utils.DB.PersistenciaDB;
 
 public class RepositorioDeIndicadores {
 	private static RepositorioDeIndicadores instance = null;

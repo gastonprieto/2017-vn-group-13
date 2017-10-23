@@ -3,7 +3,6 @@ package viewmodel;
 import java.util.Collection;
 
 import model.Empresa;
-import utils.DB.PersistenciaDB;
 import utils.File.ImportadorDeDatos;
 
 public class MenuViewModel {

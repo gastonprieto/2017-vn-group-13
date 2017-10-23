@@ -1,7 +1,6 @@
 package Repositorio;
 
 import model.Empresa;
-import utils.DB.PersistenciaDB;
 
 import java.util.ArrayList;
 import java.util.Collection;

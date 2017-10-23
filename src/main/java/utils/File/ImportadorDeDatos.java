@@ -8,12 +8,10 @@ import Repositorio.RepositorioDeMetodologias;
 import org.apache.commons.lang.StringUtils;
 import com.google.gson.Gson;
 import model.*;
-import utils.DB.PersistenciaDB;
 import utils.Deserializadores.DeserializadorDeMetodologias;
 
 public class ImportadorDeDatos {
-	private ManejadorDeArchivos lectorDeArchivos;
-	PersistenciaDB persistencia;
+	private ManejadorDeArchivos lectorDeArchivos;	
 	
 	public ImportadorDeDatos() {
 		this.lectorDeArchivos = new ManejadorDeArchivos();
