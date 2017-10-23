@@ -28,11 +28,7 @@ public class RepositorioDeMetodologias {
             instance = new RepositorioDeMetodologias();
         }
         return instance;
-    }
-
-    public Metodologia BuscarMetodologia(String nombreMetodologia){
-            return  getInstance().getMetodologias().stream().filter(e -> e.getNombre().equals(nombreMetodologia)).findFirst().get();
-}
+    }    
 
 	public void registrarMetodologia(Metodologia metodologia) {        
 		this.PerisistrMetodologiaDelRepositorio(metodologia);
