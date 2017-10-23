@@ -3,6 +3,7 @@ package model;
 import java.util.Collection;
 
 import org.uqbar.commons.utils.Observable;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import exception.EmpresaException;
 
@@ -23,7 +24,11 @@ public class Empresa {
 	@OneToMany(cascade = CascadeType.PERSIST)
 	private Collection<Cuenta> cuentas;
 	
+	
+	
+	
 	public Double buscarValorDeCuentaParaPeriodo(String nombre, Periodo periodoTarget) {
+			
 		for(Cuenta cuenta : cuentas) {
 			if(cuenta.getName().equalsIgnoreCase(nombre) && cuenta.getPeriodo().equals(periodoTarget)) {
 				return cuenta.getValue();
@@ -31,7 +36,25 @@ public class Empresa {
 		}
 		throw new EmpresaException("la empresa " + this.name + " no posee cuenta para el pediodo en el periodo: " + "A�o = " +
 				periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
+			
+		
+		/*EntityManager entityManager;
+		entityManager = PerThreadEntityManagers.getEntityManager();
+		   Query query = entityManager.createQuery("Select value from cuenta value where cuenta.name == :name AND cuenta.empresa_id == :id AND cuenta.semester == :semester  AND cuenta.year == :year  group by  value",Double.class);
+			   query.setParameter("name", name);
+			   query.setParameter("id", Long.toString(id));
+			   query.setParameter("semester", Integer.toString(periodoTarget.getSemester()));
+			   query.setParameter("year", Integer.toString(periodoTarget.getYear()));
+			   Double valor = (Double) query.getSingleResult();
+
+			   System.out.println("ID : " +id);
+			   System.out.println("Result : " + Double.toString(valor));
+			   return valor;*/
+//		}
+	//	throw new EmpresaException("la empresa " + this.name + " no posee cuenta para el pediodo en el periodo: " + "A�o = " +
+		//		periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
 	}
+	
 
 	public String getName() {
 		return name;
