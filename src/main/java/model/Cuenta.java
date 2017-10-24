@@ -61,25 +61,4 @@ public class Cuenta {
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (!Cuenta.class.isAssignableFrom(obj.getClass()))
-			return false;
-		final Cuenta cuentaAComparar = (Cuenta) obj;
-		if (!this.name.equals(cuentaAComparar.name) 
-				|| !this.value.equals(cuentaAComparar.value) 
-				|| !this.periodo.equals(cuentaAComparar.periodo))
-			return false;				
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		int hash = 3;
-		hash = 53 * hash + (this.name != null ? this.name.hashCode() : 0);		
-		return hash;
-	}
 }
