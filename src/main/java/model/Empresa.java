@@ -7,12 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.uqbar.commons.utils.Observable;
-
-import exception.EmpresaException;
 
 @Entity
 @Observable
@@ -27,15 +24,6 @@ public class Empresa {
 	
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "empresa")
 	private Collection<Cuenta> cuentas;
-	
-	public Double buscarValorDeCuentaParaPeriodo(String nombre, Periodo periodoTarget) {
-		for(Cuenta cuenta : cuentas) {
-			if(cuenta.getName().equalsIgnoreCase(nombre) && cuenta.getPeriodo().equals(periodoTarget))
-				return cuenta.getValue();
-		}
-		throw new EmpresaException("la empresa " + this.name + " no posee cuenta para el pediodo en el periodo: " + "A�o = " +
-				periodoTarget.getYear() + " Semestre = " + periodoTarget.getSemester());
-	}
 	
 	public Long getId() {
 		return id;

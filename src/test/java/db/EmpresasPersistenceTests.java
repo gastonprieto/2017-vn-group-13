@@ -1,34 +1,18 @@
 package db;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.EntityManager;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import Repositorio.RepositorioDeEmpresas;
 import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
-import static org.junit.Assert.assertEquals;
 
-public class EmpresasPersistenceTests {
-
-	private EntityManager em = PerThreadEntityManagers.getEntityManager();
-	
-	@Before
-	public void setUp() {
-		em.getTransaction().begin();
-	}
-	
-	@After
-	public void tearDown() {
-		em.getTransaction().rollback();
-	}
+public class EmpresasPersistenceTests extends PersistenceTests {
 	
 	@Test
 	public void findCuentaByEmpresaAndPeriodoAndNombreTest() {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -44,15 +45,6 @@ public class RepositorioDeIndicadores {
 	public void setIndicadores(Collection<Indicador> indicadores) {
 		this.indicadores = indicadores;
 	}
-
-	public Indicador buscarIndicador(String nombre) {
-		for(Indicador indicador : indicadores) {
-			if(indicador.getNombre().equalsIgnoreCase(nombre)) {
-				return indicador;
-			}
-		}
-		return null;
-	}
 	
 	public Collection<Indicador> LeerIndicadoresDeDB(){
 		Collection<Indicador> indicadoresLeidos = new ArrayList<Indicador>();				
@@ -69,6 +61,16 @@ public class RepositorioDeIndicadores {
 		entityManager.persist(indicador);
 		entityManager.getTransaction().commit();
 		entityManager.close();
+	}
+	
+	public Indicador buscarIndicador(String nombre) {
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM Indicador AS e WHERE e.nombre = :nombre", Indicador.class);
+			query.setParameter("nombre", nombre);
+			return (Indicador) query.getSingleResult();
+		} catch(PersistenceException e) {
+			throw new IndicadorException("No existe el indicador " + nombre);
+		}
 	}
 	
 }
