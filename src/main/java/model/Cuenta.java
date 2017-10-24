@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Observable
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"empresa_id", "name", "year", "semester"}))
 public class Cuenta {
 	
 	@Id
@@ -21,12 +22,20 @@ public class Cuenta {
 	@Embedded
 	private Periodo periodo;
 	
+	@ManyToOne
+	@JoinColumn(name = "empresa_id")
+	private Empresa empresa;
+	
 	public Cuenta() {}
 	
 	public Cuenta(String name, Double value, Periodo periodo) {
 		this.name = name;
 		this.value = value;
 		this.periodo = periodo;
+	}
+	
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 	
 	public String getName() {
