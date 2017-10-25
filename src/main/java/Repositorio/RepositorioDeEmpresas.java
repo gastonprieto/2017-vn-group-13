@@ -23,13 +23,12 @@ public class RepositorioDeEmpresas {
 	
 	private RepositorioDeEmpresas() {
 		entityManager = PerThreadEntityManagers.getEntityManager();
+		empresas = buscarTodas();
 	}
 
 	public static RepositorioDeEmpresas getInstance() {
 		if(instance == null) {
 			instance = new RepositorioDeEmpresas();
-			//PersistenciaDB persistencia = new PersistenciaDB();
-			// instance.setEmpresas(instance.LeerEmpresasDeDB());
 		}
 		return instance;
 	}
@@ -38,12 +37,7 @@ public class RepositorioDeEmpresas {
 		return empresas;
 	}
 	
-	public void setEmpresas(Collection<Empresa> empresas) {
-		this.empresas = empresas;
-		//this.PerisistrEmprasasDelRepositorio(empresas);
-	}
-	
-	public void PerisistrEmprasasDelRepositorio(Collection<Empresa> empresas){
+	public void perisistirEmpresas(Collection<Empresa> empresas){
 		entityManager.getTransaction().begin();
 		for(Empresa empresa : empresas){
 			entityManager.persist(empresa);
@@ -52,7 +46,8 @@ public class RepositorioDeEmpresas {
 		entityManager.close();
 	}
 	
-	public Collection<Empresa> LeerEmpresasDeDB(){
+	@SuppressWarnings("unchecked")
+	public Collection<Empresa> buscarTodas(){
 		Collection<Empresa> empresasLeidas = new ArrayList<Empresa>();			
 		
 		String consulta = "select e from model.Empresa e";

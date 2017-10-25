@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,8 +40,10 @@ public class Indicador {
 		return id;
 	}
 	
-	public Indicador() {}
+	public Indicador() {
 		
+	}
+
 	public Double aplicar(Empresa empresa, Periodo periodo) {
 		return operacion.resultado(empresa, periodo);
 	}
@@ -60,6 +60,10 @@ public class Indicador {
 	public void setOperacion(Operando operacion) {
 		this.operacion = operacion;
 	}
+	
+	public String getOperacionPersistencia() {
+		return operacionPersistencia;
+	}
 
 	public Double buscarValor(String nombre, Empresa empresa, Periodo periodo) {
 		try {
@@ -71,9 +75,5 @@ public class Indicador {
 				throw new IndicadorException("No se pudo aplicar el indicador " + nombre + ". Motivo: " + e.getMessage());
 			}
 		}
-	}
-
-	public String getOperacionPersistencia() {
-		return operacionPersistencia;
 	}
 }

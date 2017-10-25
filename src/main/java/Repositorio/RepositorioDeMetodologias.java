@@ -1,25 +1,22 @@
 package Repositorio;
 
 
-import model.Indicador;
-import model.Metodologia;
-
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
+import model.Metodologia;
+
 public class RepositorioDeMetodologias {
     private static RepositorioDeMetodologias instance = null;
     private Collection<Metodologia> metodologias;
 
     private RepositorioDeMetodologias() {
-        metodologias = new ArrayList<>();
+        buscarTodas();
     }
 
     public static RepositorioDeMetodologias getInstance() {
@@ -42,7 +39,8 @@ public class RepositorioDeMetodologias {
 		 entityManager.close();
 	 }
 	
-	public void LeerMetodologiasYCondicionesDeDB(){
+	@SuppressWarnings("unchecked")
+	public void buscarTodas(){
 		Collection<Metodologia> metodologiasYCondicionesLeidas = new ArrayList<Metodologia>();
 		
 		String consulta = "select e from model.Metodologia e";
