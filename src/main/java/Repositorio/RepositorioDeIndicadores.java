@@ -2,6 +2,7 @@ package Repositorio;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
@@ -11,6 +12,7 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import exception.IndicadorException;
 import model.Indicador;
+import utils.File.InterpretadorDeIndicadores;
 
 public class RepositorioDeIndicadores {
 	private static RepositorioDeIndicadores instance = null;
@@ -53,7 +55,9 @@ public class RepositorioDeIndicadores {
 		Query query = entityManager.createQuery(consulta);
 		indicadoresLeidos = (Collection<Indicador>) query.getResultList();
 		
-		return indicadoresLeidos;		
+		InterpretadorDeIndicadores interpretador = new InterpretadorDeIndicadores();
+		return indicadoresLeidos.stream().map(indicador ->
+			interpretador.interpretar(indicador.getNombre(), indicador.getOperacionPersistencia())).collect(Collectors.toList());
 	}
 	
 	public void PerisistrIndicadorDelRepositorio(Indicador indicador){

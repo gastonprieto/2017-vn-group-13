@@ -87,7 +87,7 @@ public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 			selectorIndicador.bindValueToProperty("indicadorSeleccionado");
 			selectorIndicador.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
 
-			new Label(IndicadoresOpcionesPanel).setText("AÃ±o");
+			new Label(IndicadoresOpcionesPanel).setText("Año");
 			TextBox peridoYear = new TextBox(IndicadoresOpcionesPanel);
 			peridoYear.bindValueToProperty("yearSeleccionado");
 			peridoYear.withFilter(TextFilter.NUMERIC_TEXT_FILTER);

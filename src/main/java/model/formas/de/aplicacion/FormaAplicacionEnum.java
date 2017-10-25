@@ -1,7 +1,5 @@
 package model.formas.de.aplicacion;
 
-import model.formas.de.aplicacion.AplicacionSimple;;
-
 public enum FormaAplicacionEnum {
 	APLICACION_SIMPLE {
 		@Override

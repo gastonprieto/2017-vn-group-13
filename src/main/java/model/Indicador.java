@@ -72,4 +72,8 @@ public class Indicador {
 			}
 		}
 	}
+
+	public String getOperacionPersistencia() {
+		return operacionPersistencia;
+	}
 }
