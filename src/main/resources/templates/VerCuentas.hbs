@@ -1,18 +1,21 @@
 {{#partial "contenido"}}
 	<div>
-		<h1>Visualizacion de Cuentas</h1>
-		<h2>Seleccione una Empresa</h2>
-		<div class="btn-group">
-			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Empresas
-			</button>
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="#">Empresa1</a>
-				<a class="dropdown-item" href="#">Empresa2</a>
-				<a class="dropdown-item" href="#">Empresa3</a>
+		<div class="title">
+			<h1>Visualizacion de Cuentas</h1>
+		</div>
+		<div class="row selector">
+			<h4 class="margin-right-10">Seleccione una Empresa:</h4>
+			<div class="btn-group">
+				<button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Empresas
+				</button>
+				<div class="dropdown-menu">
+					{{#each empresas}}
+						<a class="dropdown-item" href="/empresas/{{id}}/cuentas">{{name}}</a>
+					{{/each}}
+				</div>
 			</div>
 		</div>
-		<h2>Cuentas</h2>
 		<table class="table table-bordered table-hover">
 			<thead class="thead-inverse">
 				<tr>
