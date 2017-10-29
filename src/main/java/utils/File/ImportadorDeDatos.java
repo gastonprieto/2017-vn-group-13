@@ -17,12 +17,12 @@ public class ImportadorDeDatos {
 		this.lectorDeArchivos = new ManejadorDeArchivos();
 	}
 	
-	public void importarRepositorioDeEmpresas(String filePath) {
-		String datosLeidos = this.lectorDeArchivos.leerArchivoJson(filePath);
-		Gson gson = new Gson();
-		RepositorioDeEmpresas.getInstance().setEmpresas(gson.fromJson(datosLeidos, RepositorioDeEmpresas.class).getEmpresas());		
-		RepositorioDeEmpresas.getInstance().PerisistrEmprasasDelRepositorio(gson.fromJson(datosLeidos, RepositorioDeEmpresas.class).getEmpresas());
-	}
+//	public void importarRepositorioDeEmpresas(String filePath) {
+//		String datosLeidos = this.lectorDeArchivos.leerArchivoJson(filePath);
+//		Gson gson = new Gson();
+//		RepositorioDeEmpresas.getInstance().setEmpresas(gson.fromJson(datosLeidos, RepositorioDeEmpresas.class).getEmpresas());		
+//		RepositorioDeEmpresas.getInstance().perisistirEmpresas(gson.fromJson(datosLeidos, RepositorioDeEmpresas.class).getEmpresas());
+//	}
 	
 	public void importarIndicadores(String filePath) {
 		InterpretadorDeIndicadores interpretador = new InterpretadorDeIndicadores();
@@ -66,16 +66,16 @@ public class ImportadorDeDatos {
 		}
 	}
 	
-	public void importarEmpresasDeDB() {		
-		RepositorioDeEmpresas.getInstance().setEmpresas(RepositorioDeEmpresas.getInstance().LeerEmpresasDeDB());
-	}
+//	public void importarEmpresasDeDB() {		
+//		RepositorioDeEmpresas.getInstance().setEmpresas(RepositorioDeEmpresas.getInstance().LeerEmpresasDeDB());
+//	}
 	
-	public void importarIndicadoresDeDB() {		
-		RepositorioDeIndicadores.getInstance().setIndicadores(RepositorioDeIndicadores.getInstance().LeerIndicadoresDeDB());
-	}
+//	public void importarIndicadoresDeDB() {		
+//		RepositorioDeIndicadores.getInstance().setIndicadores(RepositorioDeIndicadores.getInstance().LeerIndicadoresDeDB());
+//	}
 	
 	public void importarMetodologiasYCondicionesDeDB() {		
-		RepositorioDeMetodologias.getInstance().LeerMetodologiasYCondicionesDeDB();
+		RepositorioDeMetodologias.getInstance().buscarTodas();
 	}
 
 }

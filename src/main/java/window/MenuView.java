@@ -12,12 +12,9 @@ import viewmodel.MenuViewModel;
 public class MenuView extends SimpleWindow<MenuViewModel> {
 
 	private static final long serialVersionUID = 1L;
-	
-	WindowOwner parent;
-	
-	public MenuView(WindowOwner parent, boolean noCargarDatos) {
-		super(parent, new MenuViewModel(noCargarDatos));
-		this.parent = parent;
+
+	public MenuView(WindowOwner parent) {
+		super(parent, new MenuViewModel());
 	}
 
 	@Override
@@ -29,41 +26,39 @@ public class MenuView extends SimpleWindow<MenuViewModel> {
 	@Override
 	protected void addActions(Panel actionsPanel) {
 		actionsPanel.setLayout(new VerticalLayout());
-		new Button(actionsPanel).setCaption("Ver Cuentas e Indicadores").onClick(this::abrirCuentas).setWidth(200);
-		//new Button(actionsPanel).setCaption("Aplicar Indicadores").onClick(this::abrirIndicadores);
-		new Button(actionsPanel).setCaption("Aplicar Metodologia").onClick(this::abrirAplicarMetodologias);
+		new Button(actionsPanel).setCaption("Ver Cuentas").onClick(this::abrirCuentas).setWidth(200);
+		new Button(actionsPanel).setCaption("Aplicar Indicadores").onClick(this::abrirAplicarIndicadores);
 		new Button(actionsPanel).setCaption("Crear Indicador").onClick(this::abrirCreadorDeIndicadores);
+		new Button(actionsPanel).setCaption("Aplicar Metodologia").onClick(this::abrirAplicarMetodologias);
 		new Button(actionsPanel).setCaption("Crear Metodologias ").onClick(this::abrirCreadorDeMetodologias);
 	}
 	
 	public void abrirCuentas() {
-		VerCuentasView cuentasView = new VerCuentasView(this.parent);
+		VerCuentasView cuentasView = new VerCuentasView(this.getOwner());
 		this.close();
 		cuentasView.open();
 	}
 	
-	public void abrirIndicadores() {
-		IndicadoresView indicadoresView = new IndicadoresView(this.parent);
+	public void abrirAplicarIndicadores() {
+		IndicadoresView indicadoresView = new IndicadoresView(this.getOwner());
 		this.close();
 		indicadoresView.open();
 	}
 
 	public void abrirAplicarMetodologias() {
-		AplicarMetodologiaView metodologiaView = new AplicarMetodologiaView(this.parent);
+		AplicarMetodologiaView metodologiaView = new AplicarMetodologiaView(this.getOwner());
 		this.close();
 		metodologiaView.open();
 	}
 
 	public void abrirCreadorDeIndicadores() {
-		CreadorDeIndicadoresView creadorView = new CreadorDeIndicadoresView(this.parent);
+		CreadorDeIndicadoresView creadorView = new CreadorDeIndicadoresView(this.getOwner());
 		this.close();
 		creadorView.open();
 	}
 	
-
-
 	public void abrirCreadorDeMetodologias() {
-		CrearMetodologiaView creadorView = new CrearMetodologiaView(this.parent);
+		CrearMetodologiaView creadorView = new CrearMetodologiaView(this.getOwner());
 		this.close();
 		creadorView.open();
 	}

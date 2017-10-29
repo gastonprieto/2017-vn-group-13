@@ -104,7 +104,7 @@ public class CrearCondicionView extends SimpleWindow<CrearCondicionViewModel>{
 	}
 	
 	private void volverAlMenu() {
-		MenuView menuView = new MenuView(this.getOwner(), false);
+		MenuView menuView = new MenuView(this.getOwner());
 		this.close();
 		menuView.open();
 	}

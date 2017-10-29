@@ -48,7 +48,7 @@ public class AplicarMetodologiaView extends SimpleWindow<AplicarMetodologiaViewM
 	}
 
 	public void abrirMenu() {
-		MenuView menuView = new MenuView(this.getOwner(), false);
+		MenuView menuView = new MenuView(this.getOwner());
 		this.close();
 		menuView.open();
 	}

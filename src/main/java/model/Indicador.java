@@ -40,8 +40,10 @@ public class Indicador {
 		return id;
 	}
 	
-	public Indicador() {}
+	public Indicador() {
 		
+	}
+
 	public Double aplicar(Empresa empresa, Periodo periodo) {
 		return operacion.resultado(empresa, periodo);
 	}
@@ -57,6 +59,10 @@ public class Indicador {
 
 	public void setOperacion(Operando operacion) {
 		this.operacion = operacion;
+	}
+	
+	public String getOperacionPersistencia() {
+		return operacionPersistencia;
 	}
 
 	public Double buscarValor(String nombre, Empresa empresa, Periodo periodo) {

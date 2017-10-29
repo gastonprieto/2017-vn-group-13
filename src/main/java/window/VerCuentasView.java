@@ -1,144 +1,68 @@
 package window;
 
-import model.Indicador;
+import java.awt.Color;
+
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
-import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.arena.windows.MessageBox;
-import viewmodel.VerCuentasViewModel;
+
 import model.Cuenta;
 import model.Empresa;
-import java.awt.*;
+import viewmodel.VerCuentasViewModel;
 
 public class VerCuentasView extends SimpleWindow<VerCuentasViewModel> {
 	
 	private static final long serialVersionUID = 1L;
-	private Button menu;
-	private Button AplicarIndicador;
-	WindowOwner parent;
-	private  static VerCuentasViewModel  creadorVM = new VerCuentasViewModel();
-	
-	
+
 	public VerCuentasView(WindowOwner parent) {
-		super(parent, creadorVM);
-		this.parent = parent;
+		super(parent, new VerCuentasViewModel());
 	}
 
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
-		
 		this.setTitle("Ver Cuentas");
-
 		mainPanel.setLayout(new VerticalLayout());
+		Panel opcionesPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
+		Panel cuentasPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
 
-		Panel OpcionesPanel = new Panel(mainPanel).setLayout(new HorizontalLayout());
-
-		Panel CuentasPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
-
-		Panel IndicadoresPanel = new Panel(mainPanel).setLayout(new VerticalLayout());
-
-
-		/* Contenido OpcionesPanel*/
-		new Label(OpcionesPanel).setText("Seleccione una empresa: ");
-
-		Selector<Empresa> selectorEmpresas = new Selector<Empresa>(OpcionesPanel);
+		new Label(opcionesPanel).setText("Seleccione una empresa: ").setWidth(150);
+		Selector<Empresa> selectorEmpresas = new Selector<Empresa>(opcionesPanel);
 		selectorEmpresas.allowNull(false);
+		selectorEmpresas.setWidth(200);
 		selectorEmpresas.bindValueToProperty("empresaSeleccionada");
 		selectorEmpresas.bindItemsToProperty("empresas").setAdapter(new PropertyAdapter(Empresa.class, "name"));
 
-		menu = new Button(OpcionesPanel).setCaption("Volver al menu");
-
-		/* Contenido CuentasPanel*/
-
-		Label TituloCuentas = new Label(CuentasPanel).setText("CUENTAS");
+		Label TituloCuentas = new Label(cuentasPanel).setText("CUENTAS");
 		TituloCuentas.setBackground(Color.WHITE);
-		TituloCuentas.setWidth(500);
+		TituloCuentas.setWidth(375);
 
-		Table<Cuenta> table = new Table<Cuenta>(CuentasPanel, Cuenta.class);
+		Table<Cuenta> table = new Table<Cuenta>(cuentasPanel, Cuenta.class);
 		table.bindItemsToProperty("empresaSeleccionada.cuentas");
 
 		new Column<Cuenta>(table).setTitle("Nombre").setFixedSize(150).bindContentsToProperty("name");
 		new Column<Cuenta>(table).setTitle("Valor").setFixedSize(75).bindContentsToProperty("value");
-		new Column<Cuenta>(table).setTitle("Aï¿½o").setFixedSize(75).bindContentsToProperty("periodo.year");
+		new Column<Cuenta>(table).setTitle("Año").setFixedSize(75).bindContentsToProperty("periodo.year");
 		new Column<Cuenta>(table).setTitle("Semestre").setFixedSize(75).bindContentsToProperty("periodo.semester");
-
-		/* Contenido IndicadoresPanel*/
-
-		Label TituloIndicadores = new Label(IndicadoresPanel).setText("INDICADORES");
-		TituloIndicadores.setBackground(Color.WHITE);
-		TituloIndicadores.setWidth(500);
-
-		/* Contenido IndicadoresOpcionesPanel*/
-
-			Panel IndicadoresOpcionesPanel = new Panel(IndicadoresPanel).setLayout(new HorizontalLayout());
-
-			new Label(IndicadoresOpcionesPanel).setText("Seleccione un perido");
-
-			Selector<Indicador> selectorIndicador = new Selector<Indicador>(IndicadoresOpcionesPanel);
-			selectorIndicador.allowNull(false);
-			selectorIndicador.bindValueToProperty("indicadorSeleccionado");
-			selectorIndicador.bindItemsToProperty("indicadores").setAdapter(new PropertyAdapter(Indicador.class, "nombre"));
-
-			new Label(IndicadoresOpcionesPanel).setText("AÃ±o");
-			TextBox peridoYear = new TextBox(IndicadoresOpcionesPanel);
-			peridoYear.bindValueToProperty("yearSeleccionado");
-			peridoYear.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
-
-			new Label(IndicadoresOpcionesPanel).setText("Semestre");
-			TextBox peridoSemestre = new TextBox(IndicadoresOpcionesPanel);
-			peridoSemestre.bindValueToProperty("semestreSeleccionado");
-			peridoSemestre.withFilter(TextFilter.NUMERIC_TEXT_FILTER);
-
-			AplicarIndicador = new Button(IndicadoresOpcionesPanel).setCaption("Aplicar");
-
-			new Label(IndicadoresOpcionesPanel).setText("Resultado");
-			Label Resultado = new Label(IndicadoresOpcionesPanel).setText("Resultado");
-			Resultado.bindValueToProperty("resultadoDeAplicarIndiador");
 	}
 	
 	@Override
 	protected void addActions(Panel actionsPanel) {
-
+		Button menu = new Button(actionsPanel).setCaption("Volver al menu");
+		menu.setWidth(375);
 		menu.onClick(this::abrirMenu);
-		AplicarIndicador.onClick(this::AplicarIndicadorAempresaSeleccionada);
-
 	}
 	
 	public void abrirMenu() {
-		MenuView menuView = new MenuView(this.parent, false);
+		MenuView menuView = new MenuView(this.getOwner());
 		this.close();
 		menuView.open();
 	}
-
-	public void AplicarIndicadorAempresaSeleccionada() {
-		try {
-			getCreadorVM().AplicarIndicadorEnPerido();
-		}catch (NullPointerException e){
-			showErrorMessageBox("Se aplico el indicadr en un periodo en el cual la cuenta no tiene ningun valor, revise los datos ingresados");
-		}
-	}
-
-	public VerCuentasViewModel getCreadorVM() {
-		return creadorVM;
-	}
-
-	protected void showErrorMessageBox(String message) {
-		MessageBox messageBox = new MessageBox(this, MessageBox.Type.Error);
-		messageBox.setMessage(message);
-		messageBox.open();
-	}
-
 }
-
-
-
-
-

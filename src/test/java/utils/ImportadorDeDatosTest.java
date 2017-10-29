@@ -36,7 +36,7 @@ public class ImportadorDeDatosTest {
 	public void setUp() {
 		
 		importador = new ImportadorDeDatos();
-		importador.importarRepositorioDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
+//		importador.importarRepositorioDeEmpresas(System.getProperty("user.dir") + "/src/test/assets/Cuentas.txt");
 		
 		retornoEsperadoEmpresa = new Empresa();
 		
