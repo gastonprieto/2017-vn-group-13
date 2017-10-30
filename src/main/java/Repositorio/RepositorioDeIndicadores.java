@@ -64,7 +64,6 @@ public class RepositorioDeIndicadores {
 		entityManager.getTransaction().begin();
 		entityManager.persist(indicador);
 		entityManager.getTransaction().commit();
-		entityManager.close();
 	}
 	
 	public Indicador buscarIndicador(String nombre) {

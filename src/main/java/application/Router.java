@@ -19,6 +19,8 @@ public class Router {
 		Spark.staticFiles.location("/public");
 
 		Spark.get("/", HomeController::home, engine);
+		Spark.get("/success", HomeController::success, engine);
+		Spark.get("/error", HomeController::error, engine);
 		
 		CuentasController cuentasController = new CuentasController();
 		Spark.get("/empresas", cuentasController::listar, engine);
@@ -26,7 +28,7 @@ public class Router {
 		
 		IndicadoresController indicadoresController = new IndicadoresController();
 		Spark.get("/indicadores/nuevo", indicadoresController::nuevo, engine);
-		Spark.post("/indicadores", indicadoresController::guardar);
+		Spark.post("/indicadores/nuevo", indicadoresController::guardar);
 		Spark.get("/indicadores/aplicar", indicadoresController::aplicar, engine);
 		
 		MetodologiasController metodologiasController = new MetodologiasController();

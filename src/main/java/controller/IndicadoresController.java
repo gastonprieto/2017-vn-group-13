@@ -1,6 +1,7 @@
 package controller;
 
 import Repositorio.RepositorioDeIndicadores;
+import exception.IndicadorException;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -11,10 +12,15 @@ public class IndicadoresController {
 		return new ModelAndView(null, "NuevoIndicador.hbs");
 	}
 	
-	public Void guardar(Request req, Response res) {
+	public ModelAndView guardar(Request req, Response res) {
 		InterpretadorDeIndicadores interpretadorDeIndicadores = new InterpretadorDeIndicadores();
-		RepositorioDeIndicadores.getInstance().registrarIndicador(interpretadorDeIndicadores.interpretar(req.queryParams("nombre"), req.queryParams("calculo")));
-		res.redirect("/");
+		try {
+			RepositorioDeIndicadores.getInstance()
+				.registrarIndicador(interpretadorDeIndicadores.interpretar(req.queryParams("nombre"), req.queryParams("calculo")));
+			res.redirect("/success");
+		} catch(IndicadorException e) {
+			res.redirect("/error");
+		}
 		return null;
 	}
 	
