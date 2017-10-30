@@ -16,36 +16,30 @@
 				</div>
 			</div>
 		</div>
-		<table class="table table-bordered table-hover">
-			<thead class="thead-inverse">
-				<tr>
-					<th>Nombre</th>
-					<th>Valor</th>
-					<th>Año</th>
-					<th>Semestre</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Cuenta 1</td>
-					<td>1.0</td>
-					<td>2016</td>
-					<td>2</td>
-				</tr>
-				<tr>
-					<td>Cuenta 2</td>
-					<td>5.0</td>
-					<td>2016</td>
-					<td>2</td>
-				</tr>
-				<tr>
-					<td>Cuenta 3</td>
-					<td>8.0</td>
-					<td>2016</td>
-					<td>2</td>
-				</tr>
-			</tbody>
-		</table>
+		{{#if cuentas}}
+			<table class="table table-bordered table-hover">
+				<thead class="thead-inverse">
+					<tr>
+						<th>Nombre</th>
+						<th>Valor</th>
+						<th>Año</th>
+						<th>Semestre</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each cuentas}}
+						<tr>
+							<th>{{name}}</th>
+							<th>{{value}}</th>
+							<th>{{periodo.year}}</th>
+							<th>{{periodo.semester}}</th>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		{{else}}
+			<h5 class="placeholder">No hay cuentas para mostrar</h5>
+		{{/if}}
 	</div>
 {{/partial}}
 {{>layout.hbs}}

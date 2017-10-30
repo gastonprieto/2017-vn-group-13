@@ -61,15 +61,19 @@ public class RepositorioDeEmpresas {
 		try {
 			Query query = entityManager.createQuery("SELECT e FROM Cuenta AS e WHERE e.name = :name AND e.empresa = :empresa "
 					+ "AND e.periodo.year = :year AND e.periodo.semester = :semester", Cuenta.class);
-		   query.setParameter("name", nombre);
-		   query.setParameter("empresa", empresa);
-		   query.setParameter("year", periodo.getYear());
-		   query.setParameter("semester", periodo.getSemester());
-		   return (Cuenta) query.getSingleResult();
+			query.setParameter("name", nombre);
+			query.setParameter("empresa", empresa);
+			query.setParameter("year", periodo.getYear());
+			query.setParameter("semester", periodo.getSemester());
+			return (Cuenta) query.getSingleResult();
 		} catch(PersistenceException e) {
 			throw new EmpresaException("La empresa " + empresa.getName() + " no posee la cuenta " + nombre +
 					" en el semestre " + periodo.getSemester() + " del " + periodo.getYear());
 		}
+	}
+
+	public Collection<Cuenta> buscarCuentasPorEmpresa(long empresaID) {
+		return entityManager.find(Empresa.class, empresaID).getCuentas();
 	}
 }
 

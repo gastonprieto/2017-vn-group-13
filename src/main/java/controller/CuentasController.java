@@ -18,7 +18,10 @@ public class CuentasController {
 	}
 	
 	public ModelAndView mostrar(Request req, Response res) {
-		// Se llama cuando se selecciona una empresa, tiene que mostrar las cuentas de esa empresa
-		return new ModelAndView(null, "VerCuentas.hbs");
+		Map<String, Object> model = new HashMap<>();
+		model.put("empresas", RepositorioDeEmpresas.getInstance().buscarTodas());
+		String id = req.params("id");
+		model.put("cuentas", RepositorioDeEmpresas.getInstance().buscarCuentasPorEmpresa(Long.parseLong(id)));
+		return new ModelAndView(model, "VerCuentas.hbs");
 	}
 }

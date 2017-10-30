@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -22,7 +23,7 @@ public class Empresa {
 	@Column(length = 50)
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "empresa")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "empresa", fetch = FetchType.EAGER)
 	private Collection<Cuenta> cuentas;
 	
 	public Long getId() {
