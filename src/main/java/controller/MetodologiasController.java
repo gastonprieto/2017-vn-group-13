@@ -1,17 +1,30 @@
 package controller;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import Repositorio.RepositorioDeEmpresas;
+import Repositorio.RepositorioDeMetodologias;
+import model.Metodologia;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 public class MetodologiasController {
-	public ModelAndView listar(Request req, Response res) {
-		// Pagina de metodologias sin nada seleccionado
-		return new ModelAndView(null, "Metodologias.hbs");
+	public ModelAndView evaluar(Request req, Response res) {
+		Map<String, Object> model = new HashMap<>();
+		model.put("metodologias", RepositorioDeMetodologias.getInstance().getMetodologias());
+		String nombre = req.params("nombre");
+		Metodologia metodologiaAEvaluar = RepositorioDeMetodologias.getInstance().getMetodologias().stream()
+											.filter(e -> e.getNombre().equals(nombre)).findFirst().get();
+		model.put("empresas", metodologiaAEvaluar.evaluar(RepositorioDeEmpresas.getInstance().getEmpresas()));
+		return new ModelAndView(model, "AplicarMetodologias.hbs");
 	}
 	
 	public ModelAndView aplicar(Request req, Response res) {
-		// Pagina de metodologias con una metodolgia aplicada
-		return new ModelAndView(null, "AplicarMetodologias.hbs");
+		Map<String, Collection<Metodologia>> model = new HashMap<>();		
+		model.put("metodologias", RepositorioDeMetodologias.getInstance().getMetodologias());		
+		return new ModelAndView(model, "AplicarMetodologias.hbs");
 	}
 }

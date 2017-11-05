@@ -52,4 +52,8 @@ public class Metodologia {
 	public String getNombre() {
 		return this.nombre;
 	}
+	
+	public Long getId() {
+		return id;
+	}
 }

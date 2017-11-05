@@ -32,7 +32,7 @@ public class Router {
 		Spark.get("/indicadores/aplicar", indicadoresController::aplicar, engine);
 		
 		MetodologiasController metodologiasController = new MetodologiasController();
-		Spark.get("/metodologias", metodologiasController::listar, engine);
-		Spark.get("/metodologias/:id/aplicar", metodologiasController::aplicar, engine);
+		Spark.get("/metodologias/aplicar", metodologiasController::aplicar, engine);
+		Spark.get("/metodologias/:nombre/empresas", metodologiasController::evaluar, engine);
 	}
 }
