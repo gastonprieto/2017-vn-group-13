@@ -1,14 +1,11 @@
-package utils.File;
+package utils;
 
 import java.util.Collection;
 
 import org.apache.commons.lang.StringUtils;
-import com.google.gson.Gson;
-import model.*;
-import repositorios.RepositorioDeEmpresas;
+
 import repositorios.RepositorioDeIndicadores;
 import repositorios.RepositorioDeMetodologias;
-import utils.Deserializadores.DeserializadorDeMetodologias;
 
 public class ImportadorDeDatos {
 	private ManejadorDeArchivos lectorDeArchivos;	
@@ -37,34 +34,34 @@ public class ImportadorDeDatos {
 		}
 	}
 
-	public void importarDeMetodologiasConCondiciones(String filePath) {
-		Metodologia NuevaMetodologia = null;
-		DeserializadorDeMetodologias Dererializador = null;
-		String [] condicion = null;
-		Collection<String> lineasLeidas = this.lectorDeArchivos.leerArchivoCSV(filePath);
-
-
-		if(!lineasLeidas.isEmpty()) { //--> Controlo que el archivo no esta vacio al memoento de levantar la persistencia
-
-			for(String line : lineasLeidas) { //-->Recorro las lineas leidas del archivo
-
-				Dererializador = new DeserializadorDeMetodologias(line);
-				//NuevaMetodologia = new Metodologia(Dererializador.getNombreMetodologia());
-
-				while (Dererializador.deserializacionCondicionesTaxativasFinalizada()){
-					condicion = Dererializador.obtenerCondicionTaxativa();
-				//	NuevaMetodologia.addCondicionTaxativa(condicion[0], condicion[1], condicion[2], condicion[3], condicion[4], condicion[5]);
-				}
-
-				while (Dererializador.deserializacionCondicionesDePrioridadFinalizada()){
-					condicion = Dererializador.obtenerCondicionDePrioridad();
-			//		NuevaMetodologia.addCondicionPrioridad(condicion[0], condicion[1], condicion[2], condicion[3]);
-				}
-
-				//RepositorioDeMetodologias.getInstance().registrarMetodologia(NuevaMetodologia);
-			}
-		}
-	}
+//	public void importarDeMetodologiasConCondiciones(String filePath) {
+//		Metodologia NuevaMetodologia = null;
+//		DeserializadorDeMetodologias Dererializador = null;
+//		String [] condicion = null;
+//		Collection<String> lineasLeidas = this.lectorDeArchivos.leerArchivoCSV(filePath);
+//
+//
+//		if(!lineasLeidas.isEmpty()) { //--> Controlo que el archivo no esta vacio al memoento de levantar la persistencia
+//
+//			for(String line : lineasLeidas) { //-->Recorro las lineas leidas del archivo
+//
+//				Dererializador = new DeserializadorDeMetodologias(line);
+//				//NuevaMetodologia = new Metodologia(Dererializador.getNombreMetodologia());
+//
+//				while (Dererializador.deserializacionCondicionesTaxativasFinalizada()){
+//					condicion = Dererializador.obtenerCondicionTaxativa();
+//				//	NuevaMetodologia.addCondicionTaxativa(condicion[0], condicion[1], condicion[2], condicion[3], condicion[4], condicion[5]);
+//				}
+//
+//				while (Dererializador.deserializacionCondicionesDePrioridadFinalizada()){
+//					condicion = Dererializador.obtenerCondicionDePrioridad();
+//			//		NuevaMetodologia.addCondicionPrioridad(condicion[0], condicion[1], condicion[2], condicion[3]);
+//				}
+//
+//				//RepositorioDeMetodologias.getInstance().registrarMetodologia(NuevaMetodologia);
+//			}
+//		}
+//	}
 	
 //	public void importarEmpresasDeDB() {		
 //		RepositorioDeEmpresas.getInstance().setEmpresas(RepositorioDeEmpresas.getInstance().LeerEmpresasDeDB());

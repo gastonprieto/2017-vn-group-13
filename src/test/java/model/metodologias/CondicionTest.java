@@ -9,7 +9,7 @@ import model.Cuenta;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
-import utils.File.InterpretadorDeIndicadores;
+import utils.InterpretadorDeIndicadores;
 
 public abstract class CondicionTest {
 	

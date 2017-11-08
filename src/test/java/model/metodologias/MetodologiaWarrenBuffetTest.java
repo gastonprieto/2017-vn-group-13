@@ -20,7 +20,7 @@ import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionCrecienteTaxativa;
 import model.condiciones.taxativas.CondicionTaxativa;
 import model.formas.de.aplicacion.FormaAplicacionEnum;
-import utils.File.InterpretadorDeIndicadores;
+import utils.InterpretadorDeIndicadores;
 
 public class MetodologiaWarrenBuffetTest {
 

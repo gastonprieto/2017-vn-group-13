@@ -6,17 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import org.uqbar.commons.utils.Observable;
-//import sun.security.util.Length;
-
-import Parser.Operando;
 import exception.EmpresaException;
 import exception.IndicadorException;
+import parser.Operando;
 import repositorios.RepositorioDeEmpresas;
 import repositorios.RepositorioDeIndicadores;
 
 @Entity
-@Observable
 public class Indicador {
 
 	@Id

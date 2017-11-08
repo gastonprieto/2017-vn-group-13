@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import model.Indicador;
 import repositorios.RepositorioDeIndicadores;
-import utils.File.InterpretadorDeIndicadores;
+import utils.InterpretadorDeIndicadores;
 
 public class IndicadoresPersistenceTests extends PersistenceTests {
 

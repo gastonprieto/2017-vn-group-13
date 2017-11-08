@@ -5,7 +5,7 @@ import repositorios.RepositorioDeIndicadores;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import utils.File.InterpretadorDeIndicadores;
+import utils.InterpretadorDeIndicadores;
 
 public class IndicadoresController {
 	public ModelAndView nuevo(Request req, Response res) {	

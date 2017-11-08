@@ -1,11 +1,16 @@
 package model;
 
-import org.uqbar.commons.utils.Observable;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Observable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"empresa_id", "name", "year", "semester"}))
 public class Cuenta {
 	

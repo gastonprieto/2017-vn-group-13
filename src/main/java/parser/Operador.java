@@ -1,4 +1,4 @@
-package Parser;
+package parser;
 
 public interface Operador {
 	public Double operar(Double valorIzquierdo, Double valorDerecho);

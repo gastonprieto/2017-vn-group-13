@@ -1,8 +1,8 @@
-package Parser;
+package parser;
 
-import Parser.Operando;
 import model.Empresa;
 import model.Periodo;
+import parser.Operando;
 
 public class Constante implements Operando {
 

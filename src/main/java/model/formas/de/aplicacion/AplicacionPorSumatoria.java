@@ -6,7 +6,7 @@ import model.Empresa;
 import model.Periodo;
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
-import utils.Converts.GeneradorDePeriodos;
+import utils.GeneradorDePeriodos;
 
 public class AplicacionPorSumatoria extends FormaAplicacion {
 

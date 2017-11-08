@@ -2,14 +2,17 @@ package model;
 
 import java.util.Collection;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
-import org.uqbar.commons.utils.Observable;
 
 @Entity
-@Observable
 public class Metodologia {
 	
 	@Id
