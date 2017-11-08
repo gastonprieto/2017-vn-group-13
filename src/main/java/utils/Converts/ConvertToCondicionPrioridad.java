@@ -1,8 +1,8 @@
 package utils.Converts;
 
-import Repositorio.RepositorioDeIndicadores;
 import model.Indicador;
 import model.condiciones.prioritarias.*;
+import repositorios.RepositorioDeIndicadores;
 import exception.FabricaException;
 
 /**

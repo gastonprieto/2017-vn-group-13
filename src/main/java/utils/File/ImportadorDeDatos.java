@@ -2,12 +2,12 @@ package utils.File;
 
 import java.util.Collection;
 
-import Repositorio.RepositorioDeEmpresas;
-import Repositorio.RepositorioDeIndicadores;
-import Repositorio.RepositorioDeMetodologias;
 import org.apache.commons.lang.StringUtils;
 import com.google.gson.Gson;
 import model.*;
+import repositorios.RepositorioDeEmpresas;
+import repositorios.RepositorioDeIndicadores;
+import repositorios.RepositorioDeMetodologias;
 import utils.Deserializadores.DeserializadorDeMetodologias;
 
 public class ImportadorDeDatos {

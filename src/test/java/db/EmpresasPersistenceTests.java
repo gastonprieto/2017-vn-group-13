@@ -7,10 +7,10 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-import Repositorio.RepositorioDeEmpresas;
 import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
+import repositorios.RepositorioDeEmpresas;
 
 public class EmpresasPersistenceTests extends PersistenceTests {
 	

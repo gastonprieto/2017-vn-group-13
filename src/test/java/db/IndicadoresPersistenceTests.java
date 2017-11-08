@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import Repositorio.RepositorioDeIndicadores;
 import model.Indicador;
+import repositorios.RepositorioDeIndicadores;
 import utils.File.InterpretadorDeIndicadores;
 
 public class IndicadoresPersistenceTests extends PersistenceTests {

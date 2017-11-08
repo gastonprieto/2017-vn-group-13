@@ -14,7 +14,7 @@ import exception.ParserException;
 import model.Cuenta;
 import model.Empresa;
 import model.Periodo;
-import Repositorio.RepositorioDeEmpresas;
+import repositorios.RepositorioDeEmpresas;
 import utils.File.ImportadorDeDatos;
 
 public class ImportadorDeDatosTest {	

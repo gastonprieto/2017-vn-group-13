@@ -4,11 +4,11 @@ import java.util.Collection;
 
 import org.uqbar.commons.utils.Observable;
 
-import Repositorio.RepositorioDeEmpresas;
-import Repositorio.RepositorioDeIndicadores;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import repositorios.RepositorioDeEmpresas;
+import repositorios.RepositorioDeIndicadores;
 
 @Observable
 public class IndicadoresViewModel {

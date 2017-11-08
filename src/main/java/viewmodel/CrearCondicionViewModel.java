@@ -7,8 +7,6 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.uqbar.commons.utils.Observable;
 
-import Repositorio.RepositorioDeIndicadores;
-import Repositorio.RepositorioDeMetodologias;
 import exception.BuilderException;
 import model.Indicador;
 import model.builders.MetodologiaBuilder;
@@ -19,6 +17,8 @@ import model.condiciones.taxativas.CondicionDecrecienteTaxativa;
 import model.condiciones.taxativas.CondicionMayorTaxativa;
 import model.condiciones.taxativas.CondicionMenorTaxativa;
 import model.formas.de.aplicacion.FormaAplicacionEnum;
+import repositorios.RepositorioDeIndicadores;
+import repositorios.RepositorioDeMetodologias;
 
 @Observable
 public class CrearCondicionViewModel {

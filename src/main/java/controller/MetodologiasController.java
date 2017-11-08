@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import Repositorio.RepositorioDeEmpresas;
-import Repositorio.RepositorioDeMetodologias;
 import model.Metodologia;
+import repositorios.RepositorioDeEmpresas;
+import repositorios.RepositorioDeMetodologias;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;

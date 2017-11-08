@@ -1,4 +1,4 @@
-package Repositorio;
+package repositorios;
 
 import model.Cuenta;
 import model.Empresa;

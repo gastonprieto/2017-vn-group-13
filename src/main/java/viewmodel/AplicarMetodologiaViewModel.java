@@ -5,10 +5,10 @@ import java.util.Collection;
 
 import org.uqbar.commons.utils.Observable;
 
-import Repositorio.RepositorioDeEmpresas;
-import Repositorio.RepositorioDeMetodologias;
 import model.Empresa;
 import model.Metodologia;
+import repositorios.RepositorioDeEmpresas;
+import repositorios.RepositorioDeMetodologias;
 
 @Observable
 public class AplicarMetodologiaViewModel {

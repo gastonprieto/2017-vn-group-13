@@ -4,8 +4,8 @@ import java.util.Collection;
 
 import org.uqbar.commons.utils.Observable;
 
-import Repositorio.RepositorioDeEmpresas;
 import model.Empresa;
+import repositorios.RepositorioDeEmpresas;
 
 @Observable
 public class VerCuentasViewModel {

@@ -1,7 +1,7 @@
 package controller;
 
-import Repositorio.RepositorioDeIndicadores;
 import exception.IndicadorException;
+import repositorios.RepositorioDeIndicadores;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;

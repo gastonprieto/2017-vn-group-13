@@ -10,10 +10,10 @@ import org.uqbar.commons.utils.Observable;
 //import sun.security.util.Length;
 
 import Parser.Operando;
-import Repositorio.RepositorioDeEmpresas;
-import Repositorio.RepositorioDeIndicadores;
 import exception.EmpresaException;
 import exception.IndicadorException;
+import repositorios.RepositorioDeEmpresas;
+import repositorios.RepositorioDeIndicadores;
 
 @Entity
 @Observable

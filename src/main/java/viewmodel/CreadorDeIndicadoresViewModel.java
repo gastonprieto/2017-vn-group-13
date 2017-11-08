@@ -2,7 +2,7 @@ package viewmodel;
 
 import org.uqbar.commons.utils.Observable;
 
-import Repositorio.RepositorioDeIndicadores;
+import repositorios.RepositorioDeIndicadores;
 import utils.File.InterpretadorDeIndicadores;
 
 @Observable
