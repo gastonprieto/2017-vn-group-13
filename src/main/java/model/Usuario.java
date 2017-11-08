@@ -11,7 +11,10 @@ public class Usuario {
 	@Column(length = 50)
 	private String username;
 	
+	@Column(nullable = false, length = 50)
 	private String password;
+	
+	public Usuario() {}
 	
 	public Usuario(String username, String password) {
 		this.username = username;
@@ -22,7 +25,7 @@ public class Usuario {
 		return username;
 	}
 
-	public String getPassword() {
-		return password;
+	public boolean passwordMatches(String password) {
+		return this.password.equals(password);
 	}
 }

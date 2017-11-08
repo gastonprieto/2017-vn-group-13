@@ -3,6 +3,7 @@ package application;
 import controller.CuentasController;
 import controller.HomeController;
 import controller.IndicadoresController;
+import controller.LoginController;
 import controller.MetodologiasController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -17,6 +18,12 @@ public class Router {
 				.build();
 		
 		Spark.staticFiles.location("/public");
+		
+		Spark.before("/*", LoginController::verificarUsuarioLoggeado);
+		
+		Spark.get("/login", LoginController::getLogInPage, engine);
+		Spark.post("/login", LoginController::logIn, engine);
+		Spark.post("/logout", LoginController::logOut, engine);
 
 		Spark.get("/", HomeController::home, engine);
 		Spark.get("/success", HomeController::success, engine);
