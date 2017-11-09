@@ -17,7 +17,7 @@ public class Empresa {
 	@GeneratedValue
 	private Long id;
 
-	@Column(length = 50)
+	@Column(length = 50, unique = true, nullable = false)
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "empresa", fetch = FetchType.EAGER)
