@@ -1,7 +1,5 @@
 package repositorios;
 
-import javax.persistence.EntityManager;
-
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import model.Usuario;
@@ -9,7 +7,6 @@ import model.Usuario;
 public class RepositorioDeUsuarios {
 
 	private static RepositorioDeUsuarios instance = null;
-	private EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 	
 	private RepositorioDeUsuarios() {}
 	
@@ -21,6 +18,6 @@ public class RepositorioDeUsuarios {
 	}
 	
 	public Usuario buscarUsuario(String username) {
-		return entityManager.find(Usuario.class, username);
+		return PerThreadEntityManagers.getEntityManager().find(Usuario.class, username);
 	}
 }

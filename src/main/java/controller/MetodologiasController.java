@@ -12,7 +12,8 @@ import spark.Request;
 import spark.Response;
 
 public class MetodologiasController {
-	public ModelAndView evaluar(Request req, Response res) {
+	
+	public static ModelAndView evaluar(Request req, Response res) {
 		Map<String, Object> model = new HashMap<>();
 		model.put("metodologias", RepositorioDeMetodologias.getInstance().getMetodologias());
 		String nombre = req.params("nombre");
@@ -22,7 +23,7 @@ public class MetodologiasController {
 		return new ModelAndView(model, "AplicarMetodologias.hbs");
 	}
 	
-	public ModelAndView aplicar(Request req, Response res) {
+	public static ModelAndView aplicar(Request req, Response res) {
 		Map<String, Collection<Metodologia>> model = new HashMap<>();		
 		model.put("metodologias", RepositorioDeMetodologias.getInstance().getMetodologias());		
 		return new ModelAndView(model, "AplicarMetodologias.hbs");

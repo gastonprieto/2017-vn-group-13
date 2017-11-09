@@ -1,6 +1,5 @@
 package repositorios;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
@@ -11,12 +10,11 @@ import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import model.Metodologia;
 
 public class RepositorioDeMetodologias {
+	
     private static RepositorioDeMetodologias instance = null;
     private Collection<Metodologia> metodologias;
 
-    private RepositorioDeMetodologias() {
-        buscarTodas();
-    }
+    private RepositorioDeMetodologias() {}
 
     public static RepositorioDeMetodologias getInstance() {
         if(instance == null) {
@@ -32,25 +30,21 @@ public class RepositorioDeMetodologias {
 	
 	public void PerisistrMetodologiaDelRepositorio(Metodologia metodologia){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-		 entityManager.getTransaction().begin();
-		 entityManager.persist(metodologia);
-		 entityManager.getTransaction().commit();
-		 entityManager.close();
-	 }
+		entityManager.getTransaction().begin();
+		entityManager.persist(metodologia);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+	}
 	
 	@SuppressWarnings("unchecked")
-	public void buscarTodas(){
-		Collection<Metodologia> metodologiasYCondicionesLeidas = new ArrayList<Metodologia>();
-		
+	public Collection<Metodologia> buscarTodas(){
 		String consulta = "select e from model.Metodologia e";
 		Query query = PerThreadEntityManagers.getEntityManager().createQuery(consulta);
-		metodologiasYCondicionesLeidas = (Collection<Metodologia>) query.getResultList();
-		
-		this.setMetodologias(metodologiasYCondicionesLeidas);				
+		return (Collection<Metodologia>) query.getResultList();
 	}
     
     public Collection<Metodologia> getMetodologias() {
-        return metodologias;
+        return this.buscarTodas();
     }
     
     public void setMetodologias(Collection<Metodologia> metodologias) {

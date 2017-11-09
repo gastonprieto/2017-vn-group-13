@@ -18,13 +18,8 @@ import exception.EmpresaException;
 public class RepositorioDeEmpresas {
 	
 	private static RepositorioDeEmpresas instance = null;
-	private Collection<Empresa> empresas;
-	public EntityManager entityManager;
-	
-	private RepositorioDeEmpresas() {
-		entityManager = PerThreadEntityManagers.getEntityManager();
-		empresas = buscarTodas();
-	}
+
+	private RepositorioDeEmpresas() {}
 
 	public static RepositorioDeEmpresas getInstance() {
 		if(instance == null) {
@@ -34,10 +29,11 @@ public class RepositorioDeEmpresas {
 	}
 
 	public Collection<Empresa> getEmpresas() {
-		return empresas;
+		return this.buscarTodas();
 	}
 	
-	public void perisistirEmpresas(Collection<Empresa> empresas){
+	public void perisistirEmpresas(Collection<Empresa> empresas) {
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		entityManager.getTransaction().begin();
 		for(Empresa empresa : empresas){
 			entityManager.persist(empresa);
@@ -51,7 +47,7 @@ public class RepositorioDeEmpresas {
 		Collection<Empresa> empresasLeidas = new ArrayList<Empresa>();			
 		
 		String consulta = "select e from model.Empresa e";
-		Query query = entityManager.createQuery(consulta);
+		Query query = PerThreadEntityManagers.getEntityManager().createQuery(consulta);
 		empresasLeidas = (Collection<Empresa>) query.getResultList();			
 		
 		return empresasLeidas;		
@@ -59,7 +55,7 @@ public class RepositorioDeEmpresas {
 	
 	public Cuenta findCuentaByEmpresaAndPeriodoAndNombre(Empresa empresa, Periodo periodo, String nombre) {
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM Cuenta AS e WHERE e.name = :name AND e.empresa = :empresa "
+			Query query = PerThreadEntityManagers.getEntityManager().createQuery("SELECT e FROM Cuenta AS e WHERE e.name = :name AND e.empresa = :empresa "
 					+ "AND e.periodo.year = :year AND e.periodo.semester = :semester", Cuenta.class);
 			query.setParameter("name", nombre);
 			query.setParameter("empresa", empresa);
@@ -73,7 +69,7 @@ public class RepositorioDeEmpresas {
 	}
 
 	public Collection<Cuenta> buscarCuentasPorEmpresa(long empresaID) {
-		return entityManager.find(Empresa.class, empresaID).getCuentas();
+		return PerThreadEntityManagers.getEntityManager().find(Empresa.class, empresaID).getCuentas();
 	}
 }
 

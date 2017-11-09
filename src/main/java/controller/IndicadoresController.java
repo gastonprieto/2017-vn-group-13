@@ -8,11 +8,12 @@ import spark.Response;
 import utils.InterpretadorDeIndicadores;
 
 public class IndicadoresController {
-	public ModelAndView nuevo(Request req, Response res) {	
+	
+	public static ModelAndView nuevo(Request req, Response res) {	
 		return new ModelAndView(null, "NuevoIndicador.hbs");
 	}
 	
-	public ModelAndView guardar(Request req, Response res) {
+	public static ModelAndView guardar(Request req, Response res) {
 		InterpretadorDeIndicadores interpretadorDeIndicadores = new InterpretadorDeIndicadores();
 		try {
 			RepositorioDeIndicadores.getInstance()
@@ -24,7 +25,7 @@ public class IndicadoresController {
 		return null;
 	}
 	
-	public ModelAndView aplicar(Request req, Response res) {
+	public static ModelAndView aplicar(Request req, Response res) {
 		// Pagina de aplicar indicadores
 		return new ModelAndView(null, "Indicadores.hbs");
 	}

@@ -19,6 +19,7 @@ import model.Empresa;
 import model.Indicador;
 import model.Periodo;
 import model.formas.de.aplicacion.FormaAplicacionEnum;
+import repositorios.RepositorioDeIndicadores;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -41,7 +42,7 @@ public abstract class CondicionTaxativa  {
 	
 	protected double valorReferencia;
 
-	public CondicionTaxativa(){}
+	public CondicionTaxativa() {}
 
 	public List<Empresa> filtrar(Collection<Empresa> empresas) {
 			List<Empresa> empresasSeleccionadas = empresas.stream().filter((empresa) ->
@@ -54,7 +55,7 @@ public abstract class CondicionTaxativa  {
 	}
 	
 	public double aplicarIndicador(Empresa empresa, Periodo periodo) {
-		return this.indicador.aplicar(empresa, periodo);
+		return RepositorioDeIndicadores.getInstance().buscarIndicador(indicador.getNombre()).aplicar(empresa, periodo);
 	}
 	
 	public abstract boolean comparar(double resultado);

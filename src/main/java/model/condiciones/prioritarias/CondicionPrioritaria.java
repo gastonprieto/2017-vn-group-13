@@ -19,6 +19,7 @@ import model.Empresa;
 import model.Indicador;
 import model.Periodo;
 import model.formas.de.aplicacion.FormaAplicacionEnum;
+import repositorios.RepositorioDeIndicadores;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -56,7 +57,7 @@ public abstract class CondicionPrioritaria  {
 	
 	public double aplicarIndicador(Empresa empresa, Periodo periodo) {
 		try {
-			return this.indicador.aplicar(empresa, periodo);
+			return RepositorioDeIndicadores.getInstance().buscarIndicador(indicador.getNombre()).aplicar(empresa, periodo);
 		} catch(Exception e) {
 			return 0.0;
 		}

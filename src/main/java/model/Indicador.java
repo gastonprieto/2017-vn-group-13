@@ -20,7 +20,7 @@ public class Indicador {
 	private long id;
 
 	@Column(length = 50, unique = true)
-	public String nombre;
+	private String nombre;
 
 	@Transient
 	private Operando operacion;

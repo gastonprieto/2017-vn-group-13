@@ -17,12 +17,8 @@ import utils.InterpretadorDeIndicadores;
 public class RepositorioDeIndicadores {
 	private static RepositorioDeIndicadores instance = null;
 	private Collection<Indicador> indicadores = new ArrayList<>();
-	public EntityManager entityManager;
 	
-	private RepositorioDeIndicadores() {
-		entityManager = PerThreadEntityManagers.getEntityManager();
-		indicadores = buscarTodos();
-	}
+	private RepositorioDeIndicadores() {}
 	
 	public static RepositorioDeIndicadores getInstance() {
 		if(instance == null) {
@@ -43,7 +39,7 @@ public class RepositorioDeIndicadores {
 	}
 	
 	public Collection<Indicador> getIndicadores() {
-		return indicadores;
+		return this.buscarTodos();
 	}
 	
 	public void setIndicadores(Collection<Indicador> indicadores) {
@@ -53,7 +49,7 @@ public class RepositorioDeIndicadores {
 	@SuppressWarnings("unchecked")
 	public Collection<Indicador> buscarTodos(){			
 		String consulta = "select e from model.Indicador e";
-		Query query = entityManager.createQuery(consulta);
+		Query query = PerThreadEntityManagers.getEntityManager().createQuery(consulta);
 		Collection<Indicador> indicadoresLeidos = (Collection<Indicador>) query.getResultList();
 		InterpretadorDeIndicadores interpretador = new InterpretadorDeIndicadores();
 		return indicadoresLeidos.stream().map(indicador ->
@@ -61,6 +57,7 @@ public class RepositorioDeIndicadores {
 	}
 	
 	public void persistirIndicador(Indicador indicador){
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		entityManager.getTransaction().begin();
 		entityManager.persist(indicador);
 		entityManager.getTransaction().commit();
@@ -68,9 +65,10 @@ public class RepositorioDeIndicadores {
 	
 	public Indicador buscarIndicador(String nombre) {
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM Indicador AS e WHERE e.nombre = :nombre", Indicador.class);
+			Query query = PerThreadEntityManagers.getEntityManager().createQuery("SELECT e FROM Indicador AS e WHERE e.nombre = :nombre", Indicador.class);
 			query.setParameter("nombre", nombre);
-			return (Indicador) query.getSingleResult();
+			Indicador indicador = (Indicador) query.getSingleResult();
+			return new InterpretadorDeIndicadores().interpretar(indicador.getNombre(), indicador.getOperacionPersistencia());
 		} catch(PersistenceException e) {
 			throw new IndicadorException("No existe el indicador " + nombre);
 		}
