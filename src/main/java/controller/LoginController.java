@@ -12,7 +12,9 @@ import spark.Response;
 public class LoginController {
 	
 	public static ModelAndView getLogInPage(Request req, Response res) {
-		return new ModelAndView(null, "login.hbs");
+		Map<String, Boolean> model = new HashMap<>();
+		model.put("loggedOut", true);
+		return new ModelAndView(model, "login.hbs");
 	}
 	
 	public static ModelAndView logIn(Request req, Response res) {

@@ -52,6 +52,13 @@
 						<a class="nav-link" href="/metodologias/aplicar">Aplicar Metodologia</a>
 					</li>
 				</ul>
+				<ul class="navbar-nav ml-auto">
+					{{#unless loggedOut}}
+						<li class="nav-item">
+							<a class="nav-link" href="/logout">Cerrar sesion</a>
+						</li>
+					{{/unless}}
+				</ul>
 			</div>
 		</nav>
 		{{#block "contenido"}}

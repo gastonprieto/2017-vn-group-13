@@ -1,8 +1,8 @@
 {{#partial "contenido"}}
-<div>    
-    <h1 class="title">Acplicar Metodologia</h1>		
-	<div class="row selector w-75">		
-		<h4 class="margin-right-10">Seleccione una Metodologia:</h4>			
+<div>
+    <h1 class="title">Aplicar Metodologia</h1>
+	<div class="row selector w-75">
+		<h4 class="margin-right-10">Seleccione una Metodologia:</h4>
 			<div class="btn-group">
 				<button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Metodologias
@@ -13,25 +13,25 @@
 					{{/each}}
 				</div>
 			</div>
-		</div>	
+		</div>
 		{{#if empresas}}
 			<table class="table table-hover">
 				<thead class="thead-inverse">
 					<tr>
-						<th>Nombre</th>					
+						<th>Nombre</th>
 					</tr>
 				</thead>
 				<tbody>
 					{{#each empresas}}
 						<tr>
-							<th>{{nombre}}</th>							
+							<th>{{nombre}}</th>
 						</tr>
 					{{/each}}
 				</tbody>
 			</table>
 		{{else}}
 			<h5 class="placeholder">No hay empresas para mostrar</h5>
-		{{/if}}	 					
+		{{/if}}
 </div>
 {{/partial}}
 {{>layout.hbs}}
