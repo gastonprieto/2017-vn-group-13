@@ -12,7 +12,6 @@ import model.Metodologia;
 public class RepositorioDeMetodologias {
 	
     private static RepositorioDeMetodologias instance = null;
-    private Collection<Metodologia> metodologias;
 
     private RepositorioDeMetodologias() {}
 
@@ -25,7 +24,6 @@ public class RepositorioDeMetodologias {
 
 	public void registrarMetodologia(Metodologia metodologia) {        
 		this.PerisistrMetodologiaDelRepositorio(metodologia);
-		this.metodologias.add(metodologia);
 	}
 	
 	public void PerisistrMetodologiaDelRepositorio(Metodologia metodologia){
@@ -46,8 +44,4 @@ public class RepositorioDeMetodologias {
     public Collection<Metodologia> getMetodologias() {
         return this.buscarTodas();
     }
-    
-    public void setMetodologias(Collection<Metodologia> metodologias) {
-		this.metodologias = metodologias;
-	}
 }
