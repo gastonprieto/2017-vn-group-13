@@ -27,10 +27,6 @@ public class RepositorioDeEmpresas {
 		}
 		return instance;
 	}
-
-	public Collection<Empresa> getEmpresas() {
-		return this.buscarTodas();
-	}
 	
 	public void perisistirEmpresas(Collection<Empresa> empresas) {
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
