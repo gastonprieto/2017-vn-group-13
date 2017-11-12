@@ -1,17 +1,25 @@
 package utils;
 
 import java.util.Collection;
+import java.util.TimerTask;
 
 import org.apache.commons.lang.StringUtils;
 
 import repositorios.RepositorioDeIndicadores;
 import repositorios.RepositorioDeMetodologias;
 
-public class ImportadorDeDatos {
+public class ImportadorDeDatos extends TimerTask {
+	
 	private ManejadorDeArchivos lectorDeArchivos;	
 	
 	public ImportadorDeDatos() {
 		this.lectorDeArchivos = new ManejadorDeArchivos();
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		System.out.println("Corriendo importador de datos");
 	}
 	
 //	public void importarRepositorioDeEmpresas(String filePath) {
@@ -74,5 +82,4 @@ public class ImportadorDeDatos {
 	public void importarMetodologiasYCondicionesDeDB() {		
 		RepositorioDeMetodologias.getInstance().buscarTodas();
 	}
-
 }
