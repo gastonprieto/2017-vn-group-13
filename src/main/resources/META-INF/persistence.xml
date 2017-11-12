@@ -31,6 +31,7 @@
         <class>model.Indicador</class>
         <class>model.Empresa</class>
         <class>model.Cuenta</class>
+        <class>model.Usuario</class>
 
 
         <properties> 
