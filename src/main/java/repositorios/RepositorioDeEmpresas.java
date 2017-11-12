@@ -67,5 +67,10 @@ public class RepositorioDeEmpresas {
 	public Collection<Cuenta> buscarCuentasPorEmpresa(long empresaID) {
 		return PerThreadEntityManagers.getEntityManager().find(Empresa.class, empresaID).getCuentas();
 	}
+
+	public void guardarEmpresa(Empresa empresa) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
