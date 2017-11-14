@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,9 @@ public class Resultado {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@Column(length = 50)
+	private Double valor;
 
 	@Embedded
 	private Periodo periodo;
@@ -52,5 +56,13 @@ public class Resultado {
 
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
+	}
+	
+	public Double getValor() {
+		return this.valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 }
