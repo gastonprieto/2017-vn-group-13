@@ -9,5 +9,6 @@ public class AsistenteDeInversiones {
 		Spark.port(8080);
 		DebugScreen.enableDebugScreen();
 		Router.configure();
+		TaskScheduler.scheduleTasks();
 	}
 }

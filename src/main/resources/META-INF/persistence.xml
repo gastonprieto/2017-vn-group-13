@@ -31,6 +31,8 @@
         <class>model.Indicador</class>
         <class>model.Empresa</class>
         <class>model.Cuenta</class>
+        <class>model.Usuario</class>
+        <class>model.Resultado</class>
 
 
         <properties> 
@@ -38,7 +40,7 @@
 
 
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/otradb" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/prueba" />
             <property name="hibernate.connection.username" value="root" />
             <property name="hibernate.connection.password" value="1234" />
 <!-- pruebabd

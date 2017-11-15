@@ -1,11 +1,10 @@
 package repositorios;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceException;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -16,7 +15,6 @@ import utils.InterpretadorDeIndicadores;
 
 public class RepositorioDeIndicadores {
 	private static RepositorioDeIndicadores instance = null;
-	private Collection<Indicador> indicadores = new ArrayList<>();
 	
 	private RepositorioDeIndicadores() {}
 	
@@ -28,26 +26,18 @@ public class RepositorioDeIndicadores {
 	}
 
 	public void registrarIndicador(Indicador indicador) {
-		try {
-			this.buscarIndicador(indicador.getNombre());
-		} catch(IndicadorException e) {
-			this.persistirIndicador(indicador);
-			indicadores.add(indicador);
-			return;
+		if(this.buscarIndicadorPorNombre(indicador.getNombre()) != null) {
+			throw new IndicadorException("El indicador ya existe");
 		}
-		throw new IndicadorException("El indicador ya existe");
+		this.persistirIndicador(indicador);
 	}
-	
+
 	public Collection<Indicador> getIndicadores() {
 		return this.buscarTodos();
 	}
 	
-	public void setIndicadores(Collection<Indicador> indicadores) {
-		this.indicadores = indicadores;
-	}
-	
 	@SuppressWarnings("unchecked")
-	public Collection<Indicador> buscarTodos(){			
+	public Collection<Indicador> buscarTodos() {			
 		String consulta = "select e from model.Indicador e";
 		Query query = PerThreadEntityManagers.getEntityManager().createQuery(consulta);
 		Collection<Indicador> indicadoresLeidos = (Collection<Indicador>) query.getResultList();
@@ -56,7 +46,7 @@ public class RepositorioDeIndicadores {
 			interpretador.interpretar(indicador.getNombre(), indicador.getOperacionPersistencia())).collect(Collectors.toList());
 	}
 	
-	public void persistirIndicador(Indicador indicador){
+	public void persistirIndicador(Indicador indicador) {
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		entityManager.getTransaction().begin();
 		entityManager.persist(indicador);
@@ -64,13 +54,20 @@ public class RepositorioDeIndicadores {
 	}
 	
 	public Indicador buscarIndicador(String nombre) {
-		try {
-			Query query = PerThreadEntityManagers.getEntityManager().createQuery("SELECT e FROM Indicador AS e WHERE e.nombre = :nombre", Indicador.class);
-			query.setParameter("nombre", nombre);
-			Indicador indicador = (Indicador) query.getSingleResult();
+		Indicador indicador = buscarIndicadorPorNombre(nombre);
+		if(indicador != null) {
 			return new InterpretadorDeIndicadores().interpretar(indicador.getNombre(), indicador.getOperacionPersistencia());
-		} catch(PersistenceException e) {
-			throw new IndicadorException("No existe el indicador " + nombre);
+		}
+		throw new IndicadorException("No existe el indicador " + nombre);
+	}
+
+	private Indicador buscarIndicadorPorNombre(String nombre) {
+		Query query = PerThreadEntityManagers.getEntityManager().createQuery("SELECT e FROM Indicador AS e WHERE e.nombre = :nombre", Indicador.class);
+		query.setParameter("nombre", nombre);
+		try {
+			return (Indicador) query.getSingleResult();
+		} catch(NoResultException e) {
+			return null;
 		}
 	}
 }

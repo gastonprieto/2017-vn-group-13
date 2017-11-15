@@ -12,7 +12,6 @@ import model.Metodologia;
 public class RepositorioDeMetodologias {
 	
     private static RepositorioDeMetodologias instance = null;
-    private Collection<Metodologia> metodologias;
 
     private RepositorioDeMetodologias() {}
 
@@ -23,12 +22,7 @@ public class RepositorioDeMetodologias {
         return instance;
     }    
 
-	public void registrarMetodologia(Metodologia metodologia) {        
-		this.PerisistrMetodologiaDelRepositorio(metodologia);
-		this.metodologias.add(metodologia);
-	}
-	
-	public void PerisistrMetodologiaDelRepositorio(Metodologia metodologia){
+	public void registrarMetodologia(Metodologia metodologia){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		entityManager.getTransaction().begin();
 		entityManager.persist(metodologia);
@@ -42,12 +36,8 @@ public class RepositorioDeMetodologias {
 		Query query = PerThreadEntityManagers.getEntityManager().createQuery(consulta);
 		return (Collection<Metodologia>) query.getResultList();
 	}
-    
-    public Collection<Metodologia> getMetodologias() {
-        return this.buscarTodas();
-    }
-    
-    public void setMetodologias(Collection<Metodologia> metodologias) {
-		this.metodologias = metodologias;
+
+	public Metodologia buscarMetodologia(long id) {
+		return PerThreadEntityManagers.getEntityManager().find(Metodologia.class, id);
 	}
 }

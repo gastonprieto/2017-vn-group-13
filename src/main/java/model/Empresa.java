@@ -20,7 +20,7 @@ public class Empresa {
 	@Column(length = 50, unique = true, nullable = false)
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "empresa", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "empresa", fetch = FetchType.LAZY)
 	private Collection<Cuenta> cuentas;
 	
 	public Long getId() {
