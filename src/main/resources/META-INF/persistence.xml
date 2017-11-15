@@ -40,7 +40,7 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/otradb" />
             <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="MYSQL" />
+            <property name="hibernate.connection.password" value="1234" />
 <!-- pruebabd
             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 
             <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db" /> 

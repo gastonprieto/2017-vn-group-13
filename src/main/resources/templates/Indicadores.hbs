@@ -1,30 +1,46 @@
 {{#partial "contenido"}}
 	<div>
-	    <h1>Evaluacion de Indicadores</h1>	
-		<h2>Seleccione un Indicador</h2>		
-		<div class="btn-group">
-		  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Indicadores
-		  </button>
-		  <div class="dropdown-menu">
-			<a class="dropdown-item" href="#">Indicador1</a>
-			<a class="dropdown-item" href="#">Indicador2</a>
-			<a class="dropdown-item" href="#">Indicador3</a>		
-		  </div>
-		</div>	
-		<div class="col-lg-6">
-			<div class="input-group">
-			  <span class="input-group-addon" id="sizing-addon1">Ingrese año:</span>
-			  <input type="number" class="form-control"aria-describedby="basic-addon1">
+	    <div class="title">
+			<h1>Evaluacion de Indicadores</h1>
+		</div>		
+		<div class="row selector w-75">		
+		<h4 class="margin-right-10">Seleccione un Indicador:</h4>
+			
+		<form action="/indicadores/empresa/{{myselect}}/year/{{year}}/semester/{{semester}}" method="GET" class="placeholder">
+			<div class="form-group">
+				
+				<select id="myselect" name="myselect" value ="{{myselect}}" class="form-control">
+					{{#each indicadores}}
+						<option value="{{nombre}}">{{nombre}}</option>
+					{{/each}}
+				</select>
 			</div>
-		</div>	
-		<div class="col-lg-6">
-			<div class="input-group">
-			  <span class="input-group-addon" id="sizing-addon1">Ingrese semestre:</span>
-			  <input type="number" class="form-control" aria-describedby="basic-addon1">
+		
+		</div>
+
+			<div class="form-group">
+				
+				<select id="myselect2" name="myselect2" value ="{{myselect2}}" class="form-control">
+					{{#each empresas}}
+						<option value="{{name}}">{{name}}</option>
+					{{/each}}
+				</select>
 			</div>
-		</div>				
-		<button type="button" class="btn btn-success">Aplicar</button>	
+		
+		</div>
+		
+		
+		<div class="form-group">
+				<label for="nombre"><h5 class="margin-right-10">Ingrese año:</h5></label>
+				<input type="number" name="year">
+			</div>
+			<div class="form-group">
+				<label for="nombre"><h5 class="margin-right-17">Ingrese semestre:</h5></label>
+				<input type="number" name="semester">
+			</div>
+		
+		<input class="btn btn-outline-dark" type="submit" value="Aplicar">					
+
 		<button type="button" class="btn btn-success">Volver al Menu</button>
 	</div>
 {{/partial}}
