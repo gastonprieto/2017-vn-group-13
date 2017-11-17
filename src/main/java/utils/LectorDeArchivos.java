@@ -13,13 +13,13 @@ public class LectorDeArchivos {
 	private BufferedReader bufferedReader;
 	
 	public LectorDeArchivos() throws FileNotFoundException {
-		archivo = new File("");
+		archivo = new File(System.getProperty("user.dir") + "/src/main/resources/json/cuentas.json");
 		fileReader = new FileReader(archivo);
 		bufferedReader = new BufferedReader(fileReader);
 	}
 
 	public boolean lecturaFinalizada() throws IOException {
-		return bufferedReader.ready();
+		return !bufferedReader.ready();
 	}
 
 	public String leerSiguiente() throws IOException {

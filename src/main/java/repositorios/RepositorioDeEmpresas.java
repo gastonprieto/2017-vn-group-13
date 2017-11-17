@@ -1,9 +1,5 @@
 package repositorios;
 
-import model.Cuenta;
-import model.Empresa;
-import model.Periodo;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -15,6 +11,9 @@ import javax.persistence.Query;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import exception.EmpresaException;
+import model.Cuenta;
+import model.Empresa;
+import model.Periodo;
 
 public class RepositorioDeEmpresas {
 	
@@ -51,6 +50,15 @@ public class RepositorioDeEmpresas {
 	}
 	
 	public Cuenta findCuentaByEmpresaAndPeriodoAndNombre(Empresa empresa, Periodo periodo, String nombre) {
+		Cuenta cuenta = findCuenta(empresa, periodo, nombre);
+		if(cuenta != null) {
+			return cuenta;
+		}
+		throw new EmpresaException("La empresa " + empresa.getName() + " no posee la cuenta " + nombre +
+				" en el semestre " + periodo.getSemester() + " del " + periodo.getYear());
+	}
+
+	private Cuenta findCuenta(Empresa empresa, Periodo periodo, String nombre) {
 		try {
 			Query query = PerThreadEntityManagers.getEntityManager().createQuery("SELECT e FROM Cuenta AS e WHERE e.name = :name AND e.empresa = :empresa "
 					+ "AND e.periodo.year = :year AND e.periodo.semester = :semester", Cuenta.class);
@@ -59,9 +67,8 @@ public class RepositorioDeEmpresas {
 			query.setParameter("year", periodo.getYear());
 			query.setParameter("semester", periodo.getSemester());
 			return (Cuenta) query.getSingleResult();
-		} catch(PersistenceException e) {
-			throw new EmpresaException("La empresa " + empresa.getName() + " no posee la cuenta " + nombre +
-					" en el semestre " + periodo.getSemester() + " del " + periodo.getYear());
+		} catch(NoResultException e) {
+			return null;
 		}
 	}
 
@@ -73,23 +80,39 @@ public class RepositorioDeEmpresas {
 		try {
 			EntityManager em = PerThreadEntityManagers.getEntityManager();
 			Empresa empresaAnterior = buscarEmpresaPorNombre(empresa.getName());
-			if(empresaAnterior != null) {
-
-			} else {
+			if(empresaAnterior == null) {
+				empresa.getCuentas().stream().forEach(cuenta -> cuenta.setEmpresa(empresa));
 				em.getTransaction().begin();
 				em.persist(empresa);
 				em.flush();
 				em.getTransaction().commit();
 				em.close();
+			} else {
+				empresa.getCuentas().stream().forEach(cuenta -> actualizarCuenta(empresaAnterior, cuenta));
 			}
-			guardarCuentas(empresa);
 		} catch(PersistenceException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void guardarCuentas(Empresa empresa) {
-		
+	private void actualizarCuenta(Empresa empresa, Cuenta cuenta) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Cuenta cuentaAnterior = findCuenta(empresa, cuenta.getPeriodo(), cuenta.getName());
+		if(cuentaAnterior == null) {
+			cuenta.setEmpresa(empresa);
+			em.getTransaction().begin();
+			em.persist(empresa);
+			em.flush();
+			em.getTransaction().commit();
+			em.close();
+		} else if(cuentaAnterior.getValue() != cuenta.getValue()) {
+			em.getTransaction().begin();
+			Query q = em.createQuery("UPDATE Cuenta SET value = :value WHERE id = :id");
+			q.setParameter("value", cuenta.getValue());
+			q.setParameter("id", cuentaAnterior.getId());
+			q.executeUpdate();
+			em.getTransaction().commit();
+		}
 	}
 
 	private Empresa buscarEmpresaPorNombre(String name) {

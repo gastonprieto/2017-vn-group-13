@@ -28,7 +28,7 @@ public class Cuenta {
 	private Periodo periodo;
 	
 	@ManyToOne
-	@JoinColumn(name = "empresa_id")
+	@JoinColumn(name = "empresa_id", nullable = false, insertable=true, updatable=true)
 	private Empresa empresa;
 	
 	public Cuenta() {}
@@ -65,5 +65,9 @@ public class Cuenta {
 
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
+	}
+
+	public Long getId() {
+		return id;
 	}
 }
