@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import model.Empresa;
 import model.Periodo;
+import model.Usuario;
 import model.condiciones.prioritarias.CondicionPrioritaria;
 import model.condiciones.taxativas.CondicionTaxativa;
 import utils.GeneradorDePeriodos;
@@ -23,12 +24,12 @@ public class AplicacionPorMediana extends FormaAplicacion {
 	private AplicacionPorMediana() {}
 
 	@Override
-	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2, int cantPeriodos) {
+	public int aplicarPrioridad(CondicionPrioritaria condicionPrioritaria, Empresa empresa1, Empresa empresa2, int cantPeriodos, Usuario usuario) {
 		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(cantPeriodos);
 		Collection<Double> resultadosEmpresa1 = new ArrayList<>();
 		Collection<Double> resultadosEmpresa2 = new ArrayList<>();
-		periodos.stream().forEach((periodo) -> resultadosEmpresa1.add(condicionPrioritaria.aplicarIndicador(empresa1, periodo)));
-		periodos.stream().forEach((periodo) -> resultadosEmpresa2.add(condicionPrioritaria.aplicarIndicador(empresa2, periodo)));
+		periodos.stream().forEach((periodo) -> resultadosEmpresa1.add(condicionPrioritaria.aplicarIndicador(empresa1, periodo, usuario)));
+		periodos.stream().forEach((periodo) -> resultadosEmpresa2.add(condicionPrioritaria.aplicarIndicador(empresa2, periodo, usuario)));
 		double resultadoEmpresa1 = resultadosEmpresa1.stream()
 				.sorted((resultado1, resultado2) -> Double.compare(resultado1, resultado2)).collect(Collectors.toList())
 				.get(resultadosEmpresa1.size() / 2);
@@ -39,11 +40,11 @@ public class AplicacionPorMediana extends FormaAplicacion {
 	}
 
 	@Override
-	public boolean aplicarFiltro(CondicionTaxativa condicionTaxativa, Empresa empresa, int cantPeriodos) {
+	public boolean aplicarFiltro(CondicionTaxativa condicionTaxativa, Empresa empresa, int cantPeriodos, Usuario usuario) {
 		Collection<Periodo> periodos = GeneradorDePeriodos.generarPeriodos(cantPeriodos);
 		Collection<Double> resultados = new ArrayList<>();
 		try {
-			periodos.stream().forEach((periodo) -> resultados.add(condicionTaxativa.aplicarIndicador(empresa, periodo)));
+			periodos.stream().forEach((periodo) -> resultados.add(condicionTaxativa.aplicarIndicador(empresa, periodo, usuario)));
 			double mediana = resultados.stream()
 				.sorted((resultado1, resultado2) -> Double.compare(resultado1, resultado2)).collect(Collectors.toList())
 				.get(resultados.size() / 2);

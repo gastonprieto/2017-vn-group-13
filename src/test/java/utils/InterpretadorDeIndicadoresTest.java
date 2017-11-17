@@ -3,14 +3,14 @@ package utils;
 
 import org.junit.After;
 import org.junit.Test;
+
 import exception.IndicadorException;
-import repositorios.RepositorioDeIndicadores;
 
 public class InterpretadorDeIndicadoresTest {
 	
 	@After
 	public void tearDown() {
-		RepositorioDeIndicadores.getInstance().getIndicadores().clear();
+		//RepositorioDeIndicadores.getInstance().getIndicadores().clear();
 	}
 	
 	@Test(expected = IndicadorException.class)

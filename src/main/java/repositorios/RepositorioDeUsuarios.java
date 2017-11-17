@@ -1,5 +1,7 @@
 package repositorios;
 
+import java.util.Collection;
+
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import model.Usuario;
@@ -19,5 +21,9 @@ public class RepositorioDeUsuarios {
 	
 	public Usuario buscarUsuario(String username) {
 		return PerThreadEntityManagers.getEntityManager().find(Usuario.class, username);
+	}
+
+	public Collection<Usuario> buscarTodos() {
+		return null;
 	}
 }

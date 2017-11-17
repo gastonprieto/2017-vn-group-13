@@ -4,7 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 import exception.EmpresaException;
 import exception.IndicadorException;
@@ -13,6 +17,7 @@ import repositorios.RepositorioDeEmpresas;
 import repositorios.RepositorioDeIndicadores;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "nombre"}))
 public class Indicador {
 
 	@Id
@@ -27,6 +32,10 @@ public class Indicador {
 
 	@Column(length = 100)
 	private String operacionPersistencia;
+	
+	@ManyToOne
+	@JoinColumn(name = "usuario_id", nullable = false)
+	private Usuario usuario;
 
 	public Indicador(String nombre) {
 		this.nombre = nombre;
@@ -40,8 +49,8 @@ public class Indicador {
 		
 	}
 
-	public Double aplicar(Empresa empresa, Periodo periodo) {
-		return operacion.resultado(empresa, periodo);
+	public Double aplicar(Empresa empresa, Periodo periodo, Usuario usuario) {
+		return operacion.resultado(empresa, periodo, usuario);
 	}
 
 	public Indicador(String nombre, String OperacionPersistir){
@@ -61,12 +70,12 @@ public class Indicador {
 		return operacionPersistencia;
 	}
 
-	public Double buscarValor(String nombre, Empresa empresa, Periodo periodo) {
+	public Double buscarValor(String nombre, Empresa empresa, Periodo periodo, Usuario usuario) {
 		try {
 			return RepositorioDeEmpresas.getInstance().findCuentaByEmpresaAndPeriodoAndNombre(empresa, periodo, nombre).getValue();
 		} catch (EmpresaException e) {
 			try {
-				return RepositorioDeIndicadores.getInstance().buscarIndicador(nombre).aplicar(empresa, periodo);
+				return RepositorioDeIndicadores.getInstance().buscarIndicador(nombre, usuario).aplicar(empresa, periodo, usuario);
 			} catch(IndicadorException e1) {
 				throw new IndicadorException("No se pudo aplicar el indicador " + nombre + ". Motivo: " + e.getMessage());
 			}
@@ -75,5 +84,9 @@ public class Indicador {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

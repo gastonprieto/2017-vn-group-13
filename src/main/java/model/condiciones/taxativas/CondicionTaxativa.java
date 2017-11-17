@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import model.Usuario;
 import model.formas.de.aplicacion.FormaAplicacionEnum;
 import repositorios.RepositorioDeIndicadores;
 
@@ -44,18 +45,18 @@ public abstract class CondicionTaxativa  {
 
 	public CondicionTaxativa() {}
 
-	public List<Empresa> filtrar(Collection<Empresa> empresas) {
+	public List<Empresa> filtrar(Collection<Empresa> empresas, Usuario usuario) {
 			List<Empresa> empresasSeleccionadas = empresas.stream().filter((empresa) ->
 				this.formaAplicacion.getInstance()
-					.aplicarFiltro(this, empresa, this.cantPeriodos)).collect(Collectors.toList());
+					.aplicarFiltro(this, empresa, this.cantPeriodos, usuario)).collect(Collectors.toList());
 		if(siguienteCondicion == null)
 			return empresasSeleccionadas;
 		else
-			return siguienteCondicion.filtrar(empresasSeleccionadas);
+			return siguienteCondicion.filtrar(empresasSeleccionadas, usuario);
 	}
 	
-	public double aplicarIndicador(Empresa empresa, Periodo periodo) {
-		return RepositorioDeIndicadores.getInstance().buscarIndicador(indicador.getNombre()).aplicar(empresa, periodo);
+	public double aplicarIndicador(Empresa empresa, Periodo periodo, Usuario usuario) {
+		return RepositorioDeIndicadores.getInstance().buscarIndicador(indicador.getNombre(), usuario).aplicar(empresa, periodo, usuario);
 	}
 	
 	public abstract boolean comparar(double resultado);

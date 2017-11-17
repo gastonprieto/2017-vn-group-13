@@ -24,7 +24,8 @@ public class IndicadoresController {
 		InterpretadorDeIndicadores interpretadorDeIndicadores = new InterpretadorDeIndicadores();
 		try {
 			RepositorioDeIndicadores.getInstance()
-				.registrarIndicador(interpretadorDeIndicadores.interpretar(req.queryParams("nombre"), req.queryParams("calculo")));
+				.registrarIndicador(interpretadorDeIndicadores.interpretar(req.queryParams("nombre"),
+						req.queryParams("calculo")), req.session().attribute("user"));
 			res.redirect("/success");
 		} catch(IndicadorException e) {
 			res.redirect("/error");
@@ -34,7 +35,7 @@ public class IndicadoresController {
 
 	public static ModelAndView aplicar(Request req, Response res) {
 		Map<String, Object> model = new HashMap<>();
-		model.put("indicadores", RepositorioDeIndicadores.getInstance().buscarTodos());
+		model.put("indicadores", RepositorioDeIndicadores.getInstance().buscarTodos(req.session().attribute("user")));
 		model.put("empresas", RepositorioDeEmpresas.getInstance().buscarTodas());
 		return new ModelAndView(model, "Indicadores.hbs");
 
@@ -42,7 +43,7 @@ public class IndicadoresController {
 
 	public static ModelAndView aplicarIndicador(Request req, Response res) {
 		Map<String, Object> model = new HashMap<>();
-		model.put("indicadores", RepositorioDeIndicadores.getInstance().buscarTodos());
+		model.put("indicadores", RepositorioDeIndicadores.getInstance().buscarTodos(req.session().attribute("user")));
 		model.put("empresas", RepositorioDeEmpresas.getInstance().buscarTodas());
 		if(req.queryParams("empresa") != null && req.queryParams("indicador") != null &&
 				req.queryParams("year") != null && req.queryParams("semester") != null) {
@@ -52,7 +53,7 @@ public class IndicadoresController {
 			Indicador indicador = RepositorioDeIndicadores.getInstance().buscarIndicadorPorId(Long.parseLong(req.queryParams("indicador")));
 			Empresa empresa = RepositorioDeEmpresas.getInstance().buscarEmpresaPorId(Long.parseLong(req.queryParams("empresa")));
 			try {
-				double resultado = indicador.aplicar(empresa, periodo);
+				double resultado = indicador.aplicar(empresa, periodo, req.session().attribute("user"));
 				model.put("resultado", resultado);
 				return new ModelAndView(model, "Indicadores.hbs");
 			} catch(RuntimeException e) {

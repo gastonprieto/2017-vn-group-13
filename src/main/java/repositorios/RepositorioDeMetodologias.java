@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import model.Metodologia;
+import model.Usuario;
 
 public class RepositorioDeMetodologias {
 	
@@ -31,9 +32,10 @@ public class RepositorioDeMetodologias {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Collection<Metodologia> buscarTodas(){
-		String consulta = "select e from model.Metodologia e";
+	public Collection<Metodologia> buscarTodas(Usuario usuario){
+		String consulta = "select e from model.Metodologia e WHERE e.usuario = :usuario";
 		Query query = PerThreadEntityManagers.getEntityManager().createQuery(consulta);
+		query.setParameter("usuario", usuario);
 		return (Collection<Metodologia>) query.getResultList();
 	}
 

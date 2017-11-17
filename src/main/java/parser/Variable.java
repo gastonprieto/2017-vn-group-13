@@ -3,6 +3,7 @@ package parser;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import model.Usuario;
 
 public class Variable implements Operando {
 
@@ -15,7 +16,7 @@ public class Variable implements Operando {
 	}
 	
 	@Override
-	public Double resultado(Empresa empresa, Periodo periodo) {
-		return indicador.buscarValor(nombre, empresa, periodo);
+	public Double resultado(Empresa empresa, Periodo periodo, Usuario usuario) {
+		return indicador.buscarValor(nombre, empresa, periodo, usuario);
 	}
 }

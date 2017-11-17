@@ -2,6 +2,7 @@ package parser;
 
 import model.Empresa;
 import model.Periodo;
+import model.Usuario;
 
 public class Operacion implements Operando {
 
@@ -16,7 +17,7 @@ public class Operacion implements Operando {
 	}
 	
 	@Override
-	public Double resultado(Empresa empresa, Periodo periodo) {
-		return this.operador.operar(operandoIzquierdo.resultado(empresa, periodo), operandoDerecho.resultado(empresa, periodo));
+	public Double resultado(Empresa empresa, Periodo periodo, Usuario usuario) {
+		return this.operador.operar(operandoIzquierdo.resultado(empresa, periodo, usuario), operandoDerecho.resultado(empresa, periodo, usuario));
 	}
 }

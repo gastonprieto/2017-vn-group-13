@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 import model.Empresa;
 import model.Indicador;
 import model.Periodo;
+import model.Usuario;
 import model.formas.de.aplicacion.FormaAplicacionEnum;
 import repositorios.RepositorioDeIndicadores;
 
@@ -42,22 +43,22 @@ public abstract class CondicionPrioritaria  {
 
 	public CondicionPrioritaria() {}
 	
-	public List<Empresa> ordenar(Collection<Empresa> collection) {
-		return collection.stream().sorted((empresa1, empresa2) -> this.realizarComparacion(empresa1, empresa2)).collect(Collectors.toList());
+	public List<Empresa> ordenar(Collection<Empresa> collection, Usuario usuario) {
+		return collection.stream().sorted((empresa1, empresa2) -> this.realizarComparacion(empresa1, empresa2, usuario)).collect(Collectors.toList());
 	}
 	
-	public int realizarComparacion(Empresa empresa1, Empresa empresa2) {
+	public int realizarComparacion(Empresa empresa1, Empresa empresa2, Usuario usuario) {
 		int resultado = this.formaAplicacion.getInstance()
-				.aplicarPrioridad(this, empresa1, empresa2, this.cantPeriodos);
+				.aplicarPrioridad(this, empresa1, empresa2, this.cantPeriodos, usuario);
 		if(resultado == 0 && condicionDesempate != null) {
-			return condicionDesempate.realizarComparacion(empresa1, empresa2);
+			return condicionDesempate.realizarComparacion(empresa1, empresa2, usuario);
 		}
 		return resultado;
 	}
 	
-	public double aplicarIndicador(Empresa empresa, Periodo periodo) {
+	public double aplicarIndicador(Empresa empresa, Periodo periodo, Usuario usuario) {
 		try {
-			return RepositorioDeIndicadores.getInstance().buscarIndicador(indicador.getNombre()).aplicar(empresa, periodo);
+			return RepositorioDeIndicadores.getInstance().buscarIndicador(indicador.getNombre(), usuario).aplicar(empresa, periodo, usuario);
 		} catch(Exception e) {
 			return 0.0;
 		}
