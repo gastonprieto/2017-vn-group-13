@@ -18,7 +18,7 @@ public class CalculadorDeIndicadores {
 		usuarios.stream().forEach(usuario -> aplicarIndicadores(empresas, periodo, usuario));
 	}
 
-	public void aplicarIndicadores(Collection<Empresa> empresas, Periodo periodo, Usuario usuario) {
+	private void aplicarIndicadores(Collection<Empresa> empresas, Periodo periodo, Usuario usuario) {
 		Collection<Indicador> indicadores = RepositorioDeIndicadores.getInstance().getIndicadores(usuario);
 		for (Empresa empresa : empresas) {
 			for (Indicador indicador : indicadores) {
