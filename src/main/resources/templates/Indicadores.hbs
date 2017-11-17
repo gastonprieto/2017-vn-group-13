@@ -1,47 +1,47 @@
 {{#partial "contenido"}}
 	<div>
-	    <div class="title">
-			<h1>Evaluacion de Indicadores</h1>
-		</div>		
-		<div class="row selector w-75">		
-		<h4 class="margin-right-10">Seleccione un Indicador:</h4>
-			
-		<form action="/indicadores/empresa/{{myselect}}/year/{{year}}/semester/{{semester}}" method="GET" class="placeholder">
-			<div class="form-group">
-				
-				<select id="myselect" name="myselect" value ="{{myselect}}" class="form-control">
-					{{#each indicadores}}
-						<option value="{{nombre}}">{{nombre}}</option>
-					{{/each}}
-				</select>
+		<h1 class="title">Aplicar Indicador</h1>
+		<form method="POST" action="/indicadores/aplicar" class="margin-left-10">
+			<div class="form-row">
+				<div class="form-group col-md-3">
+					<label for="indicador"><h5>Indicador</h5></label>
+					<select id="indicador" class="form-control" name="indicador">
+						{{#each indicadores}}
+							<option value="{{id}}">{{nombre}}</option>
+						{{/each}}
+					</select>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="empresa"><h5>Empresa</h5></label>
+					<select id="empresa" class="form-control" name="empresa">
+						{{#each empresas}}
+							<option value="{{id}}">{{name}}</option>
+						{{/each}}
+					</select>
+				</div>
+				<div class="form-group col-md-1">
+					<label for="year"><h5>AÒo</h5></label>
+					<input type="number" class="form-control" id="year" value="2017" name="year">
+				</div>
+				<div class="form-group col-md-1">
+					<label for="semester"><h5>Semestre</h5></label>
+					<select id="semester" class="form-control" name="semester">
+						<option selected>1</option>
+						<option>2</option>
+					</select>
+				</div>
+				<div class="form-group col-md-1">
+					<button type="submit" class="btn btn-outline-dark" style="margin-top: 37.5%;">Aplicar</button>
+				</div>
 			</div>
-		
-		</div>
-
-			<div class="form-group">
-				
-				<select id="myselect2" name="myselect2" value ="{{myselect2}}" class="form-control">
-					{{#each empresas}}
-						<option value="{{name}}">{{name}}</option>
-					{{/each}}
-				</select>
-			</div>
-		
-		</div>
-		
-		
-		<div class="form-group">
-				<label for="nombre"><h5 class="margin-right-10">Ingrese a√±o:</h5></label>
-				<input type="number" name="year">
-			</div>
-			<div class="form-group">
-				<label for="nombre"><h5 class="margin-right-17">Ingrese semestre:</h5></label>
-				<input type="number" name="semester">
-			</div>
-		
-		<input class="btn btn-outline-dark" type="submit" value="Aplicar">					
-
-		<button type="button" class="btn btn-success">Volver al Menu</button>
+		</form>
+		{{#if resultado}}
+			<h5 class="placeholder">Resultado: {{resultado}}</h5>
+		{{else}}
+			{{#if noResult}}
+				<h5 class="placeholder">No se puede aplicar el indicador para la empresa y periodo seleccionados</h5>
+			{{/if}}
+		{{/if}}
 	</div>
 {{/partial}}
 {{>layout.hbs}}

@@ -74,13 +74,7 @@ public class RepositorioDeEmpresas {
 			EntityManager em = PerThreadEntityManagers.getEntityManager();
 			Empresa empresaAnterior = buscarEmpresaPorNombre(empresa.getName());
 			if(empresaAnterior != null) {
-				if(!empresa.esIgualA(empresaAnterior)) {
-					Query q = em.createQuery("UPDATE Empresa SET name = :name WHERE id = :id");
-					q.setParameter("name", empresa.getName());
-					q.setParameter("id", empresaAnterior.getId());
-					q.executeUpdate();
-					empresa.setId(empresaAnterior.getId());
-				}
+
 			} else {
 				em.getTransaction().begin();
 				em.persist(empresa);
@@ -88,10 +82,14 @@ public class RepositorioDeEmpresas {
 				em.getTransaction().commit();
 				em.close();
 			}
-			
+			guardarCuentas(empresa);
 		} catch(PersistenceException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void guardarCuentas(Empresa empresa) {
+		
 	}
 
 	private Empresa buscarEmpresaPorNombre(String name) {
@@ -103,6 +101,10 @@ public class RepositorioDeEmpresas {
 		} catch(NoResultException e) {
 			return null;
 		}
+	}
+
+	public Empresa buscarEmpresaPorId(long id) {
+		return PerThreadEntityManagers.getEntityManager().find(Empresa.class, id);
 	}
 }
 

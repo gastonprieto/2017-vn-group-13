@@ -41,11 +41,16 @@ public class RepositorioDeIndicadores {
 		String consulta = "select e from model.Indicador e";
 		Query query = PerThreadEntityManagers.getEntityManager().createQuery(consulta);
 		Collection<Indicador> indicadoresLeidos = (Collection<Indicador>) query.getResultList();
-		InterpretadorDeIndicadores interpretador = new InterpretadorDeIndicadores();
-		return indicadoresLeidos.stream().map(indicador ->
-			interpretador.interpretar(indicador.getNombre(), indicador.getOperacionPersistencia())).collect(Collectors.toList());
+		return indicadoresLeidos.stream().map(indicador -> obtenerIndicadorInterpretado(indicador)).collect(Collectors.toList());
 	}
 	
+	private Indicador obtenerIndicadorInterpretado(Indicador indicador) {
+		InterpretadorDeIndicadores interpretador = new InterpretadorDeIndicadores();
+		Indicador indicadorInterpretado = interpretador.interpretar(indicador.getNombre(), indicador.getOperacionPersistencia());
+		indicadorInterpretado.setId(indicador.getId());
+		return indicadorInterpretado;
+	}
+
 	public void persistirIndicador(Indicador indicador) {
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		entityManager.getTransaction().begin();
@@ -69,5 +74,9 @@ public class RepositorioDeIndicadores {
 		} catch(NoResultException e) {
 			return null;
 		}
+	}
+
+	public Indicador buscarIndicadorPorId(long id) {
+		return obtenerIndicadorInterpretado(PerThreadEntityManagers.getEntityManager().find(Indicador.class, id));
 	}
 }

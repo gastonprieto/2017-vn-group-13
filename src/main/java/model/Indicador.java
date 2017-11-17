@@ -72,4 +72,8 @@ public class Indicador {
 			}
 		}
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }
