@@ -42,4 +42,12 @@ public class Empresa {
 	public void setCuentas(Collection<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public boolean esIgualA(Empresa empresaAnterior) {
+		return this.name.equals(empresaAnterior.getName());
+	}
 }

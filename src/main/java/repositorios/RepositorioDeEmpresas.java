@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
@@ -69,8 +70,39 @@ public class RepositorioDeEmpresas {
 	}
 
 	public void guardarEmpresa(Empresa empresa) {
-		// TODO Auto-generated method stub
-		
+		try {
+			EntityManager em = PerThreadEntityManagers.getEntityManager();
+			Empresa empresaAnterior = buscarEmpresaPorNombre(empresa.getName());
+			if(empresaAnterior != null) {
+				if(!empresa.esIgualA(empresaAnterior)) {
+					Query q = em.createQuery("UPDATE Empresa SET name = :name WHERE id = :id");
+					q.setParameter("name", empresa.getName());
+					q.setParameter("id", empresaAnterior.getId());
+					q.executeUpdate();
+					empresa.setId(empresaAnterior.getId());
+				}
+			} else {
+				em.getTransaction().begin();
+				em.persist(empresa);
+				em.flush();
+				em.getTransaction().commit();
+				em.close();
+			}
+			
+		} catch(PersistenceException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private Empresa buscarEmpresaPorNombre(String name) {
+		EntityManager em = PerThreadEntityManagers.getEntityManager();
+		Query q = em.createQuery("SELECT e FROM Empresa AS e WHERE e.name = :name");
+		q.setParameter("name", name);
+		try {
+			return (Empresa) q.getSingleResult();
+		} catch(NoResultException e) {
+			return null;
+		}
 	}
 }
 

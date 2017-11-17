@@ -1,7 +1,6 @@
 package utils;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import model.Empresa;
 import model.Indicador;
