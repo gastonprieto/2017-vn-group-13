@@ -32,7 +32,7 @@ public class RepositorioDeMetodologias {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Collection<Metodologia> buscarTodas(Usuario usuario){
+	public Collection<Metodologia> buscarTodas(Usuario usuario) {
 		String consulta = "select e from model.Metodologia e WHERE e.usuario = :usuario";
 		Query query = PerThreadEntityManagers.getEntityManager().createQuery(consulta);
 		query.setParameter("usuario", usuario);
